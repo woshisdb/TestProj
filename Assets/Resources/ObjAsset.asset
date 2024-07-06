@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb0c75e16f22724da7f898ad5cde267, type: 3}
+  m_Name: ObjAsset
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: rawSaver
+      Entry: 7
+      Data: 0|RawSaver, Assembly-CSharp
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+  personSaver:
+    size: 1
+    sex: 0
+    age: 20
+    hasSelect: 0
+    isUseObj: 0
+    sleepState:
+      r: 200
+      val: 200
+    PersonName: 
+    isPlayer: 0
+    SafetyVals:
+      baseLive: 0
+      enoughLive: 0
+      richLive: 0
+      foodMoney: 
+    HungryVals:
+      r: 0
+  animalSaver:
+    size: 1
+    sex: 0
+    age: 20
+    hasSelect: 0
+    isUseObj: 0
+    sleepState:
+      r: 200
+      val: 200
+  bedSaver:
+    size: 1
+    capacity: 1
+    nowCapacity: 0
+  objSaver:
+    size: 1
+  pathSaver:
+    size: 1

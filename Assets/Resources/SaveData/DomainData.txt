@@ -1,0 +1,88 @@
+(define (domain robot-domain)
+(:requirements :typing :fluents :durative-actions :numeric-fluents :numeric-effects)
+(:types
+PType
+PathType - ObjType
+ManPanelPathType - PathType
+HomePathType - PathType
+SceneType - PType
+ObjType - PType
+AnimalType - ObjType
+PersonType - AnimalType
+BedType - ObjType
+)
+(:predicates
+(IsAliveP ?objType-ObjType  )
+(In ?x-ObjType ?sceneType-SceneType  )
+(Sex ?personType-AnimalType  )
+(HasSelectP ?objType-ObjType  )
+(IsUseObjP ?personType-AnimalType ?objType-ObjType  )
+(HasCloth ?personType-PersonType ?objType-ObjType  )
+)
+(:functions
+(NowT  )
+(ObjSizeF ?objType-ObjType )
+(Money ?objType-ObjType )
+(Age ?personType-AnimalType )
+(SleepValF ?objType-ObjType )
+(FoodValF ?objType-ObjType )
+(FinancialKnowledge ?personType-PersonType )
+(ArtKnowledge ?personType-PersonType )
+(LanguageKnowledge ?personType-PersonType )
+(MedicalKnowledge ?personType-PersonType )
+(ManagementKnowledge ?personType-PersonType )
+(AgriculturalKnowledge ?personType-PersonType )
+(IndustrialKnowledge ?personType-PersonType )
+(GeneralHistoryKnowledge ?personType-PersonType )
+(Capacity ?objType-ObjType )
+(NowCapacity ?objType-ObjType )
+)
+(:durative-action MainPanel_Home
+:parameters(?Person_18-PersonType ?MainPanel-SceneType ?Home-SceneType )
+
+:duration(=?duration 1)
+:condition(
+( at start (In  Person_18  MainPanel )) 
+)
+
+:effect(
+
+( at end ( and (In  Person_18  Home ) ( not (In  Person_18  MainPanel ))  )) 
+)
+
+)
+
+
+(:durative-action Home_MainPanel
+:parameters(?Person_19-PersonType ?Home-SceneType ?MainPanel-SceneType )
+
+:duration(=?duration 1)
+:condition(
+( at start (In  Person_19  Home )) 
+)
+
+:effect(
+
+( at end ( and (In  Person_19  MainPanel ) ( not (In  Person_19  Home ))  )) 
+)
+
+)
+
+
+(:durative-action Sleep
+:parameters(?Person_20-PersonType ?BedObj_21-BedType )
+
+:duration(=?duration ( > ?duration 0) )
+:condition(
+( at start ( and ( > (Capacity  ?BedObj_21) (NowCapacity  ?BedObj_21))  ( not (IsUseObjP  Person_20   ))  )) 
+)
+
+:effect(
+
+( and ( at end ( assign, (SleepValF  ?Person_20) ( min, ( max, ( + (SleepValF  ?Person_20)  #t)  0)  200) ) )  ( increase (NowT )  #t)  )
+)
+
+)
+
+
+)

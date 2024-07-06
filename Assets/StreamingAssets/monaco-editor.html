@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monaco Editor</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #editor {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="editor"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.22.3/min/vs/loader.js"></script>
+    <script>
+        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.22.3/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            monaco.languages.register({ id: 'csharp' });
+
+            monaco.languages.setMonarchTokensProvider('csharp', {
+                keywords: [
+                    'abstract', 'as', 'base', 'bool', 'break', 'byte', 'case', 'catch', 'char', 'checked', 'class',
+                    'const', 'continue', 'decimal', 'default', 'delegate', 'do', 'double', 'else', 'enum', 'event',
+                    'explicit', 'extern', 'false', 'finally', 'fixed', 'float', 'for', 'foreach', 'goto', 'if',
+                    'implicit', 'in', 'int', 'interface', 'internal', 'is', 'lock', 'long', 'namespace', 'new',
+                    'null', 'object', 'operator', 'out', 'override', 'params', 'private', 'protected', 'public',
+                    'readonly', 'ref', 'return', 'sbyte', 'sealed', 'short', 'sizeof', 'stackalloc', 'static',
+                    'string', 'struct', 'switch', 'this', 'throw', 'true', 'try', 'typeof', 'uint', 'ulong',
+                    'unchecked', 'unsafe', 'ushort', 'using', 'virtual', 'void', 'volatile', 'while'
+                ],
+                tokenizer: {
+                    root: [
+                        [/[{}\[\]()]/, 'delimiter.bracket'],
+                        [/[a-zA-Z_]\w*/, {
+                            cases: {
+                                '@keywords': 'keyword',
+                                '@default': 'identifier'
+                            }
+                        }],
+                        { include: '@whitespace' },
+                        [/[A-Z][\w\$]*/, 'type.identifier'],
+                        [/[+-]?\d+(\.\d+)?([eE][+-]?\d+)?/, 'number.float'],
+                        [/"/, 'string', '@string'],
+                        [/[;,.]/, 'delimiter'],
+                        [/\/\/.*$/, 'comment'],
+                    ],
+                    string: [
+                        [/[^\\"]+/, 'string'],
+                        [/\\./, 'string.escape'],
+                        [/"/, 'string', '@pop']
+                    ],
+                    whitespace: [
+                        [/[ \t\r\n]+/, 'white'],
+                        [/\/\*/, 'comment', '@comment'],
+                        [/\/\/.*$/, 'comment'],
+                    ],
+                    comment: [
+                        [/[^\/]+/, 'comment'],
+                        [/\/\*/, 'comment.invalid'],
+                        [/\*\//, 'comment', '@pop'],
+                        [/[\/]/, 'comment']
+                    ]
+                }
+            });
+
+            var editor = monaco.editor.create(document.getElementById('editor'), {
+                value: '',
+                language: 'csharp',
+                fontSize: 20
+            });
+
+            // Add an API for Unity to get editor content
+            function getEditorContent() {
+                return editor.getValue();
+            };
+
+            // Add an API for Unity to set editor content
+            function setEditorContent(content) {
+                editor.setValue(content);
+            };
+
+            // Configure the language server
+            monaco.languages.registerCompletionItemProvider('csharp', {
+                provideCompletionItems: function (model, position) {
+                    return new Promise(function (resolve) {
+                        fetch('http://localhost:8080/completions', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                text: model.getValue(),
+                                position: position
+                            })
+                        }).then(response => response.json()).then(data => {
+                            resolve({
+                                suggestions: data.items
+                            });
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

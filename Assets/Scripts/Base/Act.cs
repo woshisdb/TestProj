@@ -1,0 +1,107 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using QFramework;
+using UnityEngine;
+
+public class EndAct:Act
+{
+
+    public EndAct(Person person, Obj obj):base(person, obj)
+    {
+
+    }
+    public override IEnumerator<object> Run(System.Action<Act> callback)
+    {
+        TC();
+        Debug.Log("sfsada");
+        yield break;
+    }
+}
+
+public class SeqAct : Act
+{
+    List<Act> acts = new List<Act>();
+    public SeqAct(Person person, Obj obj,params Act[] acts) : base(person, obj)
+    {
+        this.acts.AddRange(acts);
+    }
+
+    public override IEnumerator<object> Run(Action<Act> callback)
+    {
+        TC();
+        while (GameLogic.hasTime&&acts.Count>0)
+        {
+            yield return acts[0].Run(
+                (result) =>
+                {
+                    if (result is EndAct)
+                    {
+                        acts.RemoveAt(0);
+                    }
+                    else if (result is Act)
+                    {
+                        acts[0] = result;
+                    }
+                }
+            );//运行回调
+            //if (acts.Count == 0)
+            //{
+            //    yield return Ret(new EndAct(Person, Obj), callback);
+            //}
+            //else
+            //{
+            //    //Debug.Log("Run" + acts.Count);
+            //    yield return acts[0].Run(
+            //    (result) =>
+            //    {
+            //    //Debug.Log("End"+acts.Count);
+            //        if (result is EndAct)
+            //        {
+            //            acts.RemoveAt(0);
+            //        }
+            //        else if (result is Act)
+            //        {
+            //            acts[0] = result;
+            //        }
+            //    }
+            //    );//运行回调
+            //}
+        }
+        if (acts.Count == 0)
+        {
+            yield return Ret(new EndAct(Person, Obj), callback);
+        }
+    }
+}
+public abstract class Act
+{
+    /// <summary>
+    /// 优先级:
+    /// 0表示随机优先级（非最后和最前面）
+    /// 数越高则表示越靠前
+    /// 负数表示尽量靠后，数约小表示要求越晚
+    /// </summary>
+    public int priority;
+    public Person Person;
+    public Obj Obj;
+    public bool wastTime;
+
+    public Act(Person person, Obj obj,int priority=-1)
+    {
+        Person = person;
+        Obj = obj;
+        this.priority = priority;
+    }
+    public IEnumerator Ret(Act act, System.Action<Act> callback)
+    {
+        callback(act);
+        yield break;
+    }
+    public void TC()
+    {
+        if (wastTime)
+            GameLogic.hasTime = false;
+    }
+    public abstract IEnumerator<object> Run(System.Action<Act> callback);
+}
