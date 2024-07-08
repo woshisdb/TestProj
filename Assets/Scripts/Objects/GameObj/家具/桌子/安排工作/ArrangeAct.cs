@@ -101,7 +101,7 @@ public class AddContractA : Act
         foreach(var contract in contracModel.contractTemplate)
         {
             var it =contract;
-            var key=new SelectInf(it.contractName, it.contractInfo,null,it);
+            var key=new SelectInf(it.contractName, it.contractInfo,it);
             sels.Add(key);
         }
         //创建一个合约
@@ -117,7 +117,8 @@ public class AddContractA : Act
                     var data = ((Contract)sel.obj).CopyContract();
                     data.ap = person;
                     GameArchitect.get.GetModel<ContractModel>().RegistContract(data);
-                }    
+                }
+                return true;
             }
             )
         );

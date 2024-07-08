@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,7 +57,11 @@ public class AnimalObj : Obj
         sex = new Bool(new Sex((AnimalType)obj),sv.sex);
         age = new Num(new Age((AnimalType)obj),sv.age);
         hasSelect = new Bool(new HasSelectP((AnimalType)obj),sv.hasSelect);
-        sleepState = new PersonState(this,sv.sleepState);
+        sleepState = new PersonState((AnimalObj)this,sv.sleepState);
         sleepState.val = new Num(SleepValF(obj));
+    }
+    public AnimalSaver GetSaver()
+    {
+        return (AnimalSaver)objSaver;
     }
 }

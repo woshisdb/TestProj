@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,8 +15,8 @@ public class SelectTex:WinCon
     public string title;
     public string description;
     public List<SelectInf> selects;
-    public UnityAction effect;
-    public SelectTex(string title, string description, List<SelectInf> selects, UnityAction effect)
+    public Func<bool> effect;//Ð§¹û
+    public SelectTex(string title, string description, List<SelectInf> selects, Func<bool> effect)
     {
         this.title = title;
         this.description = description;
@@ -43,7 +44,7 @@ public class CardSelectControl : ItemControlUI<SelectInf>
         select.text = "";
         select.onEndEdit.AddListener((e)=> {
             int data = 0;
-            if(int.TryParse(e,out data)&&data>=0)
+            if(int.TryParse(e,out data)&&data>=0&&data<=selectInf.maxnNum)
             {
                 selectInf.num = data;
             }

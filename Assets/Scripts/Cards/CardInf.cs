@@ -20,14 +20,13 @@ public class SelectInf
 {
     public string title;
     public string description;
-    public UnityAction action;
     public int num;
-    public object obj;
-    public SelectInf(string title = "", string description = "", UnityAction action = null, object obj = null)
+    public int maxnNum;
+    public object obj;//ŒÔ∆∑
+    public SelectInf(string title = "", string description = "", object obj = null)
     {
         this.title = title;
         this.description = description;
-        this.action = action;
         this.obj = obj;
     }
 }

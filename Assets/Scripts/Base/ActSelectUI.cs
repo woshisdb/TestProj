@@ -43,18 +43,22 @@ public class ActSelectUI : MonoBehaviour
     public IEnumerator AddDecision(SelectTex selectTex)
     {
         bool decisionEnd = false;
-        var bs=selectTex.effect;
-        selectTex.effect = () => { 
-            decisionEnd = true;
-            bs();
-            this.gameObject.SetActive(false);
-            GameArchitect.get.CallDecision();
-        };
         title.text = selectTex.title;
         description.text = selectTex.description;
         cardViewList.UpdataListView(selectTex.selects);
         acceptBtn.onClick.AddListener(
-            selectTex.effect
+            () => {
+                if (selectTex.effect())
+                {
+                    decisionEnd = true;
+                    this.gameObject.SetActive(false);
+                    GameArchitect.get.CallDecision();//如果满足效果就。。，否则就不管
+                }
+                else
+                {
+
+                }
+            }
         );
         return new WaitUntil(() => { return decisionEnd == true; });
     }

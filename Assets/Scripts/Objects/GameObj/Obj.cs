@@ -52,9 +52,14 @@ public class In:Predicate
 
 public class Obj:PDDL,ICanSendEvent
 {
+    /// <summary>
+    /// 对象类型
+    /// </summary>
+    public ObjType obj;
     public string name;
     public TableModel belong;//所属于的对象
     public ObjSaver objSaver;//对象的类型
+    public CardInf cardInf;
     public StringBuilder str;
     [NonSerialized]
     public List<Activity> activities;//角色的所有活动
@@ -129,15 +134,19 @@ public class Obj:PDDL,ICanSendEvent
         str.AppendLine(new In(obj,belong.sceneType).ToString());//所在的位置
         return str;
     }
-}
-public class Obj<T>:Obj where T : ObjSaver
-{
-    public T GetSaver()
+    public ObjSaver Saver()
     {
-        return (T)objSaver;
+        return objSaver;
     }
-    public Obj(ObjSaver objSaver=null)
-    {
+}
+//public class Obj<T>:Obj where T : ObjSaver
+//{
+//    public T Saver()
+//    {
+//        return (T)objSaver;
+//    }
+//    public Obj(ObjSaver objSaver=null)
+//    {
 
-    }
-}
+//    }
+//}

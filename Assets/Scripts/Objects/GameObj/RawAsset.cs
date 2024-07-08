@@ -25,6 +25,10 @@ public class RawObj : Obj
     {
 
     }
+    public RawSaver GetSaver()
+    {
+        return (RawSaver)objSaver;
+    }
 }
 
 

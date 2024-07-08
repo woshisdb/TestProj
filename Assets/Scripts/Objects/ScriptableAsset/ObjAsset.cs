@@ -12,14 +12,29 @@ public class ObjInf
 [System.Serializable]
 public class ObjSaver
 {
+    /// <summary>
+    /// 对象类型
+    /// </summary>
+    public ObjEnum objEnum;
     [SerializeField]
     public int size=1;
-    public CardInf cardInf;
+    //public CardInf cardInf;
+    public string title;
+    public string description;
     public ObjInf canSleep;//可以睡觉
     public ObjInf canSet;//可以坐下来
-    public ObjInf canReg;//可以注册协议
-    public ObjInf canJoin;//可以签署协议
-    public ObjInf canKitch;//可以用于烹饪食物
+    //public ObjInf canReg;//可以注册协议
+    //public ObjInf canJoin;//可以签署协议
+    public ObjInf canCook;//可以用于烹饪食物
+}
+
+public enum ObjEnum
+{
+    /*****************建筑对象******************/
+    Restaurant,
+    /*****************食物对象******************/
+    /*****************原料对象******************/
+    /*****************家具对象******************/
 }
 
 /// <summary>
@@ -44,6 +59,11 @@ public class ObjAsset : SerializedScriptableObject
     public RawSaver rawSaver;
     [SerializeField]
     public FoodSaver foodSaver;
+    /// <summary>
+    /// 一系列的食物
+    /// </summary>
+    [SerializeField]
+    public List<FoodSaver> foods;
     public ObjAsset()
     {
     }

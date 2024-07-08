@@ -34,7 +34,7 @@ public class BedSaver:ObjSaver
 /// 只能存在于另一个obj里面
 /// </summary>
 [Map()]
-public class BedObj : Obj<BedSaver>
+public class BedObj : Obj
 {
     public BedObj(ObjSaver objAsset=null) : base(objAsset)
     {
@@ -44,5 +44,9 @@ public class BedObj : Obj<BedSaver>
         List<Activity> activities = new List<Activity>(base.InitActivities());
         activities.Add(new SleepAct());
         return activities;
+    }
+    public BedSaver GetSaver()
+    {
+        return (BedSaver)objSaver;
     }
 }

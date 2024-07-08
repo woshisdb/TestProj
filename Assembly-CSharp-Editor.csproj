@@ -325,9 +325,6 @@
     <Reference Include="Markdig">
       <HintPath>Assets\QFramework\Toolkits\_CoreKit\PackageKit\Markdown\Markdig.dll</HintPath>
     </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
-    </Reference>
     <Reference Include="Trivial.Mono.Cecil.Mdb">
       <HintPath>Assets\RoslynCSharp\Plugin\Trivial.Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
@@ -364,14 +361,14 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Assets\RoslynCSharp\Plugin\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="Sirenix.Utilities.Editor">
+      <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.18\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Z3">
       <HintPath>Assets\Plugins\Z3\Microsoft.Z3.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Utilities.Editor">
-      <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.18\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
@@ -417,6 +414,9 @@
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis">
       <HintPath>Assets\RoslynCSharp\Plugin\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
@@ -974,10 +974,6 @@
       <Project>{CC60B4D2-89D9-CCF1-7EEC-5FA4DAB5B26B}</Project>
       <Name>RoslynCSharp.Examples</Name>
     </ProjectReference>
-    <ProjectReference Include="ZFBrowser-Editor.csproj">
-      <Project>{B901CCBF-95C0-E4A1-82AB-C0CEE7706F9C}</Project>
-      <Name>ZFBrowser-Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="SupportOldQF.csproj">
       <Project>{BCF46D73-D7D0-92DB-EA5D-CBD7F15D3CB1}</Project>
       <Name>SupportOldQF</Name>
@@ -993,10 +989,6 @@
     <ProjectReference Include="QFramework.CoreKit.csproj">
       <Project>{6A93F1BE-FDE5-753B-5CE6-38034E1E2E7B}</Project>
       <Name>QFramework.CoreKit</Name>
-    </ProjectReference>
-    <ProjectReference Include="ZFBrowser.csproj">
-      <Project>{0468D2E8-3636-BE80-58B7-9D4E6B9E899D}</Project>
-      <Name>ZFBrowser</Name>
     </ProjectReference>
     <ProjectReference Include="ResKit.csproj">
       <Project>{989A27B7-B099-78CF-6C92-85750283F5AF}</Project>

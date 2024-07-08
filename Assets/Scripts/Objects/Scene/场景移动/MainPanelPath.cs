@@ -108,6 +108,10 @@ public class PathObj:Obj
     {
         return GameArchitect.get.tableAsset.tableSaver.activities; 
     }
+    public PathSaver GetSaver()
+    {
+        return (PathSaver)objSaver;
+    }
 }
 ///// <summary>
 ///// 从Man中涉及的道路

@@ -12,9 +12,20 @@ public class FoodType : RawType
     }
 }
 [System.Serializable]
-public class FoodSaver : ObjSaver
+public class FoodSaver : RawSaver
 {
-
+    /// <summary>
+    /// 原料数目
+    /// </summary>
+    public Resource rawObj;
+    /// <summary>
+    /// 食物所提供的能量
+    /// </summary>  
+    public int energy;
+    /// <summary>
+    /// 生产所花费的工时
+    /// </summary>
+    public int wastTime;
 }
 /// <summary>
 /// 1点能量代表坚持一个回合
@@ -22,13 +33,15 @@ public class FoodSaver : ObjSaver
 [Map()]
 public class FoodObj : RawObj
 {
-    public int energy;//食物所提供的能量
     public FoodObj(ObjSaver objAsset = null,int energy=1):base(objAsset)
     {
-
     }
+
     public FoodObj(ObjSaver objAsset = null) : base(objAsset)
     {
-        energy = 1;
+    }
+    public FoodSaver GetSaver()
+    {
+        return (FoodSaver)objSaver;
     }
 }

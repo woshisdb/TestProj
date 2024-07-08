@@ -46,7 +46,7 @@ public class ProblemGenerator
         }
         foreach(var x in GameArchitect.get.tableAsset.tableSaver.objs)//初始化一系列的对象
         {
-            stringBuilder.AppendFormat("{0} - {1}\n",x.obj.objName,x.obj.typeName);
+            //stringBuilder.AppendFormat("{0} - {1}\n",x.obj.objName,x.obj.typeName);
         }
         stringBuilder.AppendLine("\n)");
         //初始化

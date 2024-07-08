@@ -438,6 +438,10 @@ public class Person : AnimalObj
         activities.Add(new IdleAct());
         return activities;
     }
+    public PersonSaver GetSaver()
+    {
+        return (PersonSaver)objSaver;
+    }
     ///// <summary>
     ///// 获得活动
     ///// </summary>

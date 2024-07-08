@@ -60,10 +60,8 @@
     <Compile Include="Assets\InGameCodeEditor\Scripts\CodeLanguageTheme.cs" />
     <Compile Include="Assets\InGameCodeEditor\Scripts\Lexer\CommentGroupMatch.cs" />
     <Compile Include="Assets\Scripts\Objects\ScriptableAsset\TableAsset.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\VRBrowserPanel.cs" />
     <Compile Include="Assets\Scripts\Control\CodeControler.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerNotification.cs" />
-    <Compile Include="Assets\Scripts\Objects\Items\DeskItem.cs" />
     <Compile Include="Assets\Scripts\Objects\GameObj\动物\PersonObj\PersonAsset.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerToggle.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Dropdown\CustomDropdownEditor.cs" />
@@ -74,7 +72,6 @@
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerHSelector.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Editor Handlers\MUIPEditorHandler.cs" />
     <Compile Include="Assets\Scripts\Cards\CardInf.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\SayWordsOnTouch.cs" />
     <Compile Include="Assets\Scripts\Objects\GameObj\合约\Contract.cs" />
     <Compile Include="Assets\InGameCodeEditor\Scripts\AutoIndent.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerContextMenu.cs" />
@@ -96,23 +93,17 @@
     <Compile Include="Assets\Modern UI Pack\Scripts\Demo\DemoListShadow.cs" />
     <Compile Include="Assets\Scripts\Objects\GameObj\家具\床\BedAsset.cs" />
     <Compile Include="Assets\Scripts\Control\CardControl.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\TestDownloadServer.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\SimpleScripting.cs" />
     <Compile Include="Assets\Scripts\Model\TimeModel.cs" />
     <Compile Include="Assets\Scripts\Base\PDDL\PDDL.cs" />
     <Compile Include="Assets\Resources\Table\住宅\HomeRule.cs" />
     <Compile Include="Assets\Scripts\Model\TableModel.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Context Menu\ContextMenuManagerEditor.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\ActionTimer.cs" />
     <Compile Include="Assets\Scripts\Base\PDDL\PAttribute.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\ForcedCooperation.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Window\WindowManagerButton.cs" />
     <Compile Include="Assets\Scripts\Base\PDDL\testDomain.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Modal Window\ModalWindowManager.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\Objects\GameObj\家具\桌子\安排工作\ArrangeAct.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Dropdown\DropdownMultiSelectEditor.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\SimpleController.cs" />
     <Compile Include="Assets\Scripts\Control\OptionControl.cs" />
     <Compile Include="Assets\Scripts\Control\TimeControler.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\ListView\ListViewItem.cs" />
@@ -126,7 +117,6 @@
     <Compile Include="Assets\Modern UI Pack\Scripts\ListView\ListViewRow.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Context Menu\ContextMenuSubMenu.cs" />
     <Compile Include="Assets\Scripts\Control\CardControlUi.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\VRMainControlPanel.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Notification\NotificationManagerEditor.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerTooltip.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Tooltip\TooltipManagerEditor.cs" />
@@ -137,21 +127,19 @@
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerButton.cs" />
     <Compile Include="Assets\Scripts\Architect\GameLogic.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Notification\NotificationManager.cs" />
+    <Compile Include="Assets\Scripts\Objects\GameObj\合约\Goods.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Window\WindowManager.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Slider\SliderInput.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Notification\NotificationStacking.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Demo\DemoElementSwayParent.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerProgressBarLoop.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\CoinPickup.cs" />
     <Compile Include="Assets\Scripts\Activities\Acts.cs" />
     <Compile Include="Assets\Scripts\Base\MainDispatch.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\SimpleFPSController.cs" />
     <Compile Include="Assets\Scripts\Base\PDDL\ActAttribute.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerSliderEditor.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Slider\RadialSliderEditor.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\VRMode.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Progress Bar\ProgressBarEditor.cs" />
-    <Compile Include="Assets\Scripts\Objects\GameObj\家具\BuildingObj.cs" />
+    <Compile Include="Assets\Scripts\Objects\GameObj\建筑\BuildingObj.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Core\MUIPInternalTools.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerInputField.cs" />
     <Compile Include="Assets\InGameCodeEditor\Scripts\Lexer\InputStringLexer.cs" />
@@ -167,7 +155,6 @@
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerDropdownItem.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Demo\InputSystemChecker.cs" />
     <Compile Include="Assets\Scripts\Objects\Scene\场景移动\MainPanelPath.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\HUDManager.cs" />
     <Compile Include="Assets\InGameCodeEditor\Scripts\Lexer\NumberGroupMatch.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Layout Group\RadialLayoutGroup.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Slider\RangeMinSlider.cs" />
@@ -190,15 +177,11 @@
     <Compile Include="Assets\Modern UI Pack\Scripts\Rendering\UIGradient.cs" />
     <Compile Include="Assets\Scripts\CameraMove\CameraController.cs" />
     <Compile Include="Assets\Scripts\Base\PDDL\PDL.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\DemoList.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerModalWindow.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Icon\AnimatedIconHandler.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\BallBrowserSpawner.cs" />
     <Compile Include="Assets\InGameCodeEditor\Scripts\Lexer\KeywordGroupMatch.cs" />
     <Compile Include="Assets\InGameCodeEditor\Scripts\Lexer\SymbolGroupMatch.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\ExplainUnzip.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Demo\LaunchURL.cs" />
-    <Compile Include="Assets\Scripts\Objects\GameObj\家具\桌子\购买食物\BuyThings.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerEditor.cs" />
     <Compile Include="Assets\Scripts\Base\QFramework.cs" />
     <Compile Include="Assets\Scripts\Objects\GameObj\家具\桌子\DeskAsset.cs" />
@@ -214,9 +197,8 @@
     <Compile Include="Assets\Modern UI Pack\Scripts\Icon\IconLibrary.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Icon\IconManagerEditor.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Input Field\CustomInputField.cs" />
-    <Compile Include="Assets\ZFBrowser\Demo\Scripts\PlayerInventory.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Tooltip\TooltipContent.cs" />
-    <Compile Include="Assets\Scripts\Objects\Items\BedItem.cs" />
+    <Compile Include="Assets\Scripts\Objects\GameObj\建筑\Transation.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerCustom.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Horizontal Selector\HorizontalSelectorEditor.cs" />
     <Compile Include="Assets\Scripts\Objects\ScriptableAsset\ObjAsset.cs" />
@@ -226,7 +208,8 @@
     <Compile Include="Assets\Modern UI Pack\Scripts\Switch\SwitchManager.cs" />
     <Compile Include="Assets\Scripts\Objects\GameObj\Obj.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Toggle\CustomToggle.cs" />
-    <Compile Include="Assets\Scripts\Objects\GameObj\家具\餐厅\RestaurantAsset.cs" />
+    <Compile Include="Assets\Scripts\Objects\GameObj\建筑\餐厅\RestaurantAsset.cs" />
+    <Compile Include="Assets\Scripts\Objects\GameObj\建筑\餐厅\CookAct.cs" />
     <Compile Include="Assets\Scripts\Objects\GameObj\动物\PersonObj\Idle\Idle.cs" />
     <Compile Include="Assets\Scripts\Base\Tool.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\UI Manager\UIManagerProgressBar.cs" />
@@ -235,7 +218,6 @@
     <Compile Include="Assets\Scripts\Base\PDDL\ActsAttribute.cs" />
     <Compile Include="Assets\Modern UI Pack\Scripts\Window\WindowDragger.cs" />
     <Compile Include="Assets\Scripts\Model\ThinkModel.cs" />
-    <Compile Include="Assets\Scripts\Base\Item.cs" />
     <Compile Include="Assets\Scripts\Model\EcModel.cs" />
     <Compile Include="Assets\Scripts\CameraMove\CardViewList.cs" />
     <Compile Include="Assets\Scripts\Base\PDDL\Problem\Actions.cs" />
@@ -244,46 +226,31 @@
     <Compile Include="Assets\Scripts\Objects\GameObj\Rule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\ZFBrowser\Materials\EmulatedMipmap\UnlitColored.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\RoslynCSharp\Plugin\System.IO.FileSystem.Primitives.dll" />
     <None Include="Assets\RoslynCSharp\Plugin\System.IO.FileSystem.dll" />
-    <None Include="Assets\ZFBrowser\Plugins\w64\widevinecdmadapter.dll" />
     <None Include="Assets\RoslynCSharp\Plugin\Trivial.CodeSecurity.dll" />
     <None Include="Assets\RoslynCSharp\Plugin\Trivial.Mono.Cecil.dll" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Security.Cryptography.Algorithms.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\ZFBrowser\Plugins\w32\ZFProxyWeb.dll" />
     <None Include="Assets\Language\zh-cn_Commonly_used.txt" />
     <None Include="Assets\InGameCodeEditor\CompatibilityDemo\IMPORTANT.txt" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Runtime.CompilerServices.Unsafe.dll" />
     <None Include="Assets\InGameCodeEditor\Fonts\LICENSE.txt" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Threading.Thread.dll" />
-    <None Include="Assets\ZFBrowser\Materials\EmulatedMipmap\UnlitOpaque.shader" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Security.Cryptography.X509Certificates.dll" />
-    <None Include="Assets\ZFBrowser\Plugins\w64\chrome_elf.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
-    <None Include="Assets\ZFBrowser\Plugins\w32\chrome_elf.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\ZFBrowser\Plugins\w32\libGLESv2.dll" />
-    <None Include="Assets\ZFBrowser\Plugins\w64\libGLESv2.dll" />
-    <None Include="Assets\ZFBrowser\Materials\EmulatedMipmap\Transparent.shader" />
     <None Include="Assets\Modern UI Pack\Read Me.txt" />
     <None Include="Assets\RoslynCSharp\Error On Import.txt" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Security.Cryptography.Primitives.dll" />
-    <None Include="Assets\ZFBrowser\Plugins\w32\d3dcompiler_43.dll" />
     <None Include="Assets\RoslynCSharp\Plugin\Trivial.Mono.Cecil.Pdb.dll" />
-    <None Include="Assets\ZFBrowser\Materials\EmulatedMipmap\Unlit.shader" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Diagnostics.StackTrace.dll" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Collections.Immutable.dll" />
     <None Include="Assets\Resources\SaveData\DomainData.txt" />
-    <None Include="Assets\ZFBrowser\Plugins\w64\d3dcompiler_43.dll" />
-    <None Include="Assets\ZFBrowser\Plugins\w64\ZFProxyWeb.dll" />
-    <None Include="Assets\ZFBrowser\Plugins\w32\d3dcompiler_47.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
-    <None Include="Assets\ZFBrowser\Materials\EmulatedMipmap\Standard.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\RoslynCSharp\Plugin\Trivial.Mono.Cecil.Mdb.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -291,38 +258,26 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Xml.XPath.XDocument.dll" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-    <None Include="Assets\ZFBrowser\Plugins\w64\libEGL.dll" />
-    <None Include="Assets\ZFBrowser\Plugins\w32\zf_cef.dll" />
-    <None Include="Assets\ZFBrowser\Plugins\versions.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
-    <None Include="Assets\ZFBrowser\Materials\EmulatedMipmap\Readme.txt" />
-    <None Include="Assets\ZFBrowser\Plugins\w32\widevinecdmadapter.dll" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Diagnostics.FileVersionInfo.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Reflection.Metadata.dll" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Threading.Tasks.Extensions.dll" />
-    <None Include="Assets\ZFBrowser\Plugins\w64\d3dcompiler_47.dll" />
     <None Include="Assets\RoslynCSharp\Plugin\System.AppContext.dll" />
     <None Include="Assets\RoslynCSharp\Plugin\Microsoft.CodeAnalysis.CSharp.dll" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Console.dll" />
-    <None Include="Assets\ZFBrowser\Materials\EmulatedMipmap\MipSample.cginc" />
-    <None Include="Assets\ZFBrowser\ThirdPartyNotices.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Xml.XmlDocument.dll" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Xml.XPath.dll" />
     <None Include="Assets\RoslynCSharp\Plugin\System.Security.Cryptography.Encoding.dll" />
-    <None Include="Assets\ZFBrowser\Changelog.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\Language\mys.txt" />
     <None Include="Assets\RoslynCSharp\Plugin\Microsoft.CodeAnalysis.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
-    <None Include="Assets\ZFBrowser\Materials\UnlitCursor.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
-    <None Include="Assets\ZFBrowser\Plugins\w32\libEGL.dll" />
-    <None Include="Assets\ZFBrowser\Plugins\w64\zf_cef.dll" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -571,9 +526,6 @@
     <Reference Include="Markdig">
       <HintPath>Assets\QFramework\Toolkits\_CoreKit\PackageKit\Markdown\Markdig.dll</HintPath>
     </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
-    </Reference>
     <Reference Include="Trivial.Mono.Cecil.Mdb">
       <HintPath>Assets\RoslynCSharp\Plugin\Trivial.Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
@@ -604,11 +556,11 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Assets\RoslynCSharp\Plugin\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Z3">
-      <HintPath>Assets\Plugins\Z3\Microsoft.Z3.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Z3">
+      <HintPath>Assets\Plugins\Z3\Microsoft.Z3.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.OdinInspector.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
@@ -639,6 +591,9 @@
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis">
       <HintPath>Assets\RoslynCSharp\Plugin\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
@@ -1170,10 +1125,6 @@
       <Project>{CC60B4D2-89D9-CCF1-7EEC-5FA4DAB5B26B}</Project>
       <Name>RoslynCSharp.Examples</Name>
     </ProjectReference>
-    <ProjectReference Include="ZFBrowser-Editor.csproj">
-      <Project>{B901CCBF-95C0-E4A1-82AB-C0CEE7706F9C}</Project>
-      <Name>ZFBrowser-Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="SupportOldQF.csproj">
       <Project>{BCF46D73-D7D0-92DB-EA5D-CBD7F15D3CB1}</Project>
       <Name>SupportOldQF</Name>
@@ -1189,10 +1140,6 @@
     <ProjectReference Include="QFramework.CoreKit.csproj">
       <Project>{6A93F1BE-FDE5-753B-5CE6-38034E1E2E7B}</Project>
       <Name>QFramework.CoreKit</Name>
-    </ProjectReference>
-    <ProjectReference Include="ZFBrowser.csproj">
-      <Project>{0468D2E8-3636-BE80-58B7-9D4E6B9E899D}</Project>
-      <Name>ZFBrowser</Name>
     </ProjectReference>
     <ProjectReference Include="ResKit.csproj">
       <Project>{989A27B7-B099-78CF-6C92-85750283F5AF}</Project>

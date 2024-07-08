@@ -959,7 +959,7 @@ public class SetP<X> where X : Obj
     {
         public bool Equals(Tuple<X, int> x, Tuple<X, int> y)
         {
-            return x.Item1.obj.typeName == y.Item1.obj.typeName;
+            return x.Item1.objSaver == y.Item1.objSaver;
         }
 
         public int GetHashCode(Tuple<X, int> obj)
@@ -986,12 +986,12 @@ public class SetP<X> where X : Obj
     public override string ToString()
     {
         StringBuilder ret = new StringBuilder();
-        foreach(var x in tuples)
-        {
-            fx[1] = x.Item1.obj;
-            fx.val = x.Item2;
-            ret.AppendLine(fx.ToString());
-        }
+        //foreach(var x in tuples)
+        //{
+        //    fx[1] = x.Item1;
+        //    fx.val = x.Item2;
+        //    ret.AppendLine(fx.ToString());
+        //}
         return ret.ToString();
     }
 }

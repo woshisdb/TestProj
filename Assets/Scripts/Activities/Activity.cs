@@ -10,7 +10,7 @@ public abstract class Activity
 {
     public Func<Obj, Person, int, object[], bool> cond;
     public Func<Obj, Person, int, object[], Act> eff;
-    public Activity(Func<Obj, Person, int, object[], bool> cond, Func<Obj, Person, int, object[], Act> eff)
+    public Activity(Func<Obj, Person, int, object[], bool> cond = null, Func<Obj, Person, int, object[], Act> eff = null)
     {
         this.cond = cond;
         this.eff = eff;
@@ -25,12 +25,7 @@ public abstract class Activity
     }
     public virtual bool Condition(Obj obj,Person person,int time, params object[] objs)
     {
-        BedObj objx= (BedObj)obj;
-        if (objx.CanEnter(person))
-        {
-            return true;
-        }
-        return false;
+        return true;
     }
     public abstract Act Effect(Obj obj, Person person, int time,params object[] objs);
     /// <summary>
