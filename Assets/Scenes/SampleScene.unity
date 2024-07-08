@@ -7110,7 +7110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 680.57294, y: 0}
+  m_AnchoredPosition: {x: 677.59656, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &387222815
@@ -18151,7 +18151,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 753147798}
   m_HandleRect: {fileID: 753147797}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -22649,16 +22649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35bf0bd4ded61a34f9be34f6738e4010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _url: Assets/StreamingAssets/monaco-editor.html
-  _width: 512
-  _height: 512
-  generateMipmap: 0
-  baseColor:
-    serializedVersion: 2
-    rgba: 0
-  _zoom: 0
-  allowContextMenuOn: 2
-  newWindowAction: 2
 --- !u!114 &1154899542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26252,7 +26242,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1113.923, y: 0}
+  m_AnchoredPosition: {x: 1110.9465, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1355338160
@@ -35538,7 +35528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 895.15295, y: 0}
+  m_AnchoredPosition: {x: 892.1766, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1785309043

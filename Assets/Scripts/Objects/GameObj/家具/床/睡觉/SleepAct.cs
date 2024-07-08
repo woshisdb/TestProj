@@ -56,11 +56,7 @@ public class SleepAct : Activity
     }
     public override bool Condition(Obj obj, Person person,int time, params object[] objs)
     {
-        var data = (BedObj)obj;
-        if (cond != null)
-            return cond(obj,person,time,objs);
-        else
-            return use<obj.objSaver.size;
+        return true;
     }
     
     public override PAction GetAction()

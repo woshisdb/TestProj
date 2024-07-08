@@ -24,7 +24,7 @@ public class GameArchitect : Architecture<GameArchitect>
     public TableAsset tableAsset;
     public ObjAsset objAsset;
     public Person player;
-    public static Dictionary<string, Activity> actDic;
+    //public static Dictionary<string, Activity> actDic;
     protected override void Init()
     {
         winCons = new List<WinCon>();
@@ -38,6 +38,8 @@ public class GameArchitect : Architecture<GameArchitect>
         Map.Instance.ks.Add(typeof(PathObj), objAsset.pathSaver);
         Map.Instance.ks.Add(typeof(RawObj), objAsset.rawSaver);
         Map.Instance.ks.Add(typeof(FoodObj), objAsset.foodSaver);
+        Map.Instance.ks.Add(typeof(BuildingObj), objAsset.buildingSaver);
+        Map.Instance.ks.Add(typeof(RestaurantObj), objAsset.restaurantSaver);
         /*********************************************/
         //InitActivities();
         var tableRess = Resources.Load<TableAsset>("Table/TableAsset");
@@ -109,14 +111,14 @@ public class GameArchitect : Architecture<GameArchitect>
             Obj instance = (Obj)Activator.CreateInstance(key, new object[] { null });
             activities.Add(key, instance.InitActivities());
         }
-        actDic = new Dictionary<string, Activity>();
-        Assembly assembly = Assembly.GetExecutingAssembly();
-        var typesWithMapAttribute = assembly.GetTypes()
-            .Where(t => t.GetCustomAttributes(typeof(ActAttribute), false).Length > 0)
-            .ToList();
-        foreach (var type in typesWithMapAttribute)
-        {
-            actDic.Add(type.Name, (Activity)Activator.CreateInstance(type));
-        }
+        //actDic = new Dictionary<string, Activity>();
+        //Assembly assembly = Assembly.GetExecutingAssembly();
+        //var typesWithMapAttribute = assembly.GetTypes()
+        //    .Where(t => t.GetCustomAttributes(typeof(ActAttribute), false).Length > 0)
+        //    .ToList();
+        //foreach (var type in typesWithMapAttribute)
+        //{
+        //    actDic.Add(type.Name, (Activity)Activator.CreateInstance(type));
+        //}
     }
 }

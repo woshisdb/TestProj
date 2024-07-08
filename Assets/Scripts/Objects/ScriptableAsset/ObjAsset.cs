@@ -43,6 +43,9 @@ public enum ObjEnum
 [System.Serializable,CreateAssetMenu(fileName = "NewObjAsset", menuName = "ScriptableObjects/ObjAsset")]
 public class ObjAsset : SerializedScriptableObject
 {
+    /// <summary>
+    /// 默认构造Saver
+    /// </summary>
     [SerializeField]
     public PersonSaver personSaver;
     [SerializeField]
@@ -59,6 +62,10 @@ public class ObjAsset : SerializedScriptableObject
     public RawSaver rawSaver;
     [SerializeField]
     public FoodSaver foodSaver;
+    [SerializeField]
+    public BuildingSaver buildingSaver;
+    [SerializeField]
+    public RestaurantSaver restaurantSaver;
     /// <summary>
     /// 一系列的食物
     /// </summary>

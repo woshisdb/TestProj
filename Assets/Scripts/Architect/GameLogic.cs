@@ -319,7 +319,19 @@ public class GameLogic : MonoBehaviour,ICanSendEvent,ICanRegisterEvent
         }
         Sc.AddToTable(p);
     }
-
+    [Button]
+    public void CreateRestr(string SceneName)
+    {
+        var s = Tool.DeepClone<RestaurantSaver>((RestaurantSaver)Map.Instance.GetSaver(typeof(RestaurantObj)));
+        var p = new RestaurantObj(s);
+        var Sc = ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.tables.Find(e => { return e.TableName == SceneName; });
+        if (Sc == null)
+        {
+            Debug.Log("无法创建");
+            return;
+        }
+        Sc.AddToTable(p);
+    }
     //[Button]
     //public void CreatePath(PathObj pathObj,string SceneName)
     //{

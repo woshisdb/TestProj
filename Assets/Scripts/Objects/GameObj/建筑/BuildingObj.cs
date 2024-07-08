@@ -95,6 +95,7 @@ public class CookItems
 
     }
 }
+[Map()]
 public class BuildingObj : Obj
 {
     /// <summary>

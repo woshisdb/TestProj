@@ -85,6 +85,12 @@ public class Obj:PDDL,ICanSendEvent
             objSaver=objAsset;
             Init(objSaver);
         }
+        cardInf=new CardInf(objSaver.title,objSaver.description,
+        () => 
+        {
+            this.SendEvent<SelectCardEvent>(new SelectCardEvent(cardInf, GameArchitect.get.player));
+        }    
+        );
     }
 
     public IArchitecture GetArchitecture()
