@@ -234,7 +234,7 @@ public class GameLogic : MonoBehaviour,ICanSendEvent,ICanRegisterEvent
                     for (int l = 0; l < person.belong.objs[j].activities.Count; l++)
                     {
                         var res = person.belong.objs[j].activities[l].OutputSelect(person, person.belong.objs[j]);//一个可选项
-                        cardInfList.AddRange(res);
+                        cardInfList.Add(res);
                     }
                     result[person.belong.objs[j]] = cardInfList.ToArray();
                 }

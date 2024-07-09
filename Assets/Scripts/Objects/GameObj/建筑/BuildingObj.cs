@@ -20,8 +20,8 @@ public class BuildingSaver : ObjSaver
 }
 public class Sit
 {
-    public int sit;
-    public int useSit;
+    public int sit=0;
+    public int useSit=0;
 }
 public class Rate
 {
@@ -89,10 +89,11 @@ public class CookItems
     public CookItems(Resource resource)
     {
         this.resource = resource;
+        cookItems = new List<CookItem>();
     }
     public CookItems()
     {
-
+        cookItems = new List<CookItem>();
     }
 }
 [Map()]
@@ -138,19 +139,33 @@ public class BuildingObj : Obj
     public override void Init()
     {
         base.Init();
+        BedSit = new Sit();
+        SetSit = new Sit();
+        resource = new Resource();
+        CookItems = new CookItems(resource);
+        goodsManager = new GoodsManager();
     }
     public override void Init(ObjSaver objSaver)
     {
         base.Init(objSaver);
+        BedSit = new Sit();
+        SetSit = new Sit();
         resource = new Resource();
         CookItems = new CookItems(resource);
+        goodsManager = new GoodsManager();
     }
     public override List<Activity> InitActivities()
     {
         return new List<Activity>() {
         new SleepAct(
-            (obj, person, time, objs) => {return BedSit.useSit < BedSit.sit; },
-            (obj, person, time, objs) => new SeqAct(person, obj, new SleepA(person, (BedObj)obj, time))
+            (obj, person, objs) => {return BedSit.useSit < BedSit.sit; },
+            (obj, person,objs) =>
+            {
+                var selectTime = new SelectTime(person, obj, new int[] { 1 });
+                return new SeqAct(person, obj,
+                selectTime,
+                new SleepA(person,obj,selectTime.selectTime));
+            }
         ),//睡眠活动
         new ArrangeContractAct(),//签署协议
         new AddContractAct(),//添加协议

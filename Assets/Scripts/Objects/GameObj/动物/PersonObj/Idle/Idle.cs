@@ -39,7 +39,7 @@ public class IdleAct : Activity
         activityName = "Idle";
         detail = "IdleTime";
     }
-    public override bool Condition(Obj obj, Person person, int time, params object[] objs)
+    public override bool Condition(Obj obj, Person person, params object[] objs)
     {
         return true;
     }
@@ -54,13 +54,6 @@ public class IdleAct : Activity
     {
         Debug.Log(GetAction().ToString());
     }
-    public override List<int> AllowsTime()
-    {
-        var ret = new List<int>();
-        for (int i = 1; i <= 24; i += 1)
-            ret.Add(i);
-        return ret;
-    }
     /// <summary>
     /// Ë¯¾õÐ§¹û
     /// </summary>
@@ -68,10 +61,10 @@ public class IdleAct : Activity
     /// <param name="person"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person, int time, params object[] objs)
+    public override Act Effect(Obj obj, Person person, params object[] objs)
     {
         return new SeqAct(person, obj,
-                new IdleA(person, obj, time)
+                new IdleA(person, obj,1)
                );
     }
 }

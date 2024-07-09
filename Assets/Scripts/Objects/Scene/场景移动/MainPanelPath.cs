@@ -31,7 +31,7 @@ public class Go : Activity
     public TableModel x=null;
     public TableModel y=null;
     public int wasteTime;
-    public override bool Condition(Obj obj, Person person, int time, params object[] objs)
+    public override bool Condition(Obj obj, Person person,params object[] objs)
     {
         Init();
         return person.belong == x;
@@ -49,18 +49,18 @@ public class Go : Activity
         return action;
     }
 
-    public override List<CardInf> OutputSelect(Person person, Obj obj)
+    public override CardInf OutputSelect(Person person, Obj obj)
     {
         Init();
-        return new List<CardInf>(){ new CardInf("Go Home","Waste 15m", () => {
+        return new CardInf("Go Home","Waste 15m", () => {
             person.SetAct(
                 new GoA(person, obj, x, y)
             );
         }
-        ) };
+        );
     }
 
-    public override Act Effect(Obj obj, Person person, int time, params object[] objs)
+    public override Act Effect(Obj obj, Person person,params object[] objs)
     {
         return new GoA(person, obj, x, y);
     }

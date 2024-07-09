@@ -74,6 +74,38 @@ public class SeqAct : Act
         }
     }
 }
+
+public class SelectTime : Act
+{
+    public int[] canSelectTime;
+    public object selectTime;
+    public SelectTime(Person person, Obj obj, int[] canSelectTime,int priority = -1) : base(person, obj, priority)
+    {
+        wastTime = false;
+        this.canSelectTime = canSelectTime;
+        this.selectTime = 3;
+    }
+
+    public override IEnumerator<object> Run(Action<Act> callback)
+    {
+        TC();
+        List<CardInf> cardInfs = new List<CardInf>();
+        Debug.Log(canSelectTime.Length);
+        for(int i=0;i<canSelectTime.Length; i++)
+        {
+            var time = canSelectTime[i];
+            CardInf cardInf = new CardInf(time + ":Step", "执行时间", () => {
+                selectTime = time;
+                Debug.Log(selectTime);
+            });
+            cardInfs.Add(cardInf);
+        }
+        yield return GameArchitect.gameLogic.AddDecision(Person, new DecisionTex("时间选择","打算做多久",
+            cardInfs
+        ));
+        yield return Ret(new EndAct(Person, Obj), callback);
+    }
+}
 public abstract class Act
 {
     /// <summary>

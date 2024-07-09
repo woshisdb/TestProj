@@ -49,7 +49,7 @@ public class ArrangeContractAct : Activity
         activityName = "签署协议";
         detail = "签署当前存在的协议";
     }
-    public override bool Condition(Obj obj, Person person,int time, params object[] objs)
+    public override bool Condition(Obj obj, Person person,params object[] objs)
     {
         return true;
     }
@@ -64,11 +64,7 @@ public class ArrangeContractAct : Activity
     {
         Debug.Log(GetAction().ToString());
     }
-    public override List<int> AllowsTime()
-    {
-        var ret=new List<int>() { 1};
-        return ret;
-    }
+
     /// <summary>
     /// 睡觉效果
     /// </summary>
@@ -76,7 +72,7 @@ public class ArrangeContractAct : Activity
     /// <param name="person"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person,int time, params object[] objs)
+    public override Act Effect(Obj obj, Person person,params object[] objs)
     {
         return new ArrangeA(person, obj);
     }
@@ -137,7 +133,7 @@ public class AddContractAct : Activity
         activityName = "添加协议";
         detail = "添加一系列协议";
     }
-    public override bool Condition(Obj obj, Person person, int time, params object[] objs)
+    public override bool Condition(Obj obj, Person person,params object[] objs)
     {
         return true;
     }
@@ -152,11 +148,6 @@ public class AddContractAct : Activity
     {
         Debug.Log(GetAction().ToString());
     }
-    public override List<int> AllowsTime()
-    {
-        var ret = new List<int>() { 1 };
-        return ret;
-    }
     /// <summary>
     /// 睡觉效果
     /// </summary>
@@ -164,7 +155,7 @@ public class AddContractAct : Activity
     /// <param name="person"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person, int time, params object[] objs)
+    public override Act Effect(Obj obj, Person person,params object[] objs)
     {
         return new AddContractA(person, obj);
     }
@@ -212,7 +203,7 @@ public class RemoveContractAct : Activity
         activityName = "取消协议";
         detail = "取消还未签署的协议";
     }
-    public override bool Condition(Obj obj, Person person, int time, params object[] objs)
+    public override bool Condition(Obj obj, Person person, params object[] objs)
     {
         return true;
     }
@@ -227,11 +218,6 @@ public class RemoveContractAct : Activity
     {
         Debug.Log(GetAction().ToString());
     }
-    public override List<int> AllowsTime()
-    {
-        var ret = new List<int>() { 1 };
-        return ret;
-    }
     /// <summary>
     /// 睡觉效果
     /// </summary>
@@ -239,7 +225,7 @@ public class RemoveContractAct : Activity
     /// <param name="person"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person, int time, params object[] objs)
+    public override Act Effect(Obj obj, Person person, params object[] objs)
     {
         return new RemoveContractA(person, obj);
     }

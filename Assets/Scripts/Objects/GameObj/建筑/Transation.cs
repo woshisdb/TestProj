@@ -53,13 +53,13 @@ public class BuyA : Act
 /// </summary>
 public class BuyAct : Activity
 {
-    public BuyAct(Func<Obj, Person, int, object[], bool> cond=null, Func<Obj, Person, int, object[], Act> eff = null) : base(cond, eff)
+    public BuyAct(Func<Obj, Person,object[], bool> cond=null, Func<Obj, Person,object[], Act> eff = null) : base(cond, eff)
     {
         activityName = "买";
         detail = "购买物品";
     }
 
-    public override Act Effect(Obj obj, Person person, int time, params object[] objs)
+    public override Act Effect(Obj obj, Person person,params object[] objs)
     {
         return new BuyA(person, obj);
     }
@@ -107,13 +107,13 @@ public class SellA : Act
 /// </summary>
 public class SellAct : Activity
 {
-    public SellAct(Func<Obj, Person, int, object[], bool> cond = null, Func<Obj, Person, int, object[], Act> eff = null) : base(cond, eff)
+    public SellAct(Func<Obj, Person,object[], bool> cond = null, Func<Obj, Person,object[], Act> eff = null) : base(cond, eff)
     {
         activityName = "卖";
         detail = "卖物品";
     }
 
-    public override Act Effect(Obj obj, Person person, int time, params object[] objs)
+    public override Act Effect(Obj obj, Person person, params object[] objs)
     {
         return new SellA(person, obj);
     }

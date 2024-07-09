@@ -11,14 +11,15 @@ using UnityEngine;
 /// </summary>
 public class SleepA : Act
 {
-    public int time = 1;
-    public SleepA(Person person,BedObj obj,int time=3):base(person,obj)
+    public object time;
+    public SleepA(Person person,Obj obj, object time):base(person,obj)
     {
         wastTime = true;
-        this.time = time;
+        this.time =time;
     }
     public override IEnumerator<object> Run(System.Action<Act> callback)
     {
+        Debug.Log(this.time);
         TC();
         Debug.Log("Sleep");
         Act act = null;
@@ -30,9 +31,9 @@ public class SleepA : Act
                 new CardInf("dadsad","fhsdfjkdgjg",()=>{ Debug.Log("应该成功了"); }) 
             }));
         }
-        if (time > 1)
+        if ((int)time > 1)
         {
-            act = new SleepA(Person, (BedObj)Obj, time - 1);
+            act = new SleepA(Person,Obj, (int)time - 1);
         }
         else
         {
@@ -48,13 +49,13 @@ public class SleepA : Act
 public class SleepAct : Activity
 {
     public int use;
-    public SleepAct(Func<Obj, Person, int,object[],bool> cond=null,Func<Obj, Person, int, object[], Act> eff=null):base(cond,eff)
+    public SleepAct(Func<Obj, Person, object[],bool> cond=null,Func<Obj, Person, object[], Act> eff=null):base(cond,eff)
     {
         use = 0;
-        activityName = "Sleep";
-        detail = "Get Enough Sleep";
+        activityName = "睡觉";
+        detail = "睡一段时间";
     }
-    public override bool Condition(Obj obj, Person person,int time, params object[] objs)
+    public override bool Condition(Obj obj, Person person,params object[] objs)
     {
         return true;
     }
@@ -69,13 +70,6 @@ public class SleepAct : Activity
     {
         Debug.Log(GetAction().ToString());
     }
-    public override List<int> AllowsTime()
-    {
-        var ret=new List<int>();
-        for(int i=1;i<=24;i+=1)
-            ret.Add(i);
-        return ret;
-    }
     /// <summary>
     /// 睡觉效果
     /// </summary>
@@ -83,8 +77,8 @@ public class SleepAct : Activity
     /// <param name="person"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person,int time, params object[] objs)
+    public override Act Effect(Obj obj, Person person,params object[] objs)
     {
-        return GetActs(new SleepA(person, (BedObj)obj, time), obj, person, time, objs);
+        return GetActs(new SleepA(person,obj,3), obj, person,objs);
     }
 }

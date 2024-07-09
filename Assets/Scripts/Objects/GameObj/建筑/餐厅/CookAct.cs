@@ -78,12 +78,12 @@ public class CookAct : Activity
     /// </summary>
     /// <param name="cond"></param>
     /// <param name="eff"></param>
-    public CookAct(Func<Obj, Person, int, object[], bool> cond = null, Func<Obj, Person, int, object[], Act> eff = null) : base(cond, eff)
+    public CookAct(Func<Obj, Person,object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null) : base(cond, eff)
     {
         activityName = "Åëâ¿";
         detail = "Åëâ¿¶«Î÷";
     }
-    public override Act Effect(Obj obj, Person person, int time, params object[] objs)
+    public override Act Effect(Obj obj, Person person,params object[] objs)
     {
         return new CookSelA(person, obj);
     }
