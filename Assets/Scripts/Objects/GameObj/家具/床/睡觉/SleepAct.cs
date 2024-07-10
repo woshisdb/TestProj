@@ -11,15 +11,15 @@ using UnityEngine;
 /// </summary>
 public class SleepA : Act
 {
-    public object time;
-    public SleepA(Person person,Obj obj, object time):base(person,obj)
+    public Int time;
+    public SleepA(Person person,Obj obj, Int time):base(person,obj)
     {
         wastTime = true;
         this.time =time;
     }
     public override IEnumerator<object> Run(System.Action<Act> callback)
     {
-        Debug.Log(this.time);
+        Debug.Log(this.time.val);
         TC();
         Debug.Log("Sleep");
         Act act = null;
@@ -31,12 +31,13 @@ public class SleepA : Act
                 new CardInf("dadsad","fhsdfjkdgjg",()=>{ Debug.Log("应该成功了"); }) 
             }));
         }
-        if ((int)time > 1)
+        if (time.val > 1)
         {
-            act = new SleepA(Person,Obj, (int)time - 1);
+            act = new SleepA(Person,Obj, time.val - 1);
         }
         else
         {
+            Debug.Log("End");
             act = new EndAct(Person, Obj);
         }
         yield return Ret(act,callback);

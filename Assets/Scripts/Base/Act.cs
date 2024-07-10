@@ -78,12 +78,12 @@ public class SeqAct : Act
 public class SelectTime : Act
 {
     public int[] canSelectTime;
-    public object selectTime;
+    public Int selectTime;
     public SelectTime(Person person, Obj obj, int[] canSelectTime,int priority = -1) : base(person, obj, priority)
     {
         wastTime = false;
         this.canSelectTime = canSelectTime;
-        this.selectTime = 3;
+        this.selectTime = new Int();
     }
 
     public override IEnumerator<object> Run(Action<Act> callback)
@@ -95,7 +95,7 @@ public class SelectTime : Act
         {
             var time = canSelectTime[i];
             CardInf cardInf = new CardInf(time + ":Step", "Ö´ÐÐÊ±¼ä", () => {
-                selectTime = time;
+                selectTime.val = time;
                 Debug.Log(selectTime);
             });
             cardInfs.Add(cardInf);
