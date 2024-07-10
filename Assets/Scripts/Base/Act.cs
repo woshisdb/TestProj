@@ -24,6 +24,7 @@ public class SeqAct : Act
     List<Act> acts = new List<Act>();
     public SeqAct(Person person, Obj obj,params Act[] acts) : base(person, obj)
     {
+        wastTime = false;
         this.acts.AddRange(acts);
     }
 
@@ -44,29 +45,7 @@ public class SeqAct : Act
                         acts[0] = result;
                     }
                 }
-            );//运行回调
-            //if (acts.Count == 0)
-            //{
-            //    yield return Ret(new EndAct(Person, Obj), callback);
-            //}
-            //else
-            //{
-            //    //Debug.Log("Run" + acts.Count);
-            //    yield return acts[0].Run(
-            //    (result) =>
-            //    {
-            //    //Debug.Log("End"+acts.Count);
-            //        if (result is EndAct)
-            //        {
-            //            acts.RemoveAt(0);
-            //        }
-            //        else if (result is Act)
-            //        {
-            //            acts[0] = result;
-            //        }
-            //    }
-            //    );//运行回调
-            //}
+            );
         }
         if (acts.Count == 0)
         {

@@ -413,6 +413,7 @@ public class Person : AnimalObj
             hungryState = new HungryState(this, ps.HungryVals);//饥饿的需求
         }
         //contractManager = new ContractManager(this);
+        this.money = new Num(Money((PersonType)obj), 10);
     }
     /// <summary>
     /// 添加执行的活动

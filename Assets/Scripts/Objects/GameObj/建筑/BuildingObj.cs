@@ -111,6 +111,7 @@ public class BuildingObj : Obj
     /// 位子的数目
     /// </summary>
     public Sit SetSit;
+    /******************************烹饪的食物*************************************/
     /// <summary>
     /// 厨具的数目
     /// </summary>
@@ -119,18 +120,13 @@ public class BuildingObj : Obj
     /// 烹饪食材的列表
     /// </summary>
     public CookItems CookItems;
-    /******************************烹饪的食物*************************************/
-    /// <summary>
-    /// 容纳的对象
-    /// </summary>
-    public Dictionary<Obj, int> objs;
+    /*******************************************************************/
     /// <summary>
     /// 用于交易的物品
     /// </summary>
     public GoodsManager goodsManager;
     public BuildingObj(BuildingSaver objSaver):base(objSaver)
     {
-        objs=new Dictionary<Obj, int>();
         CookRate = new Rate(
             (obj) => { return obj.objSaver.canCook.count; },
             (obj) => { return obj.objSaver.canCook.can; }
@@ -158,14 +154,7 @@ public class BuildingObj : Obj
     {
         return new List<Activity>() {
         new SleepAct(
-            (obj, person, objs) => {return BedSit.useSit < BedSit.sit; },
-            (obj, person,objs) =>
-            {
-                var selectTime = new SelectTime(person, obj, new int[] { 1 });
-                return new SeqAct(person, obj,
-                selectTime,
-                new SleepA(person,obj,selectTime.selectTime));
-            }
+            (obj, person, objs) => {return BedSit.useSit < BedSit.sit; }
         ),//睡眠活动
         new ArrangeContractAct(),//签署协议
         new AddContractAct(),//添加协议

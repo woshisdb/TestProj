@@ -197,6 +197,7 @@ public class NPCThinkModel: ThinkModel
     /// <returns></returns>
     public override Task BeginThink(Dictionary<Obj, CardInf[]> opts)
     {
+        //return Task.CompletedTask;
         if (!person.hasSelect.val)//无活动
         {
             if (person.codeData != null && person.codeData.HasAct(GameArchitect.get.GetModel<TimeModel>().GetTime()))//没有可执行的活动

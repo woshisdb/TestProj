@@ -80,6 +80,10 @@ public class SleepAct : Activity
     /// <returns></returns>
     public override Act Effect(Obj obj, Person person,params object[] objs)
     {
-        return GetActs(new SleepA(person,obj,3), obj, person,objs);
+        var selectTime = new SelectTime(person, obj, new int[] { 1 });
+        return GetActs(
+            new SeqAct(person,obj,
+            selectTime,
+            new SleepA(person,obj,selectTime.selectTime)), obj, person,objs);
     }
 }

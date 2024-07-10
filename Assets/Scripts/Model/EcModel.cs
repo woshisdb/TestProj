@@ -11,6 +11,10 @@ public class Resource
     /// <summary>
     /// 获取食物
     /// </summary>
+    public Resource()
+    {
+        resources = new Dictionary<Obj,int>();
+    }
     public Resource GetFoods()
     {
         Resource foods = new Resource();

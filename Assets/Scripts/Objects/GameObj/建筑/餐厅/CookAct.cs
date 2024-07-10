@@ -46,6 +46,7 @@ public class CookSelA : Act
         Debug.Log("烹饪");
         List<CardInf> selects = new List<CardInf>();
         Obj selObj = null;
+        //building.CookRate.objList.resources = new Dictionary<Obj, int>();
         foreach (var data in building.CookRate.objList.resources)//选择一系列的餐具
         {
             selects.Add(//活动描述
