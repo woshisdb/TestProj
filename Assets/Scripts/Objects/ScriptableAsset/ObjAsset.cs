@@ -44,6 +44,10 @@ public enum ObjEnum
 public class ObjAsset : SerializedScriptableObject
 {
     /// <summary>
+    /// 节点图
+    /// </summary>
+    public NodeGraph nodeGraph;
+    /// <summary>
     /// 默认构造Saver
     /// </summary>
     [SerializeField]

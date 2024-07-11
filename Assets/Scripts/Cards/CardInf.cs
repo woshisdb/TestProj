@@ -23,10 +23,11 @@ public class SelectInf
     public int num;
     public int maxnNum;
     public object obj;//ŒÔ∆∑
-    public SelectInf(string title = "", string description = "", object obj = null)
+    public SelectInf(string title = "", string description = "", object obj = null,int maxnNum=5000)
     {
         this.title = title;
         this.description = description;
         this.obj = obj;
+        this.maxnNum = maxnNum;
     }
 }

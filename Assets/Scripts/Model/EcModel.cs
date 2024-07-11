@@ -3,54 +3,108 @@ using System.Collections.Generic;
 using QFramework;
 using UnityEngine;
 /// <summary>
+/// 资源数目
+/// </summary>
+public class ObjCont
+{
+    public Obj obj;
+    public int size;
+    public int remain;
+    public ObjCont()
+    {
+        
+    }
+    public ObjCont(Obj obj,int x,int y)
+    {
+        this.obj = obj;
+        size = x;
+        remain = y;
+    }
+}
+
+/// <summary>
 /// 一系列的资源
 /// </summary>
 public class Resource
 {
-    public Dictionary<Obj,int> resources;
-    /// <summary>
-    /// 获取食物
-    /// </summary>
+    public Dictionary<ObjEnum, ObjCont> resources;
     public Resource()
     {
-        resources = new Dictionary<Obj,int>();
-    }
-    public Resource GetFoods()
-    {
-        Resource foods = new Resource();
-        foreach(var obj in resources)
-        {
-            if (obj.Key is FoodObj)//如果是食物类型
-            {
-                foods.Add(obj.Key,obj.Value);
-            }
-        }
-        return foods;
+        resources = new Dictionary<ObjEnum,ObjCont>();
     }
 
-    public void Add(Obj obj, int num)
+    public void Add(ObjEnum obj, int num)
     {
         if (!resources.ContainsKey(obj))
-            resources.Add(obj, num);
+            resources.Add(obj, new ObjCont(Map.Instance.GetObj(obj), num, num));
         else
         {
-            resources[obj] += num;
+            resources[obj].remain += num;
+            resources[obj].size += num;
         }
     }
-    public void Remove(Obj obj, int num)
+    public void Remove(ObjEnum obj, int num)
     {
         if (resources.ContainsKey(obj))
         {
-            resources[obj] -= num;
-            if (resources[obj] == 0)
+            resources[obj].remain -= num;
+            resources[obj].size -= num;
+            if (resources[obj].size == 0)
             {
                 resources.Remove(obj);
             }
         }
     }
+
+    public void Add(Obj obj, int num)
+    {
+        if (!resources.ContainsKey(obj.Enum()))
+            resources.Add(obj.Enum(), new ObjCont(obj,num,num));
+        else
+        {
+            resources[obj.Enum()].remain += num;
+            resources[obj.Enum()].size += num;
+        }
+    }
+    public void Remove(Obj obj, int num)
+    {
+        if (resources.ContainsKey(obj.Enum()))
+        {
+            resources[obj.Enum()].remain -= num;
+            resources[obj.Enum()].size -= num;
+            if (resources[obj.Enum()].size == 0)
+            {
+                resources.Remove(obj.Enum());
+            }
+        }
+    }
+    public int Get(ObjEnum obj)
+    {
+        return resources[obj].remain;
+    }
+    public void Use(ObjEnum obj, int num)
+    {
+        resources[obj].remain -= num;
+    }
+    public void Release(ObjEnum obj, int num)
+    {
+        resources[obj].remain += num;
+    }
     public int Get(Obj obj)
     {
-        return resources[obj];
+        return resources[obj.Enum()].remain;
+    }
+    public void Use(Obj obj, int num)
+    {
+        resources[obj.Enum()].remain -= num;
+    }
+    public void Release(Obj obj, int num)
+    {
+        resources[obj.Enum()].remain += num;
+    }
+    public ObjCont Find(ObjEnum objEnum)
+    {
+        return resources[objEnum];
     }
 }
 

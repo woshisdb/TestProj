@@ -73,6 +73,10 @@ public class Obj:PDDL,ICanSendEvent
         ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.objs.Add(this);
         this.activities = GameArchitect.activities[GetType()];//一系列的活动
     }
+    public ObjEnum Enum()
+    {
+        return objSaver.objEnum;
+    }
     public Obj(ObjSaver objAsset=null)
     {
         str= new StringBuilder();
@@ -143,6 +147,13 @@ public class Obj:PDDL,ICanSendEvent
     public ObjSaver Saver()
     {
         return objSaver;
+    }
+    /// <summary>
+    /// 时间步更新
+    /// </summary>
+    public virtual void Update()
+    {
+        
     }
 }
 //public class Obj<T>:Obj where T : ObjSaver

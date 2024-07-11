@@ -23,20 +23,32 @@ public class Sit
     public int sit=0;
     public int useSit=0;
 }
+/// <summary>
+/// 某一行为的工作量
+/// </summary>
 public class Rate
 {
     public TransationEnum transType;
     Func<Obj, int> func;//获取数据
     Func<Obj,bool> can;
+    public int count;//当前模块所能提供的数目
     public Resource objList = new Resource();//物品与数目
     public Rate(Func<Obj,int> func,Func<Obj,bool> can)
     {
+        count = 0;
         this.func = func;
         this.can = can;
     }
     public void Add(Obj obj,int num)
     {
         if(can(obj)==true)
+        {
+            objList.Add(obj, num);
+        }
+    }
+    public void Add(ObjEnum obj, int num)
+    {
+        if (can(obj) == true)
         {
             objList.Add(obj, num);
         }
@@ -49,54 +61,49 @@ public class Rate
     {
         return func(obj);
     }
+    public void Use(Obj obj, int num=1)
+    {
+        count += Get(obj)*num;
+    }
+    public void Release(Obj obj, int num = 1)
+    {
+        count -= Get(obj) * num;
+    }
 }
-public class CookItem
+
+
+/// <summary>
+/// 管线管理器
+/// </summary>
+public class PipLineManager
 {
     /// <summary>
-    /// 烹饪数目
+    /// 管线的条目
     /// </summary>
-    public int cookSum;
-    /// <summary>
-    /// 要烹饪的对象
-    /// </summary>
-    public FoodObj cookObj;
-    /// <summary>
-    /// 花费的时间
-    /// </summary>
-    public int cookRate;
-}
-public class CookItems
-{
-    public List<CookItem> cookItems;//要烹饪的食物
-    public void Cook(int time)
+    public HashSet<Trans> piplineItem;
+    public void AddTrans(HashSet<Trans> tran)
     {
-        if(cookItems.Count==0)
-        {
-        }
-        else
-        {
-            cookItems[0].cookRate += time;
-            if (cookItems[0].cookRate >= cookItems[0].cookObj.GetSaver().wastTime)
-            {
-                cookItems[0].cookSum--;
-                if (cookItems[0].cookSum==0)
-                {
-                    cookItems.RemoveAt(0);
-                }
-            }
-        }
+        piplineItem.UnionWith(tran);
     }
-    public Resource resource;
-    public CookItems(Resource resource)
+    public void RemoveTrans(HashSet<Trans> tran)
     {
-        this.resource = resource;
-        cookItems = new List<CookItem>();
+        piplineItem.ExceptWith(tran);
     }
-    public CookItems()
+    public void AddTrans(List<Trans> tran)
     {
-        cookItems = new List<CookItem>();
+        piplineItem.UnionWith(tran);
+    }
+    public void RemoveTrans(List<Trans> tran)
+    {
+        piplineItem.ExceptWith(tran);
+    }
+    public PipLineManager()
+    {
+        piplineItem = new HashSet<Trans>();
     }
 }
+
+
 [Map()]
 public class BuildingObj : Obj
 {
@@ -117,15 +124,15 @@ public class BuildingObj : Obj
     /// 厨具的数目
     /// </summary>
     public Rate CookRate;
-    /// <summary>
-    /// 烹饪食材的列表
-    /// </summary>
-    public CookItems CookItems;
     /*******************************************************************/
     /// <summary>
     /// 用于交易的物品
     /// </summary>
     public GoodsManager goodsManager;
+    /// <summary>
+    /// building的管线
+    /// </summary>
+    public PipLineManager pipLineManager;
     public BuildingObj(BuildingSaver objSaver):base(objSaver)
     {
         CookRate = new Rate(
@@ -139,8 +146,8 @@ public class BuildingObj : Obj
         BedSit = new Sit();
         SetSit = new Sit();
         resource = new Resource();
-        CookItems = new CookItems(resource);
         goodsManager = new GoodsManager();
+        pipLineManager = new PipLineManager();
     }
     public override void Init(ObjSaver objSaver)
     {
@@ -148,8 +155,8 @@ public class BuildingObj : Obj
         BedSit = new Sit();
         SetSit = new Sit();
         resource = new Resource();
-        CookItems = new CookItems(resource);
         goodsManager = new GoodsManager();
+        pipLineManager = new PipLineManager();
     }
     public override List<Activity> InitActivities()
     {
@@ -196,4 +203,14 @@ public class BuildingObj : Obj
     {
         return (BuildingSaver)objSaver;
     }
+    /// <summary>
+    /// 更新
+    /// </summary>
+	public override void Update()
+	{
+        foreach (var item in pipLineManager.piplineItem)//根据管线对数据进行处理
+        {
+
+        }
+	}
 }

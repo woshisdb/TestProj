@@ -66,8 +66,7 @@ public class Edge
 [System.Serializable, CreateAssetMenu(fileName = "GameRule", menuName = "ScriptableObjects/RuleAsset")]
 public class NodeGraph:SerializedScriptableObject
 {
-	[EnumPaging]
-	public TransationEnum x;
 	[SerializeField]
-	List<Trans> trans;
+	public List<Trans> trans;
+
 }

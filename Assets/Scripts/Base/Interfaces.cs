@@ -52,9 +52,26 @@ public class Map : Singleton<Map>
         var s=kv[type];
         return (ObjType)Activator.CreateInstance(s,name);
     }
+
+    /// <summary>
+    /// ´ýÍêÉÆ
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public ObjType GetObj(ObjEnum type, string name)
+    {
+        Init();
+        var s = kv[type.GetType()];
+        return (ObjType)Activator.CreateInstance(s, name);
+    }
     public ObjSaver GetSaver(Type type)
     {
         return ks[type];
+    }
+    public ObjSaver GetSaver(ObjEnum type)
+    {
+        return null;
     }
 }
 

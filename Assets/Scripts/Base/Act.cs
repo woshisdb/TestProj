@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using QFramework;
 using UnityEngine;
 
@@ -85,6 +86,64 @@ public class SelectTime : Act
         yield return Ret(new EndAct(Person, Obj), callback);
     }
 }
+
+
+public class SelectPiplineA : Act
+{
+    public SelectPiplineA(Person person, BuildingObj obj, int priority = -1) : base(person, obj, priority)
+    {
+        wastTime = true;
+    }
+    public override IEnumerator<object> Run(Action<Act> callback)
+	{
+        BuildingObj obj = (BuildingObj)Obj;
+        var pipline = GameArchitect.get.objAsset.nodeGraph.trans;
+        var sels = new List<SelectInf>(pipline.Count);
+        foreach(var s in pipline)
+        {
+            sels.Add(new SelectInf("1","2",s,1));
+        }
+        yield return GameArchitect.get.AddDecision(
+            new SelectTex("test","test1",sels,
+            ()=> {
+                var selPipline = new HashSet<Trans>();
+                for (int i = 0; i < sels.Count; i++)
+                {
+                    if (sels[i].num == 1)
+                        selPipline.Add((Trans)sels[i].obj);
+                }
+                obj.pipLineManager.piplineItem = selPipline;
+                return true;
+            }
+            )
+        );
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 public abstract class Act
 {
     /// <summary>

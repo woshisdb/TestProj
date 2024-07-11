@@ -61,9 +61,16 @@ public class CookSelA : Act
         yield return GameArchitect.gameLogic.AddDecision(Person, new DecisionTex("选择餐具", "选择个餐具开始活动",
             selects
         ));///选择一个合适的活动
+
         if (selObj != null)
         {
-            yield return Ret(new CookA(Person,selObj,building.CookItems),callback);//做饭
+            building.CookRate.Use(selObj);
+            var seleA = new SelectTime(Person, selObj,new int[]{ 1,2,3,4,5,6,7,8});
+            yield return Ret(
+                new SeqAct(Person,Obj,
+                    seleA,
+                    new CookA(Person,selObj,building.CookItems,-1,seleA.selectTime)
+                ),callback);//做饭
         }
         else
         {
@@ -71,6 +78,25 @@ public class CookSelA : Act
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 public class CookAct : Activity
 {
