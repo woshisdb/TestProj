@@ -25,6 +25,7 @@ public class Sit
 }
 public class Rate
 {
+    public TransationEnum transType;
     Func<Obj, int> func;//获取数据
     Func<Obj,bool> can;
     public Resource objList = new Resource();//物品与数目
