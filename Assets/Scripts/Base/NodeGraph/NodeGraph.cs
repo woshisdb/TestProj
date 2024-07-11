@@ -17,6 +17,8 @@ public enum TransationEnum
 [System.Serializable]
 public class Trans
 {
+    [SerializeField]
+	public string title;
 	[SerializeField]
 	public Node from;
 	[SerializeField]
@@ -29,7 +31,7 @@ public class Trans
 public class NodeItem
 {
 	[SerializeField,EnumPaging]
-	public ObjEnum x=ObjEnum.Restaurant;
+	public ObjEnum x=ObjEnum.BuildingObjE;
 	[SerializeField]
 	public int y;
 }

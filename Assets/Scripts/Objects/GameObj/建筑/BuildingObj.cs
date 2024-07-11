@@ -29,11 +29,11 @@ public class Sit
 public class Rate
 {
     public TransationEnum transType;
-    Func<Obj, int> func;//获取数据
-    Func<Obj,bool> can;
+    Func<ObjSaver, int> func;//获取数据
+    Func<ObjSaver,bool> can;
     public int count;//当前模块所能提供的数目
     public Resource objList = new Resource();//物品与数目
-    public Rate(Func<Obj,int> func,Func<Obj,bool> can)
+    public Rate(Func<ObjSaver,int> func,Func<ObjSaver,bool> can)
     {
         count = 0;
         this.func = func;
@@ -41,14 +41,14 @@ public class Rate
     }
     public void Add(Obj obj,int num)
     {
-        if(can(obj)==true)
+        if(can(obj.objSaver)==true)
         {
             objList.Add(obj, num);
         }
     }
     public void Add(ObjEnum obj, int num)
     {
-        if (can(obj) == true)
+        if (can(Map.Instance.GetSaver(obj)) == true)
         {
             objList.Add(obj, num);
         }
@@ -57,15 +57,23 @@ public class Rate
     {
         objList.Remove(obj,num);
     }
-    public int Get(Obj obj)
+    public int Get(ObjSaver obj)
     {
         return func(obj);
     }
     public void Use(Obj obj, int num=1)
     {
-        count += Get(obj)*num;
+        count += Get(obj.objSaver)*num;
+    }
+    public void Use(ObjSaver obj, int num = 1)
+    {
+        count += Get(obj) * num;
     }
     public void Release(Obj obj, int num = 1)
+    {
+        count -= Get(obj.objSaver) * num;
+    }
+    public void Release(ObjSaver obj, int num = 1)
     {
         count -= Get(obj) * num;
     }
@@ -157,11 +165,11 @@ public class BuildingObj : Obj
     /// building的管线
     /// </summary>
     public PipLineManager pipLineManager;
-    public BuildingObj(BuildingSaver objSaver):base(objSaver)
+    public BuildingObj(BuildingSaver objSaver=null):base(objSaver)
     {
         CookRate = new Rate(
-            (obj) => { return obj.objSaver.canCook.count; },
-            (obj) => { return obj.objSaver.canCook.can; }
+            (obj) => { return objSaver.canCook.count; },
+            (obj) => { return objSaver.canCook.can; }
         );
     }
     public override void Init()
@@ -234,7 +242,7 @@ public class BuildingObj : Obj
 	{
         foreach (var item in pipLineManager.piplineItem)//根据管线对数据进行处理
         {
-
+            item.Value.Update(CookRate.count);
         }
 	}
 }

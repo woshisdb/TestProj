@@ -106,13 +106,13 @@ public class SelectPiplineA : Act
         yield return GameArchitect.get.AddDecision(
             new SelectTex("test","test1",sels,
             ()=> {
-                var selPipline = new HashSet<Trans>();
+                var selPipline = new List<Trans>();
                 for (int i = 0; i < sels.Count; i++)
                 {
                     if (sels[i].num == 1)
                         selPipline.Add((Trans)sels[i].obj);
                 }
-                obj.pipLineManager.piplineItem = selPipline;
+                obj.pipLineManager.SetTrans(selPipline);
                 return true;
             }
             )

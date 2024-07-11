@@ -21,17 +21,50 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  x: 1
   trans:
-  - from:
+  - title: "\u79CD\u9EA6\u5B50"
+    from:
       source:
-      - x: 0
+      - x: 13
+        y: 1
+      - x: 15
         y: 0
     to:
       source:
-      - x: 0
-        y: 0
+      - x: 16
+        y: 1
     edge:
       tras:
-      - x: 0
-        y: 0
+      - x: 1
+        y: 10
+      time: 8
+  - title: "\u6536\u83B7\u9EA6\u5B50"
+    from:
+      source:
+      - x: 17
+        y: 1
+    to:
+      source:
+      - x: 16
+        y: 1
+      - x: 12
+        y: 1
+    edge:
+      tras:
+      - x: 2
+        y: 4
+      time: 0
+  - title: "\u8015\u79CD\u9EA6\u5B50"
+    from:
+      source:
+      - x: 16
+        y: 1
+    to:
+      source:
+      - x: 17
+        y: 1
+    edge:
+      tras:
+      - x: 1
+        y: 1
+      time: 144

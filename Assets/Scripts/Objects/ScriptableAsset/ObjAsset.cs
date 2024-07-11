@@ -40,6 +40,14 @@ public enum ObjEnum
     FoodObjE,
     BuildingObjE,
     RestaurantObjE,
+    SeedObjE,
+    TreeObjE,
+    WheatObjE,
+    WheatSeedObjE,
+    WheatTreeObjE,
+    PlaceObjE,
+    WheatPlaceObjE,
+    FullWheatPlaceObjE,
 }
 
 /// <summary>
@@ -75,6 +83,22 @@ public class ObjAsset : SerializedScriptableObject
     public BuildingSaver buildingSaver;
     [SerializeField]
     public RestaurantSaver restaurantSaver;
+    [SerializeField]
+    public SeedSaver seedSaver;
+    [SerializeField]
+    public TreeSaver treeSaver;
+    [SerializeField]
+    public WheatSaver wheatSaver;
+    [SerializeField]
+    public WheatTreeSaver wheatTreeSaver;
+    [SerializeField]
+    public WheatSeedSaver wheatSeedSaver;
+    [SerializeField]
+    public WheatPlaceSaver wheatPlaceSaver;
+    [SerializeField]
+    public FullWheatPlaceSaver fullWheatPlaceSaver;
+    [SerializeField]
+    public PlaceSaver placeSaver;
     /// <summary>
     /// 一系列的食物
     /// </summary>

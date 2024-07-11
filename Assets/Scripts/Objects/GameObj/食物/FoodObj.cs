@@ -33,9 +33,6 @@ public class FoodSaver : RawSaver
 [Map()]
 public class FoodObj : RawObj
 {
-    public FoodObj(ObjSaver objAsset = null,int energy=1):base(objAsset)
-    {
-    }
 
     public FoodObj(ObjSaver objAsset = null) : base(objAsset)
     {

@@ -7,24 +7,28 @@ using UnityEngine;
 /// </summary>
 public class CookA:Act
 {
-    public CookItems items;
+    public BuildingObj buildingObj;
+    public Obj selObj;
     public int time;
-    public CookA(Person person, Obj obj,CookItems cookItems,int priority = -1,int time=1) : base(person, obj, priority)
+    public CookA(Person person, BuildingObj obj,Obj selObj, int priority = -1,int time=1) : base(person, obj, priority)
     {
-        items = cookItems;
         this.time = time;
         wastTime = true;
+        this.buildingObj = obj;
+        this.selObj = selObj;
     }
 
     public override IEnumerator<object> Run(Action<Act> callback)
     {
         TC();
         time--;
-        items.Cook(Obj.objSaver.canCook.count);
         if (time == 0)
-            yield return Ret(new EndAct(Person,Obj),callback);//返回
+        {
+            buildingObj.CookRate.Release(selObj);
+            yield return Ret(new EndAct(Person, Obj), callback);//返回
+        }
         else
-            yield return Ret(new CookA(Person,Obj, items, priority, time),callback);//做饭
+            yield return Ret(new CookA(Person, buildingObj, selObj, priority, time), callback);//做饭
     }
 }
 /// <summary>
@@ -50,10 +54,10 @@ public class CookSelA : Act
         foreach (var data in building.CookRate.objList.resources)//选择一系列的餐具
         {
             selects.Add(//活动描述
-                new CardInf(data.Key.objSaver.title, data.Key.objSaver.description + ":" + data.Key.objSaver.canCook.count,
+                new CardInf(data.Value.obj.objSaver.title, data.Value.obj.objSaver.description + ":" + data.Value.obj.objSaver.canCook.count,
                 () =>
                 {
-                    selObj = data.Key;
+                    selObj = data.Value.obj;
                 }
                 )
                 );
@@ -69,7 +73,7 @@ public class CookSelA : Act
             yield return Ret(
                 new SeqAct(Person,Obj,
                     seleA,
-                    new CookA(Person,selObj,building.CookItems,-1,seleA.selectTime)
+                    new CookA(Person,building, selObj, -1,seleA.selectTime)
                 ),callback);//做饭
         }
         else
