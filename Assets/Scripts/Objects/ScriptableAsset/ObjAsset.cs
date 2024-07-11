@@ -30,11 +30,16 @@ public class ObjSaver
 
 public enum ObjEnum
 {
-    /*****************建筑对象******************/
-    Restaurant,
-    /*****************食物对象******************/
-    /*****************原料对象******************/
-    /*****************家具对象******************/
+    PersonE,
+    BedObjE,
+    DeskObjE,
+    AnimalObjE,
+    ObjE,
+    PathObjE,
+    RawObjE,
+    FoodObjE,
+    BuildingObjE,
+    RestaurantObjE,
 }
 
 /// <summary>

@@ -71,35 +71,59 @@ public class Rate
     }
 }
 
+public class Source
+{
+    BuildingObj obj;
+    public Trans trans;
+    public List<int> nums;
+    public Resource resource;
+    /// <summary>
+    /// 更新资源,输入成本
+    /// </summary>
+    public void Update(int count)
+    {
+        foreach (var data in trans.to.source)
+        {
+            resource.Add(data.x, data.y * nums[nums.Count - 1]);
+        }
+        for (int i = nums.Count - 1; i>=1; i--)
+        {
+            nums[i] = nums[i - 1];
+        }
+        nums[0] = count;
+    }
+    public Source(BuildingObj obj,Resource resource,Trans trans)
+    {
+        this.trans = trans;
+        this.resource = resource;
+        this.obj = obj;
+        nums = new List<int>(trans.edge.time);
+    }
+}
 
 /// <summary>
 /// 管线管理器
 /// </summary>
 public class PipLineManager
 {
+    public BuildingObj obj;
     /// <summary>
     /// 管线的条目
     /// </summary>
-    public HashSet<Trans> piplineItem;
-    public void AddTrans(HashSet<Trans> tran)
+    public Dictionary<Trans,Source> piplineItem;
+
+    public void SetTrans(List<Trans> trans)
     {
-        piplineItem.UnionWith(tran);
+        piplineItem.Clear();
+        foreach (var x in trans)
+        {
+            piplineItem.Add(x, new Source(obj,obj.resource,x));
+        }
     }
-    public void RemoveTrans(HashSet<Trans> tran)
+    public PipLineManager(BuildingObj obj)
     {
-        piplineItem.ExceptWith(tran);
-    }
-    public void AddTrans(List<Trans> tran)
-    {
-        piplineItem.UnionWith(tran);
-    }
-    public void RemoveTrans(List<Trans> tran)
-    {
-        piplineItem.ExceptWith(tran);
-    }
-    public PipLineManager()
-    {
-        piplineItem = new HashSet<Trans>();
+        this.obj = obj;
+        piplineItem = new Dictionary<Trans, Source>();
     }
 }
 
@@ -147,7 +171,7 @@ public class BuildingObj : Obj
         SetSit = new Sit();
         resource = new Resource();
         goodsManager = new GoodsManager();
-        pipLineManager = new PipLineManager();
+        pipLineManager = new PipLineManager(this);
     }
     public override void Init(ObjSaver objSaver)
     {
@@ -156,7 +180,7 @@ public class BuildingObj : Obj
         SetSit = new Sit();
         resource = new Resource();
         goodsManager = new GoodsManager();
-        pipLineManager = new PipLineManager();
+        pipLineManager = new PipLineManager(this);
     }
     public override List<Activity> InitActivities()
     {

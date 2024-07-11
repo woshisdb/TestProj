@@ -10,6 +10,7 @@ public class Map : Singleton<Map>
 {
     public Dictionary<Type, Type> kv;
     public Dictionary<Type,ObjSaver> ks;
+    public Dictionary<ObjEnum,Type> enum2Type;
     protected Map()
     {
         Init();
@@ -19,7 +20,9 @@ public class Map : Singleton<Map>
         if (kv != null)
             return;
         kv = new Dictionary<Type, Type>();
+        //ks初始化
         ks = new Dictionary<Type, ObjSaver>();
+        enum2Type = new Dictionary<ObjEnum, Type>();
         Assembly assembly = Assembly.GetExecutingAssembly();
         // 查找所有带有 MapAttribute 属性的类
         var typesWithMapAttribute = assembly.GetTypes()
@@ -62,7 +65,7 @@ public class Map : Singleton<Map>
     public ObjType GetObj(ObjEnum type, string name)
     {
         Init();
-        var s = kv[type.GetType()];
+        var s = kv[ enum2Type[type]];
         return (ObjType)Activator.CreateInstance(s, name);
     }
     public ObjSaver GetSaver(Type type)
@@ -71,7 +74,7 @@ public class Map : Singleton<Map>
     }
     public ObjSaver GetSaver(ObjEnum type)
     {
-        return null;
+        return ks[enum2Type[type]];
     }
 }
 

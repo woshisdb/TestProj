@@ -30,16 +30,7 @@ public class GameArchitect : Architecture<GameArchitect>
         winCons = new List<WinCon>();
         this.objAsset = Resources.Load<ObjAsset>("ObjAsset");
         /****************初始化对象*********************/
-        Map.Instance.ks.Add(typeof(Person), objAsset.personSaver);
-        Map.Instance.ks.Add(typeof(BedObj), objAsset.bedSaver);
-        Map.Instance.ks.Add(typeof(DeskObj), objAsset.deskSaver);
-        Map.Instance.ks.Add(typeof(AnimalObj), objAsset.animalSaver);
-        Map.Instance.ks.Add(typeof(Obj), objAsset.objSaver);
-        Map.Instance.ks.Add(typeof(PathObj), objAsset.pathSaver);
-        Map.Instance.ks.Add(typeof(RawObj), objAsset.rawSaver);
-        Map.Instance.ks.Add(typeof(FoodObj), objAsset.foodSaver);
-        Map.Instance.ks.Add(typeof(BuildingObj), objAsset.buildingSaver);
-        Map.Instance.ks.Add(typeof(RestaurantObj), objAsset.restaurantSaver);
+        MapInit();
         /*********************************************/
         //InitActivities();
         var tableRess = Resources.Load<TableAsset>("Table/TableAsset");
@@ -65,7 +56,32 @@ public class GameArchitect : Architecture<GameArchitect>
         this.RegisterModel<ContractModel>(cM);
         //DomainGenerator.GenerateDomain();
     }
+    public void MapInit()
+    {
+        Map.Instance.enum2Type.Add(ObjEnum.PersonE, typeof(Person));
+        Map.Instance.enum2Type.Add(ObjEnum.BedObjE, typeof(BedObj));
+        Map.Instance.enum2Type.Add(ObjEnum.DeskObjE, typeof(DeskObj));
+        Map.Instance.enum2Type.Add(ObjEnum.AnimalObjE, typeof(AnimalObj));
+        Map.Instance.enum2Type.Add(ObjEnum.ObjE, typeof(Obj));
+        Map.Instance.enum2Type.Add(ObjEnum.PathObjE, typeof(PathObj));
+        Map.Instance.enum2Type.Add(ObjEnum.RawObjE, typeof(RawObj));
+        Map.Instance.enum2Type.Add(ObjEnum.FoodObjE, typeof(FoodObj));
+        Map.Instance.enum2Type.Add(ObjEnum.BuildingObjE, typeof(BuildingObj));
+        Map.Instance.enum2Type.Add(ObjEnum.RestaurantObjE, typeof(RestaurantObj));
+        //
+        Map.Instance.ks.Add(typeof(Person), objAsset.personSaver);
+        Map.Instance.ks.Add(typeof(BedObj), objAsset.bedSaver);
+        Map.Instance.ks.Add(typeof(DeskObj), objAsset.deskSaver);
+        Map.Instance.ks.Add(typeof(AnimalObj), objAsset.animalSaver);
+        Map.Instance.ks.Add(typeof(Obj), objAsset.objSaver);
+        Map.Instance.ks.Add(typeof(PathObj), objAsset.pathSaver);
+        Map.Instance.ks.Add(typeof(RawObj), objAsset.rawSaver);
+        Map.Instance.ks.Add(typeof(FoodObj), objAsset.foodSaver);
+        Map.Instance.ks.Add(typeof(BuildingObj), objAsset.buildingSaver);
+        Map.Instance.ks.Add(typeof(RestaurantObj), objAsset.restaurantSaver);
+        //
 
+    }
     public IEnumerator AddDecision(WinCon winCon)
     {
         Debug.Log(winCons.Count);

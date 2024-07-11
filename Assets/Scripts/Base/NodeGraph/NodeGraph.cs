@@ -59,6 +59,10 @@ public class Edge
 	/// </summary>
 	[SerializeField]
 	public List<EdgeItem> tras;
+	/// <summary>
+	/// 花费的时间
+	/// </summary>
+	public int time;
 }
 /// <summary>
 /// 序列化规则
