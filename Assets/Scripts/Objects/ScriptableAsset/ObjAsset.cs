@@ -48,6 +48,7 @@ public enum ObjEnum
     PlaceObjE,
     WheatPlaceObjE,
     FullWheatPlaceObjE,
+    MoneyObjE,
 }
 
 /// <summary>
@@ -56,6 +57,7 @@ public enum ObjEnum
 [System.Serializable,CreateAssetMenu(fileName = "NewObjAsset", menuName = "ScriptableObjects/ObjAsset")]
 public class ObjAsset : SerializedScriptableObject
 {
+    public TableMap tableMap;
     /// <summary>
     /// ½ÚµãÍ¼
     /// </summary>

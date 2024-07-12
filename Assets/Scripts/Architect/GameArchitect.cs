@@ -6,6 +6,11 @@ using System.Reflection;
 using QFramework;
 using UnityEngine;
 
+public class TableMap
+{
+    //public Dictionary<, int> tables;
+}
+
 public class GameArchitect : Architecture<GameArchitect>
 {
     public static GameArchitect get

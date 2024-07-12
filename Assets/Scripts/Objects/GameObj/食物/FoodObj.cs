@@ -42,3 +42,26 @@ public class FoodObj : RawObj
         return (FoodSaver)objSaver;
     }
 }
+
+public class MoneyType : RawType
+{
+    public MoneyType(string name = null) : base(name)
+    {
+
+    }
+}
+[System.Serializable]
+public class MoneySaver : RawSaver
+{
+}
+[Map()]
+public class MoneyObj : RawObj
+{
+    public MoneyObj(MoneySaver objAsset = null) : base(objAsset)
+    {
+    }
+    public MoneySaver GetSaver()
+    {
+        return (MoneySaver)objSaver;
+    }
+}

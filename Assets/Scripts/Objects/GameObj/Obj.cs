@@ -151,11 +151,40 @@ public class Obj:PDDL,ICanSendEvent
     /// <summary>
     /// 时间步更新
     /// </summary>
-    public virtual void Update()
+    public virtual void BefUpdate()
+    {
+        
+    }
+    public virtual void LatUpdate()
     {
         
     }
 }
+
+
+public class WasteTimeA : Act
+{
+    int n;
+    public WasteTimeA(Person person, Obj obj, int n) : base(person, obj)
+    {
+        this.n = n;
+        wastTime = true;
+    }
+
+    public override IEnumerator<object> Run(Action<Act> callback)
+    {
+        TC();
+        Debug.Log("WasteTime"+n);
+        n--;
+        if (n == 0)
+            yield return Ret(new EndAct(Person, Obj), callback);
+        else
+        {
+            yield return Ret(this,callback);
+        }
+    }
+}
+
 //public class Obj<T>:Obj where T : ObjSaver
 //{
 //    public T Saver()

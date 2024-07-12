@@ -8,8 +8,8 @@ using UnityEngine;
 public class ObjCont
 {
     public Obj obj;
-    public int size;
-    public int remain;
+    public int size;//容量
+    public int remain;//剩余
     public ObjCont()
     {
         
@@ -109,48 +109,47 @@ public class Resource
 }
 
 /// <summary>
-/// 商品列表
+/// 商品管理列表
 /// </summary>
 public class GoodsManager
 {
-    // 实现自定义IEqualityComparer<Person>
-    public class GoodsEqualityComparer : IEqualityComparer<Goods>
-    {
-        public bool Equals(Goods x, Goods y)
-        {
-            return x.obj.objSaver == y.obj.objSaver && x.cost == y.cost&&x.num==y.num;
-        }
-
-        public int GetHashCode(Goods goods)
-        {
-            return goods.obj.GetHashCode();
-        }
-    }
-    public Dictionary<Goods,int> items;//商品（物品，价格）,数目
-    public GoodsManager()
-    {
-        items = new Dictionary<Goods,int>(new GoodsEqualityComparer());
-    }
     /// <summary>
-    /// 添加物品
+    /// 一系列的商品
     /// </summary>
-    /// <param name="goods"></param>
-    /// <param name="sum"></param>
-    public void AddGoods(Goods goods,int sum)
+    public Dictionary<Goods,int> goods;
+    public Resource originResource;
+    public Resource resource;
+    public Obj obj;
+    public GoodsManager(Resource originresource,Obj obj)
     {
-        if(!items.ContainsKey(goods))
-        items.Add(goods, 0);
-        else items[goods]+=sum;
+        this.obj = obj;
+        this.originResource = originresource;
+        this.resource = new Resource();
+        goods = new Dictionary<Goods, int>();
     }
-    public void RemoveGoods(Goods goods,int sum)
+    public void SellEc(Goods goodsItem,int n)
     {
-        items[goods] -= sum;
-        items.Remove(goods);
+        goods[goodsItem] -= n;
+        if (goods[goodsItem]==0)
+            goods.Remove(goodsItem);
+        resource.Remove(goodsItem.sellO,goodsItem.sellNum*n);
+        originResource.Add(goodsItem.buyO, goodsItem.buyNum*n);
+    }
+    public void Add(ObjEnum sell,int sellNum,ObjEnum buy,int buyNum,int sum)
+    {
+        var x = new Goods(sell, sellNum, buy, buyNum);
+        if (goods.ContainsKey(x))
+        {
+            goods[x] = sum;
+        }
+        goods[x] += sum;
+        originResource.Remove(sell, sellNum * sum);
+        resource.Add(sell,sellNum*sum);
     }
 }
 
 /// <summary>
-/// 金融系统
+/// 交易系统
 /// </summary>
 public class EcModel : AbstractModel
 {
@@ -159,19 +158,32 @@ public class EcModel : AbstractModel
         
     }
     /// <summary>
-    /// 转账的行为传入（Num（Money））a->b
+    /// g1->g2
     /// </summary>
-    public void MoneyTransfer(Num a,Num b,int money)
+    public void Ec(Goods goods,int sum,GoodsManager g1,Resource g2)
     {
-        a.val-=money;
-        b.val+=money;
+        g1.SellEc(goods,sum);
+        g2.Add(goods.buyO, goods.buyNum*sum);
+        g2.Remove(goods.sellO, goods.sellNum*sum);
     }
-    /// <summary>
-    /// 商品
-    /// </summary>
-    /// <param name="goods"></param>
-    public void Buy(List<Goods> goods)
+    public bool TryEc(Dictionary<Goods, int> resource, GoodsManager g1, Resource g2)
     {
-
+        Resource resource1=new Resource();
+        foreach (var x in resource)
+        {
+            resource1.Add(x.Key.buyO, x.Key.buyNum * x.Value);
+        }
+        foreach (var x in resource1.resources)
+        {
+            if ( !g2.resources.ContainsKey(x.Key)||g2.resources[x.Key].remain<x.Value.remain )
+            {
+                return false;
+            }
+        }
+        foreach (var x in resource)
+        {
+            Ec(x.Key,x.Value,g1,g2);
+        }
+        return true;
     }
 }

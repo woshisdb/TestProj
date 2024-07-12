@@ -306,6 +306,7 @@ public class Person : AnimalObj
     /******************************************************/
     public bool isPlayer;
     public string PersonName;
+    public Resource resource;
     ///*********************知识**************************/
     ///// <summary>
     ///// 金融知识

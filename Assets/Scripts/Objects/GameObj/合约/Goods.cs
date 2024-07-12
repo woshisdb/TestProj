@@ -5,15 +5,26 @@ using UnityEngine;
 public class Goods
 {
     /// <summary>
-    /// 物品
+    /// 购买物品
     /// </summary>
-    public Obj obj;
-    /// <summary>
-    /// 价格
-    /// </summary>
-    public int cost;
+    public ObjEnum buyO;
     /// <summary>
     /// 数目
     /// </summary>
-    public int num;
+    public int buyNum;
+    /// <summary>
+    /// 出售物品
+    /// </summary>
+    public ObjEnum sellO;
+    public int sellNum;
+
+    // 构造函数
+    public Goods(ObjEnum buyO, int buyNum, ObjEnum sellO, int sellNum)
+    {
+        this.buyO = buyO;
+        this.buyNum = buyNum;
+        this.sellO = sellO;
+        this.sellNum = sellNum;
+    }
 }
+

@@ -177,7 +177,15 @@ public class GameLogic : MonoBehaviour,ICanSendEvent,ICanRegisterEvent
         MainDispatch.Instance().Enqueue(
             () => {
                 //Debug.Log(245);
+                foreach (var t in GameArchitect.get.tableAsset.tableSaver.objs)//选择后更新
+                {
+                    t.LatUpdate();
+                }
                 GameArchitect.Interface.GetModel<TimeModel>().AddTime();
+                foreach (var t in GameArchitect.get.tableAsset.tableSaver.objs)//选择前更新
+                {
+                    t.BefUpdate();
+                }
                 this.SendEvent<BeginSelectEvent>(new BeginSelectEvent());
                 this.SendEvent<UpdateCode>(new UpdateCode(GameArchitect.get.player));
             }

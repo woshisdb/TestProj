@@ -18,10 +18,10 @@ public class BuyA : Act
         Debug.Log("交易");
         List<SelectInf> selects = new List<SelectInf>();
         BuildingObj buildingObj = (BuildingObj)Obj;//建筑对象
-        foreach (var t in buildingObj.goodsManager.items)
+        foreach (var t in buildingObj.goodsManager.goods)
         {
             selects.Add(//可以卖的东西
-                new SelectInf(t.Key.obj.objSaver.title, t.Key.obj.objSaver.description+"X"+ t.Key.num+":"+t.Key.cost, t.Key.obj)
+                new SelectInf(t.Key.sellO.ToString() + "x" + t.Key.sellNum + "->" + t.Key.buyO.ToString() + "x" + t.Key.buyNum, t.Value + "", t.Key, t.Value)
             );
         }
         yield return GameArchitect.gameLogic.AddDecision(Person,
@@ -29,21 +29,14 @@ public class BuyA : Act
             selects,
             () =>
             {
-                int sum = 0;
+                Dictionary<Goods, int> resource = new Dictionary<Goods, int>();
                 for(int i=0;i<selects.Count;i++)
                 {
                     var sx=(Goods)selects[i].obj;
-                    sum += sx.cost * selects[i].num;
+                    var num=selects[i].num;
+                    resource.Add(sx,num);
                 }
-                if(sum > Person.money.val)
-                {
-                    return false;//不能执行
-                }
-                else
-                {
-                    Person.money.val -= sum;
-                    return true;
-                }
+                return GameArchitect.get.GetModel<EcModel>().TryEc(resource,buildingObj.goodsManager,Person.resource);
             }));
         yield return Ret(new EndAct(Person, Obj), callback);
     }
@@ -86,10 +79,10 @@ public class SellA : Act
         BuildingObj buildingObj = (BuildingObj)Obj;//建筑对象
         Debug.Log("交易");
         List<SelectInf> selects = new List<SelectInf>();
-        foreach(var t in buildingObj.goodsManager.items)
+        foreach(var t in buildingObj.goodsManager.goods)
         {
             selects.Add(//将物品添加到卖场
-                new SelectInf(t.Key.obj.objSaver.title, t.Key.obj.objSaver.description,t.Key.obj)
+                new SelectInf(t.Key.sellO.ToString()+"x"+ t.Key.sellNum+"->"+ t.Key.buyO.ToString() + "x" + t.Key.buyNum,t.Value+"",t.Key,t.Value)
             );
         }
         yield return GameArchitect.gameLogic.AddDecision(Person,
@@ -97,6 +90,11 @@ public class SellA : Act
             selects,
             () =>
             {
+                foreach (var t in selects)
+                {
+                    var x=(Obj)t.obj;
+                    buildingObj.goodsManager.Add(x.Enum(),1,ObjEnum.MoneyObjE,10, t.num);
+                }
                 return true;
             }));
         yield return Ret(new EndAct(Person, Obj), callback);

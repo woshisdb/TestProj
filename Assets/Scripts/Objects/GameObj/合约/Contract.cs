@@ -252,6 +252,12 @@ public class Work996Contract : Contract
         effectTime.type = EndTimeType.NextMonth;
         kpi = 0;
     }
+    /// <summary>
+    /// 协议是否允许签署
+    /// </summary>
+    /// <param name="ap"></param>
+    /// <param name="bp"></param>
+    /// <returns></returns>
     public override bool ContractAllow(Person ap, Person bp)
     {
         var cm=GameArchitect.get.GetModel<ContractModel>();
@@ -262,22 +268,40 @@ public class Work996Contract : Contract
     {
         return new Work996Contract();
     }
-
+    /// <summary>
+    /// 协议结算的效果
+    /// </summary>
+    /// <param name="ap"></param>
+    /// <param name="bp"></param>
     public override void EffectAccept(Person ap, Person bp)
     {
-        GameArchitect.get.GetModel<EcModel>().MoneyTransfer(ap.money, bp.money,6000);//转账
+        GameArchitect.get.GetModel<EcModel>();//转账
     }
-
+    /// <summary>
+    /// 协议是否生效
+    /// </summary>
+    /// <param name="ap"></param>
+    /// <param name="bp"></param>
+    /// <returns></returns>
     public override bool EffectAllow(Person ap, Person bp)
     {
         return true;
     }
-
+    /// <summary>
+    /// 能正常结算的概率
+    /// </summary>
+    /// <param name="ap"></param>
+    /// <param name="bp"></param>
+    /// <returns></returns>
     public override float EffectProb(Person ap, Person bp)
     {
         return 1f;
     }
-
+    /// <summary>
+    /// 违约的效果
+    /// </summary>
+    /// <param name="ap"></param>
+    /// <param name="bp"></param>
     public override void EffectReject(Person ap, Person bp)
     {
         

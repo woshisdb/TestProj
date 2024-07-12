@@ -88,8 +88,13 @@ public class Source
     /// <summary>
     /// 更新资源,输入成本
     /// </summary>
-    public void Update(int count)
+    public void Update()
     {
+        int count = 9999999;
+        foreach (var t in trans.edge.tras)//转移时间
+        {
+            count=Math.Min(obj.rates[t.x].count / t.y,count);
+        }
         foreach (var data in trans.to.source)
         {
             resource.Add(data.x, data.y * nums[nums.Count - 1]);
@@ -97,6 +102,10 @@ public class Source
         for (int i = nums.Count - 1; i>=1; i--)
         {
             nums[i] = nums[i - 1];
+        }
+        foreach (var data in trans.from.source)
+        {
+            resource.Remove(data.x,data.y*count);
         }
         nums[0] = count;
     }
@@ -119,7 +128,6 @@ public class PipLineManager
     /// 管线的条目
     /// </summary>
     public Dictionary<Trans,Source> piplineItem;
-
     public void SetTrans(List<Trans> trans)
     {
         piplineItem.Clear();
@@ -152,10 +160,7 @@ public class BuildingObj : Obj
     /// </summary>
     public Sit SetSit;
     /******************************烹饪的食物*************************************/
-    /// <summary>
-    /// 厨具的数目
-    /// </summary>
-    public Rate CookRate;
+    public Dictionary<TransationEnum, Rate> rates;
     /*******************************************************************/
     /// <summary>
     /// 用于交易的物品
@@ -167,10 +172,10 @@ public class BuildingObj : Obj
     public PipLineManager pipLineManager;
     public BuildingObj(BuildingSaver objSaver=null):base(objSaver)
     {
-        CookRate = new Rate(
+        rates.Add(TransationEnum.cook , new Rate(
             (obj) => { return objSaver.canCook.count; },
             (obj) => { return objSaver.canCook.can; }
-        );
+        ));
     }
     public override void Init()
     {
@@ -178,7 +183,7 @@ public class BuildingObj : Obj
         BedSit = new Sit();
         SetSit = new Sit();
         resource = new Resource();
-        goodsManager = new GoodsManager();
+        goodsManager = new GoodsManager(resource,this);
         pipLineManager = new PipLineManager(this);
     }
     public override void Init(ObjSaver objSaver)
@@ -187,7 +192,7 @@ public class BuildingObj : Obj
         BedSit = new Sit();
         SetSit = new Sit();
         resource = new Resource();
-        goodsManager = new GoodsManager();
+        goodsManager = new GoodsManager(resource,this);
         pipLineManager = new PipLineManager(this);
     }
     public override List<Activity> InitActivities()
@@ -200,9 +205,9 @@ public class BuildingObj : Obj
         new AddContractAct(),//添加协议
         new RemoveContractAct(),//移除协议
         /***************************************/
-        new SellAct(),//卖东西
-        new BuyAct(),//买东西
-        new CookAct()//烹饪东西
+        new SellAct(),
+        new BuyAct(),
+        new CookAct()
         };
     }
     public void Add(Obj s)
@@ -238,11 +243,11 @@ public class BuildingObj : Obj
     /// <summary>
     /// 更新
     /// </summary>
-	public override void Update()
+	public override void LatUpdate()
 	{
         foreach (var item in pipLineManager.piplineItem)//根据管线对数据进行处理
         {
-            item.Value.Update(CookRate.count);
+            item.Value.Update();
         }
 	}
 }

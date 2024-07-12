@@ -3,15 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoA:Act
+public class EnterA:Act
 {
     TableModel x;
     TableModel y;
-    public GoA(Person person,Obj obj,TableModel x,TableModel y):base(person,obj)
+    public EnterA(Person person,Obj obj,TableModel x):base(person,obj)
     {
-        wastTime = true;
+        wastTime = false;
         this.x = x;
-        this.y = y;
+    }
+
+    public override IEnumerator<object> Run(Action<Act> callback)
+    {
+        TC();
+        Debug.Log("Enter");
+        y.EnterTable(Person);
+        yield return Ret(new EndAct(Person,Obj), callback);
+    }
+}
+public class LeaveA : Act
+{
+    TableModel x;
+    public LeaveA(Person person, Obj obj, TableModel x) : base(person, obj)
+    {
+        wastTime = false;
+        this.x = x;
     }
 
     public override IEnumerator<object> Run(Action<Act> callback)
@@ -19,8 +35,7 @@ public class GoA:Act
         TC();
         Debug.Log("LeaveA2B");
         x.LeaveTable(Person);
-        y.EnterTable(Person);
-        yield return Ret(new EndAct(Person,Obj), callback);
+        yield return Ret(new EndAct(Person, Obj), callback);
     }
 }
 
@@ -49,20 +64,13 @@ public class Go : Activity
         return action;
     }
 
-    public override CardInf OutputSelect(Person person, Obj obj)
-    {
-        Init();
-        return new CardInf("Go Home","Waste 15m", () => {
-            person.SetAct(
-                new GoA(person, obj, x, y)
-            );
-        }
-        );
-    }
-
     public override Act Effect(Obj obj, Person person,params object[] objs)
     {
-        return new GoA(person, obj, x, y);
+        return new SeqAct(person, obj,
+            new LeaveA(person, obj, x),
+            new WasteTimeA(person, obj, wasteTime),
+            new EnterA(person, obj, y)
+        );
     }
 
     public Go(TableModel x, TableModel y, int wasteTime)
@@ -113,61 +121,3 @@ public class PathObj:Obj
         return (PathSaver)objSaver;
     }
 }
-///// <summary>
-///// 从Man中涉及的道路
-///// </summary>
-//public class ManPanelPathType : PathType
-//{
-//    public ManPanelPathType(string name = null) : base(name)
-//    {
-
-//    }
-//}
-//[Map()]
-//public class ManPanelPathObj : PathObj
-//{
-//    public ManPanelPathObj(PathSaver objSaver) :base(objSaver)
-//    {
-//        Init();
-//    }
-//    public void Init()
-//    {
-//        cardInf.title = "Path";
-//        cardInf.description = "GoHomePath";
-//    }
-//    public override List<Activity> InitActivities()
-//    {
-//        List<Activity> activities = new List<Activity>();
-//        activities.Add(new Go("MainPanel","Home",1));//花费1个小时，一天24小时
-//        return activities;
-//    }
-//}
-///// <summary>
-///// Home中的道路
-///// </summary>
-//public class HomePathType:PathType
-//{
-//    public HomePathType(string name = null) : base(name)
-//    {
-
-//    }
-//}
-//[Map()]
-//public class HomePathObj: PathObj
-//{
-//    public HomePathObj(PathSaver objSaver) : base(objSaver)
-//    {
-//        Init();
-//    }
-//    public void Init()
-//    {
-//        cardInf.title="Path";
-//        cardInf.description="GoMainPath";
-//    }
-//    public override List<Activity> InitActivities()
-//    {
-//        List<Activity> activities = new List<Activity>();
-//        activities.Add(new Go("Home", "MainPanel", 1));
-//        return activities;
-//    }
-//}
