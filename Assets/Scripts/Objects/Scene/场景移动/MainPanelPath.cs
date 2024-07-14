@@ -78,6 +78,8 @@ public class Go : Activity
         this.x = x;
         this.y = y;
         this.wasteTime = wasteTime;
+        activityName = x.TableName + "->" + y.TableName;
+        detail = wasteTime+"(H/2)";
     }
     public Go(string x, string y, int wasteTime)
     {
@@ -114,7 +116,7 @@ public class PathObj:Obj
     }
     public override List<Activity> InitActivities()
     {
-        return GameArchitect.get.tableAsset.tableSaver.activities; 
+        return GameArchitect.get.objAsset.map.activities;
     }
     public PathSaver GetSaver()
     {

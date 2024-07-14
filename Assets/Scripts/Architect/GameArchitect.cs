@@ -6,10 +6,6 @@ using System.Reflection;
 using QFramework;
 using UnityEngine;
 
-public class TableMap
-{
-    //public Dictionary<, int> tables;
-}
 
 public class GameArchitect : Architecture<GameArchitect>
 {
@@ -42,6 +38,7 @@ public class GameArchitect : Architecture<GameArchitect>
         this.tableAsset = tableRess;
         SaveSystem.Instance.Load();
         persons = tableAsset.tableSaver.personList;
+        objAsset.map.Init();
         //for(int i=0;i<persons.Count;i++)
         //{
         //    persons[i].contractManager = new ContractManager(persons[i]);
@@ -52,6 +49,7 @@ public class GameArchitect : Architecture<GameArchitect>
         this.RegisterModel<TableModelSet>(new TableModelSet(tableAsset));
         this.RegisterModel<ThinkModelSet>(new ThinkModelSet());
         this.RegisterModel<TimeModel>(new TimeModel());
+        this.RegisterModel<EcModel>(new EcModel());
         var cM = tableAsset.tableSaver.contractModel;
         if (cM == null)
         {

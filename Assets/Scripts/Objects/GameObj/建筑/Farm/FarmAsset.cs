@@ -19,22 +19,6 @@ public class FarmSaver : BuildingSaver
 // 农场
 public class FarmObj : BuildingObj
 {
-    /// <summary>
-    /// 耕种工具,
-    /// </summary>
-    public Rate gengZhong;
-    /// <summary>
-    /// 收获工具,
-    /// </summary>
-    public Rate shouHuo;
-    /// <summary>
-    /// 栽种工具,
-    /// </summary>
-    public Rate zaiZhong;
-    /// <summary>
-    /// 切割工具
-    /// </summary>
-    public Rate qieGe;
     ///////////////////////////////////////
 
     public FarmObj(BuildingSaver objAsset = null) : base(objAsset)
@@ -44,6 +28,7 @@ public class FarmObj : BuildingObj
     public override List<Activity> InitActivities()
     {
         var acts = base.InitActivities();
+        acts.Add(new SelPipLineAct());
         return acts;
     }
     public FarmSaver GetSaver()

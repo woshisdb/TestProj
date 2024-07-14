@@ -58,8 +58,8 @@ public class TableSaver
     public List<Person> personList;
     [OdinSerialize]
     public List<TableModel> tables;
-    [OdinSerialize]
-    public List<Activity> activities;
+    //[OdinSerialize]
+    //public List<Activity> activities;
     [OdinSerialize]
     public List<CodeSaver> codeDatas;
     [OdinSerialize]

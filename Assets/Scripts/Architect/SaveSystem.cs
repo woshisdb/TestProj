@@ -50,7 +50,7 @@ public class SaveSystem :Singleton<SaveSystem>
             GameArchitect.get.InitActivities();
             foreach(var obj in game.tableAsset.tableSaver.objs)
             {
-                Debug.Log(obj.GetType().Name);
+                //Debug.Log(obj.GetType().Name);
                 obj.activities = GameArchitect.activities[obj.GetType()];//一系列的活动
                 obj.cardInf.effect = () => { obj.SendEvent<SelectObjEvent>(new SelectObjEvent(obj)); };
             }

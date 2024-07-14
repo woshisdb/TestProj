@@ -394,6 +394,7 @@ public class Person : AnimalObj
     public Person(ObjSaver personAsset=null) : base(personAsset)
     {
         Init();
+        resource = new Resource();
         var t = Resources.Load<GameObject>("Controler/Person");
         var g = GameObject.Instantiate<GameObject>(t);
         g.transform.parent = GameObject.Find("Persons").transform;

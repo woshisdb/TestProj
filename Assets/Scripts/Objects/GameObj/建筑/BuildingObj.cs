@@ -10,14 +10,7 @@ public class BuildingType : ObjType
 
     }
 }
-[System.Serializable]
-public class BuildingSaver : ObjSaver
-{
-    /// <summary>
-    /// 容量大小
-    /// </summary>
-    public int container;
-}
+
 public class Sit
 {
     public int sit=0;
@@ -142,7 +135,14 @@ public class PipLineManager
         piplineItem = new Dictionary<Trans, Source>();
     }
 }
-
+[System.Serializable]
+public class BuildingSaver : ObjSaver
+{
+    /// <summary>
+    /// 容量大小
+    /// </summary>
+    public int container;
+}
 
 [Map()]
 public class BuildingObj : Obj
@@ -151,16 +151,15 @@ public class BuildingObj : Obj
     /// 存储的资源
     /// </summary>
     public Resource resource;
-    /// <summary>
-    /// 床的数目
-    /// </summary>
-    public Sit BedSit;
-    /// <summary>
-    /// 位子的数目
-    /// </summary>
-    public Sit SetSit;
     /******************************烹饪的食物*************************************/
+    /// <summary>
+    /// 可选的对象
+    /// </summary>
     public Dictionary<TransationEnum, Rate> rates;
+    /// <summary>
+    /// 不可选，固定值
+    /// </summary>
+    public Dictionary<SitEnum, Sit> sits;
     /*******************************************************************/
     /// <summary>
     /// 用于交易的物品
@@ -174,34 +173,48 @@ public class BuildingObj : Obj
     {
         if(rates==null)
             rates = new Dictionary<TransationEnum, Rate>();
+        /*******************添加Rate*******************/
         rates.Add(TransationEnum.cook , new Rate(
             (obj) => { return objSaver.canCook.count; },
             (obj) => { return objSaver.canCook.can; }
         ));
+        rates.Add(TransationEnum.qieGe, new Rate(
+            (obj) => { return objSaver.qieGe.count; },
+            (obj) => { return objSaver.qieGe.can; }
+        ));
+        rates.Add(TransationEnum.gengZhong, new Rate(
+            (obj) => { return objSaver.gengZhong.count; },
+            (obj) => { return objSaver.gengZhong.can; }
+        ));
+        rates.Add(TransationEnum.zaiZhong, new Rate(
+            (obj) => { return objSaver.zaiZhong.count; },
+            (obj) => { return objSaver.zaiZhong.can; }
+        ));
+        rates.Add(TransationEnum.shouHuo, new Rate(
+            (obj) => { return objSaver.shouHuo.count; },
+            (obj) => { return objSaver.shouHuo.can; }
+        ));
+        resource = new Resource();
+        goodsManager = new GoodsManager(resource, this);
+        pipLineManager = new PipLineManager(this);
+        sits = new Dictionary<SitEnum, Sit>();
+        sits.Add(SitEnum.bed, new Sit());
+        sits.Add(SitEnum.set, new Sit());
+
     }
     public override void Init()
     {
         base.Init();
-        BedSit = new Sit();
-        SetSit = new Sit();
-        resource = new Resource();
-        goodsManager = new GoodsManager(resource,this);
-        pipLineManager = new PipLineManager(this);
     }
     public override void Init(ObjSaver objSaver)
     {
         base.Init(objSaver);
-        BedSit = new Sit();
-        SetSit = new Sit();
-        resource = new Resource();
-        goodsManager = new GoodsManager(resource,this);
-        pipLineManager = new PipLineManager(this);
     }
     public override List<Activity> InitActivities()
     {
         return new List<Activity>() {
         new SleepAct(
-            (obj, person, objs) => {return BedSit.useSit < BedSit.sit; }
+            (obj, person, objs) => {return sits[SitEnum.bed].useSit < sits[SitEnum.bed].sit; }
         ),//睡眠活动
         new ArrangeContractAct(),//签署协议
         new AddContractAct(),//添加协议
@@ -214,28 +227,14 @@ public class BuildingObj : Obj
     }
     public void Add(Obj s)
     {
-        //可以睡眠
-        if(s.objSaver.canSleep.can)
-        {
-            BedSit.sit += s.objSaver.canSleep.count;
-        }
-        //可以坐
-        if (s.objSaver.canSet.can)
-        {
-            SetSit.sit += s.objSaver.canSet.count;
-        }
+        sits[SitEnum.bed].sit += s.objSaver.sleep;
+        sits[SitEnum.set].sit += s.objSaver.set;
         resource.Add(s,1);
     }
     public void Remove(Obj s)
     {
-        if (s.objSaver.canSleep.can)
-        {
-            BedSit.sit -= s.objSaver.canSleep.count;
-        }
-        if (s.objSaver.canSet.can)
-        {
-            SetSit.sit -= s.objSaver.canSet.count;
-        }
+        sits[SitEnum.bed].sit -= s.objSaver.sleep;
+        sits[SitEnum.set].sit -= s.objSaver.set;
         resource.Remove(s, 1);
     }
     public BuildingSaver GetSaver()
@@ -243,7 +242,7 @@ public class BuildingObj : Obj
         return (BuildingSaver)objSaver;
     }
     /// <summary>
-    /// 更新
+    /// 更新...需要修改
     /// </summary>
 	public override void LatUpdate()
 	{

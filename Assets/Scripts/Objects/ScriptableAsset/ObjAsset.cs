@@ -21,11 +21,15 @@ public class ObjSaver
     //public CardInf cardInf;
     public string title;
     public string description;
-    public ObjInf canSleep;//可以睡觉
-    public ObjInf canSet;//可以坐下来
-    //public ObjInf canReg;//可以注册协议
-    //public ObjInf canJoin;//可以签署协议
+    public ObjInf qieGe;//可以睡觉
+    public ObjInf shouHuo;//可以坐下来
     public ObjInf canCook;//可以用于烹饪食物
+    public ObjInf gengZhong;//可以用于烹饪食物
+    public ObjInf zaiZhong;//可以用于烹饪食物
+    ////////////////////////////////////////////////////////
+    public int sleep;//睡觉
+    public int set;//坐
+
 }
 
 public enum ObjEnum
@@ -59,10 +63,12 @@ public enum ObjEnum
 [System.Serializable,CreateAssetMenu(fileName = "NewObjAsset", menuName = "ScriptableObjects/ObjAsset")]
 public class ObjAsset : SerializedScriptableObject
 {
-    public TableMap tableMap;
+    [SerializeField]
+    public WorldMap map;
     /// <summary>
     /// 节点图
     /// </summary>
+    [SerializeField]
     public NodeGraph nodeGraph;
     /// <summary>
     /// 默认构造Saver
@@ -109,6 +115,7 @@ public class ObjAsset : SerializedScriptableObject
     public FarmSaver farmSaver;
     [SerializeField]
     public MoneySaver moneySaver;
+
 
     /// <summary>
     /// 一系列的食物

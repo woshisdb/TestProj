@@ -370,11 +370,11 @@ public class GameLogic : MonoBehaviour,ICanSendEvent,ICanRegisterEvent
         public int time;
     }
     [Button]
-    public void CreatePath(string objName, string SceneName,List<CreatePathObj> tuples)
+    public void CreatePath(string objName, string SceneName)
     {
-        var s = Tool.DeepClone<PathSaver>((PathSaver)Map.Instance.GetSaver(typeof(PathSaver)));
+        var s = Tool.DeepClone<PathSaver>((PathSaver)Map.Instance.GetSaver(ObjEnum.PathObjE));
         var p = new PathObj(s);
-        p.cardInf.title = "objName";
+        p.cardInf.title = objName;
         p.cardInf.description = "PathToOtherScene";
         p.activities = new List<Activity>();
         var Sc = ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.tables.Find(e => { return e.TableName == SceneName; });
@@ -382,10 +382,6 @@ public class GameLogic : MonoBehaviour,ICanSendEvent,ICanRegisterEvent
         {
             Debug.Log("无法创建");
             return;
-        }
-        for (int i = 0; i < tuples.Count; i++)
-        {
-            p.activities.Add(new Go(Sc, ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.tables.Find(e => { return e.TableName == tuples[i].y; }), tuples[i].time));
         }
         Sc.AddToTable(p);
     }
@@ -402,5 +398,21 @@ public class GameLogic : MonoBehaviour,ICanSendEvent,ICanRegisterEvent
         x.activities.RemoveAll(e => { return ((Go)e).x == Sc; });//删除所有目的地节点
         Sc.RemoveToTable(x);
     }
-
+    /// <summary>
+    /// 创建农场
+    /// </summary>
+    /// <param name="size"></param>
+    /// <param name="tableName"></param>
+    [Button]
+    public void CreateFarm(FarmSaver farmSaver,string tableName)
+    {
+        var p = new FarmObj(farmSaver);
+        var Sc = ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.tables.Find(e => { return e.TableName == tableName; });
+        if (Sc == null)
+        {
+            Debug.Log("无法创建");
+            return;
+        }
+        Sc.AddToTable(p);
+    }
 }

@@ -11,6 +11,11 @@ public enum TransationEnum
 	zaiZhong,
 	qieGe
 }
+public enum SitEnum
+{
+	bed,
+	set
+}
 /// <summary>
 /// 物体转移关系
 /// </summary>
@@ -75,4 +80,33 @@ public class NodeGraph:SerializedScriptableObject
 	[SerializeField]
 	public List<Trans> trans;
 
+}
+public class MapTo
+{
+	public string y;
+	public int wastTime;
+}
+
+public class WorldMap
+{
+    [SerializeField]
+	public Dictionary<string, List<MapTo>> tos;
+    [HideInInspector]
+	public List<Activity> activities;
+    [Button]
+    public void Init()
+    {
+		activities = new List<Activity>();
+		foreach (var xx in tos)
+		{
+			foreach(var x in xx.Value)
+            {
+				var t1= ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.tables.Find(e => { return e.TableName == xx.Key; });
+				var t2=((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.tables.Find(e => { return e.TableName == x.y; });
+				//Debug.Log(t1);
+				//Debug.Log(t2);
+				activities.Add(new Go(t1,t2 , x.wastTime));
+			}
+		}
+    }
 }

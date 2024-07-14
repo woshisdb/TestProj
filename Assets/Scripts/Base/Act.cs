@@ -101,7 +101,7 @@ public class SelectPiplineA : Act
         var sels = new List<SelectInf>(pipline.Count);
         foreach(var s in pipline)
         {
-            sels.Add(new SelectInf("1","2",s,1));
+            sels.Add(new SelectInf(s.title,"",s,1));
         }
         yield return GameArchitect.get.AddDecision(
             new SelectTex("test","test1",sels,
@@ -120,7 +120,39 @@ public class SelectPiplineA : Act
 	}
 }
 
+public class SelPipLineAct:Activity
+{
+    public int use;
+    public SelPipLineAct(Func<Obj, Person, object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null) : base(cond, eff)
+    {
+        use = 0;
+        activityName = "选择管线";
+        detail = "选择自己的生产管线";
+    }
+    public override bool Condition(Obj obj, Person person, params object[] objs)
+    {
+        return true;
+    }
 
+    public override PAction GetAction()
+    {
+        PAction action = new PAction();
+        return action;
+    }
+
+    /// <summary>
+    /// 效果
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="person"></param>
+    /// <param name="objs"></param>
+    /// <returns></returns>
+    public override Act Effect(Obj obj, Person person, params object[] objs)
+    {
+        return GetActs(
+            new SelectPiplineA(person,(BuildingObj) obj), obj, person, objs);
+    }
+}
 
 
 

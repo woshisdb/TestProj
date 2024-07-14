@@ -63,7 +63,6 @@ public class Obj:PDDL,ICanSendEvent
     public StringBuilder str;
     [NonSerialized]
     public List<Activity> activities;//角色的所有活动
-    public Dictionary<Obj,int> containers;//里面所容纳的各种东西
     /// <summary>
     /// 用于修改ObjSaver初始化
     /// </summary>
@@ -124,9 +123,9 @@ public class Obj:PDDL,ICanSendEvent
     public virtual List<Activity> InitActivities()
     {
         return new List<Activity>() {
-            new ArrangeContractAct(),//达成协议
-            new AddContractAct(),//添加协议
-            new RemoveContractAct()//移除协议
+            //new ArrangeContractAct(),//达成协议
+            //new AddContractAct(),//添加协议
+            //new RemoveContractAct()//移除协议
         };//一系列的活动
     }
     public void Refresh()

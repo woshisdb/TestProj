@@ -13,7 +13,6 @@ public class DeskType : ObjType
 [System.Serializable]
 public class DeskSaver : ObjSaver
 {
-
 }
 [Map()]
 // DeskObj.cs
@@ -30,9 +29,9 @@ public class DeskObj : Obj
     public override List<Activity> InitActivities()
     {
         var acts= base.InitActivities();
-        acts.Add(new ArrangeContractAct());//达成协议
-        acts.Add(new AddContractAct());//添加协议
-        acts.Add(new RemoveContractAct());//移除协议
+        //acts.Add(new ArrangeContractAct());//达成协议
+        //acts.Add(new AddContractAct());//添加协议
+        //acts.Add(new RemoveContractAct());//移除协议
         return acts;
     }
     public DeskSaver GetSaver()
