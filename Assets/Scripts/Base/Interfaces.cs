@@ -14,13 +14,15 @@ public class Map : Singleton<Map>
     public Dictionary<ObjEnum,Obj> enum2Ins;
     protected Map()
     {
-        Init();
+        
     }
     public void Insert(ObjEnum objEnum,Obj obj,ObjSaver objSaver)
     {
-        Map.Instance.enum2Ins.Add(objEnum,obj);
-        Map.Instance.ks.Add(obj.GetType(), objSaver);
-        Map.Instance.enum2Type.Add(objEnum, obj.GetType());
+        Debug.Log(objEnum);
+        Debug.Log(obj.GetType().Name);
+        enum2Ins.Add(objEnum,obj);
+        //Map.Instance.ks.Add(obj.GetType(), objSaver);
+        enum2Type.Add(objEnum, obj.GetType());
     }
     public void Init()
     {
@@ -32,15 +34,15 @@ public class Map : Singleton<Map>
         ks = new Dictionary<Type, ObjSaver>();
         enum2Type = new Dictionary<ObjEnum, Type>();
 
-        enum2Ins = new Dictionary<ObjEnum,Obj>();
+        enum2Ins = new Dictionary<ObjEnum, Obj>();
 
         Assembly assembly = Assembly.GetExecutingAssembly();
         // 查找所有带有 MapAttribute 属性的类
-        var typesWithMapAttribute = assembly.GetTypes()
-            .Where(t => t.GetCustomAttributes(typeof(MapAttribute), false).Length > 0)
-            .ToList();
+        var typesWithMapAttribute = assembly.GetTypes().Where(t => t.GetCustomAttributes(typeof(MapAttribute), false).Length > 0).ToList();
+            //.ToList();
         foreach (var type in typesWithMapAttribute)
         {
+            Debug.Log(type.Name);
             var mapAttributes = type.GetCustomAttributes(typeof(MapAttribute), false);
             Type Objtype;
             if (((MapAttribute)mapAttributes[0]).type == null)
@@ -50,13 +52,29 @@ public class Map : Singleton<Map>
                 Objtype = ((MapAttribute)mapAttributes[0]).type;
             }
             kv.Add(type, Objtype);
-            string enumName = type.Name+"E";
-            string saverName = type.Name.Replace("Obj", "Saver");
-            saverName = char.ToLower(saverName[0])+saverName.Substring(1);
+            string enumName = type.Name + "E";
+            string saverName;
+            if (((MapAttribute)mapAttributes[0]).saver == null)
+            {
+                saverName = type.Name.Replace("Obj", "Saver");
+                saverName = char.ToLower(saverName[0]) + saverName.Substring(1);
+            }
+            else
+            {
+                saverName = ((MapAttribute)mapAttributes[0]).saver.Name;
+                saverName = char.ToLower(saverName[0]) + saverName.Substring(1);
+            }
+            Debug.Log(enumName);
             ObjEnum.TryParse<ObjEnum>(enumName, out ObjEnum objEnum);
             var objSaverField = typeof(ObjAsset).GetField(saverName);
-            objSaverField.GetValue(GameArchitect.get.objAsset);
-            Insert(objEnum, (Obj)Activator.CreateInstance(type),(ObjSaver) objSaverField.GetValue(GameArchitect.get.objAsset));
+            //Debug.Log(type.Name);
+            //Debug.Log
+            ks.Add(type, (ObjSaver)objSaverField.GetValue(GameArchitect.get.objAsset));
+            //Debug.Log(type.Name+"1");
+            var ksv = ks[type];
+            var data = (Obj)Activator.CreateInstance(type, new object[] { null });
+            //Debug.Log(type.Name+"2");
+            Insert(objEnum,data , (ObjSaver)objSaverField.GetValue(GameArchitect.get.objAsset));
         }
     }
     public ObjType GetObjType(Type type,string name="")

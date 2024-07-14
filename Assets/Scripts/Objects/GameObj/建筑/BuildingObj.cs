@@ -172,6 +172,8 @@ public class BuildingObj : Obj
     public PipLineManager pipLineManager;
     public BuildingObj(BuildingSaver objSaver=null):base(objSaver)
     {
+        if(rates==null)
+            rates = new Dictionary<TransationEnum, Rate>();
         rates.Add(TransationEnum.cook , new Rate(
             (obj) => { return objSaver.canCook.count; },
             (obj) => { return objSaver.canCook.can; }
@@ -245,6 +247,10 @@ public class BuildingObj : Obj
     /// </summary>
 	public override void LatUpdate()
 	{
+        if (pipLineManager == null)
+        {
+            pipLineManager = new PipLineManager(this);
+        }
         foreach (var item in pipLineManager.piplineItem)//根据管线对数据进行处理
         {
             item.Value.Update();

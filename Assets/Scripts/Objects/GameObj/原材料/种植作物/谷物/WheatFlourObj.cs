@@ -11,6 +11,12 @@ public class WheatFlourType : RawType
 
     }
 }
+
+[System.Serializable]
+public class WheatFlourSaver : RawSaver
+{
+}
+
 [Map()]
 public class WheatFlourObj : RawObj
 {

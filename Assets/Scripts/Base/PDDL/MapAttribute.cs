@@ -8,9 +8,11 @@ using System;
 public class MapAttribute : Attribute
 {
     public Type type;
+    public Type saver;
     // 构造函数，用于初始化属性的值
-    public MapAttribute(Type type=null)
+    public MapAttribute(Type type= null, Type saver = null)
     {
         this.type = type;
+        this.saver = saver;
     }
 }

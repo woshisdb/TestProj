@@ -17,13 +17,9 @@ public class RawType : ObjType
 /// </summary>
 public class RawObj : Obj
 {
-    public RawObj(ObjSaver objAsset = null):base(objAsset)
+    public RawObj(RawSaver objAsset = null):base(objAsset)
     {
-
-    }
-    public RawObj()
-    {
-
+        //Debug.Log(objAsset);
     }
     public RawSaver GetSaver()
     {
@@ -36,11 +32,4 @@ public class RawObj : Obj
 [System.Serializable]
 public class RawSaver : ObjSaver
 {
-    public RawSaver(ObjAsset objAsset)
-    {
-
-    }
-    public RawSaver()
-    {
-    }
 }

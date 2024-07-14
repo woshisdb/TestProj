@@ -64,6 +64,7 @@ public class GameArchitect : Architecture<GameArchitect>
     public void MapInit()
     {
         Map.Instance.Init();
+        //Map.Instance.Init();
         //Map.Instance.enum2Type.Add(ObjEnum.PersonE, typeof(Person));
         //Map.Instance.enum2Type.Add(ObjEnum.BedObjE, typeof(BedObj));
         //Map.Instance.enum2Type.Add(ObjEnum.DeskObjE, typeof(DeskObj));

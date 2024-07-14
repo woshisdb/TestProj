@@ -20,7 +20,227 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: tableMap
+      Entry: 6
+      Data: 
+    - Name: seedSaver
+      Entry: 7
+      Data: 0|SeedSaver, Assembly-CSharp
+    - Name: objEnum
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: canSleep
+      Entry: 6
+      Data: 
+    - Name: canSet
+      Entry: 6
+      Data: 
+    - Name: canCook
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: treeSaver
+      Entry: 7
+      Data: 1|TreeSaver, Assembly-CSharp
+    - Name: objEnum
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: canSleep
+      Entry: 6
+      Data: 
+    - Name: canSet
+      Entry: 6
+      Data: 
+    - Name: canCook
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: wheatSaver
+      Entry: 7
+      Data: 2|WheatSaver, Assembly-CSharp
+    - Name: objEnum
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: canSleep
+      Entry: 6
+      Data: 
+    - Name: canSet
+      Entry: 6
+      Data: 
+    - Name: canCook
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: wheatTreeSaver
+      Entry: 7
+      Data: 3|WheatTreeSaver, Assembly-CSharp
+    - Name: objEnum
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: canSleep
+      Entry: 6
+      Data: 
+    - Name: canSet
+      Entry: 6
+      Data: 
+    - Name: canCook
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: wheatSeedSaver
+      Entry: 7
+      Data: 4|WheatSeedSaver, Assembly-CSharp
+    - Name: objEnum
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: canSleep
+      Entry: 6
+      Data: 
+    - Name: canSet
+      Entry: 6
+      Data: 
+    - Name: canCook
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: wheatPlaceSaver
+      Entry: 7
+      Data: 5|WheatPlaceSaver, Assembly-CSharp
+    - Name: objEnum
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: canSleep
+      Entry: 6
+      Data: 
+    - Name: canSet
+      Entry: 6
+      Data: 
+    - Name: canCook
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fullWheatPlaceSaver
+      Entry: 7
+      Data: 6|FullWheatPlaceSaver, Assembly-CSharp
+    - Name: objEnum
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: canSleep
+      Entry: 6
+      Data: 
+    - Name: canSet
+      Entry: 6
+      Data: 
+    - Name: canCook
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: placeSaver
+      Entry: 7
+      Data: 7|FullWheatPlaceSaver, Assembly-CSharp
+    - Name: objEnum
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: canSleep
+      Entry: 6
+      Data: 
+    - Name: canSet
+      Entry: 6
+      Data: 
+    - Name: canCook
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  nodeGraph: {fileID: 0}
   personSaver:
     objEnum: 0
     size: 1

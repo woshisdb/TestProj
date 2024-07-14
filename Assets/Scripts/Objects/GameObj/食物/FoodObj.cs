@@ -34,7 +34,7 @@ public class FoodSaver : RawSaver
 public class FoodObj : RawObj
 {
 
-    public FoodObj(ObjSaver objAsset = null) : base(objAsset)
+    public FoodObj(FoodSaver objAsset = null) : base(objAsset)
     {
     }
     public FoodSaver GetSaver()

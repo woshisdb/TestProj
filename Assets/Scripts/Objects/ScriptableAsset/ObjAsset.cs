@@ -49,6 +49,8 @@ public enum ObjEnum
     WheatPlaceObjE,
     FullWheatPlaceObjE,
     MoneyObjE,
+    WheatFlourObjE,
+    FarmObjE,
 }
 
 /// <summary>
@@ -101,6 +103,13 @@ public class ObjAsset : SerializedScriptableObject
     public FullWheatPlaceSaver fullWheatPlaceSaver;
     [SerializeField]
     public PlaceSaver placeSaver;
+    [SerializeField]
+    public WheatFlourSaver wheatFlourSaver;
+    [SerializeField]
+    public FarmSaver farmSaver;
+    [SerializeField]
+    public MoneySaver moneySaver;
+
     /// <summary>
     /// 一系列的食物
     /// </summary>

@@ -24,7 +24,7 @@ public class CookA:Act
         time--;
         if (time == 0)
         {
-            buildingObj.CookRate.Release(selObj);
+            buildingObj.rates[TransationEnum.cook].Release(selObj);
             yield return Ret(new EndAct(Person, Obj), callback);//返回
         }
         else
@@ -51,7 +51,7 @@ public class CookSelA : Act
         List<CardInf> selects = new List<CardInf>();
         Obj selObj = null;
         //building.CookRate.objList.resources = new Dictionary<Obj, int>();
-        foreach (var data in building.CookRate.objList.resources)//选择一系列的餐具
+        foreach (var data in building.rates[TransationEnum.cook].objList.resources)//选择一系列的餐具
         {
             selects.Add(//活动描述
                 new CardInf(data.Value.obj.objSaver.title, data.Value.obj.objSaver.description + ":" + data.Value.obj.objSaver.canCook.count,
@@ -68,7 +68,7 @@ public class CookSelA : Act
 
         if (selObj != null)
         {
-            building.CookRate.Use(selObj);
+            building.rates[TransationEnum.cook].Use(selObj);
             var seleA = new SelectTime(Person, selObj,new int[]{ 1,2,3,4,5,6,7,8});
             yield return Ret(
                 new SeqAct(Person,Obj,
