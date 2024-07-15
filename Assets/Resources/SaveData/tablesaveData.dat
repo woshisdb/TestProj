@@ -1,8 +1,8 @@
 {
     "$id": 0,
     "$type": "0|TableSaver, Assembly-CSharp",
-    "time": 366,
-    "lastNm": 337,
+    "time": 414,
+    "lastNm": 400,
     "objs": {
         "$id": 1,
         "$type": "1|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib",
@@ -1135,6 +1135,7 @@
                                                 "$v": {
                                                     "$id": 155,
                                                     "$type": "62|Source, Assembly-CSharp",
+                                                    "obj": $iref:89,
                                                     "trans": $iref:144,
                                                     "nums": {
                                                         "$id": 156,
@@ -1151,7 +1152,8 @@
                                                             0
                                                         ]
                                                     },
-                                                    "resource": $iref:96
+                                                    "resource": $iref:96,
+                                                    "maxnCount": 4
                                                 }
                                             },
                                             {
@@ -1221,6 +1223,7 @@
                                                 "$v": {
                                                     "$id": 168,
                                                     "$type": 62,
+                                                    "obj": $iref:89,
                                                     "trans": $iref:157,
                                                     "nums": {
                                                         "$id": 169,
@@ -1233,7 +1236,8 @@
                                                             0
                                                         ]
                                                     },
-                                                    "resource": $iref:96
+                                                    "resource": $iref:96,
+                                                    "maxnCount": 4
                                                 }
                                             },
                                             {
@@ -1297,6 +1301,7 @@
                                                 "$v": {
                                                     "$id": 180,
                                                     "$type": 62,
+                                                    "obj": $iref:89,
                                                     "trans": $iref:170,
                                                     "nums": {
                                                         "$id": 181,
@@ -1449,7 +1454,8 @@
                                                             0
                                                         ]
                                                     },
-                                                    "resource": $iref:96
+                                                    "resource": $iref:96,
+                                                    "maxnCount": 4
                                                 }
                                             }
                                         ]

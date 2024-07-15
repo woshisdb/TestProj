@@ -75,11 +75,11 @@ public class Rate
 
 public class Source
 {
-    BuildingObj obj;
+    public BuildingObj obj;
     public Trans trans;
     public List<int> nums;
     public Resource resource;
-    int maxnCount=99999;
+    public int maxnCount=99999;
     /// <summary>
     /// 更新资源,输入成本
     /// </summary>
@@ -234,7 +234,8 @@ public class BuildingObj : Obj
         /***************************************/
         new SellAct(),
         new BuyAct(),
-        new CookAct()
+        new CookAct(),
+        new SetPipLineAct()
         };
     }
     public void Add(Obj s)

@@ -32,7 +32,7 @@ public class SeqAct : Act
     public override IEnumerator<object> Run(Action<Act> callback)
     {
         TC();
-        while (GameLogic.hasTime&&acts.Count>0)
+        while (GameLogic.hasTime&&acts!=null&&acts.Count>0)
         {
             yield return acts[0].Run(
                 (result) =>
@@ -48,7 +48,7 @@ public class SeqAct : Act
                 }
             );
         }
-        if (acts.Count == 0)
+        if (acts==null||acts.Count == 0)
         {
             yield return Ret(new EndAct(Person, Obj), callback);
         }
@@ -157,8 +157,70 @@ public class SelPipLineAct:Activity
     }
 }
 
+public class SetPiplineA : Act
+{
+    public SetPiplineA(Person person, BuildingObj obj, int priority = -1) : base(person, obj, priority)
+    {
+        wastTime = true;
+    }
+    public override IEnumerator<object> Run(Action<Act> callback)
+    {
+        BuildingObj obj = (BuildingObj)Obj;
+        var pipline = GameArchitect.get.objAsset.nodeGraph.trans;
+        var sels = new List<SelectInf>(obj.pipLineManager.piplineItem.Count);
+        foreach (var s in obj.pipLineManager.piplineItem)
+        {
+            sels.Add(new SelectInf(s.Key.title, "", s.Value,9999));
+        }
+        yield return GameArchitect.gameLogic.AddDecision(Person,
+            new SelectTex("设置管线", "设置管线比例", sels,
+            () => {
+                var selPipline = new List<Trans>();
+                for (int i = 0; i < sels.Count; i++)
+                {
+                    ((Source)sels[i].obj).maxnCount = sels[i].num;
+                }
+                return true;
+            }
+            )
+        );
+        yield return Ret(new EndAct(Person, Obj), callback);
+    }
+}
 
+public class SetPipLineAct : Activity
+{
+    public int use;
+    public SetPipLineAct(Func<Obj, Person, object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null) : base(cond, eff)
+    {
+        use = 0;
+        activityName = "设定管线限度";
+        detail = "选择管线的生产限度";
+    }
+    public override bool Condition(Obj obj, Person person, params object[] objs)
+    {
+        return true;
+    }
 
+    public override PAction GetAction()
+    {
+        PAction action = new PAction();
+        return action;
+    }
+
+    /// <summary>
+    /// 效果
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="person"></param>
+    /// <param name="objs"></param>
+    /// <returns></returns>
+    public override Act Effect(Obj obj, Person person, params object[] objs)
+    {
+        return GetActs(
+            new SetPiplineA(person, (BuildingObj)obj), obj, person, objs);
+    }
+}
 
 
 
