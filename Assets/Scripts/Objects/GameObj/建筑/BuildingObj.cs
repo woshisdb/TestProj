@@ -25,6 +25,7 @@ public class Rate
     Func<ObjSaver, int> func;//获取数据
     Func<ObjSaver,bool> can;
     public int count;//当前模块所能提供的数目
+    public int nowCount;//当前模块数目
     public Resource objList = new Resource();//物品与数目
     public Rate(Func<ObjSaver,int> func,Func<ObjSaver,bool> can)
     {
@@ -78,15 +79,21 @@ public class Source
     public Trans trans;
     public List<int> nums;
     public Resource resource;
+    int maxnCount=99999;
     /// <summary>
     /// 更新资源,输入成本
     /// </summary>
     public void Update()
     {
-        int count = 9999999;
+        int count = maxnCount;
         foreach (var t in trans.edge.tras)//转移时间
         {
-            count=Math.Min(obj.rates[t.x].count / t.y,count);
+            count=Math.Min(obj.rates[t.x].nowCount / t.y,count);
+        }
+        Debug.Log(">>"+count);
+        foreach (var t in trans.edge.tras)
+        {
+            obj.rates[t.x].nowCount-=count*t.y;
         }
         foreach (var data in trans.to.source)
         {
@@ -107,7 +114,12 @@ public class Source
         this.trans = trans;
         this.resource = resource;
         this.obj = obj;
-        nums = new List<int>(trans.edge.time);
+        maxnCount = 99999;
+        nums = new List<int>();
+        for(int i=0;i< trans.edge.time; i++)
+        {
+            nums.Add(0);
+        }
     }
 }
 
@@ -246,9 +258,14 @@ public class BuildingObj : Obj
     /// </summary>
 	public override void LatUpdate()
 	{
+        Debug.Log(">>?"+pipLineManager.piplineItem.Count);
         if (pipLineManager == null)
         {
             pipLineManager = new PipLineManager(this);
+        }
+        foreach(var x in rates)
+        {
+            x.Value.nowCount = x.Value.count;
         }
         foreach (var item in pipLineManager.piplineItem)//根据管线对数据进行处理
         {

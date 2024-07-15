@@ -53,7 +53,7 @@ MonoBehaviour:
       tras:
       - x: 2
         y: 4
-      time: 0
+      time: 4
   - title: "\u8015\u79CD\u9EA6\u5B50"
     from:
       source:

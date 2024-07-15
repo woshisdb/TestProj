@@ -132,13 +132,16 @@ public class GameArchitect : Architecture<GameArchitect>
     }
     public IEnumerator CallDecision()
     {
+        Debug.Log(":"+winCons.Count);
         decisionUI.gameObject.SetActive(false);
         selectUI.gameObject.SetActive(false);
+        Debug.Log(">>>>" + winCons.Count);
         if (winCons.Count>0)
         {
             var data = winCons[0];
             winCons.RemoveAt(0);
-            if(data is DecisionTex)
+            Debug.Log(">>>>" + winCons.Count);
+            if (data is DecisionTex)
             {
                 decisionUI.gameObject.SetActive(true);
                 yield return decisionUI.AddDecision((DecisionTex)data);

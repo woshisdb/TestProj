@@ -50,6 +50,7 @@ public class ActSelectUI : MonoBehaviour
             () => {
                 if (selectTex.effect())
                 {
+                    Debug.Log(11234);
                     decisionEnd = true;
                     this.gameObject.SetActive(false);
                     GameArchitect.get.CallDecision();//如果满足效果就。。，否则就不管

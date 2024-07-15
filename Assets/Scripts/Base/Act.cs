@@ -103,21 +103,24 @@ public class SelectPiplineA : Act
         {
             sels.Add(new SelectInf(s.title,"",s,1));
         }
-        yield return GameArchitect.get.AddDecision(
-            new SelectTex("test","test1",sels,
+        yield return GameArchitect.gameLogic.AddDecision(Person,
+            new SelectTex("选择管线","选择制作管线",sels,
             ()=> {
                 var selPipline = new List<Trans>();
                 for (int i = 0; i < sels.Count; i++)
                 {
                     if (sels[i].num == 1)
                         selPipline.Add((Trans)sels[i].obj);
+                    Debug.Log(sels[i].num);
                 }
                 obj.pipLineManager.SetTrans(selPipline);
+                Debug.Log(11);
                 return true;
             }
             )
         );
-	}
+        yield return Ret(new EndAct(Person, Obj), callback);
+    }
 }
 
 public class SelPipLineAct:Activity
