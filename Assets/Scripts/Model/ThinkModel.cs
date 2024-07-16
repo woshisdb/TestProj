@@ -5,7 +5,7 @@ using PimDeWitte.UnityMainThreadDispatcher;
 using QFramework;
 using Unity.VisualScripting;
 using UnityEngine;
-public class EndTurnNode : Unit, ICanSendEvent
+public class EndTurnNode : Unit, ICanRegisterEvent
 {
     //这两个是必须有的，是左右的小箭头，只需要固定这么写
     [DoNotSerialize]
@@ -27,7 +27,7 @@ public class EndTurnNode : Unit, ICanSendEvent
         outputTrigger = ControlOutput("outputTrigger");
     }
 }
-public class EndWorkNode : Unit, ICanSendEvent
+public class EndWorkNode : Unit, ICanRegisterEvent
 {
     //这两个是必须有的，是左右的小箭头，只需要固定这么写
     [DoNotSerialize]
@@ -82,7 +82,7 @@ public class BeginTurnEvent
         this.person = person;
     }
 }
-public class ThinkModel : ICanSendEvent, ICanRegisterEvent
+public class ThinkModel : ICanRegisterEvent
 {
     protected TaskCompletionSource<bool> tcs;
     public Person person;

@@ -9,11 +9,13 @@ public class CardInf
     public string title;
     public string description;
     public UnityAction effect;
+    public CardControl cardControl;
     public CardInf(string title="", string description="", UnityAction action=null)
     {
         this.title = title;
         this.description = description;
         this.effect = action;
+        this.cardControl = null;
     }
 }
 public class SelectInf

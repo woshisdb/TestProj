@@ -162,6 +162,7 @@ public class BuildingObj : Obj
     /// <summary>
     /// 存储的资源
     /// </summary>
+    [SerializeField]
     public Resource resource;
     /******************************烹饪的食物*************************************/
     /// <summary>
@@ -212,7 +213,7 @@ public class BuildingObj : Obj
         sits = new Dictionary<SitEnum, Sit>();
         sits.Add(SitEnum.bed, new Sit());
         sits.Add(SitEnum.set, new Sit());
-
+        resource.Add(ObjEnum.PlaceObjE,GetSaver().container);
     }
     public override void Init()
     {
@@ -272,5 +273,19 @@ public class BuildingObj : Obj
         {
             item.Value.Update();
         }
+        str.Clear();
+        Debug.Log(resource.resources);
+        foreach(var x in resource.resources)
+        {
+            str.Append(x.Key.ToString());
+            str.Append(":");
+            str.Append(x.Value.size);
+            str.Append("/");
+            str.Append(x.Value.remain);
+            str.Append("\n");
+        }
+        cardInf.description = str.ToString();
+        if(cardInf.cardControl)
+        cardInf.cardControl.UpdateInf();
 	}
 }

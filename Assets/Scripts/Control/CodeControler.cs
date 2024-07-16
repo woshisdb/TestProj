@@ -24,7 +24,7 @@ public struct SelectDataSaver
         this.codeSaver = codeSaver;
     }
 }
-public class CodeControler : MonoBehaviour, IController, ICanSendEvent
+public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
 {
     public Color ToColor(int name)
     {

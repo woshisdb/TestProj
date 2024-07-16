@@ -216,7 +216,7 @@ namespace QFramework
     #region System
 
     public interface ISystem : IBelongToArchitecture, ICanSetArchitecture, ICanGetModel, ICanGetUtility,
-        ICanRegisterEvent, ICanSendEvent, ICanGetSystem,ICanInit
+        ICanRegisterEvent, ICanGetSystem,ICanInit
     {
     }
 
@@ -241,7 +241,7 @@ namespace QFramework
 
     #region Model
 
-    public interface IModel : IBelongToArchitecture, ICanSetArchitecture, ICanGetUtility, ICanSendEvent,ICanInit
+    public interface IModel : IBelongToArchitecture, ICanSetArchitecture, ICanGetUtility, ICanRegisterEvent,ICanInit
     {
     }
 
@@ -275,14 +275,14 @@ namespace QFramework
     #region Command
 
     public interface ICommand : IBelongToArchitecture, ICanSetArchitecture, ICanGetSystem, ICanGetModel, ICanGetUtility,
-        ICanSendEvent, ICanSendCommand, ICanSendQuery
+        ICanRegisterEvent, ICanSendCommand, ICanSendQuery
     {
         void Execute();
     }
 
     public interface ICommand<TResult> : IBelongToArchitecture, ICanSetArchitecture, ICanGetSystem, ICanGetModel,
         ICanGetUtility,
-        ICanSendEvent, ICanSendCommand, ICanSendQuery
+        ICanRegisterEvent, ICanSendCommand, ICanSendQuery
     {
         TResult Execute();
     }
@@ -410,16 +410,13 @@ namespace QFramework
             self.GetArchitecture().SendCommand(command);
     }
 
-    public interface ICanSendEvent : IBelongToArchitecture
-    {
-    }
 
     public static class CanSendEventExtension
     {
-        public static void SendEvent<T>(this ICanSendEvent self) where T : new() =>
+        public static void SendEvent<T>(this ICanRegisterEvent self) where T : new() =>
             self.GetArchitecture().SendEvent<T>();
 
-        public static void SendEvent<T>(this ICanSendEvent self, T e) => self.GetArchitecture().SendEvent<T>(e);
+        public static void SendEvent<T>(this ICanRegisterEvent self, T e) => self.GetArchitecture().SendEvent<T>(e);
     }
 
     public interface ICanSendQuery : IBelongToArchitecture

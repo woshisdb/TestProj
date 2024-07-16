@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TableControl : MonoBehaviour, IController,ICanSendEvent
+public class TableControl : MonoBehaviour, IController,ICanRegisterEvent
 {
     public Transform personCardSlot;
     public Transform cardSlot;
@@ -59,6 +59,7 @@ public class TableControl : MonoBehaviour, IController,ICanSendEvent
         int n = personControls.Count;
         card.transform.localPosition = new Vector3((n%6)*1.5f,-(n/6)*2);
         personControls.Add(card.GetComponent<CardControl>());
+        person.cardInf.cardControl = card.GetComponent<CardControl>();
         card.GetComponent<CardControl>().UpdateInf(person.cardInf);
     }
     public void InsertCardSlot(Obj obj)
@@ -67,14 +68,15 @@ public class TableControl : MonoBehaviour, IController,ICanSendEvent
         card.transform.parent = cardSlot;
         int n = cardControls.Count;
         card.transform.localPosition = new Vector3((n % 6) * 1.5f, -(n / 6) * 2);
-        
         cardControls.Add(card.GetComponent<CardControl>());
+        obj.cardInf.cardControl = card.GetComponent<CardControl>();
         card.GetComponent<CardControl>().UpdateInf(obj.cardInf);
     }
     public void ClearPerson()
     {
         for(int i=0;i<personControls.Count;i++)
         {
+            personControls[i].cardInf.cardControl = null;
             cardPool.Recycle(personControls[i].gameObject);
         }
         cardPool.Clear();
@@ -84,6 +86,7 @@ public class TableControl : MonoBehaviour, IController,ICanSendEvent
     {
         for (int i = 0; i < cardControls.Count; i++)
         {
+            cardControls[i].cardInf.cardControl = null;
             cardPool.Recycle(cardControls[i].gameObject);
         }
         cardPool.Clear();

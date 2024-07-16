@@ -12,7 +12,7 @@ public class FinishOptionEvent
     }
 }
 
-public class OptionControl : MonoBehaviour, IController,ICanSendEvent
+public class OptionControl : MonoBehaviour, IController,ICanRegisterEvent
 {
     public Person person;
     // Start is called before the first frame update

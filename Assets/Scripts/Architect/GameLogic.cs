@@ -76,7 +76,7 @@ public class SelectCardEvent
         this.person = person;
     }
 }
-public class GameLogic : MonoBehaviour,ICanSendEvent,ICanRegisterEvent
+public class GameLogic : MonoBehaviour,ICanRegisterEvent
 {
     public static OptionUIEnum optionUIEnum;
     public static bool isCoding=false;
@@ -218,7 +218,15 @@ public class GameLogic : MonoBehaviour,ICanSendEvent,ICanRegisterEvent
             return 0;
         }
     }
-
+    [Button]
+    public void AddResource(string name,ObjEnum objEnum,int num)
+    {
+        var obj = (BuildingObj)GameArchitect.get.tableAsset.tableSaver.objs.Find((x) => { return x.name == name; });
+        if (obj == null)
+            Debug.Log("没有");
+        else
+            obj.resource.Add(objEnum, num);
+    }
     /// <summary>
     /// 初始角色可选对象
     /// </summary>

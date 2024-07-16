@@ -16,7 +16,7 @@ public struct TableChangeEvent
 {
     public TableModel Model;
 }
-public class TableModel:ICanSendEvent
+public class TableModel:ICanRegisterEvent
 {
     public StringBuilder str;
     public string tableNo;

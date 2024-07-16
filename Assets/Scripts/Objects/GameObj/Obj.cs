@@ -49,8 +49,7 @@ public class In:Predicate
 
     }
 }
-
-public class Obj:PDDL,ICanSendEvent
+public class Obj:PDDL,ICanRegisterEvent
 {
     /// <summary>
     /// 对象类型

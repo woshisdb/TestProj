@@ -37,7 +37,7 @@ public struct UpdateCode
         this.person = person;
     }
 }
-public class OptionUIControl : MonoBehaviour, IController, ICanSendEvent
+public class OptionUIControl : MonoBehaviour, IController, ICanRegisterEvent
 {
     public GameObject list;
     public List<CardControlUi> nowCards;
