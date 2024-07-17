@@ -58,6 +58,7 @@ public enum ObjEnum
     MoneyObjE,
     WheatFlourObjE,
     FarmObjE,
+    ToolObjE
 }
 
 public enum SaveTye
@@ -136,6 +137,8 @@ public class ObjAsset : SerializedScriptableObject
     public FarmSaver farmSaver;
     [SerializeField]
     public MoneySaver moneySaver;
+    [SerializeField]
+    public ToolSaver toolSaver;
 
 
     /// <summary>

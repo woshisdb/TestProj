@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BuildingType : ObjType
@@ -24,32 +25,21 @@ public class Rate
     public TransationEnum transType;
     Func<ObjSaver, int> func;//获取数据
     Func<ObjSaver,bool> can;
-    public int count;//当前模块所能提供的数目
-    public int nowCount;//当前模块数目
-    public Resource objList = new Resource();//物品与数目
-    public Rate(Func<ObjSaver,int> func,Func<ObjSaver,bool> can)
+    public Resource resource;//物品与数目
+    public int nowCount;
+    public Rate(Func<ObjSaver,int> func,Func<ObjSaver,bool> can,Resource resource)
     {
-        count = 0;
         this.func = func;
         this.can = can;
+        this.resource = resource;
+        nowCount = 0;
     }
     public void Add(Obj obj,int num)
     {
         if(can(obj.objSaver)==true)
         {
-            objList.Add(obj, num);
+            resource.Add(obj.Enum(), num,obj);
         }
-    }
-    public void Add(ObjEnum obj, int num)
-    {
-        if (can(Map.Instance.GetSaver(obj)) == true)
-        {
-            objList.Add(obj, num);
-        }
-    }
-    public void Remove(Obj obj,int num)
-    {
-        objList.Remove(obj,num);
     }
     public int Get(ObjSaver obj)
     {
@@ -57,19 +47,18 @@ public class Rate
     }
     public void Use(Obj obj, int num=1)
     {
-        count += Get(obj.objSaver)*num;
-    }
-    public void Use(ObjSaver obj, int num = 1)
-    {
-        count += Get(obj) * num;
+        nowCount += Get(obj.objSaver) * num;
+        resource.resources[obj.Enum()].remain-= num;
     }
     public void Release(Obj obj, int num = 1)
     {
-        count -= Get(obj.objSaver) * num;
+        nowCount -= Get(obj.objSaver) * num;
+        resource.resources[obj.Enum()].remain += num;
     }
-    public void Release(ObjSaver obj, int num = 1)
+    public Dictionary<ObjEnum,ObjContBase> ObjList()
     {
-        count -= Get(obj) * num;
+        var s=resource.resources.Keys.Where(kv => can(Map.Instance.GetSaver(kv))).ToList();
+        return resource.resources.Where(kv => s.Contains(kv.Key)).ToDictionary(kv => kv.Key, kv => kv.Value);
     }
 }
 
@@ -193,23 +182,28 @@ public class BuildingObj : Obj
         /*******************添加Rate*******************/
         rates.Add(TransationEnum.cook , new Rate(
             (obj) => { return objSaver.canCook.count; },
-            (obj) => { return objSaver.canCook.can; }
+            (obj) => { return objSaver.canCook.can; },
+            resource
         ));
         rates.Add(TransationEnum.qieGe, new Rate(
             (obj) => { return objSaver.qieGe.count; },
-            (obj) => { return objSaver.qieGe.can; }
+            (obj) => { return objSaver.qieGe.can; },
+            resource
         ));
         rates.Add(TransationEnum.gengZhong, new Rate(
             (obj) => { return objSaver.gengZhong.count; },
-            (obj) => { return objSaver.gengZhong.can; }
+            (obj) => { return objSaver.gengZhong.can; },
+            resource
         ));
         rates.Add(TransationEnum.zaiZhong, new Rate(
             (obj) => { return objSaver.zaiZhong.count; },
-            (obj) => { return objSaver.zaiZhong.can; }
+            (obj) => { return objSaver.zaiZhong.can; },
+            resource
         ));
         rates.Add(TransationEnum.shouHuo, new Rate(
             (obj) => { return objSaver.shouHuo.count; },
-            (obj) => { return objSaver.shouHuo.can; }
+            (obj) => { return objSaver.shouHuo.can; },
+            resource
         ));
         resource = new Resource();
         goodsManager = new GoodsManager(resource, this);
@@ -247,13 +241,13 @@ public class BuildingObj : Obj
     {
         sits[SitEnum.bed].sit += s.objSaver.sleep;
         sits[SitEnum.set].sit += s.objSaver.set;
-        resource.Add(s,1);
+        resource.Add(s.Enum(),1,s);
     }
     public void Remove(Obj s)
     {
         sits[SitEnum.bed].sit -= s.objSaver.sleep;
         sits[SitEnum.set].sit -= s.objSaver.set;
-        resource.Remove(s, 1);
+        resource.Remove(s.Enum(), 1,s);
     }
     public BuildingSaver GetSaver()
     {
@@ -271,7 +265,7 @@ public class BuildingObj : Obj
         }
         foreach(var x in rates)
         {
-            x.Value.nowCount = x.Value.count;
+            x.Value.nowCount = x.Value.nowCount;
         }
         foreach (var item in pipLineManager.piplineItem)//根据管线对数据进行处理
         {

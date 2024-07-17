@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using QFramework;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class ObjContBase
@@ -109,7 +110,7 @@ public class Resource
     {
         resources = new Dictionary<ObjEnum, ObjContBase>();
     }
-
+    [Button]
     public void Add(ObjEnum objtype, int num,Obj obj=null)
     {
         if (!resources.ContainsKey(objtype))
@@ -117,47 +118,36 @@ public class Resource
             var type = Map.Instance.GetSaver(objtype).saveTye;
             if (type == SaveTye.single)
             {
-                resources.Add(objtype, new ObjSingle(obj, num, num));
+                resources.Add(objtype, new ObjSingle(obj, 0, 0));
             }
             else if (type == SaveTye.set)
             {
-                resources.Add(objtype, new ObjCont(Map.Instance.GetObj(objtype), num, num));
+                resources.Add(objtype, new ObjCont(Map.Instance.GetObj(objtype), 0, 0));
             }
             else if (type==SaveTye.day)
             {
-                resources.Add(objtype, new ObjTime<PassDay>(num, num));
+                resources.Add(objtype, new ObjTime<PassDay>(0, 0));
             }
             else if (type == SaveTye.month)
             {
-                resources.Add(objtype, new ObjTime<PassMonth>(num, num));
+                resources.Add(objtype, new ObjTime<PassMonth>(0, 0));
             }
             else if (type == SaveTye.year)
             {
-                resources.Add(objtype, new ObjTime<PassYear>(num, num));
+                resources.Add(objtype, new ObjTime<PassYear>(0, 0));
             }
         }
-        else
-        {
-            resources[objtype].Add(num,obj);
-        }
+        resources[objtype].Add(num, obj);
     }
     public void Remove(ObjEnum objType, int num,Obj obj=null,int time=0)
     {
         if (resources.ContainsKey(objType))
         {
-
             resources[objType].Remove(num,obj,time);
         }
-    }
-
-    public void Add(Obj obj, int num)
-    {
-        if (!resources.ContainsKey(obj.Enum()))
-            resources.Add(obj.Enum(), new ObjCont(obj,num,num));
-        else
+        if (resources[objType].size==0)
         {
-            resources[obj.Enum()].remain += num;
-            resources[obj.Enum()].size += num;
+            resources.Remove(objType);
         }
     }
     public void Remove(Obj obj, int num)

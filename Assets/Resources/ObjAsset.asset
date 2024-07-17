@@ -15,7 +15,13 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -120,7 +126,40 @@ MonoBehaviour:
       Entry: 7
       Data: 8|TableModel, Assembly-CSharp
     - Name: str
-      Entry: 6
+      Entry: 7
+      Data: 9|System.Text.StringBuilder, mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: m_MaxCapacity
+      Entry: 3
+      Data: 2147483647
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: Capacity
+      Entry: 3
+      Data: 16
+    - Name: type
+      Entry: 1
+      Data: System.String, mscorlib
+    - Name: m_StringValue
+      Entry: 1
+      Data: 
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: m_currentThread
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: tableNo
       Entry: 1
@@ -136,16 +175,16 @@ MonoBehaviour:
       Data: 50
     - Name: persons
       Entry: 7
-      Data: 9|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
+      Data: 10|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 3
     - Name: 
       Entry: 7
-      Data: 10|Person, Assembly-CSharp
+      Data: 11|Person, Assembly-CSharp
     - Name: obj
       Entry: 7
-      Data: 11|PersonType, Assembly-CSharp
+      Data: 12|PersonType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: PersonType
@@ -163,7 +202,10 @@ MonoBehaviour:
       Data: 8
     - Name: objSaver
       Entry: 7
-      Data: 12|PersonSaver, Assembly-CSharp
+      Data: 13|PersonSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
     - Name: objEnum
       Entry: 3
       Data: 0
@@ -176,15 +218,27 @@ MonoBehaviour:
     - Name: description
       Entry: 6
       Data: 
-    - Name: canSleep
+    - Name: qieGe
       Entry: 6
       Data: 
-    - Name: canSet
+    - Name: shouHuo
       Entry: 6
       Data: 
     - Name: canCook
       Entry: 6
       Data: 
+    - Name: gengZhong
+      Entry: 6
+      Data: 
+    - Name: zaiZhong
+      Entry: 6
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
     - Name: sex
       Entry: 5
       Data: true
@@ -199,7 +253,7 @@ MonoBehaviour:
       Data: false
     - Name: sleepState
       Entry: 7
-      Data: 13|PersonSVal, Assembly-CSharp
+      Data: 14|PersonSVal, Assembly-CSharp
     - Name: r
       Entry: 3
       Data: 200
@@ -226,7 +280,7 @@ MonoBehaviour:
       Data: 
     - Name: cardInf
       Entry: 7
-      Data: 14|CardInf, Assembly-CSharp
+      Data: 15|CardInf, Assembly-CSharp
     - Name: title
       Entry: 1
       Data: Person_3
@@ -235,19 +289,19 @@ MonoBehaviour:
       Data: 
     - Name: effect
       Entry: 7
-      Data: 15|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+      Data: 16|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
     - Name: target
       Entry: 7
-      Data: 16|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
+      Data: 17|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 10
+      Data: 11
     - Name: 
       Entry: 8
       Data: 
     - Name: declaringType
       Entry: 7
-      Data: 17|System.RuntimeType, mscorlib
+      Data: 18|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
@@ -259,7 +313,7 @@ MonoBehaviour:
       Data: <Load>b__0
     - Name: delegateType
       Entry: 7
-      Data: 18|System.RuntimeType, mscorlib
+      Data: 19|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: UnityEngine.Events.UnityAction, UnityEngine.CoreModule
@@ -268,7 +322,7 @@ MonoBehaviour:
       Data: 
     - Name: signature
       Entry: 7
-      Data: 19|System.Type[], mscorlib
+      Data: 20|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -281,36 +335,36 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: cardControl
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: str
       Entry: 6
       Data: 
-    - Name: containers
-      Entry: 6
-      Data: 
     - Name: sex
       Entry: 7
-      Data: 20|Bool, Assembly-CSharp
+      Data: 21|Bool, Assembly-CSharp
     - Name: val
       Entry: 5
       Data: true
     - Name: predicate
       Entry: 7
-      Data: 21|Sex, Assembly-CSharp
+      Data: 22|Sex, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Sex
     - Name: objects
       Entry: 7
-      Data: 22|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 23|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 11
+      Data: 12
     - Name: 
       Entry: 13
       Data: 
@@ -322,31 +376,31 @@ MonoBehaviour:
       Data: 
     - Name: obj
       Entry: 9
-      Data: 11
+      Data: 12
     - Name: 
       Entry: 8
       Data: 
     - Name: age
       Entry: 7
-      Data: 23|Num, Assembly-CSharp
+      Data: 24|Num, Assembly-CSharp
     - Name: val
       Entry: 3
       Data: 20
     - Name: func
       Entry: 7
-      Data: 24|Age, Assembly-CSharp
+      Data: 25|Age, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Age
     - Name: objects
       Entry: 7
-      Data: 25|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 26|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 11
+      Data: 12
     - Name: 
       Entry: 13
       Data: 
@@ -358,31 +412,31 @@ MonoBehaviour:
       Data: 
     - Name: obj
       Entry: 9
-      Data: 11
+      Data: 12
     - Name: 
       Entry: 8
       Data: 
     - Name: hasSelect
       Entry: 7
-      Data: 26|Bool, Assembly-CSharp
+      Data: 27|Bool, Assembly-CSharp
     - Name: val
       Entry: 5
       Data: false
     - Name: predicate
       Entry: 7
-      Data: 27|HasSelectP, Assembly-CSharp
+      Data: 28|HasSelectP, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: HasSelectP
     - Name: objects
       Entry: 7
-      Data: 28|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 29|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 11
+      Data: 12
     - Name: 
       Entry: 13
       Data: 
@@ -394,16 +448,16 @@ MonoBehaviour:
       Data: 
     - Name: obj
       Entry: 9
-      Data: 11
+      Data: 12
     - Name: 
       Entry: 8
       Data: 
     - Name: sleepState
       Entry: 7
-      Data: 29|PersonState, Assembly-CSharp
+      Data: 30|PersonState, Assembly-CSharp
     - Name: person
       Entry: 9
-      Data: 10
+      Data: 11
     - Name: r
       Entry: 3
       Data: 200
@@ -424,13 +478,13 @@ MonoBehaviour:
       Data: 
     - Name: pathGenerator
       Entry: 7
-      Data: 30|PathGenerator, Assembly-CSharp
+      Data: 31|PathGenerator, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
     - Name: personControler
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: money
       Entry: 6
       Data: 
@@ -460,10 +514,10 @@ MonoBehaviour:
       Data: 
     - Name: contractManager
       Entry: 7
-      Data: 31|ContractManager, Assembly-CSharp
+      Data: 32|ContractManager, Assembly-CSharp
     - Name: person
       Entry: 9
-      Data: 10
+      Data: 11
     - Name: 
       Entry: 8
       Data: 
@@ -472,10 +526,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 32|Person, Assembly-CSharp
+      Data: 33|Person, Assembly-CSharp
     - Name: obj
       Entry: 7
-      Data: 33|PersonType, Assembly-CSharp
+      Data: 34|PersonType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: PersonType
@@ -493,7 +547,10 @@ MonoBehaviour:
       Data: 8
     - Name: objSaver
       Entry: 7
-      Data: 34|PersonSaver, Assembly-CSharp
+      Data: 35|PersonSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
     - Name: objEnum
       Entry: 3
       Data: 0
@@ -506,15 +563,27 @@ MonoBehaviour:
     - Name: description
       Entry: 6
       Data: 
-    - Name: canSleep
+    - Name: qieGe
       Entry: 6
       Data: 
-    - Name: canSet
+    - Name: shouHuo
       Entry: 6
       Data: 
     - Name: canCook
       Entry: 6
       Data: 
+    - Name: gengZhong
+      Entry: 6
+      Data: 
+    - Name: zaiZhong
+      Entry: 6
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
     - Name: sex
       Entry: 5
       Data: false
@@ -529,7 +598,7 @@ MonoBehaviour:
       Data: false
     - Name: sleepState
       Entry: 7
-      Data: 35|PersonSVal, Assembly-CSharp
+      Data: 36|PersonSVal, Assembly-CSharp
     - Name: r
       Entry: 3
       Data: 200
@@ -556,7 +625,7 @@ MonoBehaviour:
       Data: 
     - Name: cardInf
       Entry: 7
-      Data: 36|CardInf, Assembly-CSharp
+      Data: 37|CardInf, Assembly-CSharp
     - Name: title
       Entry: 1
       Data: dsfddfg
@@ -565,28 +634,28 @@ MonoBehaviour:
       Data: This is a Test Case
     - Name: effect
       Entry: 7
-      Data: 37|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+      Data: 38|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
     - Name: target
       Entry: 7
-      Data: 38|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
+      Data: 39|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 32
+      Data: 33
     - Name: 
       Entry: 8
       Data: 
     - Name: declaringType
       Entry: 9
-      Data: 17
+      Data: 18
     - Name: methodName
       Entry: 1
       Data: <Load>b__0
     - Name: delegateType
       Entry: 9
-      Data: 18
+      Data: 19
     - Name: signature
       Entry: 7
-      Data: 39|System.Type[], mscorlib
+      Data: 40|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -599,36 +668,36 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: cardControl
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: str
       Entry: 6
       Data: 
-    - Name: containers
-      Entry: 6
-      Data: 
     - Name: sex
       Entry: 7
-      Data: 40|Bool, Assembly-CSharp
+      Data: 41|Bool, Assembly-CSharp
     - Name: val
       Entry: 5
       Data: false
     - Name: predicate
       Entry: 7
-      Data: 41|Sex, Assembly-CSharp
+      Data: 42|Sex, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Sex
     - Name: objects
       Entry: 7
-      Data: 42|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 43|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 33
+      Data: 34
     - Name: 
       Entry: 13
       Data: 
@@ -640,31 +709,31 @@ MonoBehaviour:
       Data: 
     - Name: obj
       Entry: 9
-      Data: 33
+      Data: 34
     - Name: 
       Entry: 8
       Data: 
     - Name: age
       Entry: 7
-      Data: 43|Num, Assembly-CSharp
+      Data: 44|Num, Assembly-CSharp
     - Name: val
       Entry: 3
       Data: 20
     - Name: func
       Entry: 7
-      Data: 44|Age, Assembly-CSharp
+      Data: 45|Age, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Age
     - Name: objects
       Entry: 7
-      Data: 45|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 46|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 33
+      Data: 34
     - Name: 
       Entry: 13
       Data: 
@@ -676,31 +745,31 @@ MonoBehaviour:
       Data: 
     - Name: obj
       Entry: 9
-      Data: 33
+      Data: 34
     - Name: 
       Entry: 8
       Data: 
     - Name: hasSelect
       Entry: 7
-      Data: 46|Bool, Assembly-CSharp
+      Data: 47|Bool, Assembly-CSharp
     - Name: val
       Entry: 5
       Data: false
     - Name: predicate
       Entry: 7
-      Data: 47|HasSelectP, Assembly-CSharp
+      Data: 48|HasSelectP, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: HasSelectP
     - Name: objects
       Entry: 7
-      Data: 48|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 49|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 33
+      Data: 34
     - Name: 
       Entry: 13
       Data: 
@@ -712,16 +781,16 @@ MonoBehaviour:
       Data: 
     - Name: obj
       Entry: 9
-      Data: 33
+      Data: 34
     - Name: 
       Entry: 8
       Data: 
     - Name: sleepState
       Entry: 7
-      Data: 49|PersonState, Assembly-CSharp
+      Data: 50|PersonState, Assembly-CSharp
     - Name: person
       Entry: 9
-      Data: 32
+      Data: 33
     - Name: r
       Entry: 3
       Data: 200
@@ -742,13 +811,13 @@ MonoBehaviour:
       Data: 
     - Name: pathGenerator
       Entry: 7
-      Data: 50|PathGenerator, Assembly-CSharp
+      Data: 51|PathGenerator, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
     - Name: personControler
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 1
     - Name: money
       Entry: 6
       Data: 
@@ -778,10 +847,10 @@ MonoBehaviour:
       Data: 
     - Name: contractManager
       Entry: 7
-      Data: 51|ContractManager, Assembly-CSharp
+      Data: 52|ContractManager, Assembly-CSharp
     - Name: person
       Entry: 9
-      Data: 32
+      Data: 33
     - Name: 
       Entry: 8
       Data: 
@@ -790,10 +859,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 52|Person, Assembly-CSharp
+      Data: 53|Person, Assembly-CSharp
     - Name: obj
       Entry: 7
-      Data: 53|PersonType, Assembly-CSharp
+      Data: 54|PersonType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: PersonType
@@ -814,7 +883,7 @@ MonoBehaviour:
       Data: 
     - Name: cardInf
       Entry: 7
-      Data: 54|CardInf, Assembly-CSharp
+      Data: 55|CardInf, Assembly-CSharp
     - Name: title
       Entry: 1
       Data: test
@@ -823,28 +892,28 @@ MonoBehaviour:
       Data: 
     - Name: effect
       Entry: 7
-      Data: 55|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+      Data: 56|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
     - Name: target
       Entry: 7
-      Data: 56|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
+      Data: 57|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 52
+      Data: 53
     - Name: 
       Entry: 8
       Data: 
     - Name: declaringType
       Entry: 9
-      Data: 17
+      Data: 18
     - Name: methodName
       Entry: 1
       Data: <Load>b__0
     - Name: delegateType
       Entry: 9
-      Data: 18
+      Data: 19
     - Name: signature
       Entry: 7
-      Data: 57|System.Type[], mscorlib
+      Data: 58|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -857,36 +926,36 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: cardControl
+      Entry: 10
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
     - Name: str
       Entry: 6
       Data: 
-    - Name: containers
-      Entry: 6
-      Data: 
     - Name: sex
       Entry: 7
-      Data: 58|Bool, Assembly-CSharp
+      Data: 59|Bool, Assembly-CSharp
     - Name: val
       Entry: 5
       Data: true
     - Name: predicate
       Entry: 7
-      Data: 59|Sex, Assembly-CSharp
+      Data: 60|Sex, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Sex
     - Name: objects
       Entry: 7
-      Data: 60|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 61|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 53
+      Data: 54
     - Name: 
       Entry: 13
       Data: 
@@ -898,7 +967,7 @@ MonoBehaviour:
       Data: 
     - Name: obj
       Entry: 9
-      Data: 53
+      Data: 54
     - Name: 
       Entry: 8
       Data: 
@@ -907,25 +976,25 @@ MonoBehaviour:
       Data: 
     - Name: hasSelect
       Entry: 7
-      Data: 61|Bool, Assembly-CSharp
+      Data: 62|Bool, Assembly-CSharp
     - Name: val
       Entry: 5
       Data: false
     - Name: predicate
       Entry: 7
-      Data: 62|HasSelectP, Assembly-CSharp
+      Data: 63|HasSelectP, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: HasSelectP
     - Name: objects
       Entry: 7
-      Data: 63|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 64|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 53
+      Data: 54
     - Name: 
       Entry: 13
       Data: 
@@ -937,40 +1006,40 @@ MonoBehaviour:
       Data: 
     - Name: obj
       Entry: 9
-      Data: 53
+      Data: 54
     - Name: 
       Entry: 8
       Data: 
     - Name: sleepState
       Entry: 7
-      Data: 64|PersonState, Assembly-CSharp
+      Data: 65|PersonState, Assembly-CSharp
     - Name: person
       Entry: 9
-      Data: 52
+      Data: 53
     - Name: r
       Entry: 3
       Data: 0
     - Name: val
       Entry: 7
-      Data: 65|Num, Assembly-CSharp
+      Data: 66|Num, Assembly-CSharp
     - Name: val
       Entry: 3
       Data: 0
     - Name: func
       Entry: 7
-      Data: 66|SleepValF, Assembly-CSharp
+      Data: 67|SleepValF, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: SleepValF
     - Name: objects
       Entry: 7
-      Data: 67|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 68|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 53
+      Data: 54
     - Name: 
       Entry: 13
       Data: 
@@ -982,7 +1051,7 @@ MonoBehaviour:
       Data: 
     - Name: obj
       Entry: 9
-      Data: 53
+      Data: 54
     - Name: 
       Entry: 8
       Data: 
@@ -1006,25 +1075,25 @@ MonoBehaviour:
       Data: 
     - Name: money
       Entry: 7
-      Data: 68|Num, Assembly-CSharp
+      Data: 69|Num, Assembly-CSharp
     - Name: val
       Entry: 3
       Data: 10
     - Name: func
       Entry: 7
-      Data: 69|Money, Assembly-CSharp
+      Data: 70|Money, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Money
     - Name: objects
       Entry: 7
-      Data: 70|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 71|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 53
+      Data: 54
     - Name: 
       Entry: 13
       Data: 
@@ -1036,7 +1105,7 @@ MonoBehaviour:
       Data: 
     - Name: obj
       Entry: 9
-      Data: 53
+      Data: 54
     - Name: 
       Entry: 8
       Data: 
@@ -1054,32 +1123,9 @@ MonoBehaviour:
       Data: 
     - Name: resource
       Entry: 7
-      Data: 71|Resource, Assembly-CSharp
+      Data: 72|Resource, Assembly-CSharp
     - Name: resources
-      Entry: 7
-      Data: 72|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjCont,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 73|System.Collections.Generic.EnumEqualityComparer`1[[ObjEnum, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: 
       Entry: 8
@@ -1092,19 +1138,19 @@ MonoBehaviour:
       Data: 
     - Name: codeData
       Entry: 7
-      Data: 74|CodeSaver, Assembly-CSharp
+      Data: 73|CodeSaver, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: grffssd
     - Name: dataDatas
       Entry: 7
-      Data: 75|System.Collections.Generic.List`1[[CodeData, Assembly-CSharp]], mscorlib
+      Data: 74|System.Collections.Generic.List`1[[CodeData, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 48
     - Name: 
       Entry: 7
-      Data: 76|CodeData, Assembly-CSharp
+      Data: 75|CodeData, Assembly-CSharp
     - Name: color
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -1128,10 +1174,10 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 7
-      Data: 77|BedObj, Assembly-CSharp
+      Data: 76|BedObj, Assembly-CSharp
     - Name: obj
       Entry: 7
-      Data: 78|BedType, Assembly-CSharp
+      Data: 77|BedType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: BedType
@@ -1149,7 +1195,10 @@ MonoBehaviour:
       Data: 8
     - Name: objSaver
       Entry: 7
-      Data: 79|BedSaver, Assembly-CSharp
+      Data: 78|BedSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
     - Name: objEnum
       Entry: 3
       Data: 0
@@ -1162,15 +1211,27 @@ MonoBehaviour:
     - Name: description
       Entry: 6
       Data: 
-    - Name: canSleep
+    - Name: qieGe
       Entry: 6
       Data: 
-    - Name: canSet
+    - Name: shouHuo
       Entry: 6
       Data: 
     - Name: canCook
       Entry: 6
       Data: 
+    - Name: gengZhong
+      Entry: 6
+      Data: 
+    - Name: zaiZhong
+      Entry: 6
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
     - Name: BedSit
       Entry: 3
       Data: 0
@@ -1179,7 +1240,7 @@ MonoBehaviour:
       Data: 
     - Name: cardInf
       Entry: 7
-      Data: 80|CardInf, Assembly-CSharp
+      Data: 79|CardInf, Assembly-CSharp
     - Name: title
       Entry: 1
       Data: Bed
@@ -1188,28 +1249,28 @@ MonoBehaviour:
       Data: CanSleep
     - Name: effect
       Entry: 7
-      Data: 81|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+      Data: 80|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
     - Name: target
       Entry: 7
-      Data: 82|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
+      Data: 81|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: 
       Entry: 8
       Data: 
     - Name: declaringType
       Entry: 9
-      Data: 17
+      Data: 18
     - Name: methodName
       Entry: 1
       Data: <Load>b__0
     - Name: delegateType
       Entry: 9
-      Data: 18
+      Data: 19
     - Name: signature
       Entry: 7
-      Data: 83|System.Type[], mscorlib
+      Data: 82|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -1222,13 +1283,13 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: cardControl
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: str
-      Entry: 6
-      Data: 
-    - Name: containers
       Entry: 6
       Data: 
     - Name: 
@@ -1242,7 +1303,7 @@ MonoBehaviour:
       Data: 0
     - Name: activity
       Entry: 7
-      Data: 84|SleepAct, Assembly-CSharp
+      Data: 83|SleepAct, Assembly-CSharp
     - Name: cond
       Entry: 6
       Data: 
@@ -1261,6 +1322,45 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 84|CodeData, Assembly-CSharp
+    - Name: color
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: hasAct
+      Entry: 5
+      Data: true
+    - Name: obj
+      Entry: 9
+      Data: 76
+    - Name: time
+      Entry: 3
+      Data: 28
+    - Name: beginTime
+      Entry: 3
+      Data: 1
+    - Name: activity
+      Entry: 9
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1290,16 +1390,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 28
+      Data: 27
     - Name: beginTime
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1329,16 +1429,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 27
+      Data: 26
     - Name: beginTime
       Entry: 3
-      Data: 2
+      Data: 3
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1368,16 +1468,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 26
+      Data: 25
     - Name: beginTime
       Entry: 3
-      Data: 3
+      Data: 4
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1407,16 +1507,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 25
+      Data: 24
     - Name: beginTime
       Entry: 3
-      Data: 4
+      Data: 5
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1446,16 +1546,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 24
+      Data: 23
     - Name: beginTime
       Entry: 3
-      Data: 5
+      Data: 6
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1485,16 +1585,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 23
+      Data: 22
     - Name: beginTime
       Entry: 3
-      Data: 6
+      Data: 7
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1524,16 +1624,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 22
+      Data: 21
     - Name: beginTime
       Entry: 3
-      Data: 7
+      Data: 8
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1563,16 +1663,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 21
+      Data: 20
     - Name: beginTime
       Entry: 3
-      Data: 8
+      Data: 9
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1602,16 +1702,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 20
+      Data: 19
     - Name: beginTime
       Entry: 3
-      Data: 9
+      Data: 10
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1641,16 +1741,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 19
+      Data: 18
     - Name: beginTime
       Entry: 3
-      Data: 10
+      Data: 11
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1680,16 +1780,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 18
+      Data: 17
     - Name: beginTime
       Entry: 3
-      Data: 11
+      Data: 12
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1719,16 +1819,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 17
+      Data: 16
     - Name: beginTime
       Entry: 3
-      Data: 12
+      Data: 13
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1758,16 +1858,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 16
+      Data: 15
     - Name: beginTime
       Entry: 3
-      Data: 13
+      Data: 14
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1797,16 +1897,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 15
+      Data: 14
     - Name: beginTime
       Entry: 3
-      Data: 14
+      Data: 15
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1836,16 +1936,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 14
+      Data: 13
     - Name: beginTime
       Entry: 3
-      Data: 15
+      Data: 16
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1875,16 +1975,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 13
+      Data: 12
     - Name: beginTime
       Entry: 3
-      Data: 16
+      Data: 17
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1914,16 +2014,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 12
+      Data: 11
     - Name: beginTime
       Entry: 3
-      Data: 17
+      Data: 18
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1953,16 +2053,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 11
+      Data: 10
     - Name: beginTime
       Entry: 3
-      Data: 18
+      Data: 19
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -1992,16 +2092,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 10
+      Data: 9
     - Name: beginTime
       Entry: 3
-      Data: 19
+      Data: 20
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2031,16 +2131,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 9
+      Data: 8
     - Name: beginTime
       Entry: 3
-      Data: 20
+      Data: 21
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2070,16 +2170,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 8
+      Data: 7
     - Name: beginTime
       Entry: 3
-      Data: 21
+      Data: 22
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2109,16 +2209,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 7
+      Data: 6
     - Name: beginTime
       Entry: 3
-      Data: 22
+      Data: 23
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2148,16 +2248,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 6
+      Data: 5
     - Name: beginTime
       Entry: 3
-      Data: 23
+      Data: 24
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2187,16 +2287,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 5
+      Data: 4
     - Name: beginTime
       Entry: 3
-      Data: 24
+      Data: 25
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2226,16 +2326,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 4
+      Data: 3
     - Name: beginTime
       Entry: 3
-      Data: 25
+      Data: 26
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2265,16 +2365,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 3
+      Data: 2
     - Name: beginTime
       Entry: 3
-      Data: 26
+      Data: 27
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2304,16 +2404,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: beginTime
       Entry: 3
-      Data: 27
+      Data: 28
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2325,10 +2425,10 @@ MonoBehaviour:
       Data: UnityEngine.Color, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 4
       Data: 1
@@ -2340,19 +2440,19 @@ MonoBehaviour:
       Data: 
     - Name: hasAct
       Entry: 5
-      Data: true
+      Data: false
     - Name: obj
-      Entry: 9
-      Data: 77
+      Entry: 6
+      Data: 
     - Name: time
       Entry: 3
-      Data: 1
+      Data: 4
     - Name: beginTime
       Entry: 3
-      Data: 28
+      Data: 29
     - Name: activity
-      Entry: 9
-      Data: 84
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -2385,10 +2485,10 @@ MonoBehaviour:
       Data: 
     - Name: time
       Entry: 3
-      Data: 4
+      Data: 3
     - Name: beginTime
       Entry: 3
-      Data: 29
+      Data: 30
     - Name: activity
       Entry: 6
       Data: 
@@ -2424,10 +2524,10 @@ MonoBehaviour:
       Data: 
     - Name: time
       Entry: 3
-      Data: 3
+      Data: 2
     - Name: beginTime
       Entry: 3
-      Data: 30
+      Data: 31
     - Name: activity
       Entry: 6
       Data: 
@@ -2463,10 +2563,10 @@ MonoBehaviour:
       Data: 
     - Name: time
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: beginTime
       Entry: 3
-      Data: 31
+      Data: 32
     - Name: activity
       Entry: 6
       Data: 
@@ -2481,10 +2581,10 @@ MonoBehaviour:
       Data: UnityEngine.Color, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 1
+      Data: 0
     - Name: 
       Entry: 4
-      Data: 1
+      Data: 0
     - Name: 
       Entry: 4
       Data: 1
@@ -2496,19 +2596,19 @@ MonoBehaviour:
       Data: 
     - Name: hasAct
       Entry: 5
-      Data: false
+      Data: true
     - Name: obj
-      Entry: 6
-      Data: 
+      Entry: 9
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 1
+      Data: 44
     - Name: beginTime
       Entry: 3
-      Data: 32
+      Data: 33
     - Name: activity
-      Entry: 6
-      Data: 
+      Entry: 9
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2538,16 +2638,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 44
+      Data: 43
     - Name: beginTime
       Entry: 3
-      Data: 33
+      Data: 34
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2577,16 +2677,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 43
+      Data: 42
     - Name: beginTime
       Entry: 3
-      Data: 34
+      Data: 35
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2616,16 +2716,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 42
+      Data: 41
     - Name: beginTime
       Entry: 3
-      Data: 35
+      Data: 36
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2655,16 +2755,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 41
+      Data: 40
     - Name: beginTime
       Entry: 3
-      Data: 36
+      Data: 37
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2694,16 +2794,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 40
+      Data: 39
     - Name: beginTime
       Entry: 3
-      Data: 37
+      Data: 38
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2733,16 +2833,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 39
+      Data: 38
     - Name: beginTime
       Entry: 3
-      Data: 38
+      Data: 39
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2772,16 +2872,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 38
+      Data: 37
     - Name: beginTime
       Entry: 3
-      Data: 39
+      Data: 40
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2811,16 +2911,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 37
+      Data: 36
     - Name: beginTime
       Entry: 3
-      Data: 40
+      Data: 41
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2850,16 +2950,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 36
+      Data: 35
     - Name: beginTime
       Entry: 3
-      Data: 41
+      Data: 42
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2889,16 +2989,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 35
+      Data: 34
     - Name: beginTime
       Entry: 3
-      Data: 42
+      Data: 43
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2928,16 +3028,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 34
+      Data: 33
     - Name: beginTime
       Entry: 3
-      Data: 43
+      Data: 44
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -2967,16 +3067,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 33
+      Data: 32
     - Name: beginTime
       Entry: 3
-      Data: 44
+      Data: 45
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -3006,16 +3106,16 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
-      Data: 32
+      Data: 31
     - Name: beginTime
       Entry: 3
-      Data: 45
+      Data: 46
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -3045,46 +3145,7 @@ MonoBehaviour:
       Data: true
     - Name: obj
       Entry: 9
-      Data: 77
-    - Name: time
-      Entry: 3
-      Data: 31
-    - Name: beginTime
-      Entry: 3
-      Data: 46
-    - Name: activity
-      Entry: 9
-      Data: 84
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 131|CodeData, Assembly-CSharp
-    - Name: color
-      Entry: 7
-      Data: UnityEngine.Color, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hasAct
-      Entry: 5
-      Data: true
-    - Name: obj
-      Entry: 9
-      Data: 77
+      Data: 76
     - Name: time
       Entry: 3
       Data: 30
@@ -3093,7 +3154,7 @@ MonoBehaviour:
       Data: 47
     - Name: activity
       Entry: 9
-      Data: 84
+      Data: 83
     - Name: 
       Entry: 8
       Data: 
@@ -3108,10 +3169,10 @@ MonoBehaviour:
       Data: 
     - Name: contractManager
       Entry: 7
-      Data: 132|ContractManager, Assembly-CSharp
+      Data: 131|ContractManager, Assembly-CSharp
     - Name: person
       Entry: 9
-      Data: 52
+      Data: 53
     - Name: 
       Entry: 8
       Data: 
@@ -3126,196 +3187,64 @@ MonoBehaviour:
       Data: 
     - Name: objs
       Entry: 7
-      Data: 133|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
+      Data: 132|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 7
+      Data: 2
     - Name: 
       Entry: 9
-      Data: 10
-    - Name: 
-      Entry: 9
-      Data: 32
-    - Name: 
-      Entry: 9
-      Data: 77
-    - Name: 
-      Entry: 9
-      Data: 52
+      Data: 53
     - Name: 
       Entry: 7
-      Data: 134|DeskObj, Assembly-CSharp
-    - Name: obj
-      Entry: 7
-      Data: 135|DeskType, Assembly-CSharp
-    - Name: typeName
-      Entry: 1
-      Data: DeskType
-    - Name: objName
-      Entry: 1
-      Data: DeskObj_84
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: name
-      Entry: 1
-      Data: DeskObj_84
-    - Name: belong
-      Entry: 9
-      Data: 8
-    - Name: objSaver
-      Entry: 7
-      Data: 136|DeskSaver, Assembly-CSharp
-    - Name: objEnum
-      Entry: 3
-      Data: 0
-    - Name: size
-      Entry: 3
-      Data: 1
-    - Name: title
-      Entry: 6
-      Data: 
-    - Name: description
-      Entry: 6
-      Data: 
-    - Name: canSleep
-      Entry: 6
-      Data: 
-    - Name: canSet
-      Entry: 6
-      Data: 
-    - Name: canCook
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: cardInf
-      Entry: 7
-      Data: 137|CardInf, Assembly-CSharp
-    - Name: title
-      Entry: 1
-      Data: "\u684C\u5B50"
-    - Name: description
-      Entry: 1
-      Data: "\u80FD\u591F\u5B89\u6392\u548C\u5236\u5B9A\u6D3B\u52A8"
-    - Name: effect
-      Entry: 7
-      Data: 138|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
-    - Name: target
-      Entry: 7
-      Data: 139|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 134
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 9
-      Data: 17
-    - Name: methodName
-      Entry: 1
-      Data: <Load>b__0
-    - Name: delegateType
-      Entry: 9
-      Data: 18
-    - Name: signature
-      Entry: 7
-      Data: 140|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: str
-      Entry: 7
-      Data: 141|System.Text.StringBuilder, mscorlib
-    - Name: 
-      Entry: 12
-      Data: 4
-    - Name: type
-      Entry: 1
-      Data: System.Int32, mscorlib
-    - Name: m_MaxCapacity
-      Entry: 3
-      Data: 2147483647
-    - Name: type
-      Entry: 1
-      Data: System.Int32, mscorlib
-    - Name: Capacity
-      Entry: 3
-      Data: 16
-    - Name: type
-      Entry: 1
-      Data: System.String, mscorlib
-    - Name: m_StringValue
-      Entry: 1
-      Data: 
-    - Name: type
-      Entry: 1
-      Data: System.Int32, mscorlib
-    - Name: m_currentThread
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: containers
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 142|RestaurantObj, Assembly-CSharp
+      Data: 133|FarmObj, Assembly-CSharp
     - Name: obj
       Entry: 6
       Data: 
     - Name: name
       Entry: 1
-      Data: RestaurantObj_100
+      Data: FarmObj_465
     - Name: belong
       Entry: 9
       Data: 8
     - Name: objSaver
       Entry: 7
-      Data: 143|RestaurantSaver, Assembly-CSharp
-    - Name: objEnum
+      Data: 134|FarmSaver, Assembly-CSharp
+    - Name: saveTye
       Entry: 3
       Data: 0
+    - Name: objEnum
+      Entry: 3
+      Data: 20
     - Name: size
       Entry: 3
       Data: 1
     - Name: title
       Entry: 1
-      Data: adsad
+      Data: "\u519C\u573A"
     - Name: description
       Entry: 1
-      Data: eeeee
-    - Name: canSleep
+      Data: "\u7528\u4E8E\u79CD\u690D\u4F5C\u7269"
+    - Name: qieGe
       Entry: 6
       Data: 
-    - Name: canSet
+    - Name: shouHuo
       Entry: 6
       Data: 
     - Name: canCook
       Entry: 6
       Data: 
+    - Name: gengZhong
+      Entry: 6
+      Data: 
+    - Name: zaiZhong
+      Entry: 6
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
     - Name: container
       Entry: 3
       Data: 0
@@ -3324,37 +3253,39 @@ MonoBehaviour:
       Data: 
     - Name: cardInf
       Entry: 7
-      Data: 144|CardInf, Assembly-CSharp
+      Data: 135|CardInf, Assembly-CSharp
     - Name: title
       Entry: 1
-      Data: adsad
+      Data: test2
     - Name: description
       Entry: 1
-      Data: eeeee
+      Data: 'PlaceObjE:100/100
+
+'
     - Name: effect
       Entry: 7
-      Data: 145|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+      Data: 136|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
     - Name: target
       Entry: 7
-      Data: 146|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
+      Data: 137|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 142
+      Data: 133
     - Name: 
       Entry: 8
       Data: 
     - Name: declaringType
       Entry: 9
-      Data: 17
+      Data: 18
     - Name: methodName
       Entry: 1
       Data: <Load>b__0
     - Name: delegateType
       Entry: 9
-      Data: 18
+      Data: 19
     - Name: signature
       Entry: 7
-      Data: 147|System.Type[], mscorlib
+      Data: 138|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -3367,12 +3298,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: cardControl
+      Entry: 10
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
     - Name: str
       Entry: 7
-      Data: 148|System.Text.StringBuilder, mscorlib
+      Data: 139|System.Text.StringBuilder, mscorlib
     - Name: 
       Entry: 12
       Data: 4
@@ -3387,13 +3321,15 @@ MonoBehaviour:
       Data: System.Int32, mscorlib
     - Name: Capacity
       Entry: 3
-      Data: 16
+      Data: 32
     - Name: type
       Entry: 1
       Data: System.String, mscorlib
     - Name: m_StringValue
       Entry: 1
-      Data: 
+      Data: 'PlaceObjE:100/100
+
+'
     - Name: type
       Entry: 1
       Data: System.Int32, mscorlib
@@ -3406,32 +3342,17 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: containers
-      Entry: 6
-      Data: 
     - Name: resource
       Entry: 7
-      Data: 149|Resource, Assembly-CSharp
+      Data: 140|Resource, Assembly-CSharp
     - Name: resources
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: BedSit
-      Entry: 6
-      Data: 
-    - Name: SetSit
-      Entry: 6
-      Data: 
-    - Name: rates
       Entry: 7
-      Data: 150|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[Rate,
+      Data: 141|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 151|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
-        Assembly-CSharp]], mscorlib
+      Data: 142|System.Collections.Generic.EnumEqualityComparer`1[[ObjEnum, Assembly-CSharp]],
+        mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -3449,26 +3370,371 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
+      Data: 15
+    - Name: $v
+      Entry: 7
+      Data: 143|ObjTime`1[[PassDay, Assembly-CSharp]], Assembly-CSharp
+    - Name: size
+      Entry: 3
+      Data: 100
+    - Name: remain
+      Entry: 3
+      Data: 100
+    - Name: time
+      Entry: 7
+      Data: 144|PassDay, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: objs
+      Entry: 7
+      Data: 145|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 146|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: act
+      Entry: 7
+      Data: 147|System.Action`1[[PassDay, Assembly-CSharp]], mscorlib
+    - Name: target
+      Entry: 9
+      Data: 143
+    - Name: declaringType
+      Entry: 7
+      Data: 148|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: ObjTime`1[[PassDay, Assembly-CSharp]], Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__6_0
+    - Name: delegateType
+      Entry: 7
+      Data: 149|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Action`1[[PassDay, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 150|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 151|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: PassDay, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: rates
+      Entry: 7
+      Data: 152|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[Rate,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 153|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
       Data: 0
     - Name: $v
       Entry: 7
-      Data: 152|Rate, Assembly-CSharp
+      Data: 154|Rate, Assembly-CSharp
     - Name: transType
       Entry: 3
       Data: 0
     - Name: count
       Entry: 3
       Data: 0
+    - Name: nowCount
+      Entry: 3
+      Data: 0
     - Name: objList
       Entry: 7
-      Data: 153|Resource, Assembly-CSharp
+      Data: 155|Resource, Assembly-CSharp
     - Name: resources
       Entry: 7
-      Data: 154|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjCont,
+      Data: 156|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 142
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: 157|Rate, Assembly-CSharp
+    - Name: transType
+      Entry: 3
+      Data: 0
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: nowCount
+      Entry: 3
+      Data: 0
+    - Name: objList
+      Entry: 7
+      Data: 158|Resource, Assembly-CSharp
+    - Name: resources
+      Entry: 7
+      Data: 159|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 142
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 160|Rate, Assembly-CSharp
+    - Name: transType
+      Entry: 3
+      Data: 0
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: nowCount
+      Entry: 3
+      Data: 0
+    - Name: objList
+      Entry: 7
+      Data: 161|Resource, Assembly-CSharp
+    - Name: resources
+      Entry: 7
+      Data: 162|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 142
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 163|Rate, Assembly-CSharp
+    - Name: transType
+      Entry: 3
+      Data: 0
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: nowCount
+      Entry: 3
+      Data: 0
+    - Name: objList
+      Entry: 7
+      Data: 164|Resource, Assembly-CSharp
+    - Name: resources
+      Entry: 7
+      Data: 165|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 142
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 166|Rate, Assembly-CSharp
+    - Name: transType
+      Entry: 3
+      Data: 0
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: nowCount
+      Entry: 3
+      Data: 0
+    - Name: objList
+      Entry: 7
+      Data: 167|Resource, Assembly-CSharp
+    - Name: resources
+      Entry: 7
+      Data: 168|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 142
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sits
+      Entry: 7
+      Data: 169|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[Sit,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 155|System.Collections.Generic.EnumEqualityComparer`1[[ObjEnum, Assembly-CSharp]],
+      Data: 170|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -3481,16 +3747,43 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 171|Sit, Assembly-CSharp
+    - Name: sit
+      Entry: 3
+      Data: 0
+    - Name: useSit
+      Entry: 3
       Data: 0
     - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 8
       Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 172|Sit, Assembly-CSharp
+    - Name: sit
+      Entry: 3
+      Data: 0
+    - Name: useSit
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -3505,14 +3798,14 @@ MonoBehaviour:
       Data: 
     - Name: goodsManager
       Entry: 7
-      Data: 156|GoodsManager, Assembly-CSharp
+      Data: 173|GoodsManager, Assembly-CSharp
     - Name: goods
       Entry: 7
-      Data: 157|System.Collections.Generic.Dictionary`2[[Goods, Assembly-CSharp],[System.Int32,
+      Data: 174|System.Collections.Generic.Dictionary`2[[Goods, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 158|System.Collections.Generic.ObjectEqualityComparer`1[[Goods, Assembly-CSharp]],
+      Data: 175|System.Collections.Generic.ObjectEqualityComparer`1[[Goods, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 8
@@ -3528,17 +3821,17 @@ MonoBehaviour:
       Data: 
     - Name: originResource
       Entry: 9
-      Data: 149
+      Data: 140
     - Name: resource
       Entry: 7
-      Data: 159|Resource, Assembly-CSharp
+      Data: 176|Resource, Assembly-CSharp
     - Name: resources
       Entry: 7
-      Data: 160|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjCont,
+      Data: 177|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 73
+      Data: 142
     - Name: 
       Entry: 12
       Data: 0
@@ -3553,23 +3846,23 @@ MonoBehaviour:
       Data: 
     - Name: obj
       Entry: 9
-      Data: 142
+      Data: 133
     - Name: 
       Entry: 8
       Data: 
     - Name: pipLineManager
       Entry: 7
-      Data: 161|PipLineManager, Assembly-CSharp
+      Data: 178|PipLineManager, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 142
+      Data: 133
     - Name: piplineItem
       Entry: 7
-      Data: 162|System.Collections.Generic.Dictionary`2[[Trans, Assembly-CSharp],[Source,
+      Data: 179|System.Collections.Generic.Dictionary`2[[Trans, Assembly-CSharp],[Source,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 163|System.Collections.Generic.ObjectEqualityComparer`1[[Trans, Assembly-CSharp]],
+      Data: 180|System.Collections.Generic.ObjectEqualityComparer`1[[Trans, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 8
@@ -3590,95 +3883,38 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 7
-      Data: 164|PathObj, Assembly-CSharp
-    - Name: obj
-      Entry: 6
-      Data: 
-    - Name: name
-      Entry: 6
-      Data: 
-    - Name: belong
-      Entry: 9
-      Data: 8
-    - Name: objSaver
-      Entry: 7
-      Data: 165|PathSaver, Assembly-CSharp
-    - Name: objEnum
-      Entry: 3
-      Data: 0
-    - Name: size
-      Entry: 3
-      Data: 1
-    - Name: title
-      Entry: 1
-      Data: 
-    - Name: description
-      Entry: 1
-      Data: 
-    - Name: canSleep
-      Entry: 6
-      Data: 
-    - Name: canSet
-      Entry: 6
-      Data: 
-    - Name: canCook
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: cardInf
-      Entry: 7
-      Data: 166|CardInf, Assembly-CSharp
-    - Name: title
-      Entry: 1
-      Data: "\u9053\u8DEF"
-    - Name: description
-      Entry: 1
-      Data: PathToOtherScene
-    - Name: effect
-      Entry: 7
-      Data: 167|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
-    - Name: target
-      Entry: 7
-      Data: 168|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 164
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 9
-      Data: 17
-    - Name: methodName
-      Entry: 1
-      Data: <Load>b__0
-    - Name: delegateType
-      Entry: 9
-      Data: 18
-    - Name: signature
-      Entry: 7
-      Data: 169|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
+    - Name: control
+      Entry: 10
+      Data: 4
+    - Name: rule
+      Entry: 6
+      Data: 
+    - Name: sceneType
+      Entry: 7
+      Data: 181|SceneType, Assembly-CSharp
+    - Name: typeName
+      Entry: 1
+      Data: SceneType
+    - Name: objName
+      Entry: 1
+      Data: MainPanel
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 8
       Data: 
+    - Name: y
+      Entry: 7
+      Data: 182|TableModel, Assembly-CSharp
     - Name: str
       Entry: 7
-      Data: 170|System.Text.StringBuilder, mscorlib
+      Data: 183|System.Text.StringBuilder, mscorlib
     - Name: 
       Entry: 12
       Data: 4
@@ -3712,45 +3948,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: containers
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: control
-      Entry: 6
-      Data: 
-    - Name: rule
-      Entry: 6
-      Data: 
-    - Name: sceneType
-      Entry: 7
-      Data: 171|SceneType, Assembly-CSharp
-    - Name: typeName
-      Entry: 1
-      Data: SceneType
-    - Name: objName
-      Entry: 1
-      Data: MainPanel
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: y
-      Entry: 7
-      Data: 172|TableModel, Assembly-CSharp
-    - Name: str
-      Entry: 6
-      Data: 
     - Name: tableNo
       Entry: 1
       Data: t6
@@ -3765,7 +3962,7 @@ MonoBehaviour:
       Data: 30
     - Name: persons
       Entry: 7
-      Data: 173|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
+      Data: 184|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -3777,118 +3974,10 @@ MonoBehaviour:
       Data: 
     - Name: objs
       Entry: 7
-      Data: 174|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 175|BedObj, Assembly-CSharp
-    - Name: obj
-      Entry: 7
-      Data: 176|BedType, Assembly-CSharp
-    - Name: typeName
-      Entry: 1
-      Data: BedType
-    - Name: objName
-      Entry: 1
-      Data: BedObj_9
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: name
-      Entry: 1
-      Data: BedObj_9
-    - Name: belong
-      Entry: 9
-      Data: 172
-    - Name: objSaver
-      Entry: 7
-      Data: 177|BedSaver, Assembly-CSharp
-    - Name: objEnum
-      Entry: 3
-      Data: 0
-    - Name: size
-      Entry: 3
-      Data: 1
-    - Name: title
-      Entry: 6
-      Data: 
-    - Name: description
-      Entry: 6
-      Data: 
-    - Name: canSleep
-      Entry: 6
-      Data: 
-    - Name: canSet
-      Entry: 6
-      Data: 
-    - Name: canCook
-      Entry: 6
-      Data: 
-    - Name: BedSit
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: cardInf
-      Entry: 7
-      Data: 178|CardInf, Assembly-CSharp
-    - Name: title
-      Entry: 1
-      Data: Bed
-    - Name: description
-      Entry: 1
-      Data: CanSleep
-    - Name: effect
-      Entry: 7
-      Data: 179|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
-    - Name: target
-      Entry: 7
-      Data: 180|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 175
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 9
-      Data: 17
-    - Name: methodName
-      Entry: 1
-      Data: <Load>b__0
-    - Name: delegateType
-      Entry: 9
-      Data: 18
-    - Name: signature
-      Entry: 7
-      Data: 181|System.Type[], mscorlib
+      Data: 185|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: str
-      Entry: 6
-      Data: 
-    - Name: containers
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -3896,14 +3985,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: control
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 5
     - Name: rule
       Entry: 6
       Data: 
     - Name: sceneType
       Entry: 7
-      Data: 182|SceneType, Assembly-CSharp
+      Data: 186|SceneType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: SceneType
@@ -3924,7 +4013,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 183|Go, Assembly-CSharp
+      Data: 187|Go, Assembly-CSharp
     - Name: cond
       Entry: 6
       Data: 
@@ -3948,7 +4037,7 @@ MonoBehaviour:
       Data: 8
     - Name: y
       Entry: 9
-      Data: 172
+      Data: 182
     - Name: wasteTime
       Entry: 3
       Data: 2
@@ -3966,7 +4055,10 @@ MonoBehaviour:
       Data: 
     - Name: seedSaver
       Entry: 7
-      Data: 184|SeedSaver, Assembly-CSharp
+      Data: 188|SeedSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
     - Name: objEnum
       Entry: 3
       Data: 10
@@ -3979,21 +4071,81 @@ MonoBehaviour:
     - Name: description
       Entry: 6
       Data: 
-    - Name: canSleep
-      Entry: 6
+    - Name: qieGe
+      Entry: 7
+      Data: 189|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
-    - Name: canSet
-      Entry: 6
+    - Name: shouHuo
+      Entry: 7
+      Data: 190|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
     - Name: canCook
-      Entry: 6
+      Entry: 7
+      Data: 191|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
+    - Name: gengZhong
+      Entry: 7
+      Data: 192|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: zaiZhong
+      Entry: 7
+      Data: 193|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: treeSaver
       Entry: 7
-      Data: 185|TreeSaver, Assembly-CSharp
+      Data: 194|TreeSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
     - Name: objEnum
       Entry: 3
       Data: 11
@@ -4006,21 +4158,81 @@ MonoBehaviour:
     - Name: description
       Entry: 6
       Data: 
-    - Name: canSleep
-      Entry: 6
+    - Name: qieGe
+      Entry: 7
+      Data: 195|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
-    - Name: canSet
-      Entry: 6
+    - Name: shouHuo
+      Entry: 7
+      Data: 196|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
     - Name: canCook
-      Entry: 6
+      Entry: 7
+      Data: 197|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
+    - Name: gengZhong
+      Entry: 7
+      Data: 198|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: zaiZhong
+      Entry: 7
+      Data: 199|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: wheatSaver
       Entry: 7
-      Data: 186|WheatSaver, Assembly-CSharp
+      Data: 200|WheatSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
     - Name: objEnum
       Entry: 3
       Data: 12
@@ -4033,21 +4245,36 @@ MonoBehaviour:
     - Name: description
       Entry: 6
       Data: 
-    - Name: canSleep
+    - Name: qieGe
       Entry: 6
       Data: 
-    - Name: canSet
+    - Name: shouHuo
       Entry: 6
       Data: 
     - Name: canCook
       Entry: 6
       Data: 
+    - Name: gengZhong
+      Entry: 6
+      Data: 
+    - Name: zaiZhong
+      Entry: 6
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: wheatTreeSaver
       Entry: 7
-      Data: 187|WheatTreeSaver, Assembly-CSharp
+      Data: 201|WheatTreeSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
     - Name: objEnum
       Entry: 3
       Data: 14
@@ -4060,21 +4287,81 @@ MonoBehaviour:
     - Name: description
       Entry: 6
       Data: 
-    - Name: canSleep
-      Entry: 6
+    - Name: qieGe
+      Entry: 7
+      Data: 202|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
-    - Name: canSet
-      Entry: 6
+    - Name: shouHuo
+      Entry: 7
+      Data: 203|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
     - Name: canCook
-      Entry: 6
+      Entry: 7
+      Data: 204|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
+    - Name: gengZhong
+      Entry: 7
+      Data: 205|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: zaiZhong
+      Entry: 7
+      Data: 206|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: wheatSeedSaver
       Entry: 7
-      Data: 188|WheatSeedSaver, Assembly-CSharp
+      Data: 207|WheatSeedSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
     - Name: objEnum
       Entry: 3
       Data: 13
@@ -4087,21 +4374,81 @@ MonoBehaviour:
     - Name: description
       Entry: 6
       Data: 
-    - Name: canSleep
-      Entry: 6
+    - Name: qieGe
+      Entry: 7
+      Data: 208|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
-    - Name: canSet
-      Entry: 6
+    - Name: shouHuo
+      Entry: 7
+      Data: 209|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
     - Name: canCook
-      Entry: 6
+      Entry: 7
+      Data: 210|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
+    - Name: gengZhong
+      Entry: 7
+      Data: 211|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: zaiZhong
+      Entry: 7
+      Data: 212|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: wheatPlaceSaver
       Entry: 7
-      Data: 189|WheatPlaceSaver, Assembly-CSharp
+      Data: 213|WheatPlaceSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
     - Name: objEnum
       Entry: 3
       Data: 16
@@ -4114,21 +4461,81 @@ MonoBehaviour:
     - Name: description
       Entry: 6
       Data: 
-    - Name: canSleep
-      Entry: 6
+    - Name: qieGe
+      Entry: 7
+      Data: 214|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
-    - Name: canSet
-      Entry: 6
+    - Name: shouHuo
+      Entry: 7
+      Data: 215|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
     - Name: canCook
-      Entry: 6
+      Entry: 7
+      Data: 216|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
+    - Name: gengZhong
+      Entry: 7
+      Data: 217|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: zaiZhong
+      Entry: 7
+      Data: 218|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: fullWheatPlaceSaver
       Entry: 7
-      Data: 190|FullWheatPlaceSaver, Assembly-CSharp
+      Data: 219|FullWheatPlaceSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
     - Name: objEnum
       Entry: 3
       Data: 17
@@ -4141,9 +4548,9 @@ MonoBehaviour:
     - Name: description
       Entry: 6
       Data: 
-    - Name: canSleep
+    - Name: qieGe
       Entry: 7
-      Data: 191|ObjInf, Assembly-CSharp
+      Data: 220|ObjInf, Assembly-CSharp
     - Name: can
       Entry: 5
       Data: false
@@ -4153,9 +4560,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: canSet
+    - Name: shouHuo
       Entry: 7
-      Data: 192|ObjInf, Assembly-CSharp
+      Data: 221|ObjInf, Assembly-CSharp
     - Name: can
       Entry: 5
       Data: false
@@ -4167,7 +4574,7 @@ MonoBehaviour:
       Data: 
     - Name: canCook
       Entry: 7
-      Data: 193|ObjInf, Assembly-CSharp
+      Data: 222|ObjInf, Assembly-CSharp
     - Name: can
       Entry: 5
       Data: false
@@ -4177,12 +4584,45 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: gengZhong
+      Entry: 7
+      Data: 223|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: zaiZhong
+      Entry: 7
+      Data: 224|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: placeSaver
       Entry: 7
-      Data: 194|FullWheatPlaceSaver, Assembly-CSharp
+      Data: 225|FullWheatPlaceSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 3
     - Name: objEnum
       Entry: 3
       Data: 15
@@ -4195,24 +4635,39 @@ MonoBehaviour:
     - Name: description
       Entry: 6
       Data: 
-    - Name: canSleep
+    - Name: qieGe
       Entry: 6
       Data: 
-    - Name: canSet
+    - Name: shouHuo
       Entry: 6
       Data: 
     - Name: canCook
       Entry: 6
       Data: 
+    - Name: gengZhong
+      Entry: 6
+      Data: 
+    - Name: zaiZhong
+      Entry: 6
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
   nodeGraph: {fileID: 11400000, guid: 84892c21c042ed64299bb03332abb75e, type: 2}
   personSaver:
+    saveTye: 0
     objEnum: 0
     size: 1
     title: 
     description: 
+    sleep: 0
+    set: 0
     sex: 0
     age: 20
     hasSelect: 0
@@ -4230,10 +4685,13 @@ MonoBehaviour:
     HungryVals:
       r: 0
   animalSaver:
+    saveTye: 0
     objEnum: 3
     size: 1
     title: 
     description: 
+    sleep: 0
+    set: 0
     sex: 0
     age: 20
     hasSelect: 0
@@ -4242,64 +4700,106 @@ MonoBehaviour:
       r: 200
       val: 200
   bedSaver:
+    saveTye: 0
     objEnum: 1
     size: 1
     title: 
     description: 
+    sleep: 0
+    set: 0
     BedSit: 0
   deskSaver:
+    saveTye: 0
     objEnum: 2
     size: 1
     title: 
     description: 
+    sleep: 0
+    set: 0
   objSaver:
+    saveTye: 0
     objEnum: 4
     size: 1
     title: 
     description: 
+    sleep: 0
+    set: 0
   pathSaver:
+    saveTye: 0
     objEnum: 5
     size: 1
     title: 
     description: 
+    sleep: 0
+    set: 0
   rawSaver:
+    saveTye: 0
     objEnum: 6
     size: 1
     title: 
     description: 
+    sleep: 0
+    set: 0
   foodSaver:
+    saveTye: 0
     objEnum: 7
     size: 1
     title: 
     description: 
+    sleep: 0
+    set: 0
     energy: 0
     wastTime: 0
   buildingSaver:
+    saveTye: 0
     objEnum: 8
     size: 1
     title: 
     description: 
+    sleep: 0
+    set: 0
     container: 0
   restaurantSaver:
+    saveTye: 0
     objEnum: 9
     size: 1
     title: "\u9910\u5385"
     description: "\u7528\u4E8E\u505A\u996D\uFF0C\u5403\u996D"
+    sleep: 0
+    set: 0
     container: 0
   wheatFlourSaver:
+    saveTye: 0
     objEnum: 19
     size: 1
     title: 
     description: 
+    sleep: 0
+    set: 0
   farmSaver:
+    saveTye: 4
     objEnum: 20
     size: 1
     title: "\u519C\u573A"
     description: "\u7528\u4E8E\u79CD\u690D\u4F5C\u7269"
+    sleep: 0
+    set: 0
     container: 0
   moneySaver:
+    saveTye: 3
     objEnum: 18
     size: 1
     title: 
     description: 
+    sleep: 0
+    set: 0
+  toolSaver:
+    saveTye: 1
+    objEnum: 21
+    size: 1
+    title: 
+    description: 
+    sleep: 0
+    set: 0
+    brokenRate: 0
   foods: []

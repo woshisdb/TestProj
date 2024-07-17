@@ -81,6 +81,7 @@ public class TableModel:ICanRegisterEvent
     public void RemoveToTable(Obj obj)
     {
         objs.Remove(obj);
+        GameArchitect.get.tableAsset.tableSaver.objs.Remove(obj);
         UpdateTable();
     }
     //public StringBuilder GetString()

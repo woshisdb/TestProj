@@ -71,7 +71,7 @@ public class Obj:PDDL,ICanRegisterEvent
         ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.objs.Add(this);
         this.activities = GameArchitect.activities[GetType()];//一系列的活动
     }
-    public ObjEnum Enum()
+    public virtual ObjEnum Enum()
     {
         return objSaver.objEnum;
     }
@@ -182,15 +182,3 @@ public class WasteTimeA : Act
         }
     }
 }
-
-//public class Obj<T>:Obj where T : ObjSaver
-//{
-//    public T Saver()
-//    {
-//        return (T)objSaver;
-//    }
-//    public Obj(ObjSaver objSaver=null)
-//    {
-
-//    }
-//}
