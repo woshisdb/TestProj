@@ -1,20 +1,97 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using QFramework;
 using UnityEngine;
+
+public class ObjContBase
+{
+    public int size;//容量
+    public int remain;//剩余
+    public virtual void Add(int num,Obj obj=null)
+    {
+        size += num;
+        remain += num;
+    }
+    public virtual void Remove(int num, Obj obj = null, int time = 0)
+    {
+        size += num;
+        remain += num;
+    }
+    public ObjContBase(int size,int remain)
+    {
+        this.size = size;
+        this.remain = remain;
+    }
+}
+
+public class ObjSingle:ObjContBase, ICanRegisterEvent
+{
+    public List<Obj> objs;
+	public override void Add(int num, Obj obj = null)
+	{
+		base.Add(num, obj);
+        objs.Add(obj);
+	}
+	public override void Remove(int num, Obj obj = null, int time = 0)
+	{
+		base.Remove(num, obj);
+        objs.Remove(obj);
+	}
+	public IArchitecture GetArchitecture()
+    {
+        return GameArchitect.get;
+    }
+    public ObjSingle(Obj obj,int size, int remain) : base(size,remain)
+    {
+        objs = new List<Obj>();
+        objs.Add(obj);
+    }
+
+}
+public class ObjTime<T> : ObjContBase, ICanRegisterEvent where T : PassTime, new()
+{
+    public T time;
+    public Dictionary<int,int> objs;
+    public Action<T> act;
+    public override void Add(int num, Obj obj = null)
+    {
+        base.Add(num, obj);
+        objs[time.NowTime()]+=num;
+    }
+    public override void Remove(int num, Obj obj = null,int time=0)
+    {
+        base.Remove(num, obj);
+        objs[time]-=num;
+    }
+    public IArchitecture GetArchitecture()
+    {
+        return GameArchitect.get;
+    }
+    public ObjTime(int x,int y) : base(x,y)
+    {
+        time = new T();
+        objs = new Dictionary<int, int>();
+        act = (e) =>
+         {
+             objs.Add(e.NowTime(),0);
+         };
+        this.RegisterEvent<T>(
+            act
+        );
+    }
+    ~ObjTime()
+    {
+        this.UnRegisterEvent<T>(act);
+    }
+}
 /// <summary>
 /// 资源数目
 /// </summary>
-public class ObjCont
+public class ObjCont:ObjContBase
 {
     public Obj obj;
-    public int size;//容量
-    public int remain;//剩余
-    public ObjCont()
-    {
-        
-    }
-    public ObjCont(Obj obj,int x,int y)
+    public ObjCont(Obj obj,int x,int y):base(x,y)
     {
         this.obj = obj;
         size = x;
@@ -27,32 +104,49 @@ public class ObjCont
 /// </summary>
 public class Resource
 {
-    public Dictionary<ObjEnum, ObjCont> resources;
+    public Dictionary<ObjEnum, ObjContBase> resources;
     public Resource()
     {
-        resources = new Dictionary<ObjEnum,ObjCont>();
+        resources = new Dictionary<ObjEnum, ObjContBase>();
     }
 
-    public void Add(ObjEnum obj, int num)
+    public void Add(ObjEnum objtype, int num,Obj obj=null)
     {
-        if (!resources.ContainsKey(obj))
-            resources.Add(obj, new ObjCont(Map.Instance.GetObj(obj), num, num));
+        if (!resources.ContainsKey(objtype))
+        {
+            var type = Map.Instance.GetSaver(objtype).saveTye;
+            if (type == SaveTye.single)
+            {
+                resources.Add(objtype, new ObjSingle(obj, num, num));
+            }
+            else if (type == SaveTye.set)
+            {
+                resources.Add(objtype, new ObjCont(Map.Instance.GetObj(objtype), num, num));
+            }
+            else if (type==SaveTye.day)
+            {
+                resources.Add(objtype, new ObjTime<PassDay>(num, num));
+            }
+            else if (type == SaveTye.month)
+            {
+                resources.Add(objtype, new ObjTime<PassMonth>(num, num));
+            }
+            else if (type == SaveTye.year)
+            {
+                resources.Add(objtype, new ObjTime<PassYear>(num, num));
+            }
+        }
         else
         {
-            resources[obj].remain += num;
-            resources[obj].size += num;
+            resources[objtype].Add(num,obj);
         }
     }
-    public void Remove(ObjEnum obj, int num)
+    public void Remove(ObjEnum objType, int num,Obj obj=null,int time=0)
     {
-        if (resources.ContainsKey(obj))
+        if (resources.ContainsKey(objType))
         {
-            resources[obj].remain -= num;
-            resources[obj].size -= num;
-            if (resources[obj].size == 0)
-            {
-                resources.Remove(obj);
-            }
+
+            resources[objType].Remove(num,obj,time);
         }
     }
 
@@ -102,7 +196,7 @@ public class Resource
     {
         resources[obj.Enum()].remain += num;
     }
-    public ObjCont Find(ObjEnum objEnum)
+    public ObjContBase Find(ObjEnum objEnum)
     {
         return resources[objEnum];
     }

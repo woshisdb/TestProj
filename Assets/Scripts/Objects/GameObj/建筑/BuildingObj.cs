@@ -168,7 +168,7 @@ public class BuildingObj : Obj
     /// </summary>
     [SerializeField]
     public Resource resource;
-    /******************************烹饪的食物*************************************/
+    /*******************************************************************/
     /// <summary>
     /// 可选的对象
     /// </summary>

@@ -65,3 +65,36 @@ public class MoneyObj : RawObj
         return (MoneySaver)objSaver;
     }
 }
+
+/// <summary>
+/// 食物
+/// </summary>
+public class ToolType : ObjType
+{
+    public ToolType(string name = null) : base(name)
+    {
+
+    }
+}
+[System.Serializable]
+public class ToolSaver:ObjSaver
+{
+    /// <summary>
+    /// 损坏的概率
+    /// </summary>
+    public int brokenRate;
+}
+/// <summary>
+/// 1点能量代表坚持一个回合
+/// </summary>
+[Map()]
+public class ToolObj : Obj
+{
+    public ToolObj(ToolSaver objAsset = null) : base(objAsset)
+    {
+    }
+    public ToolSaver GetSaver()
+    {
+        return (ToolSaver)objSaver;
+    }
+}

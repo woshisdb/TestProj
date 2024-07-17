@@ -53,11 +53,12 @@ public class CookSelA : Act
         //building.CookRate.objList.resources = new Dictionary<Obj, int>();
         foreach (var data in building.rates[TransationEnum.cook].objList.resources)//选择一系列的餐具
         {
+            var obj = ((ObjCont)data.Value).obj;
             selects.Add(//活动描述
-                new CardInf(data.Value.obj.objSaver.title, data.Value.obj.objSaver.description + ":" + data.Value.obj.objSaver.canCook.count,
+                new CardInf(obj.objSaver.title, obj.objSaver.description + ":" + obj.objSaver.canCook.count,
                 () =>
                 {
-                    selObj = data.Value.obj;
+                    selObj = obj;
                 }
                 )
                 );

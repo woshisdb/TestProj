@@ -12,9 +12,12 @@ public class ObjInf
 [System.Serializable]
 public class ObjSaver
 {
+    [EnumPaging]
+    public SaveTye saveTye;
     /// <summary>
     /// 对象类型
     /// </summary>
+    [EnumPaging]
     public ObjEnum objEnum;
     [SerializeField]
     public int size=1;
@@ -55,6 +58,24 @@ public enum ObjEnum
     MoneyObjE,
     WheatFlourObjE,
     FarmObjE,
+}
+
+public enum SaveTye
+{
+    /// <summary>
+    /// 按照时间轴保存
+    /// </summary>
+    day,
+    month,
+    year,
+    /// <summary>
+    /// 只需按照集合保存
+    /// </summary>
+    set,
+    /// <summary>
+    /// 保存唯一一个
+    /// </summary>
+    single,
 }
 
 /// <summary>

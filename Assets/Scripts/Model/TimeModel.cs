@@ -11,6 +11,36 @@ public class TimeUpdateEvent
         Time = time;
     }
 }
+public class PassTime
+{
+    public virtual int NowTime()
+    {
+        return 1;
+    }
+}
+public class PassDay: PassTime
+{
+	public override int NowTime()
+	{
+        return GameArchitect.get.GetModel<TimeModel>().GetDay();
+	}
+}
+
+public class PassMonth: PassTime
+{
+    public override int NowTime()
+    {
+        return GameArchitect.get.GetModel<TimeModel>().GetMonth();
+    }
+}
+
+public class PassYear: PassTime
+{
+    public override int NowTime()
+    {
+        return GameArchitect.get.GetModel<TimeModel>().GetYear();
+    }
+}
 
 public class TimeModel : AbstractModel
 {
@@ -36,6 +66,18 @@ public class TimeModel : AbstractModel
     public int GetTime()
     {
         return Time.val;
+    }
+    public int GetDay()
+    {
+        return Time.val / timeStep;
+    }
+    public int GetMonth()
+    {
+        return (Time.val / timeStep)/30;
+    }
+    public int GetYear()
+    {
+        return (Time.val / timeStep) / 360;
     }
     public string GetTimeStr()
     {
