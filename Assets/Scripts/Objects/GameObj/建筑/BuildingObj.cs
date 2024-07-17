@@ -79,6 +79,7 @@ public class Source
     public Trans trans;
     public List<int> nums;
     public Resource resource;
+    public int sour;
     public int maxnCount=99999;
     /// <summary>
     /// 更新资源,输入成本
@@ -95,10 +96,12 @@ public class Source
         {
             obj.rates[t.x].nowCount-=count*t.y;
         }
+        sour += nums[nums.Count - 1];//添加数目
         foreach (var data in trans.to.source)
         {
-            resource.Add(data.x, data.y * nums[nums.Count - 1]);
+            resource.Add(data.x, data.y * (sour/trans.edge.time));
         }
+        sour=sour%trans.edge.time;
         for (int i = nums.Count - 1; i>=1; i--)
         {
             nums[i] = nums[i - 1];
@@ -115,6 +118,7 @@ public class Source
         this.resource = resource;
         this.obj = obj;
         maxnCount = 99999;
+        sour = 0;
         nums = new List<int>();
         for(int i=0;i< trans.edge.time; i++)
         {
