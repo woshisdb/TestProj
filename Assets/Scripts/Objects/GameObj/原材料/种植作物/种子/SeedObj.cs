@@ -8,6 +8,7 @@ public class SeedType : RawType
 
     }
 }
+[System.Serializable]
 public class SeedSaver : RawSaver
 {
 

@@ -11,6 +11,7 @@ public class WheatSeedType : SeedType
 
     }
 }
+[System.Serializable]
 public class WheatSeedSaver : SeedSaver
 {
 

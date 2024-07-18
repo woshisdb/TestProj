@@ -9,6 +9,7 @@ public class TreeType : RawType
 
     }
 }
+[System.Serializable]
 public class TreeSaver : RawSaver
 {
 

@@ -11,6 +11,7 @@ public class WheatTreeType : TreeType
 
     }
 }
+[System.Serializable]
 public class WheatTreeSaver : TreeSaver
 {
 
