@@ -12,6 +12,401 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bb0c75e16f22724da7f898ad5cde267, type: 3}
   m_Name: ObjAsset
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: map
+      Entry: 7
+      Data: 0|WorldMap, Assembly-CSharp
+    - Name: tos
+      Entry: 7
+      Data: 1|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[MapTo,
+        Assembly-CSharp]], mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 2|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: activities
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: wheatSaver
+      Entry: 7
+      Data: 3|WheatSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
+    - Name: objEnum
+      Entry: 3
+      Data: 12
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: qieGe
+      Entry: 7
+      Data: 4|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: shouHuo
+      Entry: 7
+      Data: 5|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: canCook
+      Entry: 7
+      Data: 6|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: gengZhong
+      Entry: 7
+      Data: 7|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: zaiZhong
+      Entry: 7
+      Data: 8|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: wheatPlaceSaver
+      Entry: 7
+      Data: 9|WheatPlaceSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
+    - Name: objEnum
+      Entry: 3
+      Data: 16
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: qieGe
+      Entry: 7
+      Data: 10|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: shouHuo
+      Entry: 7
+      Data: 11|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: canCook
+      Entry: 7
+      Data: 12|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: gengZhong
+      Entry: 7
+      Data: 13|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: zaiZhong
+      Entry: 7
+      Data: 14|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
+    - Name: xl
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fullWheatPlaceSaver
+      Entry: 7
+      Data: 15|FullWheatPlaceSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
+    - Name: objEnum
+      Entry: 3
+      Data: 17
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: qieGe
+      Entry: 7
+      Data: 16|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: shouHuo
+      Entry: 7
+      Data: 17|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: canCook
+      Entry: 7
+      Data: 18|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: gengZhong
+      Entry: 7
+      Data: 19|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: zaiZhong
+      Entry: 7
+      Data: 20|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
+    - Name: xl
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: placeSaver
+      Entry: 7
+      Data: 21|PlaceSaver, Assembly-CSharp
+    - Name: saveTye
+      Entry: 3
+      Data: 0
+    - Name: objEnum
+      Entry: 3
+      Data: 15
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: qieGe
+      Entry: 7
+      Data: 22|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: shouHuo
+      Entry: 7
+      Data: 23|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: canCook
+      Entry: 7
+      Data: 24|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: gengZhong
+      Entry: 7
+      Data: 25|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: zaiZhong
+      Entry: 7
+      Data: 26|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: false
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sleep
+      Entry: 3
+      Data: 0
+    - Name: set
+      Entry: 3
+      Data: 0
+    - Name: xl
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
   nodeGraph: {fileID: 11400000, guid: 84892c21c042ed64299bb03332abb75e, type: 2}
   personSaver:
     saveTye: 0

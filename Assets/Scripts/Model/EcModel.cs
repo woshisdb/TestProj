@@ -9,7 +9,7 @@ public class ObjContBase
 {
     public int size;//»›¡ø
     public int remain;// £”‡
-    public virtual void Add(int num,Obj obj=null)
+    public virtual void Add(int num,Obj obj=null,int time=0)
     {
         size += num;
         remain += num;
@@ -29,7 +29,7 @@ public class ObjContBase
 public class ObjSingle:ObjContBase, ICanRegisterEvent
 {
     public List<Obj> objs;
-	public override void Add(int num, Obj obj = null)
+	public override void Add(int num, Obj obj = null,int time=0)
 	{
 		base.Add(num, obj);
         objs.Add(obj);
@@ -52,13 +52,13 @@ public class ObjSingle:ObjContBase, ICanRegisterEvent
 }
 public class ObjTime<T> : ObjContBase, ICanRegisterEvent where T : PassTime, new()
 {
-    public T time;
+    public T Time;
     public Dictionary<int,int> objs;
     public Action<T> act;
-    public override void Add(int num, Obj obj = null)
+    public override void Add(int num, Obj obj = null, int time = 0)
     {
         base.Add(num, obj);
-        objs[time.NowTime()]+=num;
+        objs[time]+=num;
     }
     public override void Remove(int num, Obj obj = null,int time=0)
     {
@@ -71,7 +71,7 @@ public class ObjTime<T> : ObjContBase, ICanRegisterEvent where T : PassTime, new
     }
     public ObjTime(int x,int y) : base(x,y)
     {
-        time = new T();
+        Time = new T();
         objs = new Dictionary<int, int>();
         act = (e) =>
          {
@@ -121,7 +121,7 @@ public class Resource
         this.sites = sites;
     }
     [Button]
-    public void Add(ObjEnum objtype, int num,Obj obj=null)
+    public void Add(ObjEnum objtype, int num,int time=0,Obj obj=null)
     {
         foreach (var x in rates)
         {
@@ -229,13 +229,13 @@ public class GoodsManager
         this.resource = new Resource();
         goods = new Dictionary<Goods, int>();
     }
-    public void SellEc(Goods goodsItem,int n)
+    public void SellEc(Goods goodsItem,int n,int time)
     {
         goods[goodsItem] -= n;
         if (goods[goodsItem]==0)
             goods.Remove(goodsItem);
         resource.Remove(goodsItem.sellO,goodsItem.sellNum*n);
-        originResource.Add(goodsItem.buyO, goodsItem.buyNum*n);
+        originResource.Add(goodsItem.buyO, goodsItem.buyNum*n,time);
     }
     public void Add(ObjEnum sell,int sellNum,ObjEnum buy,int buyNum,int sum)
     {

@@ -229,7 +229,7 @@ public class BuildingObj : Obj
         sits.Add(SitEnum.bed, new Sit((saver =>{ return saver.sleep; })));
         sits.Add(SitEnum.set, new Sit(saver => { return saver.set; }));
         resource.SetSites(sits);
-        resource.Add(ObjEnum.PlaceObjE,GetSaver().container);
+        //resource.Add(ObjEnum.PlaceObjE,GetSaver().container);
     }
     public override void Init()
     {
