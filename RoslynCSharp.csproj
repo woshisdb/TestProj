@@ -58,34 +58,34 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Modding\IModScriptReplacedReceiver.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\ScriptType.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\IScriptEventProxy.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\AsyncOperation.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Modding\ModReplaceableBehaviourAttribute.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\AsyncCompileOperation.cs" />
+    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Modding\ModScriptReplacer.cs" />
+    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Project\CSharpProjectFile.cs" />
+    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\ScriptProxy.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Modding\ModScriptReplacerReport.cs" />
+    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\ScriptEventHandler.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Project\CSharpProject.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\RoslynCSharp.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\ScriptEventHandlerProxy.cs" />
+    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\AssemblyReferenceAsset.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Implementation\ScriptAssemblyImpl.cs" />
+    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\ScriptFieldDataProxy.cs" />
+    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\ScriptPropertyDataProxy.cs" />
+    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Implementation\ScriptProxyImpl.cs" />
+    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Implementation\ScriptCompiledAssemblyImpl.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\RoslynCSharpSecurityAllowance.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\ScriptDomain.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\AsyncLoadOperation.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Implementation\ScriptTypeImpl.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\IScriptDataProxy.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\ScriptExecution.cs" />
-    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Project\CSharpProjectParser.cs" />
-    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Modding\IModScriptReplacedReceiver.cs" />
-    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Modding\ModScriptReplacer.cs" />
-    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Project\CSharpProjectFile.cs" />
-    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\ScriptProxy.cs" />
-    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\ScriptEventHandler.cs" />
-    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\AssemblyReferenceAsset.cs" />
-    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\ScriptFieldDataProxy.cs" />
-    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\ScriptPropertyDataProxy.cs" />
-    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Implementation\ScriptProxyImpl.cs" />
-    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Implementation\ScriptCompiledAssemblyImpl.cs" />
     <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Interface\ScriptAssembly.cs" />
+    <Compile Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\Project\CSharpProjectParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\RoslynCSharp\Scripts\RoslynCSharp\Runtime\RoslynCSharp.asmdef" />
@@ -444,11 +444,15 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.3.1\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="log4netPlastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.18\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.3.1\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sirenix.Serialization.Config">
@@ -457,10 +461,6 @@
     </Reference>
     <Reference Include="ReportGeneratorMerged">
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.2.5\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Reflection.Metadata">
@@ -480,27 +480,23 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.18\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.3.1\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Z3">
       <HintPath>Assets\Plugins\Z3\Microsoft.Z3.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.18\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+    <Reference Include="Unity.Plastic.Antlr3.Runtime">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.3.1\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.2\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sirenix.OdinInspector.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Plastic.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.18\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Collections.Immutable">
@@ -508,7 +504,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.2\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Trivial.ImGUI">
@@ -536,7 +532,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.2\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
