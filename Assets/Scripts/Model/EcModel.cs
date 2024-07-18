@@ -106,13 +106,31 @@ public class ObjCont:ObjContBase
 public class Resource
 {
     public Dictionary<ObjEnum, ObjContBase> resources;
+    public Dictionary<TransationEnum, Rate> rates;
+    public Dictionary<SitEnum, Sit> sites;
     public Resource()
     {
         resources = new Dictionary<ObjEnum, ObjContBase>();
     }
+    public void SetRate(Dictionary<TransationEnum, Rate> rates)
+    {
+        this.rates = rates;
+    }
+    public void SetSites(Dictionary<SitEnum, Sit> sites)
+    {
+        this.sites = sites;
+    }
     [Button]
     public void Add(ObjEnum objtype, int num,Obj obj=null)
     {
+        foreach (var x in rates)
+        {
+            x.Value.AddRate(objtype, num);
+        }
+        foreach (var x in sites)
+        {
+            x.Value.sit += x.Value.sum(Map.Instance.GetSaver(objtype));
+        }
         if (!resources.ContainsKey(objtype))
         {
             var type = Map.Instance.GetSaver(objtype).saveTye;

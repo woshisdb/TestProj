@@ -7,6 +7,11 @@ public class ObjInf
 {
     public bool can;//是否可以
     public int count;//提供数目
+    public ObjInf()
+    {
+        can = false;
+        count = 0;
+    }
 }
 
 [System.Serializable]
@@ -24,10 +29,15 @@ public class ObjSaver
     //public CardInf cardInf;
     public string title;
     public string description;
+    [SerializeField]
     public ObjInf qieGe;//可以睡觉
+    [SerializeField]
     public ObjInf shouHuo;//可以坐下来
+    [SerializeField]
     public ObjInf canCook;//可以用于烹饪食物
+    [SerializeField]
     public ObjInf gengZhong;//可以用于烹饪食物
+    [SerializeField]
     public ObjInf zaiZhong;//可以用于烹饪食物
     ////////////////////////////////////////////////////////
     public int sleep;//睡觉
@@ -123,13 +133,12 @@ public class ObjAsset : SerializedScriptableObject
     public WheatSaver wheatSaver;
     [SerializeField]
     public WheatTreeSaver wheatTreeSaver;
-    [SerializeField]
+    [SerializeField, EnumPaging]
     public WheatSeedSaver wheatSeedSaver;
-    [SerializeField]
+    [SerializeField, EnumPaging]
     public WheatPlaceSaver wheatPlaceSaver;
-    [SerializeField]
+    [SerializeField, EnumPaging]
     public FullWheatPlaceSaver fullWheatPlaceSaver;
-    [SerializeField]
     public PlaceSaver placeSaver;
     [SerializeField]
     public WheatFlourSaver wheatFlourSaver;

@@ -57,9 +57,14 @@ public class PlaceType : ObjType
 
     }
 }
+[SerializeField]
 public class PlaceSaver : ObjSaver
 {
-
+    public int xl;
+    public PlaceSaver()
+    {
+        
+    }
 }
 [Map()]
 public class PlaceObj : Obj

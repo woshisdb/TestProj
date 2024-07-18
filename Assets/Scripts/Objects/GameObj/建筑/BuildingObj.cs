@@ -16,6 +16,15 @@ public class Sit
 {
     public int sit=0;
     public int useSit=0;
+    public Func<ObjSaver, int> sum;
+    public Sit(Func<ObjSaver,int> func)
+    {
+        this.sum = func;
+    }
+    public Sit()
+    {
+        
+    }
 }
 /// <summary>
 /// 某一行为的工作量
@@ -23,8 +32,8 @@ public class Sit
 public class Rate
 {
     public TransationEnum transType;
-    Func<ObjSaver, int> func;//获取数据
-    Func<ObjSaver,bool> can;
+    public Func<ObjSaver, int> func;//获取数据
+    public Func<ObjSaver,bool> can;
     public Resource resource;//物品与数目
     public int nowCount;
     public Rate(Func<ObjSaver,int> func,Func<ObjSaver,bool> can,Resource resource)
@@ -34,11 +43,18 @@ public class Rate
         this.resource = resource;
         nowCount = 0;
     }
-    public void Add(Obj obj,int num)
+    public void AddRate(Obj obj,int num)
     {
         if(can(obj.objSaver)==true)
         {
-            resource.Add(obj.Enum(), num,obj);
+            nowCount += func(obj.objSaver);
+        }
+    }
+    public void AddRate(ObjEnum obj, int num)
+    {
+        if (can(Map.Instance.GetSaver(obj)) == true)
+        {
+            nowCount += func(Map.Instance.GetSaver(obj));
         }
     }
     public int Get(ObjSaver obj)
@@ -177,40 +193,42 @@ public class BuildingObj : Obj
     public PipLineManager pipLineManager;
     public BuildingObj(BuildingSaver objSaver=null):base(objSaver)
     {
-        if(rates==null)
+        resource = new Resource();
+        if (rates==null)
             rates = new Dictionary<TransationEnum, Rate>();
         /*******************添加Rate*******************/
         rates.Add(TransationEnum.cook , new Rate(
-            (obj) => { return objSaver.canCook.count; },
-            (obj) => { return objSaver.canCook.can; },
+            (objSaver) => { return objSaver.canCook.count; },
+            (objSaver) => { return objSaver.canCook.can; },
             resource
         ));
         rates.Add(TransationEnum.qieGe, new Rate(
-            (obj) => { return objSaver.qieGe.count; },
-            (obj) => { return objSaver.qieGe.can; },
+            (objSaver) => { return objSaver.qieGe.count; },
+            (objSaver) => { return objSaver.qieGe.can; },
             resource
         ));
         rates.Add(TransationEnum.gengZhong, new Rate(
-            (obj) => { return objSaver.gengZhong.count; },
-            (obj) => { return objSaver.gengZhong.can; },
+            (objSaver) => { return objSaver.gengZhong.count; },
+            (objSaver) => { return objSaver.gengZhong.can; },
             resource
         ));
         rates.Add(TransationEnum.zaiZhong, new Rate(
-            (obj) => { return objSaver.zaiZhong.count; },
-            (obj) => { return objSaver.zaiZhong.can; },
+            (objSaver) => { return objSaver.zaiZhong.count; },
+            (objSaver) => { return objSaver.zaiZhong.can; },
             resource
         ));
         rates.Add(TransationEnum.shouHuo, new Rate(
-            (obj) => { return objSaver.shouHuo.count; },
-            (obj) => { return objSaver.shouHuo.can; },
+            (objSaver) => { return objSaver.shouHuo.count; },
+            (objSaver) => { return objSaver.shouHuo.can; },
             resource
         ));
-        resource = new Resource();
+        resource.SetRate(rates);
         goodsManager = new GoodsManager(resource, this);
         pipLineManager = new PipLineManager(this);
         sits = new Dictionary<SitEnum, Sit>();
-        sits.Add(SitEnum.bed, new Sit());
-        sits.Add(SitEnum.set, new Sit());
+        sits.Add(SitEnum.bed, new Sit((saver =>{ return saver.sleep; })));
+        sits.Add(SitEnum.set, new Sit(saver => { return saver.set; }));
+        resource.SetSites(sits);
         resource.Add(ObjEnum.PlaceObjE,GetSaver().container);
     }
     public override void Init()
@@ -236,18 +254,6 @@ public class BuildingObj : Obj
         new CookAct(),
         new SetPipLineAct()
         };
-    }
-    public void Add(Obj s)
-    {
-        sits[SitEnum.bed].sit += s.objSaver.sleep;
-        sits[SitEnum.set].sit += s.objSaver.set;
-        resource.Add(s.Enum(),1,s);
-    }
-    public void Remove(Obj s)
-    {
-        sits[SitEnum.bed].sit -= s.objSaver.sleep;
-        sits[SitEnum.set].sit -= s.objSaver.set;
-        resource.Remove(s.Enum(), 1,s);
     }
     public BuildingSaver GetSaver()
     {
