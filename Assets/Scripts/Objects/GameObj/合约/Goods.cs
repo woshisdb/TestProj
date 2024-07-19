@@ -7,24 +7,22 @@ public class Goods
     /// <summary>
     /// 购买物品
     /// </summary>
-    public ObjEnum buyO;
+    public Resource buyO;
     /// <summary>
-    /// 数目
+    /// 需要用来交易的产品
     /// </summary>
-    public int buyNum;
-    /// <summary>
-    /// 出售物品
-    /// </summary>
-    public ObjEnum sellO;
-    public int sellNum;
+    public Resource sellO;
 
     // 构造函数
-    public Goods(ObjEnum buyO, int buyNum, ObjEnum sellO, int sellNum)
+    public Goods()
     {
-        this.buyO = buyO;
-        this.buyNum = buyNum;
-        this.sellO = sellO;
-        this.sellNum = sellNum;
+        this.buyO = new Resource();
+        this.sellO = new Resource();
+    }
+    public Goods(KeyValuePair<ObjEnum, ObjContBase> buy, KeyValuePair<ObjEnum, ObjContBase> sell)
+    {
+        buyO.Add(buy);
+        sellO.Add(sell);
     }
 }
 

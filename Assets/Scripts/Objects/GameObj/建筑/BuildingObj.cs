@@ -43,18 +43,32 @@ public class Rate
         this.resource = resource;
         nowCount = 0;
     }
-    public void AddRate(Obj obj,int num)
+    public void AddRate(Obj obj)
     {
         if(can(obj.objSaver)==true)
         {
             nowCount += func(obj.objSaver);
         }
     }
-    public void AddRate(ObjEnum obj, int num)
+    public void AddRate(ObjEnum obj)
     {
         if (can(Map.Instance.GetSaver(obj)) == true)
         {
             nowCount += func(Map.Instance.GetSaver(obj));
+        }
+    }
+    public void RedRate(Obj obj)
+    {
+        if (can(obj.objSaver) == true)
+        {
+            nowCount -= func(obj.objSaver);
+        }
+    }
+    public void RedRate(ObjEnum obj)
+    {
+        if (can(Map.Instance.GetSaver(obj)) == true)
+        {
+            nowCount -= func(Map.Instance.GetSaver(obj));
         }
     }
     public int Get(ObjSaver obj)

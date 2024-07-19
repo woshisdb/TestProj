@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using QFramework;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -23,6 +24,16 @@ public class ObjContBase
     {
         this.size = size;
         this.remain = remain;
+    }
+    public virtual void Combine(ObjContBase objCont)
+    {
+        size += objCont.size;
+        remain += objCont.remain;
+    }
+    public virtual void Delete(ObjContBase objContBase)
+    {
+        size -= objContBase.size;
+        remain -= objContBase.remain;
     }
 }
 
@@ -48,7 +59,18 @@ public class ObjSingle:ObjContBase, ICanRegisterEvent
         objs = new List<Obj>();
         objs.Add(obj);
     }
-
+	public override void Combine(ObjContBase objCont)
+	{
+		base.Combine(objCont);
+        var objc = (ObjSingle)objCont;
+        objs=objs.Union(objc.objs).ToList();
+    }
+	public override void Delete(ObjContBase objContBase)
+	{
+		base.Delete(objContBase);
+        var content = (ObjSingle)objContBase;
+        objs = objs.Except(content.objs).ToList();
+    }
 }
 public class ObjTime<T> : ObjContBase, ICanRegisterEvent where T : PassTime, new()
 {
@@ -81,7 +103,36 @@ public class ObjTime<T> : ObjContBase, ICanRegisterEvent where T : PassTime, new
             act
         );
     }
-    ~ObjTime()
+
+	public override void Combine(ObjContBase objCont)
+	{
+		base.Combine(objCont);
+        var objv = (ObjTime<T>)objCont;
+        foreach(var x in objv.objs)
+        {
+            if (objs.ContainsKey(x.Key))
+            {
+                objs.Add(x.Key, x.Value);
+            }
+            else
+			{
+                objs[x.Key] += x.Value;
+			}
+        }
+	}
+	public override void Delete(ObjContBase objContBase)
+	{
+		base.Delete(objContBase);
+        var objv = (ObjTime<T>)objContBase;
+        foreach (var x in objv.objs)
+        {
+            if (objs.ContainsKey(x.Key))
+            {
+                objs[x.Key] = Math.Max(0, objs[x.Key] - x.Value);
+            }
+        }
+	}
+	~ObjTime()
     {
         this.UnRegisterEvent<T>(act);
     }
@@ -120,13 +171,57 @@ public class Resource
     {
         this.sites = sites;
     }
+    public void Add(KeyValuePair<ObjEnum, ObjContBase> pair)
+    {
+        if (rates != null)
+        foreach (var x in rates)
+        {
+            x.Value.AddRate(pair.Key);
+        }
+        if (sites != null)
+        foreach (var x in sites)
+        {
+            x.Value.sit += x.Value.sum(Map.Instance.GetSaver(pair.Key));
+        }
+        resources[pair.Key].Combine(pair.Value);
+    }
+    public void Remove(KeyValuePair<ObjEnum, ObjContBase> pair)
+    {
+        if (rates != null)
+            foreach (var x in rates)
+            {
+                x.Value.RedRate(pair.Key);
+            }
+        if (sites != null)
+            foreach (var x in sites)
+            {
+                x.Value.sit -= x.Value.sum(Map.Instance.GetSaver(pair.Key));
+            }
+        resources[pair.Key].Delete(pair.Value);
+    }
+    public void Add(Resource resource)
+    {
+        foreach (var x in resource.resources)
+        {
+            Add(x);
+        }
+    }
+    public void Remove(Resource resource)
+    {
+        foreach (var x in resource.resources)
+        {
+            Remove(x);
+        }
+    }
     [Button]
     public void Add(ObjEnum objtype, int num,int time=0,Obj obj=null)
     {
+        if(rates!=null)
         foreach (var x in rates)
         {
-            x.Value.AddRate(objtype, num);
+            x.Value.AddRate(objtype);
         }
+        if (sites != null)
         foreach (var x in sites)
         {
             x.Value.sit += x.Value.sum(Map.Instance.GetSaver(objtype));
@@ -220,33 +315,30 @@ public class GoodsManager
     /// </summary>
     public Dictionary<Goods,int> goods;
     public Resource originResource;
-    public Resource resource;
     public Obj obj;
     public GoodsManager(Resource originresource,Obj obj)
     {
         this.obj = obj;
         this.originResource = originresource;
-        this.resource = new Resource();
         goods = new Dictionary<Goods, int>();
     }
-    public void SellEc(Goods goodsItem,int n,int time)
+    public void SellEc(Goods goodsItem,int n)
     {
         goods[goodsItem] -= n;
-        if (goods[goodsItem]==0)
-            goods.Remove(goodsItem);
-        resource.Remove(goodsItem.sellO,goodsItem.sellNum*n);
-        originResource.Add(goodsItem.buyO, goodsItem.buyNum*n,time);
+        //goods[goodsItem] -= n;
+        //if (goods[goodsItem]==0)
+        //    goods.Remove(goodsItem);
+        //originResource.Add(goodsItem.buyO, goodsItem.buyNum*n,time);
     }
     public void Add(ObjEnum sell,int sellNum,ObjEnum buy,int buyNum,int sum)
     {
-        var x = new Goods(sell, sellNum, buy, buyNum);
+        var x = new Goods();
         if (goods.ContainsKey(x))
         {
             goods[x] = sum;
         }
         goods[x] += sum;
         originResource.Remove(sell, sellNum * sum);
-        resource.Add(sell,sellNum*sum);
     }
 }
 
@@ -265,15 +357,27 @@ public class EcModel : AbstractModel
     public void Ec(Goods goods,int sum,GoodsManager g1,Resource g2)
     {
         g1.SellEc(goods,sum);
-        g2.Add(goods.buyO, goods.buyNum*sum);
-        g2.Remove(goods.sellO, goods.sellNum*sum);
+        for(int i=0;i<sum;i++)
+        foreach (var x in goods.buyO.resources)
+        {
+            g2.Add(x);
+        }
+        for (int i = 0; i < sum; i++)
+            foreach (var x in goods.sellO.resources)
+            {
+                g2.Remove(x);
+            }
     }
     public bool TryEc(Dictionary<Goods, int> resource, GoodsManager g1, Resource g2)
     {
         Resource resource1=new Resource();
         foreach (var x in resource)
         {
-            resource1.Add(x.Key.buyO, x.Key.buyNum * x.Value);
+            for(int i=0;i<x.Value;i++)
+            foreach (var y in x.Key.sellO.resources)
+            {
+                resource1.Add(y);
+            }
         }
         foreach (var x in resource1.resources)
         {

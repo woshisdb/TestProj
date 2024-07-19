@@ -21,7 +21,7 @@ public class BuyA : Act
         foreach (var t in buildingObj.goodsManager.goods)
         {
             selects.Add(//可以卖的东西
-                new SelectInf(t.Key.sellO.ToString() + "x" + t.Key.sellNum + "->" + t.Key.buyO.ToString() + "x" + t.Key.buyNum, t.Value + "", t.Key, t.Value)
+                new SelectInf(t.Key.sellO.ToString()+ "->" + t.Key.buyO.ToString(), t.Value + "", t.Key, t.Value)
             );
         }
         yield return GameArchitect.gameLogic.AddDecision(Person,
@@ -82,7 +82,7 @@ public class SellA : Act
         foreach(var t in buildingObj.goodsManager.goods)
         {
             selects.Add(//将物品添加到卖场
-                new SelectInf(t.Key.sellO.ToString()+"x"+ t.Key.sellNum+"->"+ t.Key.buyO.ToString() + "x" + t.Key.buyNum,t.Value+"",t.Key,t.Value)
+                new SelectInf(t.Key.sellO.ToString()+"->"+ t.Key.buyO.ToString(),t.Value+"",t.Key,t.Value)
             );
         }
         yield return GameArchitect.gameLogic.AddDecision(Person,
