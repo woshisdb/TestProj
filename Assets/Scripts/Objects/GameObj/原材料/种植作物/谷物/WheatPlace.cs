@@ -20,11 +20,8 @@ public class WheatPlaceObj : PlaceObj
     {
 
     }
-    public WheatPlaceSaver GetSaver()
-    {
-        return (WheatPlaceSaver)objSaver;
-    }
 }
+
 
 public class FullWheatPlaceType : PlaceType
 {
@@ -43,10 +40,6 @@ public class FullWheatPlaceObj : PlaceObj
     public FullWheatPlaceObj(FullWheatPlaceSaver objSaver = null) : base(objSaver)
     {
 
-    }
-    public WheatPlaceSaver GetSaver()
-    {
-        return (WheatPlaceSaver)objSaver;
     }
 }
 
@@ -72,9 +65,5 @@ public class PlaceObj : Obj
     public PlaceObj(PlaceSaver objSaver = null) : base(objSaver)
     {
 
-    }
-    public PlaceSaver GetSaver()
-    {
-        return (PlaceSaver)objSaver;
     }
 }

@@ -17,8 +17,8 @@ public class ObjContBase
     }
     public virtual void Remove(int num, Obj obj = null, int time = 0)
     {
-        size += num;
-        remain += num;
+        size -= num;
+        remain -= num;
     }
     public ObjContBase(int size,int remain)
     {
@@ -80,12 +80,17 @@ public class ObjTime<T> : ObjContBase, ICanRegisterEvent where T : PassTime, new
     public override void Add(int num, Obj obj = null, int time = 0)
     {
         base.Add(num, obj);
+        objs.TryAdd(time, num);
         objs[time]+=num;
     }
     public override void Remove(int num, Obj obj = null,int time=0)
     {
         base.Remove(num, obj);
+        if (time == 0)
+            time = Time.NowTime();
         objs[time]-=num;
+        if (objs[time]==0)
+            objs.Remove(time);
     }
     public IArchitecture GetArchitecture()
     {
@@ -174,28 +179,28 @@ public class Resource
     public void Add(KeyValuePair<ObjEnum, ObjContBase> pair)
     {
         if (rates != null)
-        foreach (var x in rates)
-        {
-            x.Value.AddRate(pair.Key);
-        }
+        //foreach (var x in rates)
+        //{
+        //    x.Value.AddRate(pair.Key,pair.Value.size);
+        //}
         if (sites != null)
         foreach (var x in sites)
         {
-            x.Value.sit += x.Value.sum(Map.Instance.GetSaver(pair.Key));
+            x.Value.AddSit(pair.Key,pair.Value.size);
         }
         resources[pair.Key].Combine(pair.Value);
     }
     public void Remove(KeyValuePair<ObjEnum, ObjContBase> pair)
     {
-        if (rates != null)
-            foreach (var x in rates)
-            {
-                x.Value.RedRate(pair.Key);
-            }
+        //if (rates != null)
+        //    foreach (var x in rates)
+        //    {
+        //        x.Value.RedRate(pair.Key, pair.Value.size);
+        //    }
         if (sites != null)
             foreach (var x in sites)
             {
-                x.Value.sit -= x.Value.sum(Map.Instance.GetSaver(pair.Key));
+                x.Value.RemoveSit(pair.Key, pair.Value.size);
             }
         resources[pair.Key].Delete(pair.Value);
     }
@@ -216,15 +221,15 @@ public class Resource
     [Button]
     public void Add(ObjEnum objtype, int num,int time=0,Obj obj=null)
     {
-        if(rates!=null)
-        foreach (var x in rates)
-        {
-            x.Value.AddRate(objtype);
-        }
+        //if(rates!=null)
+        //foreach (var x in rates)
+        //{
+        //    x.Value.AddRate(objtype,num);
+        //}
         if (sites != null)
         foreach (var x in sites)
         {
-            x.Value.sit += x.Value.sum(Map.Instance.GetSaver(objtype));
+            x.Value.AddSit(objtype,num);
         }
         if (!resources.ContainsKey(objtype))
         {
@@ -254,6 +259,16 @@ public class Resource
     }
     public void Remove(ObjEnum objType, int num,Obj obj=null,int time=0)
     {
+        //if (rates != null)
+        //    foreach (var x in rates)
+        //    {
+        //        x.Value.RedRate(objType,num);
+        //    }
+        if (sites != null)
+            foreach (var x in sites)
+            {
+                x.Value.RemoveSit(objType,num);
+            }
         if (resources.ContainsKey(objType))
         {
             resources[objType].Remove(num,obj,time);
@@ -263,41 +278,63 @@ public class Resource
             resources.Remove(objType);
         }
     }
-    public void Remove(Obj obj, int num)
-    {
-        if (resources.ContainsKey(obj.Enum()))
-        {
-            resources[obj.Enum()].remain -= num;
-            resources[obj.Enum()].size -= num;
-            if (resources[obj.Enum()].size == 0)
-            {
-                resources.Remove(obj.Enum());
-            }
-        }
-    }
+
     public int Get(ObjEnum obj)
     {
         return resources[obj].remain;
     }
+    public int GetRemain(ObjEnum obj)
+    {
+        if (resources.ContainsKey(obj))
+        {
+            return resources[obj].remain;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    public Dictionary<ObjEnum, ObjContBase> GetObjs(ObjEnum objEnum)
+    {
+        var ret = new Dictionary<ObjEnum, ObjContBase>();
+        var s = Map.Instance.GetSaver(objEnum);
+        foreach (var x in resources)
+        {
+            var data=Map.Instance.GetSaver(x.Key);
+            if (data.GetType().IsSubclassOf(s.GetType())||s.GetType()==data.GetType())
+            {
+                ret.Add(x.Key,x.Value);
+            }
+        }
+        return ret;
+    }
     public void Use(ObjEnum obj, int num)
     {
+        if (rates != null)
+        foreach (var x in rates)
+        {
+                x.Value.AddRate(obj,num);
+        }
+        if (sites != null)
+            foreach (var x in sites)
+            {
+                x.Value.UseSit(obj,num);
+            }
         resources[obj].remain -= num;
     }
     public void Release(ObjEnum obj, int num)
     {
+        if (rates != null)
+        foreach (var x in rates)
+        {
+            x.Value.RedRate(obj);
+        }
+        if (sites != null)
+            foreach (var x in sites)
+            {
+                x.Value.RemoveSit(obj,num);
+            }
         resources[obj].remain += num;
-    }
-    public int Get(Obj obj)
-    {
-        return resources[obj.Enum()].remain;
-    }
-    public void Use(Obj obj, int num)
-    {
-        resources[obj.Enum()].remain -= num;
-    }
-    public void Release(Obj obj, int num)
-    {
-        resources[obj.Enum()].remain += num;
     }
     public ObjContBase Find(ObjEnum objEnum)
     {

@@ -28,11 +28,6 @@ public class FarmObj : BuildingObj
     public override List<Activity> InitActivities()
     {
         var acts = base.InitActivities();
-        acts.Add(new SelPipLineAct());
         return acts;
-    }
-    public FarmSaver GetSaver()
-    {
-        return (FarmSaver)objSaver;
     }
 }

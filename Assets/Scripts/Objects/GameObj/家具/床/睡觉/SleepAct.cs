@@ -23,14 +23,14 @@ public class SleepA : Act
         TC();
         Debug.Log("Sleep");
         Act act = null;
-        float random = UnityEngine.Random.Range(0f, 1f);
-        Debug.Log(random);
-        if (random<0.2f)
-        {
-            yield return GameArchitect.gameLogic.AddDecision(Person,new DecisionTex("ni hao shi jie","sfhsukdfssdjkfhsjkdfhsdf",new List<CardInf>() {
-                new CardInf("dadsad","fhsdfjkdgjg",()=>{ Debug.Log("应该成功了"); }) 
-            }));
-        }
+        //float random = UnityEngine.Random.Range(0f, 1f);
+        //Debug.Log(random);
+        //if (random<0.2f)
+        //{
+        //    yield return GameArchitect.gameLogic.AddDecision(Person,new DecisionTex("ni hao shi jie","sfhsukdfssdjkfhsjkdfhsdf",new List<CardInf>() {
+        //        new CardInf("dadsad","fhsdfjkdgjg",()=>{ Debug.Log("应该成功了"); }) 
+        //    }));
+        //}
         if (time.val > 1)
         {
             act = new SleepA(Person,Obj, time.val - 1);
@@ -80,7 +80,7 @@ public class SleepAct : Activity
     /// <returns></returns>
     public override Act Effect(Obj obj, Person person,params object[] objs)
     {
-        var selectTime = new SelectTime(person, obj, new int[] { 1 });
+        var selectTime = new SelectTime(person, obj, new int[] { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 });
         return GetActs(
             new SeqAct(person,obj,
             selectTime,

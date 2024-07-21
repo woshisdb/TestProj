@@ -51,7 +51,7 @@ public class ArrangeContractAct : Activity
     }
     public override bool Condition(Obj obj, Person person,params object[] objs)
     {
-        return true;
+        return ((BuildingObj)obj).remainBuilder == 0;
     }
     
     public override PAction GetAction()
@@ -135,7 +135,7 @@ public class AddContractAct : Activity
     }
     public override bool Condition(Obj obj, Person person,params object[] objs)
     {
-        return true;
+        return ((BuildingObj)obj).remainBuilder == 0;
     }
 
     public override PAction GetAction()
@@ -205,7 +205,7 @@ public class RemoveContractAct : Activity
     }
     public override bool Condition(Obj obj, Person person, params object[] objs)
     {
-        return true;
+        return ((BuildingObj)obj).remainBuilder == 0;
     }
 
     public override PAction GetAction()

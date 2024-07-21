@@ -24,7 +24,7 @@ public class CookA:Act
         time--;
         if (time == 0)
         {
-            buildingObj.rates[TransationEnum.cook].Release(selObj);
+            buildingObj.rates[TransationEnum.cook].RedRate(selObj);
             yield return Ret(new EndAct(Person, Obj), callback);//·µ»Ø
         }
         else
@@ -55,7 +55,7 @@ public class CookSelA : Act
         {
             var obj = ((ObjCont)data.Value).obj;
             selects.Add(//»î¶¯ÃèÊö
-                new CardInf(obj.objSaver.title, obj.objSaver.description + ":" + obj.objSaver.canCook.count,
+                new CardInf(obj.objSaver.title, obj.objSaver.description + ":" + obj.objSaver.TransCount(TransationEnum.cook),
                 () =>
                 {
                     selObj = obj;
@@ -69,7 +69,7 @@ public class CookSelA : Act
 
         if (selObj != null)
         {
-            building.rates[TransationEnum.cook].Use(selObj);
+            building.rates[TransationEnum.cook].AddRate(selObj);
             var seleA = new SelectTime(Person, selObj,new int[]{ 1,2,3,4,5,6,7,8});
             yield return Ret(
                 new SeqAct(Person,Obj,
@@ -118,6 +118,10 @@ public class CookAct : Activity
     public override Act Effect(Obj obj, Person person,params object[] objs)
     {
         return new CookSelA(person, obj);
+    }
+    public override bool Condition(Obj obj, Person person, params object[] objs)
+    {
+        return ((BuildingObj)obj).remainBuilder == 0;
     }
 
     public override PAction GetAction()

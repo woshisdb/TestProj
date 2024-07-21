@@ -76,6 +76,7 @@ public class TableModel:ICanRegisterEvent
     {
         obj.belong = this;
         objs.Add(obj);
+        GameArchitect.get.tableAsset.tableSaver.objs.Add(obj);
         UpdateTable();
     }
     public void RemoveToTable(Obj obj)

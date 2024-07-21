@@ -290,7 +290,7 @@ public class ContractManager
     }
 }
 
-[Map(typeof(PersonType),typeof(PersonSaver))]
+[Map(typeof(PersonType), "personSaver")]
 public class Person : AnimalObj
 {
     //***************************Éú³ÉÆ÷********************************

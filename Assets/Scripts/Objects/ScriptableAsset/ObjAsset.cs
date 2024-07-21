@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 [System.Serializable]
 public class ObjInf
@@ -17,59 +19,61 @@ public class ObjInf
 [System.Serializable]
 public class ObjSaver
 {
+    /// <summary>
+    /// 是否可以交易
+    /// </summary>
+    public bool canSell;
     [EnumPaging]
     public SaveTye saveTye;
     /// <summary>
     /// 对象类型
     /// </summary>
-    [EnumPaging]
-    public ObjEnum objEnum;
     [SerializeField]
     public int size=1;
     //public CardInf cardInf;
     public string title;
     public string description;
-    [SerializeField]
-    public ObjInf qieGe;//可以睡觉
-    [SerializeField]
-    public ObjInf shouHuo;//可以坐下来
-    [SerializeField]
-    public ObjInf canCook;//可以用于烹饪食物
-    [SerializeField]
-    public ObjInf gengZhong;//可以用于烹饪食物
-    [SerializeField]
-    public ObjInf zaiZhong;//可以用于烹饪食物
+    [OdinSerialize]
+    public Dictionary<TransationEnum, ObjInf> transPairs=new Dictionary<TransationEnum, ObjInf>();
     ////////////////////////////////////////////////////////
-    public int sleep;//睡觉
-    public int set;//坐
+    [OdinSerialize]
+    public Dictionary<SitEnum,int> sits=new Dictionary<SitEnum, int>();
+    public int SitVal(SitEnum sitEnum)
+    {
+        if(sits.ContainsKey(sitEnum))
+            return sits[sitEnum];
+        else
+            return 0;
+    }
+    public int TransCount(TransationEnum transationEnum)
+    {
+        if (transPairs.ContainsKey(transationEnum))
+            return transPairs[transationEnum].count;
+        else
+            return 0;
+    }
+    public bool TransCan(TransationEnum transationEnum)
+    {
+        if (transPairs.ContainsKey(transationEnum))
+            return transPairs[transationEnum].can;
+        else
+            return false;
+    }
+    public ObjEnum GetEnum()
+    {
+        return Map.Instance.saver2Enum[GetType()];
 
+    }
 }
-
-public enum ObjEnum
+public class Enum<T> where T : System.Enum
 {
-    PersonE,
-    BedObjE,
-    DeskObjE,
-    AnimalObjE,
-    ObjE,
-    PathObjE,
-    RawObjE,
-    FoodObjE,
-    BuildingObjE,
-    RestaurantObjE,
-    SeedObjE,
-    TreeObjE,
-    WheatObjE,
-    WheatSeedObjE,
-    WheatTreeObjE,
-    PlaceObjE,
-    WheatPlaceObjE,
-    FullWheatPlaceObjE,
-    MoneyObjE,
-    WheatFlourObjE,
-    FarmObjE,
-    ToolObjE
+    public T value;
+    public Enum(T v)
+    {
+        value = v;
+    }
 }
+
 
 public enum SaveTye
 {
@@ -105,55 +109,73 @@ public class ObjAsset : SerializedScriptableObject
     /// <summary>
     /// 默认构造Saver
     /// </summary>
-    [SerializeField]
-    public PersonSaver personSaver;
-    [SerializeField]
-    public AnimalSaver animalSaver;
-    [SerializeField]
-    public BedSaver bedSaver;
-    [SerializeField]
-    public DeskSaver deskSaver;
-    [SerializeField]
+
+    [NonSerialized,OdinSerialize]
     public ObjSaver objSaver;
-    [SerializeField]
+    [NonSerialized, OdinSerialize]
+    public AnimalSaver animalSaver;
+    [NonSerialized, OdinSerialize]
+    public PersonSaver personSaver;
+    [NonSerialized, OdinSerialize]
+    public BedSaver bedSaver;
+    [NonSerialized, OdinSerialize]
+    public DeskSaver deskSaver;
+    [NonSerialized, OdinSerialize]
     public PathSaver pathSaver;
-    [SerializeField]
+    [NonSerialized, OdinSerialize]
     public RawSaver rawSaver;
-    [SerializeField]
+    [NonSerialized, OdinSerialize]
     public FoodSaver foodSaver;
-    [SerializeField]
+    [NonSerialized, OdinSerialize]
     public BuildingSaver buildingSaver;
-    [SerializeField]
+    [NonSerialized, OdinSerialize]
     public RestaurantSaver restaurantSaver;
-    [SerializeField]
+    [NonSerialized, OdinSerialize]
+    public MiningSitSaver miningSitSaver;
+    [NonSerialized, OdinSerialize]
     public SeedSaver seedSaver;
-    [SerializeField]
+    [NonSerialized, OdinSerialize]
     public TreeSaver treeSaver;
-    [SerializeField]
+    //...........................小麦相关
+    [NonSerialized, OdinSerialize]
     public WheatSaver wheatSaver;
-    [SerializeField]
+    [NonSerialized, OdinSerialize]
     public WheatTreeSaver wheatTreeSaver;
-    [SerializeField, EnumPaging]
+    [NonSerialized, OdinSerialize, EnumPaging]
     public WheatSeedSaver wheatSeedSaver;
-    [SerializeField, EnumPaging]
+    [NonSerialized, OdinSerialize, EnumPaging]
     public WheatPlaceSaver wheatPlaceSaver;
-    [SerializeField, EnumPaging]
+    [NonSerialized, OdinSerialize, EnumPaging]
     public FullWheatPlaceSaver fullWheatPlaceSaver;
     public PlaceSaver placeSaver;
-    [SerializeField]
+    [NonSerialized, OdinSerialize]
     public WheatFlourSaver wheatFlourSaver;
-    [SerializeField]
+    //...........................
+    [NonSerialized, OdinSerialize]
+    public GoldSaver goldSaver;
+    [NonSerialized, OdinSerialize]
+    public GoldMiningSaver goldMiningSaver;
+    [NonSerialized, OdinSerialize]
+    public IronSaver ironSaver;
+    [NonSerialized, OdinSerialize]
+    public IronMiningSaver ironMiningSaver;
+    [NonSerialized, OdinSerialize]
+    public CoalSaver coalSaver;
+    [NonSerialized, OdinSerialize]
+    public CoalMiningSaver coalMiningSaver;
+    //....................
+    [NonSerialized, OdinSerialize]
     public FarmSaver farmSaver;
-    [SerializeField]
+    [NonSerialized, OdinSerialize]
     public MoneySaver moneySaver;
-    [SerializeField]
+    [NonSerialized, OdinSerialize]
     public ToolSaver toolSaver;
 
 
     /// <summary>
     /// 一系列的食物
     /// </summary>
-    [SerializeField]
+    [NonSerialized, OdinSerialize]
     public List<FoodSaver> foods;
     public ObjAsset()
     {

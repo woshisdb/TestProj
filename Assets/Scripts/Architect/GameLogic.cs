@@ -219,6 +219,20 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
         }
     }
     [Button]
+    public void AddObj(ObjEnum objEnum,string SceneName,ObjSaver objSaver=null)
+    {
+        var type = Map.Instance.enum2Type[objEnum];
+        var val = (Obj)Activator.CreateInstance(type, new object[] { objSaver });
+        var Sc = ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.tables.Find(e => { return e.TableName == SceneName; });
+        if (Sc == null)
+        {
+            Debug.Log("无法创建");
+            return;
+        }
+        Sc.AddToTable(val);
+    }
+
+    [Button]
     public void AddResource(string name,ObjEnum objEnum,int num)
     {
         var obj = (BuildingObj)GameArchitect.get.tableAsset.tableSaver.objs.Find((x) => { return x.name == name; });

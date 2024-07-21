@@ -56,6 +56,10 @@ public class BuyAct : Activity
     {
         return new BuyA(person, obj);
     }
+    public override bool Condition(Obj obj, Person person, params object[] objs)
+    {
+        return ((BuildingObj)obj).remainBuilder == 0;
+    }
 
     public override PAction GetAction()
     {
@@ -93,7 +97,7 @@ public class SellA : Act
                 foreach (var t in selects)
                 {
                     var x=(Obj)t.obj;
-                    buildingObj.goodsManager.Add(x.Enum(),1,ObjEnum.MoneyObjE,10, t.num);
+                    buildingObj.goodsManager.Add(x.GetEnum(),1,ObjEnum.MoneyObjE,10, t.num);
                 }
                 return true;
             }));
@@ -115,7 +119,10 @@ public class SellAct : Activity
     {
         return new SellA(person, obj);
     }
-
+    public override bool Condition(Obj obj, Person person, params object[] objs)
+    {
+        return ((BuildingObj)obj).remainBuilder == 0;
+    }
     public override PAction GetAction()
     {
         PAction action = new PAction();

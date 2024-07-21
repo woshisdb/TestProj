@@ -13,15 +13,18 @@ public class CameraController : MonoBehaviour
 
     private Vector3 dragOrigin;
 
+    private float dragRate;
+
     void Start()
     {
         // 初始化缩放Slider
         zoomSlider.minValue = minZoom;
         zoomSlider.maxValue = maxZoom;
         zoomSlider.value = Camera.main.orthographicSize;
-
+        dragRate= Camera.main.orthographicSize;
         // 监听Slider值变化
         zoomSlider.onValueChanged.AddListener(OnZoomSliderValueChanged);
+
     }
 
     void Update()
@@ -49,7 +52,7 @@ public class CameraController : MonoBehaviour
         Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
         Vector3 move = new Vector3(pos.x * moveSpeed, pos.y * moveSpeed, 0);
 
-        transform.Translate(-move, Space.World);
+        transform.Translate(-move*dragRate*0.7f, Space.World);
 
         dragOrigin = Input.mousePosition;
     }
@@ -67,5 +70,6 @@ public class CameraController : MonoBehaviour
     void OnZoomSliderValueChanged(float value)
     {
         Camera.main.orthographicSize = value;
+        dragRate = value;
     }
 }

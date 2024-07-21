@@ -5,11 +5,38 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum TransationEnum
 {
+	/// <summary>
+	/// 烹饪食物
+	/// </summary>
 	cook,
+	/// <summary>
+	/// 耕种农作物
+	/// </summary>
 	gengZhong,
+	/// <summary>
+	/// 采摘作物
+	/// </summary>
 	shouHuo,
+	/// <summary>
+	/// 栽种植物
+	/// </summary>
 	zaiZhong,
-	qieGe
+	/// <summary>
+	/// 砍树或是拆卸
+	/// </summary>
+	qieGe,
+	/// <summary>
+	/// 搭建建筑
+	/// </summary>
+	daJian,
+	/// <summary>
+	/// 规划建筑设备
+	/// </summary>
+	guiHua,
+	/// <summary>
+	/// 安装设备
+	/// </summary>
+	anZhuang
 }
 public enum SitEnum
 {
@@ -30,6 +57,22 @@ public class Trans
 	public Node to;
 	[SerializeField]
 	public Edge edge;
+
+	public virtual Source AddSource(Obj obj,Trans trans)
+	{
+		return new Source((BuildingObj)obj, ((BuildingObj)obj).resource, trans);
+	}
+}
+/// <summary>
+/// 持续需要资源的转移关系
+/// </summary>
+[System.Serializable]
+public class IterTrans:Trans
+{
+	public override Source AddSource(Obj obj, Trans trans)
+	{
+		return new IterSource((BuildingObj)obj, ((BuildingObj)obj).resource, trans);
+	}
 }
 
 [Serializable]
@@ -77,9 +120,24 @@ public class Edge
 [System.Serializable, CreateAssetMenu(fileName = "GameRule", menuName = "ScriptableObjects/RuleAsset")]
 public class NodeGraph:SerializedScriptableObject
 {
-	[SerializeField]
+	/// <summary>
+	/// 带有人性质的规则的转移
+	/// </summary>
 	public List<Trans> trans;
-
+    [Button]
+	public void AddTransToTrans(Trans t)
+	{
+		trans.Add(t);
+	}
+    /// <summary>
+    /// 世界固有规则的转移
+    /// </summary>
+	public List<Trans> worldRule;
+    [Button]
+	public void AddTransToWorld(Trans t)
+	{
+		worldRule.Add(t);
+	}
 }
 public class MapTo
 {

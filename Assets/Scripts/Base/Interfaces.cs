@@ -12,6 +12,7 @@ public class Map : Singleton<Map>
     public Dictionary<Type,ObjSaver> ks;
     public Dictionary<ObjEnum,Type> enum2Type;
     public Dictionary<ObjEnum,Obj> enum2Ins;
+    public Dictionary<Type,ObjEnum> saver2Enum;
     protected Map()
     {
         
@@ -23,6 +24,7 @@ public class Map : Singleton<Map>
         enum2Ins.Add(objEnum,obj);
         //Map.Instance.ks.Add(obj.GetType(), objSaver);
         enum2Type.Add(objEnum, obj.GetType());
+        saver2Enum.Add(objSaver.GetType(),objEnum);
     }
     public void Init()
     {
@@ -35,6 +37,7 @@ public class Map : Singleton<Map>
         enum2Type = new Dictionary<ObjEnum, Type>();
 
         enum2Ins = new Dictionary<ObjEnum, Obj>();
+        saver2Enum = new Dictionary<Type,ObjEnum>();
 
         Assembly assembly = Assembly.GetExecutingAssembly();
         // 查找所有带有 MapAttribute 属性的类
@@ -61,8 +64,7 @@ public class Map : Singleton<Map>
             }
             else
             {
-                saverName = ((MapAttribute)mapAttributes[0]).saver.Name;
-                saverName = char.ToLower(saverName[0]) + saverName.Substring(1);
+                saverName = ((MapAttribute)mapAttributes[0]).saver;
             }
             Debug.Log(enumName);
             ObjEnum.TryParse<ObjEnum>(enumName, out ObjEnum objEnum);

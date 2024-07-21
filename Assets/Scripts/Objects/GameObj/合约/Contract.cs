@@ -46,7 +46,7 @@ public enum BreakEffect
 
 }
 /// <summary>
-/// 人与人之间的合约
+/// 人与人之间的合约模板
 /// </summary>
 public abstract class Contract
 {

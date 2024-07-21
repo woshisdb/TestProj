@@ -134,7 +134,7 @@ public class SelPipLineAct:Activity
     }
     public override bool Condition(Obj obj, Person person, params object[] objs)
     {
-        return true;
+        return ((BuildingObj)obj).remainBuilder == 0;
     }
 
     public override PAction GetAction()
@@ -199,7 +199,7 @@ public class SetPipLineAct : Activity
     }
     public override bool Condition(Obj obj, Person person, params object[] objs)
     {
-        return true;
+        return ((BuildingObj)obj).remainBuilder == 0;
     }
 
     public override PAction GetAction()
@@ -223,13 +223,170 @@ public class SetPipLineAct : Activity
 }
 
 
+public class UseToolAct : Activity
+{
+    public int use;
+    public UseToolAct(Func<Obj, Person, object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null) : base(cond, eff)
+    {
+        use = 0;
+        activityName = "使用工具";
+        detail = "使用工具来工作";
+    }
+    public override bool Condition(Obj obj, Person person, params object[] objs)
+    {
+        return ((BuildingObj)obj).remainBuilder == 0;
+    }
 
+    public override PAction GetAction()
+    {
+        PAction action = new PAction();
+        return action;
+    }
 
+    /// <summary>
+    /// 效果
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="person"></param>
+    /// <param name="objs"></param>
+    /// <returns></returns>
+    public override Act Effect(Obj obj, Person person, params object[] objs)
+    {
+        int[] times = { 1,2,3,4,5,6,7,8,9,10,11,12};
+        var seleA = new SelectTime(person, obj, times);
+        var useA=new UseToolA(person, (BuildingObj)obj);
+        var relA = new ReleaseToolA(person, (BuildingObj)obj,useA.tool);
+        return GetActs(
+            new SeqAct(person,obj,
+            useA,
+            seleA,
+            new WasteTimeA(person,obj,seleA.selectTime),
+            relA
+            ),
+        obj, person, objs);
+    }
+}
 
+public class UseToolA : Act
+{
+    public Enum<ObjEnum> tool;
+    public UseToolA(Person person, BuildingObj obj, int priority = -1) : base(person, obj, priority)
+    {
+        wastTime = true;
+        tool= new Enum<ObjEnum>(ObjEnum.ObjE);
+    }
+    public override IEnumerator<object> Run(Action<Act> callback)
+    {
+        BuildingObj obj = (BuildingObj)Obj;
+        var pipline = GameArchitect.get.objAsset.nodeGraph.trans;
+        var sels = new List<CardInf>();
+        var objs = obj.resource.GetObjs(ObjEnum.ToolObjE);
+        foreach (var o in objs)
+        {
+            var x = o;
+            if(x.Value.remain>0)
+            sels.Add(new CardInf( Map.Instance.GetSaver(o.Key).title , Map.Instance.GetSaver(o.Key).description,
+                () =>
+                {
+                    obj.resource.Use(x.Key,1);
+                    tool.value = x.Key;
+                }
+            ));
+        }
+        yield return GameArchitect.gameLogic.AddDecision(Person,
+            new DecisionTex("使用工具", "选择工具来工作",
+            sels
+            )
+        );
+        yield return Ret(new EndAct(Person, Obj), callback);
+    }
+}
+public class ReleaseToolA : Act
+{
+    Enum<ObjEnum> v;
+    public ReleaseToolA(Person person, BuildingObj obj,Enum<ObjEnum> v, int priority = -1) : base(person, obj, priority)
+    {
+        wastTime = true;
+        this.v = v;
+    }
+    public override IEnumerator<object> Run(Action<Act> callback)
+    {
+        BuildingObj obj = (BuildingObj)Obj;
+        Debug.Log(v.value);
+        obj.resource.Release(v.value,1);
+        yield return Ret(new EndAct(Person, Obj), callback);
+    }
+}
 
+/// <summary>
+/// 建造活动
+/// </summary>
+public class BuildA : Act
+{
+    public BuildA(Person person, BuildingObj obj, int priority = -1) : base(person, obj, priority)
+    {
+        wastTime = true;
+    }
+    public override IEnumerator<object> Run(Action<Act> callback)
+    {
+        BuildingObj obj = (BuildingObj)Obj;
+        var pipline = GameArchitect.get.objAsset.nodeGraph.trans;
+        var sels = new List<SelectInf>(obj.pipLineManager.piplineItem.Count);
+        foreach (var s in obj.pipLineManager.piplineItem)
+        {
+            sels.Add(new SelectInf(s.Key.title, "", s.Value, 9999));
+        }
+        yield return GameArchitect.gameLogic.AddDecision(Person,
+            new SelectTex("设置管线", "设置管线比例", sels,
+            () => {
+                var selPipline = new List<Trans>();
+                for (int i = 0; i < sels.Count; i++)
+                {
+                    ((Source)sels[i].obj).maxnCount = sels[i].num;
+                }
+                return true;
+            }
+            )
+        );
+        yield return Ret(new EndAct(Person, Obj), callback);
+    }
+}
+/// <summary>
+/// 建造设施的活动
+/// </summary>
+public class BuildAct : Activity
+{
+    public int use;
+    public BuildAct(Func<Obj, Person, object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null) : base(cond, eff)
+    {
+        use = 0;
+        activityName = "设定管线限度";
+        detail = "选择管线的生产限度";
+    }
+    public override bool Condition(Obj obj, Person person, params object[] objs)
+    {
+        return ((BuildingObj)obj).remainBuilder == 0;
+    }
 
+    public override PAction GetAction()
+    {
+        PAction action = new PAction();
+        return action;
+    }
 
-
+    /// <summary>
+    /// 效果
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="person"></param>
+    /// <param name="objs"></param>
+    /// <returns></returns>
+    public override Act Effect(Obj obj, Person person, params object[] objs)
+    {
+        return GetActs(
+            new BuildA(person, (BuildingObj)obj), obj, person, objs);
+    }
+}
 
 
 
