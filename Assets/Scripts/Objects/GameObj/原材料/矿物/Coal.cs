@@ -2,11 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class CoalType : RawType
+public class CoalType : KuangType
 {
     public CoalType(string name = null) : base(name)
     {
@@ -14,14 +10,14 @@ public class CoalType : RawType
     }
 }
 [System.Serializable]
-public class CoalSaver : RawSaver
+public class CoalSaver : KuangSaver
 {
 
 }
 
 [Map()]
 // Ìú
-public class CoalObj : RawObj
+public class CoalObj : KuangObj
 {
     ///////////////////////////////////////
 
@@ -36,7 +32,7 @@ public class CoalObj : RawObj
     }
 }
 
-public class CoalMiningType : RawType
+public class CoalMiningType : KuangType
 {
     public CoalMiningType(string name = null) : base(name)
     {
@@ -44,17 +40,16 @@ public class CoalMiningType : RawType
     }
 }
 [System.Serializable]
-public class CoalMiningSaver : RawSaver
+public class CoalMiningSaver : KuangMiningSaver
 {
 
 }
 
 [Map()]
 // Ìú¿ó
-public class CoalMiningObj : RawObj
+public class CoalMiningObj : KuangMiningObj
 {
     ///////////////////////////////////////
-
     public CoalMiningObj(RawSaver objAsset = null) : base(objAsset)
     {
         Init();
@@ -63,5 +58,9 @@ public class CoalMiningObj : RawObj
     {
         var acts = base.InitActivities();
         return acts;
+    }
+    public override ObjEnum GetObj()
+    {
+        return ObjEnum.CoalObjE;
     }
 }

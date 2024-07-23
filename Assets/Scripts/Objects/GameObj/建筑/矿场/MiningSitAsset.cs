@@ -12,7 +12,7 @@ public class MiningSitType: BuildingType
 [System.Serializable]
 public class MiningSitSaver : BuildingSaver
 {
-
+    
 }
 
 [Map()]

@@ -30,6 +30,8 @@ public enum ObjEnum
     SeedObjE,
     TreeObjE,
     BuildingResObjE,//建筑的资源
+    KuangObjE,
+    KuangMiningObjE,
     //..........................建筑
     BuildingObjE,
     RestaurantObjE,

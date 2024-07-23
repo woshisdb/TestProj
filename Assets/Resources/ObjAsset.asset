@@ -292,7 +292,16 @@ MonoBehaviour:
       Entry: 5
       Data: false
     - Name: sleepState
-      Entry: 6
+      Entry: 7
+      Data: 18|PersonSVal, Assembly-CSharp
+    - Name: r
+      Entry: 3
+      Data: 0
+    - Name: val
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
     - Name: PersonName
       Entry: 6
@@ -301,73 +310,38 @@ MonoBehaviour:
       Entry: 5
       Data: false
     - Name: SafetyVals
+      Entry: 7
+      Data: 19|SafetyVals, Assembly-CSharp
+    - Name: baseLive
+      Entry: 3
+      Data: 0
+    - Name: enoughLive
+      Entry: 3
+      Data: 0
+    - Name: richLive
+      Entry: 3
+      Data: 0
+    - Name: foodMoney
       Entry: 6
       Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: HungryVals
-      Entry: 6
+      Entry: 7
+      Data: 20|HungryVals, Assembly-CSharp
+    - Name: r
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: bedSaver
       Entry: 7
-      Data: 18|BedSaver, Assembly-CSharp
-    - Name: canSell
-      Entry: 5
-      Data: false
-    - Name: saveTye
-      Entry: 3
-      Data: 0
-    - Name: size
-      Entry: 3
-      Data: 1
-    - Name: title
-      Entry: 6
-      Data: 
-    - Name: description
-      Entry: 6
-      Data: 
-    - Name: transPairs
-      Entry: 7
-      Data: 19|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 15
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: sits
-      Entry: 7
-      Data: 20|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 17
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: BedSit
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: deskSaver
-      Entry: 7
-      Data: 21|DeskSaver, Assembly-CSharp
+      Data: 21|BedSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -389,7 +363,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 6
+      Data: 15
     - Name: 
       Entry: 12
       Data: 0
@@ -405,7 +379,7 @@ MonoBehaviour:
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 8
+      Data: 17
     - Name: 
       Entry: 12
       Data: 0
@@ -415,12 +389,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: BedSit
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
-    - Name: pathSaver
+    - Name: deskSaver
       Entry: 7
-      Data: 24|PathSaver, Assembly-CSharp
+      Data: 24|DeskSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -442,7 +419,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 15
+      Data: 6
     - Name: 
       Entry: 12
       Data: 0
@@ -458,7 +435,7 @@ MonoBehaviour:
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 17
+      Data: 8
     - Name: 
       Entry: 12
       Data: 0
@@ -471,9 +448,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: rawSaver
+    - Name: pathSaver
       Entry: 7
-      Data: 27|RawSaver, Assembly-CSharp
+      Data: 27|PathSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -524,9 +501,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: foodSaver
+    - Name: rawSaver
       Entry: 7
-      Data: 30|FoodSaver, Assembly-CSharp
+      Data: 30|RawSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -574,16 +551,69 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: foodSaver
+      Entry: 7
+      Data: 33|FoodSaver, Assembly-CSharp
+    - Name: canSell
+      Entry: 5
+      Data: false
+    - Name: saveTye
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: transPairs
+      Entry: 7
+      Data: 34|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sits
+      Entry: 7
+      Data: 35|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 17
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: rawObj
       Entry: 7
-      Data: 33|Resource, Assembly-CSharp
+      Data: 36|Resource, Assembly-CSharp
     - Name: resources
       Entry: 7
-      Data: 34|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
+      Data: 37|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 35|System.Collections.Generic.EnumEqualityComparer`1[[ObjEnum, Assembly-CSharp]],
+      Data: 38|System.Collections.Generic.EnumEqualityComparer`1[[ObjEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -605,7 +635,7 @@ MonoBehaviour:
       Data: 
     - Name: rates
       Entry: 7
-      Data: 36|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[Rate,
+      Data: 39|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[Rate,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
@@ -621,7 +651,7 @@ MonoBehaviour:
       Data: 
     - Name: sites
       Entry: 7
-      Data: 37|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[Sit,
+      Data: 40|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[Sit,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
@@ -649,7 +679,7 @@ MonoBehaviour:
       Data: 
     - Name: buildingSaver
       Entry: 7
-      Data: 38|BuildingSaver, Assembly-CSharp
+      Data: 41|BuildingSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -667,7 +697,7 @@ MonoBehaviour:
       Data: 
     - Name: transPairs
       Entry: 7
-      Data: 39|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+      Data: 42|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
@@ -683,7 +713,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 7
-      Data: 40|ObjInf, Assembly-CSharp
+      Data: 43|ObjInf, Assembly-CSharp
     - Name: can
       Entry: 5
       Data: false
@@ -704,7 +734,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 7
-      Data: 41|ObjInf, Assembly-CSharp
+      Data: 44|ObjInf, Assembly-CSharp
     - Name: can
       Entry: 5
       Data: false
@@ -717,62 +747,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: sits
-      Entry: 7
-      Data: 42|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 17
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: container
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: restaurantSaver
-      Entry: 7
-      Data: 43|RestaurantSaver, Assembly-CSharp
-    - Name: canSell
-      Entry: 5
-      Data: false
-    - Name: saveTye
-      Entry: 3
-      Data: 0
-    - Name: size
-      Entry: 3
-      Data: 1
-    - Name: title
-      Entry: 6
-      Data: 
-    - Name: description
-      Entry: 6
-      Data: 
-    - Name: transPairs
-      Entry: 7
-      Data: 44|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 15
-    - Name: 
-      Entry: 12
-      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -801,9 +775,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: miningSitSaver
+    - Name: restaurantSaver
       Entry: 7
-      Data: 46|MiningSitSaver, Assembly-CSharp
+      Data: 46|RestaurantSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -840,8 +814,64 @@ MonoBehaviour:
       Data: 48|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
+      Entry: 9
+      Data: 17
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: container
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: miningSitSaver
       Entry: 7
-      Data: 49|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
+      Data: 49|MiningSitSaver, Assembly-CSharp
+    - Name: canSell
+      Entry: 5
+      Data: false
+    - Name: saveTye
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: transPairs
+      Entry: 7
+      Data: 50|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sits
+      Entry: 7
+      Data: 51|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 52|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -869,7 +899,7 @@ MonoBehaviour:
       Data: 
     - Name: seedSaver
       Entry: 7
-      Data: 50|SeedSaver, Assembly-CSharp
+      Data: 53|SeedSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -887,11 +917,11 @@ MonoBehaviour:
       Data: 
     - Name: transPairs
       Entry: 7
-      Data: 51|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+      Data: 54|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 52|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
+      Data: 55|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -902,59 +932,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: sits
-      Entry: 7
-      Data: 53|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 49
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: treeSaver
-      Entry: 7
-      Data: 54|TreeSaver, Assembly-CSharp
-    - Name: canSell
-      Entry: 5
-      Data: false
-    - Name: saveTye
-      Entry: 3
-      Data: 0
-    - Name: size
-      Entry: 3
-      Data: 1
-    - Name: title
-      Entry: 6
-      Data: 
-    - Name: description
-      Entry: 6
-      Data: 
-    - Name: transPairs
-      Entry: 7
-      Data: 55|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -970,7 +947,7 @@ MonoBehaviour:
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -983,9 +960,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: wheatSaver
+    - Name: treeSaver
       Entry: 7
-      Data: 57|WheatSaver, Assembly-CSharp
+      Data: 57|TreeSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1007,7 +984,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 52
+      Data: 55
     - Name: 
       Entry: 12
       Data: 0
@@ -1023,7 +1000,7 @@ MonoBehaviour:
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -1036,9 +1013,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: wheatTreeSaver
+    - Name: wheatSaver
       Entry: 7
-      Data: 60|WheatTreeSaver, Assembly-CSharp
+      Data: 60|WheatSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1060,7 +1037,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 52
+      Data: 55
     - Name: 
       Entry: 12
       Data: 0
@@ -1076,7 +1053,7 @@ MonoBehaviour:
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -1089,9 +1066,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: wheatSeedSaver
+    - Name: wheatTreeSaver
       Entry: 7
-      Data: 63|WheatSeedSaver, Assembly-CSharp
+      Data: 63|WheatTreeSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1113,7 +1090,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 52
+      Data: 55
     - Name: 
       Entry: 12
       Data: 0
@@ -1129,7 +1106,60 @@ MonoBehaviour:
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: wheatSeedSaver
+      Entry: 7
+      Data: 66|WheatSeedSaver, Assembly-CSharp
+    - Name: canSell
+      Entry: 5
+      Data: false
+    - Name: saveTye
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: transPairs
+      Entry: 7
+      Data: 67|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 55
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sits
+      Entry: 7
+      Data: 68|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -1144,7 +1174,7 @@ MonoBehaviour:
       Data: 
     - Name: wheatPlaceSaver
       Entry: 7
-      Data: 66|WheatPlaceSaver, Assembly-CSharp
+      Data: 69|WheatPlaceSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1162,11 +1192,11 @@ MonoBehaviour:
       Data: 
     - Name: transPairs
       Entry: 7
-      Data: 67|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+      Data: 70|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 52
+      Data: 55
     - Name: 
       Entry: 12
       Data: 0
@@ -1178,11 +1208,11 @@ MonoBehaviour:
       Data: 
     - Name: sits
       Entry: 7
-      Data: 68|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+      Data: 71|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -1200,7 +1230,7 @@ MonoBehaviour:
       Data: 
     - Name: fullWheatPlaceSaver
       Entry: 7
-      Data: 69|FullWheatPlaceSaver, Assembly-CSharp
+      Data: 72|FullWheatPlaceSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1218,11 +1248,11 @@ MonoBehaviour:
       Data: 
     - Name: transPairs
       Entry: 7
-      Data: 70|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+      Data: 73|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 52
+      Data: 55
     - Name: 
       Entry: 12
       Data: 0
@@ -1234,11 +1264,11 @@ MonoBehaviour:
       Data: 
     - Name: sits
       Entry: 7
-      Data: 71|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+      Data: 74|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -1256,63 +1286,7 @@ MonoBehaviour:
       Data: 
     - Name: placeSaver
       Entry: 7
-      Data: 72|PlaceSaver, Assembly-CSharp
-    - Name: canSell
-      Entry: 5
-      Data: false
-    - Name: saveTye
-      Entry: 3
-      Data: 0
-    - Name: size
-      Entry: 3
-      Data: 1
-    - Name: title
-      Entry: 6
-      Data: 
-    - Name: description
-      Entry: 6
-      Data: 
-    - Name: transPairs
-      Entry: 7
-      Data: 73|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 52
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: sits
-      Entry: 7
-      Data: 74|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 49
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: xl
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: wheatFlourSaver
-      Entry: 7
-      Data: 75|WheatFlourSaver, Assembly-CSharp
+      Data: 75|PlaceSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1334,7 +1308,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 52
+      Data: 55
     - Name: 
       Entry: 12
       Data: 0
@@ -1350,7 +1324,7 @@ MonoBehaviour:
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -1360,12 +1334,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: xl
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
-    - Name: goldSaver
+    - Name: wheatFlourSaver
       Entry: 7
-      Data: 78|GoldSaver, Assembly-CSharp
+      Data: 78|WheatFlourSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1387,7 +1364,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 52
+      Data: 55
     - Name: 
       Entry: 12
       Data: 0
@@ -1403,7 +1380,7 @@ MonoBehaviour:
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -1416,9 +1393,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: goldMiningSaver
+    - Name: kuangSaver
       Entry: 7
-      Data: 81|GoldMiningSaver, Assembly-CSharp
+      Data: 81|KuangSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1439,8 +1416,18 @@ MonoBehaviour:
       Data: 82|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
         Assembly-CSharp]], mscorlib
     - Name: comparer
-      Entry: 9
-      Data: 52
+      Entry: 7
+      Data: 83|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 12
       Data: 0
@@ -1452,11 +1439,21 @@ MonoBehaviour:
       Data: 
     - Name: sits
       Entry: 7
-      Data: 83|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+      Data: 84|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
-      Entry: 9
-      Data: 49
+      Entry: 7
+      Data: 85|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 12
       Data: 0
@@ -1469,9 +1466,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: ironSaver
+    - Name: kuangMiningSaver
       Entry: 7
-      Data: 84|IronSaver, Assembly-CSharp
+      Data: 86|KuangMiningSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1489,11 +1486,11 @@ MonoBehaviour:
       Data: 
     - Name: transPairs
       Entry: 7
-      Data: 85|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+      Data: 87|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 52
+      Data: 83
     - Name: 
       Entry: 12
       Data: 0
@@ -1505,11 +1502,11 @@ MonoBehaviour:
       Data: 
     - Name: sits
       Entry: 7
-      Data: 86|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+      Data: 88|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 85
     - Name: 
       Entry: 12
       Data: 0
@@ -1522,9 +1519,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: ironMiningSaver
+    - Name: goldSaver
       Entry: 7
-      Data: 87|IronMiningSaver, Assembly-CSharp
+      Data: 89|GoldSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1533,7 +1530,7 @@ MonoBehaviour:
       Data: 0
     - Name: size
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: title
       Entry: 6
       Data: 
@@ -1541,49 +1538,23 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: transPairs
-      Entry: 7
-      Data: 88|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 52
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: sits
-      Entry: 7
-      Data: 89|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 49
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
+      Entry: 6
       Data: 
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: coalSaver
+    - Name: goldMiningSaver
       Entry: 7
-      Data: 90|CoalSaver, Assembly-CSharp
+      Data: 90|GoldMiningSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
     - Name: saveTye
       Entry: 3
-      Data: 0
+      Data: 4
     - Name: size
       Entry: 3
       Data: 1
@@ -1599,7 +1570,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 52
+      Data: 55
     - Name: 
       Entry: 12
       Data: 0
@@ -1615,7 +1586,7 @@ MonoBehaviour:
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -1628,9 +1599,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: coalMiningSaver
+    - Name: ironSaver
       Entry: 7
-      Data: 93|CoalMiningSaver, Assembly-CSharp
+      Data: 93|IronSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1652,7 +1623,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 52
+      Data: 55
     - Name: 
       Entry: 12
       Data: 0
@@ -1668,7 +1639,7 @@ MonoBehaviour:
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -1681,15 +1652,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: farmSaver
+    - Name: ironMiningSaver
       Entry: 7
-      Data: 96|FarmSaver, Assembly-CSharp
+      Data: 96|IronMiningSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
     - Name: saveTye
       Entry: 3
-      Data: 0
+      Data: 4
     - Name: size
       Entry: 3
       Data: 1
@@ -1705,7 +1676,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 52
+      Data: 55
     - Name: 
       Entry: 12
       Data: 0
@@ -1721,7 +1692,7 @@ MonoBehaviour:
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -1731,15 +1702,12 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: container
-      Entry: 3
-      Data: 0
     - Name: 
       Entry: 8
       Data: 
-    - Name: moneySaver
+    - Name: coalSaver
       Entry: 7
-      Data: 99|MoneySaver, Assembly-CSharp
+      Data: 99|CoalSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1761,7 +1729,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 52
+      Data: 55
     - Name: 
       Entry: 12
       Data: 0
@@ -1777,7 +1745,7 @@ MonoBehaviour:
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -1790,9 +1758,62 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: toolSaver
+    - Name: coalMiningSaver
       Entry: 7
-      Data: 102|ToolSaver, Assembly-CSharp
+      Data: 102|CoalMiningSaver, Assembly-CSharp
+    - Name: canSell
+      Entry: 5
+      Data: false
+    - Name: saveTye
+      Entry: 3
+      Data: 4
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: transPairs
+      Entry: 7
+      Data: 103|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 55
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sits
+      Entry: 7
+      Data: 104|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 52
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: farmSaver
+      Entry: 7
+      Data: 105|FarmSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1810,8 +1831,24 @@ MonoBehaviour:
       Data: 
     - Name: transPairs
       Entry: 7
-      Data: 103|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+      Data: 106|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
         Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 55
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sits
+      Entry: 7
+      Data: 107|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
       Data: 52
@@ -1824,13 +1861,106 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: container
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: moneySaver
+      Entry: 7
+      Data: 108|MoneySaver, Assembly-CSharp
+    - Name: canSell
+      Entry: 5
+      Data: false
+    - Name: saveTye
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: transPairs
+      Entry: 7
+      Data: 109|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 55
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: sits
       Entry: 7
-      Data: 104|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+      Data: 110|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 49
+      Data: 52
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: toolSaver
+      Entry: 7
+      Data: 111|ToolSaver, Assembly-CSharp
+    - Name: canSell
+      Entry: 5
+      Data: false
+    - Name: saveTye
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: transPairs
+      Entry: 7
+      Data: 112|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 55
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sits
+      Entry: 7
+      Data: 113|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 52
     - Name: 
       Entry: 12
       Data: 0
@@ -1846,9 +1976,82 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: buildingResSaver
+      Entry: 7
+      Data: 114|BuildingResSaver, Assembly-CSharp
+    - Name: canSell
+      Entry: 5
+      Data: false
+    - Name: saveTye
+      Entry: 3
+      Data: 2
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 1
+      Data: "\u5EFA\u7B51\u8D44\u6E90"
+    - Name: description
+      Entry: 1
+      Data: "\u5EFA\u7B51\u7684\u57FA\u7840\u8D44\u6E90"
+    - Name: transPairs
+      Entry: 7
+      Data: 115|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 116|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sits
+      Entry: 7
+      Data: 117|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 118|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: foods
       Entry: 7
-      Data: 105|System.Collections.Generic.List`1[[FoodSaver, Assembly-CSharp]],
+      Data: 119|System.Collections.Generic.List`1[[FoodSaver, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12

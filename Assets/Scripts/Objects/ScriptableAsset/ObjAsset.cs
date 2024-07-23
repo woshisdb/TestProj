@@ -152,6 +152,10 @@ public class ObjAsset : SerializedScriptableObject
     public WheatFlourSaver wheatFlourSaver;
     //...........................
     [NonSerialized, OdinSerialize]
+    public KuangSaver kuangSaver;
+    [NonSerialized, OdinSerialize]
+    public KuangMiningSaver kuangMiningSaver;
+    [NonSerialized, OdinSerialize]
     public GoldSaver goldSaver;
     [NonSerialized, OdinSerialize]
     public GoldMiningSaver goldMiningSaver;
@@ -170,7 +174,8 @@ public class ObjAsset : SerializedScriptableObject
     public MoneySaver moneySaver;
     [NonSerialized, OdinSerialize]
     public ToolSaver toolSaver;
-
+    [NonSerialized, OdinSerialize]
+    public BuildingResSaver buildingResSaver;
 
     /// <summary>
     /// 一系列的食物

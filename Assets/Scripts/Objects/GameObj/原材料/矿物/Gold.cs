@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoldType : RawType
+public class GoldType : KuangType
 {
     public GoldType(string name = null) : base(name)
     {
@@ -14,14 +14,14 @@ public class GoldType : RawType
     }
 }
 [System.Serializable]
-public class GoldSaver : RawSaver
+public class GoldSaver : KuangSaver
 {
 
 }
 
 [Map()]
 // ½ð×Ó
-public class GoldObj : RawObj
+public class GoldObj : KuangObj
 {
     ///////////////////////////////////////
 
@@ -36,7 +36,7 @@ public class GoldObj : RawObj
     }
 }
 
-public class GoldMiningType : RawType
+public class GoldMiningType : KuangMiningType
 {
     public GoldMiningType(string name = null) : base(name)
     {
@@ -44,17 +44,16 @@ public class GoldMiningType : RawType
     }
 }
 [System.Serializable]
-public class GoldMiningSaver : RawSaver
+public class GoldMiningSaver : KuangMiningSaver
 {
    
 }
 
 [Map()]
 // ½ð¿ó
-public class GoldMiningObj : RawObj
+public class GoldMiningObj : KuangMiningObj
 {
     ///////////////////////////////////////
-
     public GoldMiningObj(RawSaver objAsset = null) : base(objAsset)
     {
         Init();
@@ -63,5 +62,9 @@ public class GoldMiningObj : RawObj
     {
         var acts = base.InitActivities();
         return acts;
+    }
+    public override ObjEnum GetObj()
+    {
+        return ObjEnum.GoldObjE;
     }
 }
