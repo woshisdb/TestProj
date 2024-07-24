@@ -50,6 +50,42 @@ public class CodeData
     [SerializeField]
     public Activity activity;
 }
+/// <summary>
+/// 描述一个要做的活动,按照这个执行
+/// </summary>
+public class ActSelData
+{
+    /// <summary>
+    /// 需要执行的活动
+    /// </summary>
+    public Activity activity;
+    /// <summary>
+    /// 要互动的目标对象
+    /// </summary>
+    public Obj aimObj;
+    /// <summary>
+    /// 需要连续执行的活动
+    /// </summary>
+    public List<WinData> wins;
+}
+/// <summary>
+/// 选择行为
+/// </summary>
+public class WinData
+{
+    
+}
+
+public class SelData:WinData
+{
+    List<System.Tuple<object, int>> selects;//选择的行为
+}
+
+public class DecData : WinData
+{
+    public string selc;
+}
+
 public struct BeginActEvent
 {
     public Person Person;

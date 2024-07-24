@@ -88,4 +88,8 @@ public class TimeModel : AbstractModel
         int s=time % timeStep;
         return s/2 + ":" + ((s%2==0)?"00-30":"30-60");
     }
+    public int NextDay(int day)
+    {
+        return Time.val + timeStep * day;
+    }
 }
