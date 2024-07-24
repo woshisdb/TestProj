@@ -116,7 +116,7 @@ public class OptionUIControl : MonoBehaviour, IController, ICanRegisterEvent
                 {
                     var str = GameArchitect.get.GetModel<TimeModel>().GetTimeHour(i);
                     if (updateCode.person.codeData.dataDatas[i].hasAct)
-                        res.Add(new CardInf(str, updateCode.person.codeData.dataDatas[i].activity.activityName, () => { }));
+                        res.Add(new CardInf(str, updateCode.person.codeData.dataDatas[i].activity.activity.activityName, () => { }));
                     else
                         res.Add(new CardInf(str, "empty", () => { }));
                 }

@@ -32,14 +32,14 @@ public class CodeSaver
     public Act GetAct(Person person,int time)
     {
         var data=dataDatas[TimeModel.GetHours(time)];
-        if (data.activity.Condition(data.obj,person, data.time))
-        {
-            return data.activity.Effect(data.obj,person,data.time);
-        }
-        else
-        {
-            return null;
-        }
+        //if (data.activity.Condition(data.obj,person, data.time))
+        //{
+        //    return data.activity.Effect(data.obj,person,data.time);
+        //}
+        //else
+        //{
+        return null;
+        //}
     }
 }
 [ShowOdinSerializedPropertiesInInspector]
@@ -58,10 +58,8 @@ public class TableSaver
     public List<Person> personList;
     [OdinSerialize]
     public List<TableModel> tables;
-    //[OdinSerialize]
-    //public List<Activity> activities;
     [OdinSerialize]
-    public List<CodeSaver> codeDatas;
+    public List<CodeSystemData> codeDatas;
     [OdinSerialize]
     public ContractModel contractModel;
     public TableSaver()
@@ -69,7 +67,7 @@ public class TableSaver
         tables = new List<TableModel>();
         objs=new List<Obj>();
         personList = new List<Person>();
-        codeDatas = new List<CodeSaver>();
+        codeDatas = new List<CodeSystemData>();
     }
 }
 

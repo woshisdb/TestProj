@@ -20,56 +20,55 @@ public abstract class Contract
     /// <summary>
     /// 协议甲方
     /// </summary>
-    public Person ap;//甲方
+    public Person ap;
     /// <summary>
-    /// 协议
+    /// 协议乙方
     /// </summary>
-    public Person bp;//乙方
+    public Person bp;
     public int signTime;
+    public int aimTime;
     /// <summary>
     /// 选择要做的行为
     /// </summary>
-    public ActSelData actSelData;
+    public CodeSystemData codeData;
+    public bool hasSign;
     public Contract()
     {
+        hasSign = false;
     }
-    /// <summary>
-    /// 条件
-    /// </summary>
-    public abstract string Condition();
-    /// <summary>
-    /// 效果
-    /// </summary>
-    /// <param name="str"></param>
-    public abstract void Effect(string str);
     /// <summary>
     /// 签署协议
     /// </summary>
     public virtual void Sign()
     {
-        this.signTime = GameArchitect.get.GetModel<TimeModel>().GetTime();
+        signTime = GameArchitect.get.GetModel<TimeModel>().GetTime();
+        aimTime = GameArchitect.get.GetModel<TimeModel>().NextDay(30);
+        hasSign = true;
     }
+    /// <summary>
+    /// 效果
+    /// </summary>
+    /// <param name="str"></param>
+    public abstract void Effect();
 }
 /// <summary>
 /// 雇佣工作的协议
 /// </summary>
 public class WorkContract : Contract
 {
-    public int sum;
-    public int aimSum;
-    public int aimTime;
+    public WorkContract():base()
+    {
+        cardInf = new CardInf("工作","做工作");
+    }
+    /// <summary>
+    /// 目标时间
+    /// </summary>
     public override void Sign()
     {
         base.Sign();
-        aimTime = GameArchitect.get.GetModel<TimeModel>().NextDay(30);
-        sum = 100;
-    }
-    public override string Condition()
-    {
-
     }
 
-    public override void Effect(string str)
+    public override void Effect()
     {
         return;
     }
@@ -81,7 +80,9 @@ public class ContractModel : AbstractModel
     /// 合约的模板
     /// </summary>
     public List<Contract> contractTemplate;
-    //未签订的合约
+    /// <summary>
+    /// 未签订的合约
+    /// </summary>
     public List<Contract> unSignContract;
     /******************************已签署合约********************************/
     /// <summary>
@@ -118,7 +119,7 @@ public class ContractModel : AbstractModel
         }
         contractTemplate = new List<Contract>();
         //996的活动
-        contractTemplate.Add(new Work996Contract());
+        contractTemplate.Add(new WorkContract());
     }
     public List<Contract> GetUnSignContract()
     {
@@ -141,7 +142,7 @@ public class ContractModel : AbstractModel
     public virtual void SignContract(Contract contract,Person person)
     {
         unSignContract.Remove(contract);
-        contract.hasAccept = true;
+        contract.hasSign = true;
         contract.bp = person;
         bContract.GetValueOrDefault(person).Add(contract);
     }

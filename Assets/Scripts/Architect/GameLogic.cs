@@ -24,15 +24,59 @@ public class BeginSelectEvent
 }
 public class EndSelectEvent
 {
-
 }
+public enum CodeSystemEnum
+{
+    week,
+    month,
+    year,
+}
+public class CodeSystemData
+{
+    public string name;
+    /// <summary>
+    /// 类型
+    /// </summary>
+    public CodeSystemEnum code;
+    public List<int> week;
+}
+public class CodeSystemDataWeek: CodeSystemData
+{
+    public CodeData[] work = new CodeData[48];
+    public CodeSystemDataWeek()
+    {
+        week = new List<int>(7);
+        for(int i = 0; i < 7; i++)
+        { week.Add(0); }
+    }
+}
+public class CodeSystemDataMonth : CodeSystemData
+{
+    public CodeData[] work = new CodeData[48];
+    public CodeSystemDataMonth()
+    {
+        week = new List<int>(30);
+        for (int i = 0; i < 30; i++)
+        { week.Add(0); }
+    }
+}
+public class CodeSystemDataYear : CodeSystemData
+{
+    public CodeData[] work= new CodeData[48];
+    public CodeSystemDataYear()
+    {
+        week = new List<int>(360);
+        for (int i = 0; i < 360; i++)
+        { week.Add(0); }
+    }
+}
+
 /// <summary>
 /// 活动结构，时间和活动
 /// </summary>
 [System.Serializable]
 public class CodeData
 {
-    public Color color;
     public bool hasAct;
     /// <summary>
     /// 当前的对象
@@ -43,12 +87,8 @@ public class CodeData
     /// 花费的时间
     /// </summary>
     public int time;
-    /// <summary>
-    /// 开始时间
-    /// </summary>
-    public int beginTime;
     [SerializeField]
-    public Activity activity;
+    public ActSelData activity;
 }
 /// <summary>
 /// 描述一个要做的活动,按照这个执行
@@ -78,7 +118,7 @@ public class WinData
 
 public class SelData:WinData
 {
-    List<System.Tuple<object, int>> selects;//选择的行为
+    public List<System.Tuple<object, int>> selects;//选择的行为
 }
 
 public class DecData : WinData
@@ -148,19 +188,19 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
         unityActions = new List<UnityAction>();
         StartCoroutine(WindowSwitch());
     }
-    public void OnWinChange(int win)
+    public void OnWinChange(int win)//待修改
     {
         Debug.Log(win);
         if (win == 2)
         {
             GameLogic.isCoding = true;
-            GameArchitect.gameLogic.codeControler.InitObjCards();
+            //-----------------------GameArchitect.gameLogic.codeControler.InitObjCards();
         }
         else
         {
-            GameArchitect.gameLogic.codeControler.nowObj = null;
-            GameArchitect.gameLogic.codeControler.nowActivity = null;
-            GameArchitect.gameLogic.codeControler.nowAct.text = "";
+            //GameArchitect.gameLogic.codeControler.nowObj = null;
+            //GameArchitect.gameLogic.codeControler.nowActivity = null;
+            //GameArchitect.gameLogic.codeControler.nowAct.text = "";
             GameLogic.isCoding = false;
         }
     }
@@ -177,7 +217,7 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     public static void ToCoding()
     {
         GameLogic.isCoding = true;
-        GameArchitect.gameLogic.codeControler.InitObjCards();
+        //----------------------GameArchitect.gameLogic.codeControler.InitObjCards();
         unityActions.Add(() => {
         windowsmanager.OpenWindowByIndex(2);
         });
