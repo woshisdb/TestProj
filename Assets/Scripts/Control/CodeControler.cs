@@ -46,6 +46,7 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
     /// </summary>
     public WindowDragger openScene;
     public WindowDragger addScene;
+    public List<CardControlUi> nowCards;
     /// <summary>
     /// 系统数据根节点
     /// </summary>
@@ -70,13 +71,13 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
         {
             saveBtn.gameObject.SetActive(false);
             timeLineObj.gameObject.SetActive(false);
-            loadBtn.gameObject.SetActive(false);
+            //loadBtn.gameObject.SetActive(false);
         }
         else
         {
             saveBtn.gameObject.SetActive(true);
             timeLineObj.gameObject.SetActive(true);
-            loadBtn.gameObject.SetActive(true);
+            //loadBtn.gameObject.SetActive(true);
         }
         newBtn.onClick.AddListener(
             () => { addScene.gameObject.SetActive(true); }
@@ -108,11 +109,16 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
             systemDataViewList.UpdataListView(cardInfs);
             List<CardInf> dayInfs = new List<CardInf>();
         });
+        nowCards = new List<CardControlUi>();
         this.RegisterEvent<SelectObjEvent>(
             e=> {
                 if (GameLogic.isCoding == false)
                 {
-
+                    foreach (var t in nowCards)
+                    {
+                        t.gameObject.SetActive(false);
+                    }
+                    nowCards.Clear();
                 }
             }
         );
@@ -165,6 +171,10 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
             var btn=timeLine[i].GetComponent<Button>();
             var title = timeLine[i].GetComponentInChildren<TextMeshProUGUI>();
             title.text = i+"";
+            int x = i;
+            btn.onClick.AddListener(() => 
+            {
+            });
         }
         List<CardInf> cardInfs=new List<CardInf>();
         Debug.Log("????" + systemData.week.Count);

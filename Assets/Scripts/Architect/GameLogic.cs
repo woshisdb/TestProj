@@ -39,12 +39,19 @@ public class CodeSystemData
     /// </summary>
     public CodeSystemEnum code;
     public List<int> week;
+    public List<CodeData> work;
+    public CodeSystemData()
+    {
+        work= new List<CodeData>();
+        for (int i = 0; i < 48; i++)
+        { work.Add(new CodeData()); }
+    }
 }
 public class CodeSystemDataWeek: CodeSystemData
 {
-    public CodeData[] work = new CodeData[48];
-    public CodeSystemDataWeek()
+    public CodeSystemDataWeek():base()
     {
+        code = CodeSystemEnum.week;
         week = new List<int>(7);
         for(int i = 0; i < 7; i++)
         { week.Add(0); }
@@ -52,9 +59,9 @@ public class CodeSystemDataWeek: CodeSystemData
 }
 public class CodeSystemDataMonth : CodeSystemData
 {
-    public CodeData[] work = new CodeData[48];
-    public CodeSystemDataMonth()
+    public CodeSystemDataMonth() : base()
     {
+        code = CodeSystemEnum.month;
         week = new List<int>(30);
         for (int i = 0; i < 30; i++)
         { week.Add(0); }
@@ -62,9 +69,9 @@ public class CodeSystemDataMonth : CodeSystemData
 }
 public class CodeSystemDataYear : CodeSystemData
 {
-    public CodeData[] work= new CodeData[48];
-    public CodeSystemDataYear()
+    public CodeSystemDataYear() : base()
     {
+        code = CodeSystemEnum.year;
         week = new List<int>(360);
         for (int i = 0; i < 360; i++)
         { week.Add(0); }
@@ -81,33 +88,34 @@ public class CodeData
     /// <summary>
     /// 当前的对象
     /// </summary>
+    [ValueDropdown("Objs")]
     public Obj obj;
-    [SerializeField]
-    /// <summary>
-    /// 花费的时间
-    /// </summary>
-    public int time;
-    [SerializeField]
-    public ActSelData activity;
-}
-/// <summary>
-/// 描述一个要做的活动,按照这个执行
-/// </summary>
-public class ActSelData
-{
     /// <summary>
     /// 需要执行的活动
     /// </summary>
+    
     public Activity activity;
-    /// <summary>
-    /// 要互动的目标对象
-    /// </summary>
-    public Obj aimObj;
+    [SerializeField]
     /// <summary>
     /// 需要连续执行的活动
     /// </summary>
     public List<WinData> wins;
+    public CodeData()
+    {
+        hasAct = false;
+        wins = new List<WinData>();
+    }
+    public static IEnumerable Objs()
+    {
+        var ret=new ValueDropdownList<Obj>();
+        foreach(var x in GameArchitect.get.tableAsset.tableSaver.objs)
+        {
+            ret.Add(x.name,x);
+        }
+        return ret;
+    }
 }
+
 /// <summary>
 /// 选择行为
 /// </summary>
@@ -118,7 +126,7 @@ public class WinData
 
 public class SelData:WinData
 {
-    public List<System.Tuple<object, int>> selects;//选择的行为
+    public List<System.Tuple<string, int>> selects;//选择的行为
 }
 
 public class DecData : WinData
