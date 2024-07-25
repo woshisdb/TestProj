@@ -84,6 +84,7 @@ public class CodeSystemDataYear : CodeSystemData
 [System.Serializable]
 public class CodeData
 {
+    public int time;
     public bool hasAct;
     /// <summary>
     /// 当前的对象
@@ -93,7 +94,6 @@ public class CodeData
     /// <summary>
     /// 需要执行的活动
     /// </summary>
-    
     public Activity activity;
     [SerializeField]
     /// <summary>

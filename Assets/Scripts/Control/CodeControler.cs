@@ -39,7 +39,7 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
     public List<GameObject> timeLine;
     public GameObject dayList;
     public GameObject timeLineObj;
-    public CodeSystemData systemData;
+    public static CodeSystemData systemData;
     public CodeSystemEnum systemEnum;
     /// <summary>
     /// мов╖

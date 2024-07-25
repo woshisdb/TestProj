@@ -27,6 +27,7 @@ public abstract class Contract
     public Person bp;
     public int signTime;
     public int aimTime;
+    public int spaceTime;
     /// <summary>
     /// 选择要做的行为
     /// </summary>
@@ -42,7 +43,6 @@ public abstract class Contract
     public virtual void Sign()
     {
         signTime = GameArchitect.get.GetModel<TimeModel>().GetTime();
-        aimTime = GameArchitect.get.GetModel<TimeModel>().NextDay(30);
         hasSign = true;
     }
     /// <summary>
@@ -60,12 +60,22 @@ public class WorkContract : Contract
     {
         cardInf = new CardInf("工作","做工作");
     }
+    public WorkContract(string codeData,int contractTime,Person ap):base()
+    {
+        cardInf = new CardInf("工作", "做工作");
+        var t=GameArchitect.get.tableAsset.tableSaver.codeDatas.Find(x => x.name == codeData);
+        this.codeData = t;
+        spaceTime = contractTime;
+        hasSign = false;
+        this.ap = ap;
+    }
     /// <summary>
     /// 目标时间
     /// </summary>
     public override void Sign()
     {
         base.Sign();
+        aimTime = GameArchitect.get.GetModel<TimeModel>().NextDay(spaceTime);
     }
 
     public override void Effect()

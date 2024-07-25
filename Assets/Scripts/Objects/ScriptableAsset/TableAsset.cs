@@ -60,6 +60,7 @@ public class TableSaver
     public List<TableModel> tables;
     [OdinSerialize]
     public List<CodeSystemData> codeDatas;
+
     [OdinSerialize]
     public ContractModel contractModel;
     public TableSaver()
