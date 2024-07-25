@@ -192,7 +192,7 @@ MonoBehaviour:
       Data: "\u519C\u573A"
     - Name: description
       Entry: 1
-      Data: 'FarmObjE:110/110
+      Data: 'WheatObjE:110/110
 
 '
     - Name: effect
@@ -272,7 +272,7 @@ MonoBehaviour:
       Data: System.String, mscorlib
     - Name: m_StringValue
       Entry: 1
-      Data: 'FarmObjE:110/110
+      Data: 'WheatObjE:110/110
 
 '
     - Name: type
@@ -3304,8 +3304,8 @@ MonoBehaviour:
       Entry: 7
       Data: 187|CodeSystemDataMonth, Assembly-CSharp
     - Name: name
-      Entry: 1
-      Data: "\u5427v\u4E0B"
+      Entry: 6
+      Data: 
     - Name: code
       Entry: 3
       Data: 1

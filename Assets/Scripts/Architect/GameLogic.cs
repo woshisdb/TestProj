@@ -127,6 +127,10 @@ public class WinData
 public class SelData:WinData
 {
     public List<System.Tuple<string, int>> selects;//选择的行为
+    public SelData()
+    {
+        selects = new List<System.Tuple<string, int>>();
+    }
 }
 
 public class DecData : WinData
