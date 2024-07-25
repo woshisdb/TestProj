@@ -30,6 +30,7 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
     public CustomDropdown dataDropdown;
     public TextMeshProUGUI nowAct;
     public TextMeshProUGUI nowData;
+    public TMP_InputField meshField;
     public Button saveBtn;
     public Button loadBtn;
     public Button newBtn;
@@ -50,8 +51,10 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
     /// </summary>
     public Transform systemDataRoot;
     public GameObject timeList;
+    public GameObject actRoot;
     public CardViewList<CardControlUi, CardInf> systemDataViewList;
     public CardViewList<CardControlUi, CardInf> dayDataViewList;
+    public CardViewList<CardControlUi, CardInf> actsList;
     public IArchitecture GetArchitecture()
     {
         return GameArchitect.Interface;
@@ -89,6 +92,10 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
         {
             openScene.gameObject.SetActive(true);
             List<CardInf> cardInfs = new List<CardInf>();
+            if (GameArchitect.get.tableAsset.tableSaver.codeDatas==null)
+            {
+                GameArchitect.get.tableAsset.tableSaver.codeDatas = new List<CodeSystemData>();
+            }
             foreach (var x in GameArchitect.get.tableAsset.tableSaver.codeDatas)
             {
                 var data = x;
@@ -101,7 +108,14 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
             systemDataViewList.UpdataListView(cardInfs);
             List<CardInf> dayInfs = new List<CardInf>();
         });
+        this.RegisterEvent<SelectObjEvent>(
+            e=> {
+                if (GameLogic.isCoding == false)
+                {
 
+                }
+            }
+        );
     }
 
     public void AddData()
@@ -118,6 +132,12 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
         {
             systemData = new CodeSystemDataYear();
         }
+        if (GameArchitect.get.tableAsset.tableSaver.codeDatas == null)
+        {
+            GameArchitect.get.tableAsset.tableSaver.codeDatas = new List<CodeSystemData>();
+        }
+        GameArchitect.get.tableAsset.tableSaver.codeDatas.Add(systemData);
+        systemData.name = meshField.text;
         Debug.Log(systemData.week.Count);
         SetData(systemData);
         hasSave = true;
@@ -160,4 +180,5 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
         dayDataViewList.UpdataListView(cardInfs);
         nowData.text = codeSystemData.name;
     }
+
 }
