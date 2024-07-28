@@ -1947,7 +1947,28 @@ MonoBehaviour:
       Data: 55
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
       Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 113|ObjInf, Assembly-CSharp
+    - Name: can
+      Entry: 5
+      Data: true
+    - Name: count
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -1956,7 +1977,7 @@ MonoBehaviour:
       Data: 
     - Name: sits
       Entry: 7
-      Data: 113|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+      Data: 114|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
@@ -1978,7 +1999,7 @@ MonoBehaviour:
       Data: 
     - Name: buildingResSaver
       Entry: 7
-      Data: 114|BuildingResSaver, Assembly-CSharp
+      Data: 115|BuildingResSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -1996,11 +2017,11 @@ MonoBehaviour:
       Data: "\u5EFA\u7B51\u7684\u57FA\u7840\u8D44\u6E90"
     - Name: transPairs
       Entry: 7
-      Data: 115|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+      Data: 116|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 116|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
+      Data: 117|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -2022,11 +2043,11 @@ MonoBehaviour:
       Data: 
     - Name: sits
       Entry: 7
-      Data: 117|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+      Data: 118|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 118|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
+      Data: 119|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -2051,7 +2072,7 @@ MonoBehaviour:
       Data: 
     - Name: foods
       Entry: 7
-      Data: 119|System.Collections.Generic.List`1[[FoodSaver, Assembly-CSharp]],
+      Data: 120|System.Collections.Generic.List`1[[FoodSaver, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12

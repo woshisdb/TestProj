@@ -88,7 +88,7 @@ public class SelectTime : Act
             });
             cardInfs.Add(cardInf);
         }
-        yield return GameArchitect.gameLogic.AddDecision(Person, new DecisionTex("时间选择","打算做多久",
+        yield return AddDecision(Person, new DecisionTex("时间选择","打算做多久",
             cardInfs
         ));
         yield return Ret(new EndAct(Person, Obj), callback);

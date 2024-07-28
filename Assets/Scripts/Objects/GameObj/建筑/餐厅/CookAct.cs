@@ -9,8 +9,8 @@ public class CookA:Act
 {
     public BuildingObj buildingObj;
     public Obj selObj;
-    public int time;
-    public CookA(Person person, BuildingObj obj,Obj selObj, int priority = -1,int time=1) : base(person, obj, priority)
+    public Int time;
+    public CookA(Person person, BuildingObj obj,Obj selObj, Int time, int priority = -1) : base(person, obj, priority)
     {
         this.time = time;
         wastTime = true;
@@ -28,7 +28,7 @@ public class CookA:Act
             yield return Ret(new EndAct(Person, Obj), callback);//返回
         }
         else
-            yield return Ret(new CookA(Person, buildingObj, selObj, priority, time), callback);//做饭
+            yield return Ret(new CookA(Person, buildingObj, selObj,time, priority), callback);//做饭
     }
 }
 /// <summary>
@@ -53,7 +53,7 @@ public class CookSelA : Act
         //building.CookRate.objList.resources = new Dictionary<Obj, int>();
         foreach (var data in building.rates[TransationEnum.cook].ObjList())//选择一系列的餐具
         {
-            var obj = ((ObjCont)data.Value).obj;
+            var obj = Map.Instance.GetObj(data.Key);
             selects.Add(//活动描述
                 new CardInf(obj.objSaver.title, obj.objSaver.description + ":" + obj.objSaver.TransCount(TransationEnum.cook),
                 () =>
@@ -63,7 +63,7 @@ public class CookSelA : Act
                 )
                 );
         }
-        yield return GameArchitect.gameLogic.AddDecision(Person, new DecisionTex("选择餐具", "选择个餐具开始活动",
+        yield return AddDecision(Person, new DecisionTex("选择餐具", "选择个餐具开始活动",
             selects
         ));///选择一个合适的活动
 
@@ -74,7 +74,7 @@ public class CookSelA : Act
             yield return Ret(
                 new SeqAct(Person,Obj,
                     seleA,
-                    new CookA(Person,building, selObj, -1,seleA.selectTime)
+                    new CookA(Person,building, selObj, seleA.selectTime, - 1)
                 ),callback);//做饭
         }
         else

@@ -127,15 +127,15 @@ public class CodeSystemDataWeek: CodeSystemData
         BuildingObj buildingObj=new BuildingObj();
         w.activity = activity;
         List<WinData> winDatas = new List<WinData>();
-        var eff=activity.Effect(buildingObj,person,winDatas);
+        var eff=activity.Effect(obj,tempPerson,winDatas);
         tempPerson.SetAct(eff);
         tempPerson.isPlayer = true;
         Debug.Log(eff.GetType().Name);
         bool hasTime = GameLogic.hasTime;
-        GameLogic.hasTime = true;
         while (tempPerson.hasSelect.val==true)
         {
-             yield return tempPerson.act.Run(
+            GameLogic.hasTime = true;
+            yield return tempPerson.act.Run(
                 (result) => {
                     if (result is EndAct)
                         tempPerson.RemoveAct();
