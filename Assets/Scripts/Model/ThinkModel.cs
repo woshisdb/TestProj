@@ -159,12 +159,12 @@ public class PlayerThinkModel: ThinkModel
     {
         if (!person.hasSelect.val)//无活动
         {
-            if (person.codeData!=null&&person.codeData.HasAct(GameArchitect.get.GetModel<TimeModel>().GetTime()))//没有可执行的活动
+            var c = person.contractManager.GetCode();
+            if (c != null)//有可执行的活动
             {
-                var act = person.codeData.GetAct(person, GameArchitect.get.GetModel<TimeModel>().GetTime());
-                if (act != null)//有现存的任务
+                if (c.obj.belong == person.belong && c.activity.Condition(c.obj, person))
                 {
-                    person.SetAct(act);
+                    person.SetAct(c.activity.Effect(c.obj, person));
                     return Task.CompletedTask;
                 }
             }
@@ -200,12 +200,12 @@ public class NPCThinkModel: ThinkModel
         //return Task.CompletedTask;
         if (!person.hasSelect.val)//无活动
         {
-            if (person.codeData != null && person.codeData.HasAct(GameArchitect.get.GetModel<TimeModel>().GetTime()))//没有可执行的活动
+            var c = person.contractManager.GetCode();
+            if (c != null)//有可执行的活动
             {
-                var act = person.codeData.GetAct(person, GameArchitect.get.GetModel<TimeModel>().GetTime());
-                if (act != null)//有现存的任务
+                if(c.obj.belong==person.belong&&c.activity.Condition(c.obj,person))
                 {
-                    person.SetAct(act);
+                    person.SetAct(c.activity.Effect(c.obj,person));
                     return Task.CompletedTask;
                 }
             }

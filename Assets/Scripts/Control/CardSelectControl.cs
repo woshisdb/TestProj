@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class WinCon
 {
-
+    public WinData data;
 }
 
 public class SelectTex:WinCon
@@ -22,6 +22,19 @@ public class SelectTex:WinCon
         this.description = description;
         this.selects = selects;
         this.effect = effect;
+        effect = () =>
+        {
+            bool now = effect();
+            if(now)//Ñ¡ÔñÊý¾Ý
+            {
+                data=new SelData();
+                for(int i = 0; i < selects.Count; i++)
+                {
+                    ((SelData)data).selects.Add(new Tuple<string, int>(selects[i].title, selects[i].num));
+                }
+            }
+            return now;
+        };
     }
 }
 

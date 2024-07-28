@@ -311,6 +311,7 @@ public class BuildingObj : Obj
     /// buildingµÄ¹ÜÏß
     /// </summary>
     public PipLineManager pipLineManager;
+    public Person owner;
     public BuildingObj(BuildingSaver objSaver=null):base(objSaver)
     {
         requireBuilding = GetSaver().size;
@@ -389,7 +390,6 @@ public class BuildingObj : Obj
         new SelPipLineAct(),
         new SetPipLineAct(),
         new UseToolAct(),
-
         };
     }
     public BuildingSaver GetSaver()

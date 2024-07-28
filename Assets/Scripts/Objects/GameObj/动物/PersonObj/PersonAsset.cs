@@ -268,7 +268,32 @@ public class ContractManager
     {
         this.person = person;
     }
-
+    public CodeData GetCode()
+    {
+        var contracts = GameArchitect.get.GetModel<ContractModel>().bContract[person];
+        if (contracts == null)
+        {
+            contracts = new List<Contract>();
+        }
+        for(var x=0;x<contracts.Count;x++)
+        {
+            var code = contracts[x].codeData.GetNowWork();
+            if(code!=null)
+            return code;
+        }
+        return null;
+    }
+    public CodeData GetCode(int time)
+    {
+        var contracts = GameArchitect.get.GetModel<ContractModel>().bContract[person];
+        for (var x = 0; x < contracts.Count; x++)
+        {
+            var code = contracts[x].codeData.GetNowWork(time);
+            if (code != null)
+                return code;
+        }
+        return null;
+    }
     //public bool Sign(Contract contract)
     //{
     //    if(contract.ContractAllow(contract.ap,person))//允许协议
@@ -375,7 +400,6 @@ public class Person : AnimalObj
     //public PersonState luck;
     public Act act;
     public SetP<FoodObj> foodSet;
-    public CodeSaver codeData;//有正在执行的计划
     /// <summary>
     /// 协议管理器
     /// </summary>

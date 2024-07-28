@@ -78,12 +78,12 @@ public class SleepAct : Activity
     /// <param name="person"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person,params object[] objs)
+    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
         var selectTime = new SelectTime(person, obj, new int[] { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 });
         return GetActs(
             new SeqAct(person,obj,
             selectTime,
-            new SleepA(person,obj,selectTime.selectTime)), obj, person,objs);
+            new SleepA(person,obj,selectTime.selectTime)), obj, person,winDatas,objs);
     }
 }

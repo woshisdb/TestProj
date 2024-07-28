@@ -14,9 +14,11 @@ public class CameraController : MonoBehaviour
     private Vector3 dragOrigin;
 
     private float dragRate;
+    private bool selectOther;
 
     void Start()
     {
+        selectOther = true;
         // 初始化缩放Slider
         zoomSlider.minValue = minZoom;
         zoomSlider.maxValue = maxZoom;
@@ -39,22 +41,28 @@ public class CameraController : MonoBehaviour
     void HandleMouseDrag()
     {
         // 如果鼠标在UI元素上，则不处理相机拖动
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            selectOther = false;
+            return;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
+            selectOther=true;
             dragOrigin = Input.mousePosition;
             return;
         }
 
         if (!Input.GetMouseButton(0)) return;
 
-        Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-        Vector3 move = new Vector3(pos.x * moveSpeed, pos.y * moveSpeed, 0);
-
-        transform.Translate(-move*dragRate*0.7f, Space.World);
-
-        dragOrigin = Input.mousePosition;
+        if (selectOther)
+        {
+            Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
+            Vector3 move = new Vector3(pos.x * moveSpeed, pos.y * moveSpeed, 0);
+            transform.Translate(-move * dragRate * 0.7f, Space.World);
+            dragOrigin = Input.mousePosition;
+        }
     }
 
     void HandleZoom()

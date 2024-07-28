@@ -103,7 +103,6 @@ public class Map : Singleton<Map>
     {
         return enum2Ins[type];
     }
-
     public ObjSaver GetSaver(Type type)
     {
         return ks[type];

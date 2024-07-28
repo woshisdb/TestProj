@@ -16,14 +16,14 @@ public class CodeSlot
     public Obj obj;
 }
 
-public struct SelectDataSaver
-{
-    public CodeSaver codeSaver;
-    public SelectDataSaver(CodeSaver codeSaver)
-    {
-        this.codeSaver = codeSaver;
-    }
-}
+//public struct SelectDataSaver
+//{
+//    public CodeSaver codeSaver;
+//    public SelectDataSaver(CodeSaver codeSaver)
+//    {
+//        this.codeSaver = codeSaver;
+//    }
+//}
 public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
 {
     public CustomDropdown modeDropdown;
@@ -84,20 +84,20 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
         );
         saveBtn.onClick.AddListener(() =>
         {
-            if (GameArchitect.get.tableAsset.tableSaver.codeDatas.Contains(systemData))
+            if (GameArchitect.get.tableAsset.codeDatas.Contains(systemData))
             {
-                GameArchitect.get.tableAsset.tableSaver.codeDatas.Add(systemData);
+                GameArchitect.get.tableAsset.codeDatas.Add(systemData);
             }
         });
         loadBtn.onClick.AddListener(() =>
         {
             openScene.gameObject.SetActive(true);
             List<CardInf> cardInfs = new List<CardInf>();
-            if (GameArchitect.get.tableAsset.tableSaver.codeDatas==null)
+            if (GameArchitect.get.tableAsset.codeDatas==null)
             {
-                GameArchitect.get.tableAsset.tableSaver.codeDatas = new List<CodeSystemData>();
+                GameArchitect.get.tableAsset.codeDatas = new List<CodeSystemData>();
             }
-            foreach (var x in GameArchitect.get.tableAsset.tableSaver.codeDatas)
+            foreach (var x in GameArchitect.get.tableAsset.codeDatas)
             {
                 var data = x;
                 cardInfs.Add(new CardInf(x.name, "",
@@ -138,11 +138,11 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
         {
             systemData = new CodeSystemDataYear();
         }
-        if (GameArchitect.get.tableAsset.tableSaver.codeDatas == null)
+        if (GameArchitect.get.tableAsset.codeDatas == null)
         {
-            GameArchitect.get.tableAsset.tableSaver.codeDatas = new List<CodeSystemData>();
+            GameArchitect.get.tableAsset.codeDatas = new List<CodeSystemData>();
         }
-        GameArchitect.get.tableAsset.tableSaver.codeDatas.Add(systemData);
+        GameArchitect.get.tableAsset.codeDatas.Add(systemData);
         systemData.name = meshField.text;
         Debug.Log(systemData.week.Count);
         SetData(systemData);

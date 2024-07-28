@@ -10,7 +10,7 @@ public class EndAct:Act
 
     public EndAct(Person person, Obj obj):base(person, obj)
     {
-
+        
     }
     public override IEnumerator<object> Run(System.Action<Act> callback)
     {
@@ -51,6 +51,14 @@ public class SeqAct : Act
         if (acts==null||acts.Count == 0)
         {
             yield return Ret(new EndAct(Person, Obj), callback);
+        }
+    }
+    public override void SetWinData(List<WinData> winDatas)
+    {
+        base.SetWinData(winDatas);
+        foreach(var act in acts)
+        {
+            act.winDatas = winDatas;
         }
     }
 }
@@ -150,10 +158,10 @@ public class SelPipLineAct:Activity
     /// <param name="person"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person, params object[] objs)
+    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
         return GetActs(
-            new SelectPiplineA(person,(BuildingObj) obj), obj, person, objs);
+            new SelectPiplineA(person,(BuildingObj) obj), obj, person,winDatas, objs);
     }
 }
 
@@ -215,10 +223,10 @@ public class SetPipLineAct : Activity
     /// <param name="person"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person, params object[] objs)
+    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
         return GetActs(
-            new SetPiplineA(person, (BuildingObj)obj), obj, person, objs);
+            new SetPiplineA(person, (BuildingObj)obj), obj, person,winDatas, objs);
     }
 }
 
@@ -250,7 +258,7 @@ public class UseToolAct : Activity
     /// <param name="person"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person, params object[] objs)
+    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
         int[] times = { 1,2,3,4,5,6,7,8,9,10,11,12};
         var seleA = new SelectTime(person, obj, times);
@@ -263,7 +271,7 @@ public class UseToolAct : Activity
             new WasteTimeA(person,obj,seleA.selectTime),
             relA
             ),
-        obj, person, objs);
+        obj, person,winDatas, objs);
     }
 }
 
@@ -381,10 +389,10 @@ public class BuildAct : Activity
     /// <param name="person"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person, params object[] objs)
+    public override Act Effect(Obj obj, Person person,List<WinData> winDatas=null, params object[] objs)
     {
         return GetActs(
-            new BuildA(person, (BuildingObj)obj), obj, person, objs);
+            new BuildA(person, (BuildingObj)obj), obj, person,winDatas, objs);
     }
 }
 
@@ -410,12 +418,13 @@ public abstract class Act
     public Person Person;
     public Obj Obj;
     public bool wastTime;
-
+    public List<WinData> winDatas;
     public Act(Person person, Obj obj,int priority=-1)
     {
         Person = person;
         Obj = obj;
         this.priority = priority;
+        winDatas = new List<WinData>();//一系列的决策
     }
     public IEnumerator Ret(Act act, System.Action<Act> callback)
     {
@@ -428,4 +437,15 @@ public abstract class Act
             GameLogic.hasTime = false;
     }
     public abstract IEnumerator<object> Run(System.Action<Act> callback);
+
+
+    public IEnumerator AddDecision(Person person, WinCon decision)
+    {
+        yield return GameArchitect.gameLogic.AddDecision(person,decision);
+        winDatas.Add(decision.data);
+    }
+    public virtual void SetWinData(List<WinData> winDatas)
+    {
+        this.winDatas = winDatas;
+    }
 }

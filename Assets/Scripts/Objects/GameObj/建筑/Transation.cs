@@ -52,9 +52,9 @@ public class BuyAct : Activity
         detail = "购买物品";
     }
 
-    public override Act Effect(Obj obj, Person person,params object[] objs)
+    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
-        return new BuyA(person, obj);
+        return GetActs( new BuyA(person, obj), obj, person,winDatas,objs); ;
     }
     public override bool Condition(Obj obj, Person person, params object[] objs)
     {
@@ -115,9 +115,9 @@ public class SellAct : Activity
         detail = "卖物品";
     }
 
-    public override Act Effect(Obj obj, Person person, params object[] objs)
+    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
-        return new SellA(person, obj);
+        return GetActs( new SellA(person, obj), obj, person, winDatas, objs);
     }
     public override bool Condition(Obj obj, Person person, params object[] objs)
     {

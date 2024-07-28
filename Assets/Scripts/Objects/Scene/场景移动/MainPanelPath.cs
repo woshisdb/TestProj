@@ -64,7 +64,7 @@ public class Go : Activity
         return action;
     }
 
-    public override Act Effect(Obj obj, Person person,params object[] objs)
+    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
         return new SeqAct(person, obj,
             new LeaveA(person, obj, x),

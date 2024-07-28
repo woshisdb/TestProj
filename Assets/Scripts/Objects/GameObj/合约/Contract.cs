@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using QFramework;
+using Sirenix.Serialization;
 using UnityEngine;
 
 public enum ContractEnum
@@ -24,32 +26,60 @@ public abstract class Contract
     /// <summary>
     /// 协议乙方
     /// </summary>
-    public Person bp;
-    public int signTime;
-    public int aimTime;
-    public int spaceTime;
+    public HashSet<Person> bp;
+    public int count;
+    public int beginTime;
+    public int endTime;
     /// <summary>
     /// 选择要做的行为
     /// </summary>
     public CodeSystemData codeData;
     public bool hasSign;
+    public ContractEff contractEff;
     public Contract()
     {
         hasSign = false;
+        contractEff = new ContractEff();
+        cardInf = new CardInf("","");
+        bp = new HashSet<Person>();
     }
     /// <summary>
     /// 签署协议
     /// </summary>
     public virtual void Sign()
     {
-        signTime = GameArchitect.get.GetModel<TimeModel>().GetTime();
+        beginTime = GameArchitect.get.GetModel<TimeModel>().GetTime();
         hasSign = true;
     }
+    public virtual bool CanSign(Person person)
+    {
+        return !bp.Contains(person);
+    }
+    public List<CodeSystemData> GetDats()
+    {
+        var t = GameArchitect.get.tableAsset.codeDatas;
+        return t.FindAll(e => {return e.name.StartsWith(cardInf.title); });
+    }
+    public virtual IEnumerator Editor(Person person)
+    {
+        yield break;
+    }
+}
+public class ContractEff
+{
     /// <summary>
-    /// 效果
+    /// 一系列的对象
     /// </summary>
-    /// <param name="str"></param>
-    public abstract void Effect();
+    public Resource obj;
+    /// <summary>
+    /// 担保物品
+    /// </summary>
+    public Resource assur;
+    public ContractEff()
+    {
+        obj = new Resource();
+        assur = new Resource();
+    }
 }
 /// <summary>
 /// 雇佣工作的协议
@@ -58,14 +88,20 @@ public class WorkContract : Contract
 {
     public WorkContract():base()
     {
-        cardInf = new CardInf("工作","做工作");
+        cardInf.title = "工作";
+        cardInf.description="做工作";
     }
-    public WorkContract(string codeData,int contractTime,Person ap):base()
+    /// <summary>
+    /// 执行行为的名字，协议的时间，签约人
+    /// </summary>
+    /// <param name="codeData"></param>
+    /// <param name="contractTime"></param>
+    /// <param name="ap"></param>
+    public WorkContract(string codeData,Person ap):base()
     {
         cardInf = new CardInf("工作", "做工作");
-        var t=GameArchitect.get.tableAsset.tableSaver.codeDatas.Find(x => x.name == codeData);
+        var t=GameArchitect.get.tableAsset.codeDatas.Find(x => x.name == codeData);
         this.codeData = t;
-        spaceTime = contractTime;
         hasSign = false;
         this.ap = ap;
     }
@@ -75,34 +111,66 @@ public class WorkContract : Contract
     public override void Sign()
     {
         base.Sign();
-        aimTime = GameArchitect.get.GetModel<TimeModel>().NextDay(spaceTime);
     }
-
-    public override void Effect()
+    /// <summary>
+    /// 选择起止时间
+    /// </summary>
+    /// <returns></returns>
+    public override IEnumerator Editor(Person person)
     {
-        return;
+        List<CardInf> time = new List<CardInf>();
+        for(int i=0;i<10;i++)
+        {
+            int t = i;
+            CardInf cardInf = new CardInf("开始时间",t+"个星期后",
+            () =>
+            {
+                beginTime=GameArchitect.get.GetModel<TimeModel>().GetBeginWeek()+t* TimeModel.timeStep*7;
+            }
+            );
+            time.Add(cardInf);
+        }
+        yield return GameArchitect.gameLogic.AddDecision(person, new DecisionTex(
+            "开始时间", "协议的开始时间", time
+        ));
+        List<CardInf> time1 = new List<CardInf>();
+        for (int i = 0; i < 12; i++)
+        {
+            int t = i;
+            CardInf cardInf = new CardInf("维持时间", t + "个月",
+            () =>
+            {
+                endTime = beginTime+t*30 * TimeModel.timeStep;
+            }
+            );
+            time1.Add(cardInf);
+        }
+        yield return GameArchitect.gameLogic.AddDecision(person, new DecisionTex(
+            "维持时间", "协议的持续时间", time1
+        ));
     }
 }
 
 public class ContractModel : AbstractModel
 {
+    [OdinSerialize]
     /// <summary>
     /// 合约的模板
     /// </summary>
     public List<Contract> contractTemplate;
-    /// <summary>
-    /// 未签订的合约
-    /// </summary>
-    public List<Contract> unSignContract;
     /******************************已签署合约********************************/
     /// <summary>
     /// 作为甲方的合约
     /// </summary>
+    [OdinSerialize]
     public Dictionary<Person, List<Contract>> aContract;
     /// <summary>
     /// 作为乙方的合约
     /// </summary>
+    [OdinSerialize]
     public Dictionary<Person, List<Contract>> bContract;
+    [OdinSerialize]
+    public HashSet<Contract> contracts;
     /***********************未签署的合约******************************/
     protected override void OnInit()
     {
@@ -112,7 +180,6 @@ public class ContractModel : AbstractModel
     {
         aContract = new Dictionary<Person, List<Contract>>();
         bContract = new Dictionary<Person, List<Contract>>();
-        unSignContract = new List<Contract>();
         foreach (var person in GameArchitect.persons)
         {
             if (!aContract.ContainsKey(person))
@@ -127,13 +194,10 @@ public class ContractModel : AbstractModel
                 bContract.Add(person, new List<Contract>());
             }
         }
+        contracts = new HashSet<Contract>();
         contractTemplate = new List<Contract>();
         //996的活动
         contractTemplate.Add(new WorkContract());
-    }
-    public List<Contract> GetUnSignContract()
-    {
-        return unSignContract;
     }
     /// <summary>
     /// 是否有协议
@@ -151,17 +215,17 @@ public class ContractModel : AbstractModel
     /// <param name="contract"></param>
     public virtual void SignContract(Contract contract,Person person)
     {
-        unSignContract.Remove(contract);
         contract.hasSign = true;
-        contract.bp = person;
+        contract.bp.Add(person);
         bContract.GetValueOrDefault(person).Add(contract);
+
     }
     /// <summary>
     /// 甲方发起合约,制定协议
     /// </summary>
     public virtual void RegistContract(Contract contract)
     {
-        unSignContract.Add(contract);
+        contracts.Add(contract);
         aContract.GetValueOrDefault(contract.ap).Add(contract);
     }
     /// <summary>
@@ -170,13 +234,17 @@ public class ContractModel : AbstractModel
     public virtual void RemoveContract(Contract contract)
     {
         aContract.GetValueOrDefault(contract.ap).Remove(contract);
+        contracts.Remove(contract);
+        foreach(var person in contract.bp)
+        {
+            bContract[person].RemoveAll(x => { return x == contract; });
+        }
     }
-    /// <summary>
-    /// 合约结束
-    /// </summary>
-    public virtual void FinishContract(Contract contract)
+    public List<Contract> GetUnSignContract(Person person)
     {
-        aContract.GetValueOrDefault(contract.ap).Remove(contract);
-        bContract.GetValueOrDefault(contract.bp).Remove(contract);
+        return aContract[person].FindAll(x =>
+        {
+            return x.ap == person&&x.bp.Count<x.count;
+        });
     }
 }

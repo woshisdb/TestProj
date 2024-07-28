@@ -8,11 +8,22 @@ public class DecisionTex:WinCon
     public string title;
     public string description;
     public List<CardInf> cards;
-    public DecisionTex(string title,string description,List<CardInf> cards)
+    public DecisionTex(string title, string description, List<CardInf> cards)
     {
         this.title = title;
         this.description = description;
         this.cards = cards;
+        foreach (CardInf card in cards)
+        {
+            var t = card;
+            var temp = t.effect;
+            t.effect = () =>
+            {
+                temp();
+                data = new DecData();
+                ((DecData)data).selc = t.title;
+            };
+        }
     }
 }
 /// <summary>

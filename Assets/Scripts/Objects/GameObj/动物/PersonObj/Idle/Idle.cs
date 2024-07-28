@@ -61,10 +61,10 @@ public class IdleAct : Activity
     /// <param name="person"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person, params object[] objs)
+    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
-        return new SeqAct(person, obj,
+        return GetActs( new SeqAct(person, obj,
                 new IdleA(person, obj,1)
-               );
+               ),obj,person,winDatas,objs);
     }
 }

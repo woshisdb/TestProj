@@ -56,6 +56,23 @@ public class GameArchitect : Architecture<GameArchitect>
             cM = new ContractModel();
             tableAsset.tableSaver.contractModel = cM;
         }
+        else
+        {
+            foreach (var person in GameArchitect.persons)
+            {
+                if (!cM.aContract.ContainsKey(person))
+                {
+                    cM.aContract.Add(person, new List<Contract>());
+                }
+            }
+            foreach (var person in GameArchitect.persons)
+            {
+                if (!cM.bContract.ContainsKey(person))
+                {
+                    cM.bContract.Add(person, new List<Contract>());
+                }
+            }
+        }
         this.RegisterModel<ContractModel>(cM);
         //DomainGenerator.GenerateDomain();
     }
@@ -71,6 +88,7 @@ public class GameArchitect : Architecture<GameArchitect>
         {
             yield return CallDecision();
         }
+        yield return winCon.data;
     }
     public IEnumerator CallDecision()
     {

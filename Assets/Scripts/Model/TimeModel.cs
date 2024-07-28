@@ -67,9 +67,29 @@ public class TimeModel : AbstractModel
     {
         return Time.val;
     }
+    public int GetBeginDay()
+    {
+        return Time.val-Time.val % timeStep;
+    }
+    public int GetBeginWeek()
+    {
+        return Time.val - Time.val % (timeStep * 7);
+    }
+    public int GetBeginMonth()
+    {
+        return Time.val-Time.val%(timeStep * 30);
+    }
+    public int GetBeginYear()
+    {
+        return Time.val - Time.val % (timeStep * 360);
+    }
     public int GetDay()
     {
         return Time.val / timeStep;
+    }
+    public int GetWeek()
+    {
+        return (Time.val / timeStep)%7;
     }
     public int GetMonth()
     {
@@ -79,6 +99,28 @@ public class TimeModel : AbstractModel
     {
         return (Time.val / timeStep) / 360;
     }
+    ///...............................
+    public int GetTime(int t)
+    {
+        return t;
+    }
+    public int GetDay(int t)
+    {
+        return t / timeStep;
+    }
+    public int GetWeek(int t)
+    {
+        return (t / timeStep) % 7;
+    }
+    public int GetMonth(int t)
+    {
+        return (t / timeStep) / 30;
+    }
+    public int GetYear(int t)
+    {
+        return (t / timeStep) / 360;
+    }
+    //................................
     public string GetTimeStr()
     {
         return Time.val / timeStep + "/" + Time.val % timeStep;

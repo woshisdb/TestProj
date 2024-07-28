@@ -5,43 +5,7 @@ using System.Reflection;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
-[Serializable]
-public class CodeSaver
-{
-    [SerializeField]
-    public string name;
-    [SerializeField]
-    public List<CodeData> dataDatas;
-    public CodeSaver()
-    {
-        this.name ="";
-        this.dataDatas = new List<CodeData>();
-    }
-    public bool HasAct(int time)
-    {
-        var hour=TimeModel.GetHours(time);
-        if (dataDatas[hour].hasAct)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    public Act GetAct(Person person,int time)
-    {
-        var data=dataDatas[TimeModel.GetHours(time)];
-        //if (data.activity.Condition(data.obj,person, data.time))
-        //{
-        //    return data.activity.Effect(data.obj,person,data.time);
-        //}
-        //else
-        //{
-        return null;
-        //}
-    }
-}
+
 [ShowOdinSerializedPropertiesInInspector]
 public class TableSaver
 {
@@ -58,8 +22,6 @@ public class TableSaver
     public List<Person> personList;
     [OdinSerialize]
     public List<TableModel> tables;
-    [OdinSerialize]
-    public List<CodeSystemData> codeDatas;
 
     [OdinSerialize]
     public ContractModel contractModel;
@@ -68,7 +30,6 @@ public class TableSaver
         tables = new List<TableModel>();
         objs=new List<Obj>();
         personList = new List<Person>();
-        codeDatas = new List<CodeSystemData>();
     }
 }
 
@@ -76,6 +37,8 @@ public class TableSaver
 public class TableAsset : SerializedScriptableObject
 {
     public TableSaver tableSaver;
+    [OdinSerialize]
+    public List<CodeSystemData> codeDatas;
     [Button]
     public void CreateTable(string name,int size)
     {
@@ -84,6 +47,7 @@ public class TableAsset : SerializedScriptableObject
         table.TableName = name;
         table.size = size;
         tableSaver.tables.Add(table);
+        codeDatas = new List<CodeSystemData>();
         GameArchitect.Interface.GetModel<TableModelSet>().AddTable(tableSaver.tables.Count-1);
     }
 }

@@ -40,11 +40,60 @@ public class CodeSystemData
     public CodeSystemEnum code;
     public List<int> week;
     public List<CodeData> work;
+    /// <summary>
+    /// 今天的工作
+    /// </summary>
+    public List<List<string>> dayWork;
+    public CodeData GetNowWork()
+    {
+        var t = GameArchitect.get.GetModel<TimeModel>();
+        if (code== CodeSystemEnum.week)
+        {
+            return work.Find((x) => {return x.codeName== dayWork[week[t.GetWeek()]][t.GetDay()]; }); 
+        }
+        else if(code== CodeSystemEnum.month)
+        {
+            return work.Find((x) => { return x.codeName == dayWork[week[t.GetMonth()]][t.GetDay()]; });
+        }
+        else
+        {
+            return work.Find((x) => { return x.codeName == dayWork[week[t.GetYear()]][t.GetDay()]; });
+        }
+    }
+    public CodeData GetNowWork(int time)
+    {
+        var t = GameArchitect.get.GetModel<TimeModel>();
+        if (code == CodeSystemEnum.week)
+        {
+            return work.Find((x) => { return x.codeName == dayWork[week[t.GetWeek(time)]][t.GetDay(time)]; });
+        }
+        else if (code == CodeSystemEnum.month)
+        {
+            return work.Find((x) => { return x.codeName == dayWork[week[t.GetMonth(time)]][t.GetDay(time)]; });
+        }
+        else
+        {
+            return work.Find((x) => { return x.codeName == dayWork[week[t.GetYear(time)]][t.GetDay(time)]; });
+        }
+    }
     public CodeSystemData()
     {
         work= new List<CodeData>();
-        for (int i = 0; i < 48; i++)
-        { work.Add(new CodeData()); }
+        dayWork= new List<List<string>>();
+    }
+    [Button]
+    public void AddDayWork()
+    {
+        var t = new List<string>();
+        for(int i=0;i<48;i++)
+        {
+            t.Add("empty");
+        }
+        dayWork.Add(t);
+    }
+    public virtual IEnumerator EditCodeSystem(Person person, Obj obj, List<Activity> activities)
+    {
+        yield break;
     }
 }
 public class CodeSystemDataWeek: CodeSystemData
@@ -55,6 +104,49 @@ public class CodeSystemDataWeek: CodeSystemData
         week = new List<int>(7);
         for(int i = 0; i < 7; i++)
         { week.Add(0); }
+    }
+    public override IEnumerator EditCodeSystem(Person person,Obj obj,List<Activity> activities)
+    {
+        List<CardInf> sels = new List<CardInf>();
+        Activity activity = null;
+        foreach(var x in activities)
+        {
+            var data = x;
+            sels.Add(new CardInf("选择:"+data.activityName,data.detail,
+                () =>
+                {
+                    activity = data;
+                }
+            ));
+        }
+
+        yield return GameArchitect.gameLogic.AddDecision(person,new DecisionTex(
+        "工作的内容","选择工作的内容进行工作",sels));
+        var w=work.Find((x) => { return x.codeName == "工作"; });
+        Person tempPerson = new Person();//自建Person
+        BuildingObj buildingObj=new BuildingObj();
+        w.activity = activity;
+        List<WinData> winDatas = new List<WinData>();
+        var eff=activity.Effect(buildingObj,person,winDatas);
+        tempPerson.SetAct(eff);
+        tempPerson.isPlayer = true;
+        Debug.Log(eff.GetType().Name);
+        bool hasTime = GameLogic.hasTime;
+        GameLogic.hasTime = true;
+        while (tempPerson.hasSelect.val==true)
+        {
+             yield return tempPerson.act.Run(
+                (result) => {
+                    if (result is EndAct)
+                        tempPerson.RemoveAct();
+                    else if (result is Act)
+                        tempPerson.SetAct((Act)result);
+                }
+            );
+        }
+        GameLogic.hasTime = hasTime;
+        ///选择一系列活动
+        w.wins = winDatas;
     }
 }
 public class CodeSystemDataMonth : CodeSystemData
@@ -84,8 +176,10 @@ public class CodeSystemDataYear : CodeSystemData
 [System.Serializable]
 public class CodeData
 {
-    public int time;
-    public bool hasAct;
+    /// <summary>
+    /// 代码的名字
+    /// </summary>
+    public string codeName;
     /// <summary>
     /// 当前的对象
     /// </summary>
@@ -102,7 +196,6 @@ public class CodeData
     public List<WinData> wins;
     public CodeData()
     {
-        hasAct = false;
         wins = new List<WinData>();
     }
     public static IEnumerable Objs()

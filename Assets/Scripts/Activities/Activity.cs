@@ -23,7 +23,7 @@ public abstract class Activity
     {
         return true;
     }
-    public abstract Act Effect(Obj obj, Person person,params object[] objs);
+    public abstract Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs);
     /// <summary>
     /// 获得当前行为的PDDL形式
     /// </summary>
@@ -46,8 +46,12 @@ public abstract class Activity
             });
         return ret;
     }
-    public Act GetActs(Act act, Obj obj, Person person, params object[] objs)
+    public Act GetActs(Act act, Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
+        if(winDatas!=null)
+        {
+            act.SetWinData(winDatas);
+        }
         if (eff != null)
         {
             return new SeqAct(person, obj, eff(obj, person, objs),
@@ -56,4 +60,9 @@ public abstract class Activity
         }
         return act;
     }
+    public virtual List<WinData> GetWins()
+    {
+        return null;
+    }
+
 }

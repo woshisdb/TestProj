@@ -105,23 +105,18 @@ public class OptionUIControl : MonoBehaviour, IController, ICanRegisterEvent
         ///是玩家
         if(updateCode.person.isPlayer)
         {
-            if(updateCode.person.codeData==null)
+            var cMang = updateCode.person.contractManager;
+            var res = new List<CardInf>();
+            var time = GameArchitect.get.GetModel<TimeModel>().Time.val;
+            for (int i = time; i < 48; i++)
             {
-                codeView.UpdataListView(new List<CardInf>());
+                var code=updateCode.person.contractManager.GetCode(i);
+                if (code==null)
+                    res.Add(new CardInf(code.codeName, code.activity.activityName, () => { }));
+                else
+                    res.Add(new CardInf("无", "自由活动", () => { }));
             }
-            else
-            {
-                var res = new List<CardInf>();
-                for(int i= TimeModel.GetHours(GameArchitect.get.GetModel<TimeModel>().Time.val); i<updateCode.person.codeData.dataDatas.Count;i++)
-                {
-                    var str = GameArchitect.get.GetModel<TimeModel>().GetTimeHour(i);
-                    if (updateCode.person.codeData.dataDatas[i].hasAct)
-                        res.Add(new CardInf(str, updateCode.person.codeData.dataDatas[i].activity.activityName, () => { }));
-                    else
-                        res.Add(new CardInf(str, "empty", () => { }));
-                }
-                codeView.UpdataListView(res);
-            }
+            codeView.UpdataListView(res);
         }
     }
     private void Awake()
