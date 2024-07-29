@@ -428,6 +428,7 @@ public abstract class Act
     }
     public IEnumerator Ret(Act act, System.Action<Act> callback)
     {
+        act.SetWinData(winDatas);
         callback(act);
         yield break;
     }

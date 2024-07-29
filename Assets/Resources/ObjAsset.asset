@@ -1933,11 +1933,11 @@ MonoBehaviour:
       Entry: 3
       Data: 1
     - Name: title
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: asdsadsaa
     - Name: description
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: ewwwwwwwwwww
     - Name: transPairs
       Entry: 7
       Data: 112|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
