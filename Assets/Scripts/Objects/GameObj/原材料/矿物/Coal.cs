@@ -50,7 +50,7 @@ public class CoalMiningSaver : KuangMiningSaver
 public class CoalMiningObj : KuangMiningObj
 {
     ///////////////////////////////////////
-    public CoalMiningObj(RawSaver objAsset = null) : base(objAsset)
+    public CoalMiningObj(CoalMiningSaver objAsset = null) : base(objAsset)
     {
         Init();
     }

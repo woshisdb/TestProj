@@ -459,16 +459,23 @@ public class Person : AnimalObj
         this.hasSelect.val = false;
         this.act = null;
     }
+    /// <summary>
+    /// 所有的行为
+    /// </summary>
+    /// <returns></returns>
     public override List<Activity> InitActivities()
     {
         List<Activity> activities = new List<Activity>(base.InitActivities());
         activities.Add(new IdleAct());
+        activities.Add(new FangZhiAct());
+        activities.Add(new BanYunAct());
         return activities;
     }
     public PersonSaver GetSaver()
     {
         return (PersonSaver)objSaver;
     }
+
     ///// <summary>
     ///// 获得活动
     ///// </summary>

@@ -45,28 +45,28 @@ public class KuangMiningType : RawType
     }
 }
 [System.Serializable]
-public class KuangMiningSaver : RawSaver
+public class KuangMiningSaver : BuildingSaver
 {
 
 }
 
 [Map()]
 // 铁矿
-public class KuangMiningObj : RawObj
+public class KuangMiningObj : BuildingObj
 {
     ///////////////////////////////////////
     /// <summary>
-    /// 剩余资源的数目
+    /// 初始资源的数目
     /// </summary>
-    public int source;
     public int starSource;
     public virtual ObjEnum GetObj()
     {
         return ObjEnum.KuangObjE;
     }
-    public KuangMiningObj(RawSaver objAsset = null) : base(objAsset)
+    public KuangMiningObj(KuangMiningSaver objAsset = null) : base(objAsset)
     {
         Init();
+        starSource = 1000;
     }
     public override List<Activity> InitActivities()
     {
@@ -80,30 +80,39 @@ public class KuangMiningObj : RawObj
         //str.AppendLine(source.ToString());
         ////后续更新
         //this.cardInf.description =
+        str.AppendLine(GetObj().ToString());
+        str.AppendLine(resource.resources[GetObj()] +":" +starSource);
+        cardInf.description = str.ToString();
+        if (cardInf.cardControl)
+            cardInf.cardControl.UpdateInf();
+    }
+    public int GetResCount()
+    {
+        return resource.resources[GetObj()].remain;
     }
     /// <summary>
     /// 挖掘资源
     /// </summary>
     /// <param name=""></param>
-    public int GetRes(int res)
+    public KeyValuePair<ObjEnum, int> GetRes(int res)
     {
-        if(source>= starSource*0.7)
+        if(GetResCount() >= starSource*0.7)
         {
-            int sum = Mathf.Min(res, source);
-            source -= sum;
-            return sum;
+            int sum = Mathf.Min(res, GetResCount());
+            resource.Remove(GetObj(),sum);
+            return new KeyValuePair<ObjEnum, int>(GetObj(),sum);
         }
-        else if(source >=0.3*starSource)
+        else if(GetResCount() >= 0.3*starSource)
         {
-            int sum = Mathf.Min(res*7/10, source);
-            source -= sum;
-            return sum;
+            int sum = Mathf.Min(res*7/10, GetResCount());
+            resource.Remove(GetObj(), sum);
+            return new KeyValuePair<ObjEnum, int>(GetObj(), sum);
         }
         else
         {
-            int sum = Mathf.Min(res * 3 / 10, source);
-            source -= sum;
-            return sum;
+            int sum = Mathf.Min(res * 3 / 10, GetResCount());
+            resource.Remove(GetObj(), sum);
+            return new KeyValuePair<ObjEnum, int>(GetObj(), sum);
         }
     }
 }
@@ -127,7 +136,6 @@ public class IronSaver : KuangSaver
 public class IronObj : KuangObj
 {
     ///////////////////////////////////////
-
     public IronObj(RawSaver objAsset = null) : base(objAsset)
     {
         Init();
@@ -149,14 +157,14 @@ public class IronMiningType : KuangMiningType
 [System.Serializable]
 public class IronMiningSaver : KuangMiningSaver
 {
-
+    
 }
 
 [Map()]
 // 铁矿
 public class IronMiningObj : KuangMiningObj
 {
-    public IronMiningObj(RawSaver objAsset = null) : base(objAsset)
+    public IronMiningObj(IronMiningSaver objAsset = null) : base(objAsset)
     {
         Init();
     }
@@ -165,12 +173,8 @@ public class IronMiningObj : KuangMiningObj
         var acts = base.InitActivities();
         return acts;
     }
-    public override void LatUpdate()
-    {
-        str.Clear();
-    }
     public override ObjEnum GetObj()
     {
-        return ObjEnum.KuangObjE;
+        return ObjEnum.IronObjE;
     }
 }

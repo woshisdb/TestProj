@@ -54,7 +54,7 @@ public class GoldMiningSaver : KuangMiningSaver
 public class GoldMiningObj : KuangMiningObj
 {
     ///////////////////////////////////////
-    public GoldMiningObj(RawSaver objAsset = null) : base(objAsset)
+    public GoldMiningObj(GoldMiningSaver objAsset = null) : base(objAsset)
     {
         Init();
     }

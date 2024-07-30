@@ -1,8 +1,8 @@
 {
     "$id": 0,
     "$type": "0|TableSaver, Assembly-CSharp",
-    "time": 721,
-    "lastNm": 1584,
+    "time": 724,
+    "lastNm": 1728,
     "objs": {
         "$id": 1,
         "$type": "1|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib",
@@ -20287,7 +20287,7 @@
                                     "$id": 1075,
                                     "$type": 13,
                                     "title": "\u7164\u77ff",
-                                    "description": "\u91cc\u9762\u80fd\u5f00\u91c7\u7164\u77ff",
+                                    "description": "CoalObjE\r\n1000000:1000000\r\n",
                                     "effect": {
                                         "$id": 1076,
                                         "$type": 14,
@@ -20524,7 +20524,7 @@
                                                     }
                                                 }
                                             },
-                                            "m_text": "\u91cc\u9762\u80fd\u5f00\u91c7\u7164\u77ff",
+                                            "m_text": "CoalObjE\r\n1000000:1000000\r\n",
                                             "m_TextPreprocessor": null,
                                             "m_isRightToLeft": false,
                                             "m_fontAsset": $iref:26,
@@ -20607,7 +20607,7 @@
                                                 255,
                                                 255
                                             },
-                                            "m_fontSize": 3.1,
+                                            "m_fontSize": 1.5,
                                             "m_fontSizeBase": 2,
                                             "m_fontWeight": 400,
                                             "m_enableAutoSizing": true,
@@ -20673,15 +20673,15 @@
                                         "type": "System.Int32, mscorlib",
                                         "m_MaxCapacity": 2147483647,
                                         "type": "System.Int32, mscorlib",
-                                        "Capacity": 16,
+                                        "Capacity": 32,
                                         "type": "System.String, mscorlib",
-                                        "m_StringValue": "",
+                                        "m_StringValue": "CoalObjE\r\n1000000:1000000\r\n",
                                         "type": "System.Int32, mscorlib",
                                         "m_currentThread": 0
                                     ]
                                 },
-                                "source": 0,
-                                "starSource": 0
+                                "source": 1000000,
+                                "starSource": 1000000
                             }
                         ]
                     },
@@ -20914,8 +20914,8 @@
                 "cardInf": {
                     "$id": 1116,
                     "$type": 13,
-                    "title": "\u77ff\u573a",
-                    "description": "\u91cc\u9762\u80fd\u5f00\u91c7\u91d1\u77ff",
+                    "title": "\u94c1\u77ff",
+                    "description": "IronObjE\r\n1000000:1000000\r\n",
                     "effect": {
                         "$id": 1117,
                         "$type": 14,
@@ -20976,7 +20976,7 @@
                                     }
                                 }
                             },
-                            "m_text": "\u77ff\u573a",
+                            "m_text": "\u94c1\u77ff",
                             "m_TextPreprocessor": null,
                             "m_isRightToLeft": false,
                             "m_fontAsset": $iref:26,
@@ -21152,7 +21152,7 @@
                                     }
                                 }
                             },
-                            "m_text": "\u91cc\u9762\u80fd\u5f00\u91c7\u91d1\u77ff",
+                            "m_text": "IronObjE\r\n1000000:1000000\r\n",
                             "m_TextPreprocessor": null,
                             "m_isRightToLeft": false,
                             "m_fontAsset": $iref:26,
@@ -21235,7 +21235,7 @@
                                 255,
                                 255
                             },
-                            "m_fontSize": 3.1,
+                            "m_fontSize": 1.5,
                             "m_fontSizeBase": 2,
                             "m_fontWeight": 400,
                             "m_enableAutoSizing": true,
@@ -21301,15 +21301,15 @@
                         "type": "System.Int32, mscorlib",
                         "m_MaxCapacity": 2147483647,
                         "type": "System.Int32, mscorlib",
-                        "Capacity": 16,
+                        "Capacity": 32,
                         "type": "System.String, mscorlib",
-                        "m_StringValue": "",
+                        "m_StringValue": "IronObjE\r\n1000000:1000000\r\n",
                         "type": "System.Int32, mscorlib",
                         "m_currentThread": 0
                     ]
                 },
-                "source": 0,
-                "starSource": 0
+                "source": 1000000,
+                "starSource": 1000000
             },
             $iref:1069,
             $iref:8

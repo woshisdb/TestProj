@@ -161,9 +161,15 @@ public class ObjCont:ObjContBase
 /// </summary>
 public class Resource
 {
+    public int maxSize;
+    public int nowSize;
     public Dictionary<ObjEnum, ObjContBase> resources;
     public Dictionary<TransationEnum, Rate> rates;
     public Dictionary<SitEnum, Sit> sites;
+    public int GetSize(ObjEnum objEnum)
+    {
+        return Map.Instance.GetSaver(objEnum).size;
+    }
     public Resource()
     {
         resources = new Dictionary<ObjEnum, ObjContBase>();
@@ -189,6 +195,7 @@ public class Resource
             x.Value.AddSit(pair.Key,pair.Value.size);
         }
         resources[pair.Key].Combine(pair.Value);
+        nowSize+=pair.Value.size*GetSize(pair.Key);
     }
     public void Remove(KeyValuePair<ObjEnum, ObjContBase> pair)
     {
@@ -203,6 +210,7 @@ public class Resource
                 x.Value.RemoveSit(pair.Key, pair.Value.size);
             }
         resources[pair.Key].Delete(pair.Value);
+        nowSize -= pair.Value.size * GetSize(pair.Key);
     }
     public void Add(Resource resource)
     {
@@ -221,6 +229,7 @@ public class Resource
     [Button]
     public void Add(ObjEnum objtype, int num,int time=0,Obj obj=null)
     {
+        nowSize += num * GetSize(objtype);
         //if(rates!=null)
         //foreach (var x in rates)
         //{
@@ -259,6 +268,7 @@ public class Resource
     }
     public void Remove(ObjEnum objType, int num,Obj obj=null,int time=0)
     {
+        nowSize -= num * GetSize(objType);
         //if (rates != null)
         //    foreach (var x in rates)
         //    {
@@ -339,6 +349,11 @@ public class Resource
     public ObjContBase Find(ObjEnum objEnum)
     {
         return resources[objEnum];
+    }
+    public static void Trans(ObjEnum objEnum,int num,Resource r1,Resource r2)
+    {
+        r1.Remove(objEnum,num);
+        r2.Add(objEnum,num);
     }
 }
 
