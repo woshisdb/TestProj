@@ -396,7 +396,65 @@ public class BuildAct : Activity
     }
 }
 
+/// <summary>
+/// 建造活动
+/// </summary>
+public class WaKuangA : Act
+{
+    Int time;
+    public WaKuangA(Person person, BuildingObj obj,Int time, int priority = -1) : base(person, obj, priority)
+    {
+        this.time = time;
+        wastTime = true;
+    }
+    public override IEnumerator<object> Run(Action<Act> callback)
+    {
+        time--;
+        Debug.Log("Wa");
+        var kuang = (KuangMiningObj)Obj;
+        var t = kuang.GetRes(10);
+        kuang.resource.Add(t.Key,t.Value);
+        if(time<=0)
+        yield return Ret(new EndAct(Person, Obj), callback);
+    }
+}
+/// <summary>
+/// 建造设施的活动
+/// </summary>
+public class WaKuangAct : Activity
+{
+    public int use;
+    public WaKuangAct(Func<Obj, Person, object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null) : base(cond, eff)
+    {
+        use = 0;
+        activityName = "挖矿";
+        detail = "挖掘矿物";
+    }
+    public override bool Condition(Obj obj, Person person, params object[] objs)
+    {
+        return ((BuildingObj)obj).remainBuilder == 0;
+    }
 
+    public override PAction GetAction()
+    {
+        PAction action = new PAction();
+        return action;
+    }
+
+    /// <summary>
+    /// 效果
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="person"></param>
+    /// <param name="objs"></param>
+    /// <returns></returns>
+    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
+    {
+        var selTime =new SelectTime(person,obj,new int[] {1,2,3,4,5,6,7,8});
+        var t = new WaKuangA(person, (BuildingObj)obj, selTime.selectTime);
+        return GetActs(new SeqAct(person,obj,selTime,t), obj, person, winDatas, objs);
+    }
+}
 
 
 

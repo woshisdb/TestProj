@@ -70,7 +70,17 @@ public class KuangMiningObj : BuildingObj
     }
     public override List<Activity> InitActivities()
     {
-        var acts = base.InitActivities();
+        var acts = new List<Activity>() { 
+        new ArrangeContractAct(),//签署协议
+        new AddContractAct(),//添加协议
+        new RemoveContractAct(),//移除协议
+        /***************************************/
+        new SelPipLineAct(),
+        new SetPipLineAct(),
+        new UseToolAct(),
+        new WaKuangAct()
+        };
+        Debug.Log(acts.Count);
         return acts;
     }
     public override void LatUpdate()
@@ -81,7 +91,12 @@ public class KuangMiningObj : BuildingObj
         ////后续更新
         //this.cardInf.description =
         str.AppendLine(GetObj().ToString());
-        str.AppendLine(resource.resources[GetObj()] +":" +starSource);
+        if (resource == null)
+            resource = new Resource();
+        if(resource.resources.ContainsKey(GetObj()))
+            str.AppendLine(resource.resources[GetObj()].remain +":" +starSource);
+        else
+            str.AppendLine(0 + ":" + starSource);
         cardInf.description = str.ToString();
         if (cardInf.cardControl)
             cardInf.cardControl.UpdateInf();
@@ -96,23 +111,24 @@ public class KuangMiningObj : BuildingObj
     /// <param name=""></param>
     public KeyValuePair<ObjEnum, int> GetRes(int res)
     {
-        if(GetResCount() >= starSource*0.7)
+        var resNum= resource.resources[ObjEnum.KuangObjE].remain;
+        if (resNum >= starSource*0.7)
         {
-            int sum = Mathf.Min(res, GetResCount());
-            resource.Remove(GetObj(),sum);
-            return new KeyValuePair<ObjEnum, int>(GetObj(),sum);
+            int sum = Mathf.Min(res, resNum);
+            resource.Remove(ObjEnum.KuangObjE,sum);
+            return new KeyValuePair<ObjEnum, int>(ObjEnum.KuangObjE,sum);
         }
-        else if(GetResCount() >= 0.3*starSource)
+        else if(resNum >= 0.3*starSource)
         {
-            int sum = Mathf.Min(res*7/10, GetResCount());
-            resource.Remove(GetObj(), sum);
-            return new KeyValuePair<ObjEnum, int>(GetObj(), sum);
+            int sum = Mathf.Min(res*7/10, resNum);
+            resource.Remove(ObjEnum.KuangObjE, sum);
+            return new KeyValuePair<ObjEnum, int>(ObjEnum.KuangObjE, sum);
         }
         else
         {
-            int sum = Mathf.Min(res * 3 / 10, GetResCount());
-            resource.Remove(GetObj(), sum);
-            return new KeyValuePair<ObjEnum, int>(GetObj(), sum);
+            int sum = Mathf.Min(res * 3 / 10, resNum);
+            resource.Remove(ObjEnum.KuangObjE, sum);
+            return new KeyValuePair<ObjEnum, int>(ObjEnum.KuangObjE, sum);
         }
     }
 }

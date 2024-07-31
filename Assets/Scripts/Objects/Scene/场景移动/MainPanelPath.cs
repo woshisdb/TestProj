@@ -5,36 +5,33 @@ using UnityEngine;
 
 public class EnterA:Act
 {
-    TableModel x;
-    TableModel y;
-    public EnterA(Person person,Obj obj,TableModel x):base(person,obj)
+    string x;
+    public EnterA(Person person, Obj obj, string x) : base(person, obj)
     {
-        wastTime = false;
         this.x = x;
+        wastTime = false;
     }
-
     public override IEnumerator<object> Run(Action<Act> callback)
     {
         TC();
         Debug.Log("Enter");
-        y.EnterTable(Person);
+        GameArchitect.get.GetModel<TableModelSet>().Get(x).EnterTable(Person);
         yield return Ret(new EndAct(Person,Obj), callback);
     }
 }
 public class LeaveA : Act
 {
-    TableModel x;
-    public LeaveA(Person person, Obj obj, TableModel x) : base(person, obj)
+    string x;
+    public LeaveA(Person person, Obj obj, string x) : base(person, obj)
     {
         wastTime = false;
         this.x = x;
     }
-
     public override IEnumerator<object> Run(Action<Act> callback)
     {
         TC();
         Debug.Log("LeaveA2B");
-        x.LeaveTable(Person);
+        GameArchitect.get.GetModel<TableModelSet>().Get(x).LeaveTable(Person);
         yield return Ret(new EndAct(Person, Obj), callback);
     }
 }
@@ -43,20 +40,10 @@ public class Go : Activity
 {
     public string xname;
     public string yname;
-    public TableModel x=null;
-    public TableModel y=null;
     public int wasteTime;
     public override bool Condition(Obj obj, Person person,params object[] objs)
     {
-        Init();
-        return person.belong == x;
-    }
-    public void Init()
-    {
-        if(x==null)
-        x= GameArchitect.get.tableAsset.tableSaver.tables.Find(e => { return e.TableName == xname; });
-        if(y==null)
-        y = GameArchitect.get.tableAsset.tableSaver.tables.Find(e => { return e.TableName == yname; });
+        return person.belong.TableName == xname;
     }
     public override PAction GetAction()
     {
@@ -67,25 +54,19 @@ public class Go : Activity
     public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
         return new SeqAct(person, obj,
-            new LeaveA(person, obj, x),
+            new LeaveA(person, obj, xname),
             new WasteTimeA(person, obj, wasteTime),
-            new EnterA(person, obj, y)
+            new EnterA(person, obj, yname)
         );
     }
 
-    public Go(TableModel x, TableModel y, int wasteTime)
-    {
-        this.x = x;
-        this.y = y;
-        this.wasteTime = wasteTime;
-        activityName = x.TableName + "->" + y.TableName;
-        detail = wasteTime+"(H/2)";
-    }
     public Go(string x, string y, int wasteTime)
     {
         this.xname = x;
         this.yname = y;
         this.wasteTime = wasteTime;
+        activityName = x + "->" + y;
+        detail = wasteTime + "(H/2)";
     }
 }
 public class PathType:ObjType

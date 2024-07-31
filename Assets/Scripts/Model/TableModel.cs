@@ -16,6 +16,7 @@ public struct TableChangeEvent
 {
     public TableModel Model;
 }
+[SerializeField]
 public class TableModel:ICanRegisterEvent
 {
     public StringBuilder str;
@@ -58,7 +59,7 @@ public class TableModel:ICanRegisterEvent
         objs.Add(person);
         person.belong = this;
         if (person.isPlayer)
-            GameArchitect.gameLogic.camera.transform.position = GameArchitect.get.player.belong.control.CenterPos();
+            GameArchitect.gameLogic.camera.transform.position = person.belong.control.CenterPos();
         UpdateTable();
     }
     /// <summary>
@@ -119,6 +120,14 @@ public class TableModelSet : AbstractModel
         {
             tableModels[i].UpdateTable();
         }
+        foreach (var obj in GameArchitect.get.tableAsset.tableSaver.objs)
+        {
+            obj.belong = tableModels.Find(x => { return x.TableName == obj.belong.TableName; });
+        }
+    }
+    public TableModel Get(string name)
+    {
+        return tableModels.Find(x => { return name == x.TableName; });
     }
     public void AddTable(int i)
     {

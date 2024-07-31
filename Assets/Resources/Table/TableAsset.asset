@@ -15,7 +15,23 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -26,16 +42,16 @@ MonoBehaviour:
       Data: 0|TableSaver, Assembly-CSharp
     - Name: time
       Entry: 3
-      Data: 724
+      Data: 728
     - Name: lastNm
       Entry: 3
-      Data: 1728
+      Data: 1920
     - Name: objs
       Entry: 7
       Data: 1|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 7
     - Name: 
       Entry: 7
       Data: 2|Person, Assembly-CSharp
@@ -95,16 +111,16 @@ MonoBehaviour:
       Data: 
     - Name: tableNo
       Entry: 1
-      Data: t1
+      Data: t851
     - Name: TableName
       Entry: 1
-      Data: "\u519C\u4E1A\u533A"
+      Data: "\u77FF\u573A"
     - Name: owner
       Entry: 6
       Data: 
     - Name: size
       Entry: 3
-      Data: 50
+      Data: 50000
     - Name: persons
       Entry: 7
       Data: 6|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
@@ -125,25 +141,22 @@ MonoBehaviour:
       Data: 7|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 9
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 7
-      Data: 8|RestaurantObj, Assembly-CSharp
+      Data: 8|IronMiningObj, Assembly-CSharp
     - Name: obj
       Entry: 6
       Data: 
     - Name: name
       Entry: 1
-      Data: RestaurantObj_1534
+      Data: IronMiningObj_928
     - Name: belong
       Entry: 9
       Data: 4
     - Name: objSaver
       Entry: 7
-      Data: 9|RestaurantSaver, Assembly-CSharp
+      Data: 9|IronMiningSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -221,13 +234,13 @@ MonoBehaviour:
       Entry: 7
       Data: 14|CardInf, Assembly-CSharp
     - Name: title
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: "\u94C1\u77FF"
     - Name: description
       Entry: 1
-      Data: 'PlaceObjE:0/0
+      Data: 'IronObjE
 
-        ToolObjE:10/10
+        0:1000000
 
 '
     - Name: effect
@@ -279,8 +292,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: cardControl
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -307,9 +320,9 @@ MonoBehaviour:
       Data: System.String, mscorlib
     - Name: m_StringValue
       Entry: 1
-      Data: 'PlaceObjE:0/0
+      Data: 'IronObjE
 
-        ToolObjE:10/10
+        0:1000000
 
 '
     - Name: type
@@ -326,10 +339,16 @@ MonoBehaviour:
       Data: 
     - Name: requireBuilding
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: resource
       Entry: 7
       Data: 21|Resource, Assembly-CSharp
+    - Name: maxSize
+      Entry: 3
+      Data: 1000000
+    - Name: nowSize
+      Entry: 3
+      Data: 1000000
     - Name: resources
       Entry: 7
       Data: 22|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
@@ -349,22 +368,22 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 
     - Name: $k
       Entry: 3
-      Data: 20
+      Data: 11
     - Name: $v
       Entry: 7
       Data: 24|ObjTime`1[[PassDay, Assembly-CSharp]], Assembly-CSharp
     - Name: size
       Entry: 3
-      Data: 0
+      Data: 1000000
     - Name: remain
       Entry: 3
-      Data: 0
+      Data: 1000000
     - Name: Time
       Entry: 7
       Data: 25|PassDay, Assembly-CSharp
@@ -393,7 +412,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 0
+      Data: 200
     - Name: 
       Entry: 8
       Data: 
@@ -461,29 +480,250 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: rates
+      Entry: 6
+      Data: 
+    - Name: sites
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: rates
+      Entry: 6
+      Data: 
+    - Name: sits
+      Entry: 6
+      Data: 
+    - Name: goodsManager
+      Entry: 6
+      Data: 
+    - Name: pipLineManager
+      Entry: 6
+      Data: 
+    - Name: owner
+      Entry: 6
+      Data: 
+    - Name: starSource
+      Entry: 3
+      Data: 1000000
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 33|CoalMiningObj, Assembly-CSharp
+    - Name: obj
+      Entry: 6
+      Data: 
+    - Name: name
+      Entry: 1
+      Data: CoalMiningObj_929
+    - Name: belong
+      Entry: 9
+      Data: 4
+    - Name: objSaver
+      Entry: 7
+      Data: 34|CoalMiningSaver, Assembly-CSharp
+    - Name: canSell
+      Entry: 5
+      Data: false
+    - Name: saveTye
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: transPairs
+      Entry: 7
+      Data: 35|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 11
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sits
+      Entry: 7
+      Data: 36|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 13
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: container
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: cardInf
+      Entry: 7
+      Data: 37|CardInf, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\u7164\u77FF"
+    - Name: description
+      Entry: 1
+      Data: 'CoalObjE
+
+        0:1000000
+
+'
+    - Name: effect
+      Entry: 7
+      Data: 38|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+    - Name: target
+      Entry: 7
+      Data: 39|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 33
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 9
+      Data: 17
+    - Name: methodName
+      Entry: 1
+      Data: <Load>b__0
+    - Name: delegateType
+      Entry: 9
+      Data: 18
+    - Name: signature
+      Entry: 7
+      Data: 40|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: cardControl
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: str
+      Entry: 7
+      Data: 41|System.Text.StringBuilder, mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: m_MaxCapacity
+      Entry: 3
+      Data: 2147483647
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: Capacity
+      Entry: 3
+      Data: 32
+    - Name: type
+      Entry: 1
+      Data: System.String, mscorlib
+    - Name: m_StringValue
+      Entry: 1
+      Data: 'CoalObjE
+
+        0:1000000
+
+'
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: m_currentThread
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: requireBuilding
+      Entry: 3
+      Data: 0
+    - Name: resource
+      Entry: 7
+      Data: 42|Resource, Assembly-CSharp
+    - Name: maxSize
+      Entry: 3
+      Data: 1000000
+    - Name: nowSize
+      Entry: 3
+      Data: 999990
+    - Name: resources
+      Entry: 7
+      Data: 43|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 23
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
       Entry: 7
       Data: 
     - Name: $k
       Entry: 3
-      Data: 31
+      Data: 11
     - Name: $v
       Entry: 7
-      Data: 33|ObjTime`1[[PassDay, Assembly-CSharp]], Assembly-CSharp
+      Data: 44|ObjTime`1[[PassDay, Assembly-CSharp]], Assembly-CSharp
     - Name: size
       Entry: 3
-      Data: 10
+      Data: 999990
     - Name: remain
       Entry: 3
-      Data: 10
+      Data: 999990
     - Name: Time
       Entry: 7
-      Data: 34|PassDay, Assembly-CSharp
+      Data: 45|PassDay, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
     - Name: objs
       Entry: 7
-      Data: 35|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Int32,
+      Data: 46|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
@@ -499,7 +739,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 20
+      Data: 200
     - Name: 
       Entry: 8
       Data: 
@@ -511,10 +751,10 @@ MonoBehaviour:
       Data: 
     - Name: act
       Entry: 7
-      Data: 36|System.Action`1[[PassDay, Assembly-CSharp]], mscorlib
+      Data: 47|System.Action`1[[PassDay, Assembly-CSharp]], mscorlib
     - Name: target
       Entry: 9
-      Data: 33
+      Data: 44
     - Name: declaringType
       Entry: 9
       Data: 29
@@ -526,7 +766,7 @@ MonoBehaviour:
       Data: 30
     - Name: signature
       Entry: 7
-      Data: 37|System.Type[], mscorlib
+      Data: 48|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 1
@@ -555,1040 +795,106 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: rates
-      Entry: 7
-      Data: 38|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[Rate,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 39|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 8
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 40|Rate, Assembly-CSharp
-    - Name: transType
-      Entry: 3
-      Data: 0
-    - Name: func
-      Entry: 7
-      Data: 41|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 7
-      Data: 42|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
-    - Name: data
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 7
-      Data: 43|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__0
-    - Name: delegateType
-      Entry: 7
-      Data: 44|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
-        mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: signature
-      Entry: 7
-      Data: 45|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 46|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: ObjSaver, Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: can
-      Entry: 7
-      Data: 47|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 9
-      Data: 42
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__1
-    - Name: delegateType
-      Entry: 7
-      Data: 48|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
-        mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: signature
-      Entry: 7
-      Data: 49|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: resource
-      Entry: 9
-      Data: 21
-    - Name: nowCount
-      Entry: 3
-      Data: 2
-    - Name: tempCount
-      Entry: 3
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 7
-      Data: 50|Rate, Assembly-CSharp
-    - Name: transType
-      Entry: 3
-      Data: 0
-    - Name: func
-      Entry: 7
-      Data: 51|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 7
-      Data: 52|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
-    - Name: data
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__0
-    - Name: delegateType
-      Entry: 9
-      Data: 44
-    - Name: signature
-      Entry: 7
-      Data: 53|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: can
-      Entry: 7
-      Data: 54|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 9
-      Data: 52
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__1
-    - Name: delegateType
-      Entry: 9
-      Data: 48
-    - Name: signature
-      Entry: 7
-      Data: 55|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: resource
-      Entry: 9
-      Data: 21
-    - Name: nowCount
-      Entry: 3
-      Data: 0
-    - Name: tempCount
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
-      Entry: 7
-      Data: 56|Rate, Assembly-CSharp
-    - Name: transType
-      Entry: 3
-      Data: 0
-    - Name: func
-      Entry: 7
-      Data: 57|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 7
-      Data: 58|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
-    - Name: data
-      Entry: 3
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__0
-    - Name: delegateType
-      Entry: 9
-      Data: 44
-    - Name: signature
-      Entry: 7
-      Data: 59|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: can
-      Entry: 7
-      Data: 60|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 9
-      Data: 58
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__1
-    - Name: delegateType
-      Entry: 9
-      Data: 48
-    - Name: signature
-      Entry: 7
-      Data: 61|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: resource
-      Entry: 9
-      Data: 21
-    - Name: nowCount
-      Entry: 3
-      Data: 0
-    - Name: tempCount
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 3
-    - Name: $v
-      Entry: 7
-      Data: 62|Rate, Assembly-CSharp
-    - Name: transType
-      Entry: 3
-      Data: 0
-    - Name: func
-      Entry: 7
-      Data: 63|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 7
-      Data: 64|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
-    - Name: data
-      Entry: 3
-      Data: 3
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__0
-    - Name: delegateType
-      Entry: 9
-      Data: 44
-    - Name: signature
-      Entry: 7
-      Data: 65|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: can
-      Entry: 7
-      Data: 66|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 9
-      Data: 64
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__1
-    - Name: delegateType
-      Entry: 9
-      Data: 48
-    - Name: signature
-      Entry: 7
-      Data: 67|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: resource
-      Entry: 9
-      Data: 21
-    - Name: nowCount
-      Entry: 3
-      Data: 0
-    - Name: tempCount
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 4
-    - Name: $v
-      Entry: 7
-      Data: 68|Rate, Assembly-CSharp
-    - Name: transType
-      Entry: 3
-      Data: 0
-    - Name: func
-      Entry: 7
-      Data: 69|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 7
-      Data: 70|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
-    - Name: data
-      Entry: 3
-      Data: 4
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__0
-    - Name: delegateType
-      Entry: 9
-      Data: 44
-    - Name: signature
-      Entry: 7
-      Data: 71|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: can
-      Entry: 7
-      Data: 72|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 9
-      Data: 70
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__1
-    - Name: delegateType
-      Entry: 9
-      Data: 48
-    - Name: signature
-      Entry: 7
-      Data: 73|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: resource
-      Entry: 9
-      Data: 21
-    - Name: nowCount
-      Entry: 3
-      Data: 0
-    - Name: tempCount
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 5
-    - Name: $v
-      Entry: 7
-      Data: 74|Rate, Assembly-CSharp
-    - Name: transType
-      Entry: 3
-      Data: 0
-    - Name: func
-      Entry: 7
-      Data: 75|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 7
-      Data: 76|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
-    - Name: data
-      Entry: 3
-      Data: 5
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__0
-    - Name: delegateType
-      Entry: 9
-      Data: 44
-    - Name: signature
-      Entry: 7
-      Data: 77|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: can
-      Entry: 7
-      Data: 78|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 9
-      Data: 76
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__1
-    - Name: delegateType
-      Entry: 9
-      Data: 48
-    - Name: signature
-      Entry: 7
-      Data: 79|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: resource
-      Entry: 9
-      Data: 21
-    - Name: nowCount
-      Entry: 3
-      Data: 0
-    - Name: tempCount
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 6
-    - Name: $v
-      Entry: 7
-      Data: 80|Rate, Assembly-CSharp
-    - Name: transType
-      Entry: 3
-      Data: 0
-    - Name: func
-      Entry: 7
-      Data: 81|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 7
-      Data: 82|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
-    - Name: data
-      Entry: 3
-      Data: 6
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__0
-    - Name: delegateType
-      Entry: 9
-      Data: 44
-    - Name: signature
-      Entry: 7
-      Data: 83|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: can
-      Entry: 7
-      Data: 84|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 9
-      Data: 82
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__1
-    - Name: delegateType
-      Entry: 9
-      Data: 48
-    - Name: signature
-      Entry: 7
-      Data: 85|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: resource
-      Entry: 9
-      Data: 21
-    - Name: nowCount
-      Entry: 3
-      Data: 0
-    - Name: tempCount
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 7
-    - Name: $v
-      Entry: 7
-      Data: 86|Rate, Assembly-CSharp
-    - Name: transType
-      Entry: 3
-      Data: 0
-    - Name: func
-      Entry: 7
-      Data: 87|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 7
-      Data: 88|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
-    - Name: data
-      Entry: 3
-      Data: 7
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__0
-    - Name: delegateType
-      Entry: 9
-      Data: 44
-    - Name: signature
-      Entry: 7
-      Data: 89|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: can
-      Entry: 7
-      Data: 90|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 9
-      Data: 88
-    - Name: declaringType
-      Entry: 9
-      Data: 43
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__1
-    - Name: delegateType
-      Entry: 9
-      Data: 48
-    - Name: signature
-      Entry: 7
-      Data: 91|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: resource
-      Entry: 9
-      Data: 21
-    - Name: nowCount
-      Entry: 3
-      Data: 0
-    - Name: tempCount
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: sites
-      Entry: 7
-      Data: 92|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[Sit,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 93|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 94|Sit, Assembly-CSharp
-    - Name: sit
-      Entry: 3
-      Data: 0
-    - Name: remainSit
-      Entry: 3
-      Data: 0
-    - Name: sum
-      Entry: 7
-      Data: 95|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 7
-      Data: 96|BuildingObj+<>c__DisplayClass9_1, Assembly-CSharp
-    - Name: data
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 7
-      Data: 97|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: BuildingObj+<>c__DisplayClass9_1, Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__2
-    - Name: delegateType
-      Entry: 9
-      Data: 44
-    - Name: signature
-      Entry: 7
-      Data: 98|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 7
-      Data: 99|Sit, Assembly-CSharp
-    - Name: sit
-      Entry: 3
-      Data: 0
-    - Name: remainSit
-      Entry: 3
-      Data: 0
-    - Name: sum
-      Entry: 7
-      Data: 100|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
-        mscorlib
-    - Name: target
-      Entry: 7
-      Data: 101|BuildingObj+<>c__DisplayClass9_1, Assembly-CSharp
-    - Name: data
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: declaringType
-      Entry: 9
-      Data: 97
-    - Name: methodName
-      Entry: 1
-      Data: <.ctor>b__2
-    - Name: delegateType
-      Entry: 9
-      Data: 44
-    - Name: signature
-      Entry: 7
-      Data: 102|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 46
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: rates
-      Entry: 9
-      Data: 38
+      Entry: 6
+      Data: 
     - Name: sits
-      Entry: 9
-      Data: 92
+      Entry: 6
+      Data: 
     - Name: goodsManager
+      Entry: 6
+      Data: 
+    - Name: pipLineManager
+      Entry: 6
+      Data: 
+    - Name: owner
+      Entry: 6
+      Data: 
+    - Name: starSource
+      Entry: 3
+      Data: 1000000
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 7
-      Data: 103|GoodsManager, Assembly-CSharp
-    - Name: goods
+      Data: 49|PathObj, Assembly-CSharp
+    - Name: obj
+      Entry: 6
+      Data: 
+    - Name: name
+      Entry: 6
+      Data: 
+    - Name: belong
+      Entry: 9
+      Data: 4
+    - Name: objSaver
       Entry: 7
-      Data: 104|System.Collections.Generic.Dictionary`2[[Goods, Assembly-CSharp],[System.Int32,
+      Data: 50|PathSaver, Assembly-CSharp
+    - Name: canSell
+      Entry: 5
+      Data: false
+    - Name: saveTye
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: transPairs
+      Entry: 7
+      Data: 51|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 52|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sits
+      Entry: 7
+      Data: 53|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 105|System.Collections.Generic.ObjectEqualityComparer`1[[Goods, Assembly-CSharp]],
+      Data: 54|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
       Entry: 8
       Data: 
     - Name: 
@@ -1600,48 +906,42 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: originResource
-      Entry: 9
-      Data: 21
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: cardInf
+      Entry: 7
+      Data: 55|CardInf, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\u9053\u8DEF"
+    - Name: description
+      Entry: 1
+      Data: PathToOtherScene
+    - Name: effect
+      Entry: 7
+      Data: 56|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+    - Name: target
+      Entry: 7
+      Data: 57|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 8
+      Data: 49
     - Name: 
       Entry: 8
       Data: 
-    - Name: pipLineManager
-      Entry: 7
-      Data: 106|PipLineManager, Assembly-CSharp
-    - Name: obj
+    - Name: declaringType
       Entry: 9
-      Data: 8
-    - Name: piplineItem
-      Entry: 7
-      Data: 107|System.Collections.Generic.Dictionary`2[[Trans, Assembly-CSharp],[Source,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 108|System.Collections.Generic.ObjectEqualityComparer`1[[Trans, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: worldPipline
-      Entry: 7
-      Data: 109|System.Collections.Generic.Dictionary`2[[Trans, Assembly-CSharp],[Source,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
+      Data: 17
+    - Name: methodName
+      Entry: 1
+      Data: <Load>b__0
+    - Name: delegateType
       Entry: 9
-      Data: 108
+      Data: 18
+    - Name: signature
+      Entry: 7
+      Data: 58|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -1654,12 +954,54 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: owner
-      Entry: 9
+    - Name: cardControl
+      Entry: 10
       Data: 2
     - Name: 
       Entry: 8
       Data: 
+    - Name: str
+      Entry: 7
+      Data: 59|System.Text.StringBuilder, mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: m_MaxCapacity
+      Entry: 3
+      Data: 2147483647
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: Capacity
+      Entry: 3
+      Data: 16
+    - Name: type
+      Entry: 1
+      Data: System.String, mscorlib
+    - Name: m_StringValue
+      Entry: 1
+      Data: 
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: m_currentThread
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 9
+      Data: 2
     - Name: 
       Entry: 13
       Data: 
@@ -1667,20 +1009,20 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: control
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 3
     - Name: rule
       Entry: 6
       Data: 
     - Name: sceneType
       Entry: 7
-      Data: 110|SceneType, Assembly-CSharp
+      Data: 60|SceneType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: SceneType
     - Name: objName
-      Entry: 1
-      Data: MainPanel
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -1692,7 +1034,7 @@ MonoBehaviour:
       Data: 
     - Name: cardInf
       Entry: 7
-      Data: 111|CardInf, Assembly-CSharp
+      Data: 61|CardInf, Assembly-CSharp
     - Name: title
       Entry: 1
       Data: test
@@ -1701,10 +1043,10 @@ MonoBehaviour:
       Data: 
     - Name: effect
       Entry: 7
-      Data: 112|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+      Data: 62|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
     - Name: target
       Entry: 7
-      Data: 113|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
+      Data: 63|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
     - Name: obj
       Entry: 9
       Data: 2
@@ -1722,7 +1064,7 @@ MonoBehaviour:
       Data: 18
     - Name: signature
       Entry: 7
-      Data: 114|System.Type[], mscorlib
+      Data: 64|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -1736,8 +1078,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: cardControl
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -1746,19 +1088,19 @@ MonoBehaviour:
       Data: 
     - Name: sex
       Entry: 7
-      Data: 115|Bool, Assembly-CSharp
+      Data: 65|Bool, Assembly-CSharp
     - Name: val
       Entry: 5
       Data: true
     - Name: predicate
       Entry: 7
-      Data: 116|Sex, Assembly-CSharp
+      Data: 66|Sex, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Sex
     - Name: objects
       Entry: 7
-      Data: 117|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 67|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
@@ -1785,19 +1127,19 @@ MonoBehaviour:
       Data: 
     - Name: hasSelect
       Entry: 7
-      Data: 118|Bool, Assembly-CSharp
+      Data: 68|Bool, Assembly-CSharp
     - Name: val
       Entry: 5
-      Data: false
+      Data: true
     - Name: predicate
       Entry: 7
-      Data: 119|HasSelectP, Assembly-CSharp
+      Data: 69|HasSelectP, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: HasSelectP
     - Name: objects
       Entry: 7
-      Data: 120|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 70|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
@@ -1821,7 +1163,7 @@ MonoBehaviour:
       Data: 
     - Name: sleepState
       Entry: 7
-      Data: 121|PersonState, Assembly-CSharp
+      Data: 71|PersonState, Assembly-CSharp
     - Name: person
       Entry: 9
       Data: 2
@@ -1830,19 +1172,19 @@ MonoBehaviour:
       Data: 0
     - Name: val
       Entry: 7
-      Data: 122|Num, Assembly-CSharp
+      Data: 72|Num, Assembly-CSharp
     - Name: val
       Entry: 3
       Data: 0
     - Name: func
       Entry: 7
-      Data: 123|SleepValF, Assembly-CSharp
+      Data: 73|SleepValF, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: SleepValF
     - Name: objects
       Entry: 7
-      Data: 124|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 74|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
@@ -1884,19 +1226,19 @@ MonoBehaviour:
       Data: 
     - Name: money
       Entry: 7
-      Data: 125|Num, Assembly-CSharp
+      Data: 75|Num, Assembly-CSharp
     - Name: val
       Entry: 3
       Data: 10
     - Name: func
       Entry: 7
-      Data: 126|Money, Assembly-CSharp
+      Data: 76|Money, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Money
     - Name: objects
       Entry: 7
-      Data: 127|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
+      Data: 77|System.Collections.Generic.List`1[[PType, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
@@ -1932,7 +1274,13 @@ MonoBehaviour:
       Data: 
     - Name: resource
       Entry: 7
-      Data: 128|Resource, Assembly-CSharp
+      Data: 78|Resource, Assembly-CSharp
+    - Name: maxSize
+      Entry: 3
+      Data: 0
+    - Name: nowSize
+      Entry: 3
+      Data: 0
     - Name: resources
       Entry: 6
       Data: 
@@ -1946,14 +1294,41 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: act
-      Entry: 6
+      Entry: 7
+      Data: 79|SeqAct, Assembly-CSharp
+    - Name: priority
+      Entry: 3
+      Data: -1
+    - Name: Person
+      Entry: 9
+      Data: 2
+    - Name: Obj
+      Entry: 9
+      Data: 33
+    - Name: wastTime
+      Entry: 5
+      Data: false
+    - Name: winDatas
+      Entry: 7
+      Data: 80|System.Collections.Generic.List`1[[WinData, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: foodSet
       Entry: 6
       Data: 
     - Name: contractManager
       Entry: 7
-      Data: 129|ContractManager, Assembly-CSharp
+      Data: 81|ContractManager, Assembly-CSharp
     - Name: person
       Entry: 9
       Data: 2
@@ -1964,20 +1339,26 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 9
+      Data: 8
+    - Name: 
+      Entry: 9
+      Data: 33
+    - Name: 
       Entry: 7
-      Data: 130|IronMiningObj, Assembly-CSharp
+      Data: 82|RestaurantObj, Assembly-CSharp
     - Name: obj
       Entry: 6
       Data: 
     - Name: name
       Entry: 1
-      Data: IronMiningObj_928
+      Data: RestaurantObj_1534
     - Name: belong
       Entry: 7
-      Data: 131|TableModel, Assembly-CSharp
+      Data: 83|TableModel, Assembly-CSharp
     - Name: str
       Entry: 7
-      Data: 132|System.Text.StringBuilder, mscorlib
+      Data: 84|System.Text.StringBuilder, mscorlib
     - Name: 
       Entry: 12
       Data: 4
@@ -2013,19 +1394,19 @@ MonoBehaviour:
       Data: 
     - Name: tableNo
       Entry: 1
-      Data: t851
+      Data: t1
     - Name: TableName
       Entry: 1
-      Data: "\u77FF\u573A"
+      Data: "\u519C\u4E1A\u533A"
     - Name: owner
       Entry: 6
       Data: 
     - Name: size
       Entry: 3
-      Data: 50000
+      Data: 50
     - Name: persons
       Entry: 7
-      Data: 133|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
+      Data: 85|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2037,28 +1418,28 @@ MonoBehaviour:
       Data: 
     - Name: objs
       Entry: 7
-      Data: 134|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
+      Data: 86|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 9
-      Data: 130
+      Data: 82
     - Name: 
       Entry: 7
-      Data: 135|CoalMiningObj, Assembly-CSharp
+      Data: 87|PathObj, Assembly-CSharp
     - Name: obj
       Entry: 6
       Data: 
     - Name: name
-      Entry: 1
-      Data: CoalMiningObj_929
+      Entry: 6
+      Data: 
     - Name: belong
       Entry: 9
-      Data: 131
+      Data: 83
     - Name: objSaver
       Entry: 7
-      Data: 136|CoalMiningSaver, Assembly-CSharp
+      Data: 88|PathSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -2076,11 +1457,11 @@ MonoBehaviour:
       Data: 
     - Name: transPairs
       Entry: 7
-      Data: 137|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+      Data: 89|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 138|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
+      Data: 90|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -2102,11 +1483,11 @@ MonoBehaviour:
       Data: 
     - Name: sits
       Entry: 7
-      Data: 139|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+      Data: 91|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 140|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
+      Data: 92|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -2131,26 +1512,22 @@ MonoBehaviour:
       Data: 
     - Name: cardInf
       Entry: 7
-      Data: 141|CardInf, Assembly-CSharp
+      Data: 93|CardInf, Assembly-CSharp
     - Name: title
       Entry: 1
-      Data: "\u7164\u77FF"
+      Data: "\u9053\u8DEF"
     - Name: description
       Entry: 1
-      Data: 'CoalObjE
-
-        1000000:1000000
-
-'
+      Data: PathToOtherScene
     - Name: effect
       Entry: 7
-      Data: 142|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+      Data: 94|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
     - Name: target
       Entry: 7
-      Data: 143|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
+      Data: 95|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 135
+      Data: 87
     - Name: 
       Entry: 8
       Data: 
@@ -2165,7 +1542,7 @@ MonoBehaviour:
       Data: 18
     - Name: signature
       Entry: 7
-      Data: 144|System.Type[], mscorlib
+      Data: 96|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2179,14 +1556,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: cardControl
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
     - Name: str
       Entry: 7
-      Data: 145|System.Text.StringBuilder, mscorlib
+      Data: 97|System.Text.StringBuilder, mscorlib
     - Name: 
       Entry: 12
       Data: 4
@@ -2201,17 +1578,13 @@ MonoBehaviour:
       Data: System.Int32, mscorlib
     - Name: Capacity
       Entry: 3
-      Data: 32
+      Data: 16
     - Name: type
       Entry: 1
       Data: System.String, mscorlib
     - Name: m_StringValue
       Entry: 1
-      Data: 'CoalObjE
-
-        1000000:1000000
-
-'
+      Data: 
     - Name: type
       Entry: 1
       Data: System.Int32, mscorlib
@@ -2224,12 +1597,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: source
-      Entry: 3
-      Data: 1000000
-    - Name: starSource
-      Entry: 3
-      Data: 1000000
     - Name: 
       Entry: 8
       Data: 
@@ -2240,20 +1607,20 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: control
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 6
     - Name: rule
       Entry: 6
       Data: 
     - Name: sceneType
       Entry: 7
-      Data: 146|SceneType, Assembly-CSharp
+      Data: 98|SceneType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: SceneType
     - Name: objName
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: MainPanel
     - Name: 
       Entry: 8
       Data: 
@@ -2262,7 +1629,7 @@ MonoBehaviour:
       Data: 
     - Name: objSaver
       Entry: 7
-      Data: 147|IronMiningSaver, Assembly-CSharp
+      Data: 99|RestaurantSaver, Assembly-CSharp
     - Name: canSell
       Entry: 5
       Data: false
@@ -2280,11 +1647,21 @@ MonoBehaviour:
       Data: 
     - Name: transPairs
       Entry: 7
-      Data: 148|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+      Data: 100|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
         Assembly-CSharp]], mscorlib
     - Name: comparer
-      Entry: 9
-      Data: 138
+      Entry: 7
+      Data: 101|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 12
       Data: 0
@@ -2296,11 +1673,12 @@ MonoBehaviour:
       Data: 
     - Name: sits
       Entry: 7
-      Data: 149|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+      Data: 102|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
-      Entry: 9
-      Data: 140
+      Entry: 7
+      Data: 103|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
+        mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2311,30 +1689,42 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: container
+      Entry: 3
+      Data: 0
+    - Name: 
       Entry: 8
       Data: 
     - Name: cardInf
       Entry: 7
-      Data: 150|CardInf, Assembly-CSharp
+      Data: 104|CardInf, Assembly-CSharp
     - Name: title
-      Entry: 1
-      Data: "\u94C1\u77FF"
+      Entry: 6
+      Data: 
     - Name: description
       Entry: 1
-      Data: 'IronObjE
+      Data: 'PlaceObjE:0/0
 
-        1000000:1000000
+        ToolObjE:10/10
 
 '
     - Name: effect
       Entry: 7
-      Data: 151|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+      Data: 105|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
     - Name: target
       Entry: 7
-      Data: 152|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
+      Data: 106|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 130
+      Data: 82
     - Name: 
       Entry: 8
       Data: 
@@ -2349,7 +1739,7 @@ MonoBehaviour:
       Data: 18
     - Name: signature
       Entry: 7
-      Data: 153|System.Type[], mscorlib
+      Data: 107|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2363,14 +1753,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: cardControl
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 7
     - Name: 
       Entry: 8
       Data: 
     - Name: str
       Entry: 7
-      Data: 154|System.Text.StringBuilder, mscorlib
+      Data: 108|System.Text.StringBuilder, mscorlib
     - Name: 
       Entry: 12
       Data: 4
@@ -2391,9 +1781,9 @@ MonoBehaviour:
       Data: System.String, mscorlib
     - Name: m_StringValue
       Entry: 1
-      Data: 'IronObjE
+      Data: 'PlaceObjE:0/0
 
-        1000000:1000000
+        ToolObjE:10/10
 
 '
     - Name: type
@@ -2408,58 +1798,1348 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: source
+    - Name: requireBuilding
       Entry: 3
-      Data: 1000000
-    - Name: starSource
+      Data: 1
+    - Name: resource
+      Entry: 7
+      Data: 109|Resource, Assembly-CSharp
+    - Name: maxSize
       Entry: 3
-      Data: 1000000
+      Data: 0
+    - Name: nowSize
+      Entry: 3
+      Data: 0
+    - Name: resources
+      Entry: 7
+      Data: 110|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 111|System.Collections.Generic.EnumEqualityComparer`1[[ObjEnum, Assembly-CSharp]],
+        mscorlib
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 9
-      Data: 135
-    - Name: 
-      Entry: 9
-      Data: 8
+      Entry: 12
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-    - Name: personList
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
       Entry: 7
-      Data: 155|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 20
+    - Name: $v
+      Entry: 7
+      Data: 112|ObjTime`1[[PassDay, Assembly-CSharp]], Assembly-CSharp
+    - Name: size
+      Entry: 3
+      Data: 0
+    - Name: remain
+      Entry: 3
+      Data: 0
+    - Name: Time
+      Entry: 7
+      Data: 113|PassDay, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: objs
+      Entry: 7
+      Data: 114|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 115|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: act
+      Entry: 7
+      Data: 116|System.Action`1[[PassDay, Assembly-CSharp]], mscorlib
+    - Name: target
+      Entry: 9
+      Data: 112
+    - Name: declaringType
+      Entry: 9
+      Data: 29
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__6_0
+    - Name: delegateType
+      Entry: 9
+      Data: 30
+    - Name: signature
+      Entry: 7
+      Data: 117|System.Type[], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 2
+      Data: 32
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-    - Name: tables
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 7
-      Data: 156|System.Collections.Generic.List`1[[TableModel, Assembly-CSharp]],
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 31
+    - Name: $v
+      Entry: 7
+      Data: 118|ObjTime`1[[PassDay, Assembly-CSharp]], Assembly-CSharp
+    - Name: size
+      Entry: 3
+      Data: 10
+    - Name: remain
+      Entry: 3
+      Data: 10
+    - Name: Time
+      Entry: 7
+      Data: 119|PassDay, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: objs
+      Entry: 7
+      Data: 120|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 115
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: act
+      Entry: 7
+      Data: 121|System.Action`1[[PassDay, Assembly-CSharp]], mscorlib
+    - Name: target
+      Entry: 9
+      Data: 118
+    - Name: declaringType
+      Entry: 9
+      Data: 29
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__6_0
+    - Name: delegateType
+      Entry: 9
+      Data: 30
+    - Name: signature
+      Entry: 7
+      Data: 122|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 32
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: rates
+      Entry: 7
+      Data: 123|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[Rate,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 124|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 8
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 125|Rate, Assembly-CSharp
+    - Name: transType
+      Entry: 3
+      Data: 0
+    - Name: func
+      Entry: 7
+      Data: 126|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 7
+      Data: 127|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
+    - Name: data
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 7
+      Data: 128|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__0
+    - Name: delegateType
+      Entry: 7
+      Data: 129|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 130|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 131|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: ObjSaver, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: can
+      Entry: 7
+      Data: 132|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 9
+      Data: 127
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__1
+    - Name: delegateType
+      Entry: 7
+      Data: 133|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 134|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: resource
+      Entry: 9
+      Data: 109
+    - Name: nowCount
+      Entry: 3
+      Data: 2
+    - Name: tempCount
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 135|Rate, Assembly-CSharp
+    - Name: transType
+      Entry: 3
+      Data: 0
+    - Name: func
+      Entry: 7
+      Data: 136|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 7
+      Data: 137|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
+    - Name: data
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__0
+    - Name: delegateType
+      Entry: 9
+      Data: 129
+    - Name: signature
+      Entry: 7
+      Data: 138|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: can
+      Entry: 7
+      Data: 139|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 9
+      Data: 137
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__1
+    - Name: delegateType
+      Entry: 9
+      Data: 133
+    - Name: signature
+      Entry: 7
+      Data: 140|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: resource
+      Entry: 9
+      Data: 109
+    - Name: nowCount
+      Entry: 3
+      Data: 0
+    - Name: tempCount
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 141|Rate, Assembly-CSharp
+    - Name: transType
+      Entry: 3
+      Data: 0
+    - Name: func
+      Entry: 7
+      Data: 142|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 7
+      Data: 143|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
+    - Name: data
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__0
+    - Name: delegateType
+      Entry: 9
+      Data: 129
+    - Name: signature
+      Entry: 7
+      Data: 144|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: can
+      Entry: 7
+      Data: 145|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 9
+      Data: 143
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__1
+    - Name: delegateType
+      Entry: 9
+      Data: 133
+    - Name: signature
+      Entry: 7
+      Data: 146|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: resource
+      Entry: 9
+      Data: 109
+    - Name: nowCount
+      Entry: 3
+      Data: 0
+    - Name: tempCount
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 147|Rate, Assembly-CSharp
+    - Name: transType
+      Entry: 3
+      Data: 0
+    - Name: func
+      Entry: 7
+      Data: 148|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 7
+      Data: 149|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
+    - Name: data
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__0
+    - Name: delegateType
+      Entry: 9
+      Data: 129
+    - Name: signature
+      Entry: 7
+      Data: 150|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: can
+      Entry: 7
+      Data: 151|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 9
+      Data: 149
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__1
+    - Name: delegateType
+      Entry: 9
+      Data: 133
+    - Name: signature
+      Entry: 7
+      Data: 152|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: resource
+      Entry: 9
+      Data: 109
+    - Name: nowCount
+      Entry: 3
+      Data: 0
+    - Name: tempCount
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: 153|Rate, Assembly-CSharp
+    - Name: transType
+      Entry: 3
+      Data: 0
+    - Name: func
+      Entry: 7
+      Data: 154|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 7
+      Data: 155|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
+    - Name: data
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__0
+    - Name: delegateType
+      Entry: 9
+      Data: 129
+    - Name: signature
+      Entry: 7
+      Data: 156|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: can
+      Entry: 7
+      Data: 157|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 9
+      Data: 155
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__1
+    - Name: delegateType
+      Entry: 9
+      Data: 133
+    - Name: signature
+      Entry: 7
+      Data: 158|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: resource
+      Entry: 9
+      Data: 109
+    - Name: nowCount
+      Entry: 3
+      Data: 0
+    - Name: tempCount
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 5
+    - Name: $v
+      Entry: 7
+      Data: 159|Rate, Assembly-CSharp
+    - Name: transType
+      Entry: 3
+      Data: 0
+    - Name: func
+      Entry: 7
+      Data: 160|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 7
+      Data: 161|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
+    - Name: data
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__0
+    - Name: delegateType
+      Entry: 9
+      Data: 129
+    - Name: signature
+      Entry: 7
+      Data: 162|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: can
+      Entry: 7
+      Data: 163|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 9
+      Data: 161
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__1
+    - Name: delegateType
+      Entry: 9
+      Data: 133
+    - Name: signature
+      Entry: 7
+      Data: 164|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: resource
+      Entry: 9
+      Data: 109
+    - Name: nowCount
+      Entry: 3
+      Data: 0
+    - Name: tempCount
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 6
+    - Name: $v
+      Entry: 7
+      Data: 165|Rate, Assembly-CSharp
+    - Name: transType
+      Entry: 3
+      Data: 0
+    - Name: func
+      Entry: 7
+      Data: 166|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 7
+      Data: 167|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
+    - Name: data
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__0
+    - Name: delegateType
+      Entry: 9
+      Data: 129
+    - Name: signature
+      Entry: 7
+      Data: 168|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: can
+      Entry: 7
+      Data: 169|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 9
+      Data: 167
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__1
+    - Name: delegateType
+      Entry: 9
+      Data: 133
+    - Name: signature
+      Entry: 7
+      Data: 170|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: resource
+      Entry: 9
+      Data: 109
+    - Name: nowCount
+      Entry: 3
+      Data: 0
+    - Name: tempCount
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 7
+    - Name: $v
+      Entry: 7
+      Data: 171|Rate, Assembly-CSharp
+    - Name: transType
+      Entry: 3
+      Data: 0
+    - Name: func
+      Entry: 7
+      Data: 172|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 7
+      Data: 173|BuildingObj+<>c__DisplayClass9_0, Assembly-CSharp
+    - Name: data
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__0
+    - Name: delegateType
+      Entry: 9
+      Data: 129
+    - Name: signature
+      Entry: 7
+      Data: 174|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: can
+      Entry: 7
+      Data: 175|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Boolean, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 9
+      Data: 173
+    - Name: declaringType
+      Entry: 9
+      Data: 128
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__1
+    - Name: delegateType
+      Entry: 9
+      Data: 133
+    - Name: signature
+      Entry: 7
+      Data: 176|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: resource
+      Entry: 9
+      Data: 109
+    - Name: nowCount
+      Entry: 3
+      Data: 0
+    - Name: tempCount
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sites
+      Entry: 7
+      Data: 177|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[Sit,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 178|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
-      Data: 9
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 179|Sit, Assembly-CSharp
+    - Name: sit
+      Entry: 3
+      Data: 0
+    - Name: remainSit
+      Entry: 3
+      Data: 0
+    - Name: sum
+      Entry: 7
+      Data: 180|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 7
+      Data: 181|BuildingObj+<>c__DisplayClass9_1, Assembly-CSharp
+    - Name: data
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 7
+      Data: 182|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BuildingObj+<>c__DisplayClass9_1, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__2
+    - Name: delegateType
+      Entry: 9
+      Data: 129
+    - Name: signature
+      Entry: 7
+      Data: 183|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
     - Name: 
       Entry: 9
-      Data: 4
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 7
-      Data: 157|TableModel, Assembly-CSharp
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 184|Sit, Assembly-CSharp
+    - Name: sit
+      Entry: 3
+      Data: 0
+    - Name: remainSit
+      Entry: 3
+      Data: 0
+    - Name: sum
+      Entry: 7
+      Data: 185|System.Func`2[[ObjSaver, Assembly-CSharp],[System.Int32, mscorlib]],
+        mscorlib
+    - Name: target
+      Entry: 7
+      Data: 186|BuildingObj+<>c__DisplayClass9_1, Assembly-CSharp
+    - Name: data
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 9
+      Data: 182
+    - Name: methodName
+      Entry: 1
+      Data: <.ctor>b__2
+    - Name: delegateType
+      Entry: 9
+      Data: 129
+    - Name: signature
+      Entry: 7
+      Data: 187|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 131
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: rates
+      Entry: 9
+      Data: 123
+    - Name: sits
+      Entry: 9
+      Data: 177
+    - Name: goodsManager
+      Entry: 7
+      Data: 188|GoodsManager, Assembly-CSharp
+    - Name: goods
+      Entry: 7
+      Data: 189|System.Collections.Generic.Dictionary`2[[Goods, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 190|System.Collections.Generic.ObjectEqualityComparer`1[[Goods, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: originResource
+      Entry: 9
+      Data: 109
+    - Name: obj
+      Entry: 9
+      Data: 82
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: pipLineManager
+      Entry: 7
+      Data: 191|PipLineManager, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 82
+    - Name: piplineItem
+      Entry: 7
+      Data: 192|System.Collections.Generic.Dictionary`2[[Trans, Assembly-CSharp],[Source,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 193|System.Collections.Generic.ObjectEqualityComparer`1[[Trans, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: worldPipline
+      Entry: 7
+      Data: 194|System.Collections.Generic.Dictionary`2[[Trans, Assembly-CSharp],[Source,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 193
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: owner
+      Entry: 9
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 9
+      Data: 87
+    - Name: 
+      Entry: 7
+      Data: 195|PathObj, Assembly-CSharp
+    - Name: obj
+      Entry: 6
+      Data: 
+    - Name: name
+      Entry: 6
+      Data: 
+    - Name: belong
+      Entry: 7
+      Data: 196|TableModel, Assembly-CSharp
     - Name: str
       Entry: 7
-      Data: 158|System.Text.StringBuilder, mscorlib
+      Data: 197|System.Text.StringBuilder, mscorlib
     - Name: 
       Entry: 12
       Data: 4
@@ -2507,7 +3187,7 @@ MonoBehaviour:
       Data: 30
     - Name: persons
       Entry: 7
-      Data: 159|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
+      Data: 198|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2519,10 +3199,13 @@ MonoBehaviour:
       Data: 
     - Name: objs
       Entry: 7
-      Data: 160|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
+      Data: 199|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 195
     - Name: 
       Entry: 13
       Data: 
@@ -2530,14 +3213,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: control
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 8
     - Name: rule
       Entry: 6
       Data: 
     - Name: sceneType
       Entry: 7
-      Data: 161|SceneType, Assembly-CSharp
+      Data: 200|SceneType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: SceneType
@@ -2550,12 +3233,212 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
+    - Name: objSaver
       Entry: 7
-      Data: 162|TableModel, Assembly-CSharp
+      Data: 201|PathSaver, Assembly-CSharp
+    - Name: canSell
+      Entry: 5
+      Data: false
+    - Name: saveTye
+      Entry: 3
+      Data: 0
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: title
+      Entry: 6
+      Data: 
+    - Name: description
+      Entry: 6
+      Data: 
+    - Name: transPairs
+      Entry: 7
+      Data: 202|System.Collections.Generic.Dictionary`2[[TransationEnum, Assembly-CSharp],[ObjInf,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 203|System.Collections.Generic.EnumEqualityComparer`1[[TransationEnum,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sits
+      Entry: 7
+      Data: 204|System.Collections.Generic.Dictionary`2[[SitEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 205|System.Collections.Generic.EnumEqualityComparer`1[[SitEnum, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: cardInf
+      Entry: 7
+      Data: 206|CardInf, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\u9053\u8DEF"
+    - Name: description
+      Entry: 1
+      Data: PathToOtherScene
+    - Name: effect
+      Entry: 7
+      Data: 207|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+    - Name: target
+      Entry: 7
+      Data: 208|SaveSystem+<>c__DisplayClass6_0, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 195
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 9
+      Data: 17
+    - Name: methodName
+      Entry: 1
+      Data: <Load>b__0
+    - Name: delegateType
+      Entry: 9
+      Data: 18
+    - Name: signature
+      Entry: 7
+      Data: 209|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: cardControl
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: str
       Entry: 7
-      Data: 163|System.Text.StringBuilder, mscorlib
+      Data: 210|System.Text.StringBuilder, mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: m_MaxCapacity
+      Entry: 3
+      Data: 2147483647
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: Capacity
+      Entry: 3
+      Data: 16
+    - Name: type
+      Entry: 1
+      Data: System.String, mscorlib
+    - Name: m_StringValue
+      Entry: 1
+      Data: 
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: m_currentThread
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 9
+      Data: 49
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: personList
+      Entry: 7
+      Data: 211|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 2
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: tables
+      Entry: 7
+      Data: 212|System.Collections.Generic.List`1[[TableModel, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 9
+    - Name: 
+      Entry: 9
+      Data: 83
+    - Name: 
+      Entry: 9
+      Data: 196
+    - Name: 
+      Entry: 7
+      Data: 213|TableModel, Assembly-CSharp
+    - Name: str
+      Entry: 7
+      Data: 214|System.Text.StringBuilder, mscorlib
     - Name: 
       Entry: 12
       Data: 4
@@ -2603,7 +3486,7 @@ MonoBehaviour:
       Data: 50000
     - Name: persons
       Entry: 7
-      Data: 164|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
+      Data: 215|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2615,7 +3498,7 @@ MonoBehaviour:
       Data: 
     - Name: objs
       Entry: 7
-      Data: 165|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
+      Data: 216|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2626,14 +3509,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: control
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 10
     - Name: rule
       Entry: 6
       Data: 
     - Name: sceneType
       Entry: 7
-      Data: 166|SceneType, Assembly-CSharp
+      Data: 217|SceneType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: SceneType
@@ -2648,10 +3531,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 167|TableModel, Assembly-CSharp
+      Data: 218|TableModel, Assembly-CSharp
     - Name: str
       Entry: 7
-      Data: 168|System.Text.StringBuilder, mscorlib
+      Data: 219|System.Text.StringBuilder, mscorlib
     - Name: 
       Entry: 12
       Data: 4
@@ -2699,7 +3582,7 @@ MonoBehaviour:
       Data: 50000
     - Name: persons
       Entry: 7
-      Data: 169|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
+      Data: 220|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2711,7 +3594,7 @@ MonoBehaviour:
       Data: 
     - Name: objs
       Entry: 7
-      Data: 170|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
+      Data: 221|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2722,14 +3605,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: control
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 11
     - Name: rule
       Entry: 6
       Data: 
     - Name: sceneType
       Entry: 7
-      Data: 171|SceneType, Assembly-CSharp
+      Data: 222|SceneType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: SceneType
@@ -2744,10 +3627,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 172|TableModel, Assembly-CSharp
+      Data: 223|TableModel, Assembly-CSharp
     - Name: str
       Entry: 7
-      Data: 173|System.Text.StringBuilder, mscorlib
+      Data: 224|System.Text.StringBuilder, mscorlib
     - Name: 
       Entry: 12
       Data: 4
@@ -2795,7 +3678,7 @@ MonoBehaviour:
       Data: 50000
     - Name: persons
       Entry: 7
-      Data: 174|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
+      Data: 225|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2807,7 +3690,7 @@ MonoBehaviour:
       Data: 
     - Name: objs
       Entry: 7
-      Data: 175|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
+      Data: 226|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2818,14 +3701,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: control
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 12
     - Name: rule
       Entry: 6
       Data: 
     - Name: sceneType
       Entry: 7
-      Data: 176|SceneType, Assembly-CSharp
+      Data: 227|SceneType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: SceneType
@@ -2840,10 +3723,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 177|TableModel, Assembly-CSharp
+      Data: 228|TableModel, Assembly-CSharp
     - Name: str
       Entry: 7
-      Data: 178|System.Text.StringBuilder, mscorlib
+      Data: 229|System.Text.StringBuilder, mscorlib
     - Name: 
       Entry: 12
       Data: 4
@@ -2891,7 +3774,7 @@ MonoBehaviour:
       Data: 50000
     - Name: persons
       Entry: 7
-      Data: 179|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
+      Data: 230|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2903,7 +3786,7 @@ MonoBehaviour:
       Data: 
     - Name: objs
       Entry: 7
-      Data: 180|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
+      Data: 231|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2914,14 +3797,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: control
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 13
     - Name: rule
       Entry: 6
       Data: 
     - Name: sceneType
       Entry: 7
-      Data: 181|SceneType, Assembly-CSharp
+      Data: 232|SceneType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: SceneType
@@ -2936,10 +3819,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 182|TableModel, Assembly-CSharp
+      Data: 233|TableModel, Assembly-CSharp
     - Name: str
       Entry: 7
-      Data: 183|System.Text.StringBuilder, mscorlib
+      Data: 234|System.Text.StringBuilder, mscorlib
     - Name: 
       Entry: 12
       Data: 4
@@ -2987,7 +3870,7 @@ MonoBehaviour:
       Data: 50000
     - Name: persons
       Entry: 7
-      Data: 184|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
+      Data: 235|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -2999,7 +3882,7 @@ MonoBehaviour:
       Data: 
     - Name: objs
       Entry: 7
-      Data: 185|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
+      Data: 236|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -3010,14 +3893,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: control
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 14
     - Name: rule
       Entry: 6
       Data: 
     - Name: sceneType
       Entry: 7
-      Data: 186|SceneType, Assembly-CSharp
+      Data: 237|SceneType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: SceneType
@@ -3032,10 +3915,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 187|TableModel, Assembly-CSharp
+      Data: 238|TableModel, Assembly-CSharp
     - Name: str
       Entry: 7
-      Data: 188|System.Text.StringBuilder, mscorlib
+      Data: 239|System.Text.StringBuilder, mscorlib
     - Name: 
       Entry: 12
       Data: 4
@@ -3083,7 +3966,7 @@ MonoBehaviour:
       Data: 50000
     - Name: persons
       Entry: 7
-      Data: 189|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
+      Data: 240|System.Collections.Generic.List`1[[Person, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -3095,7 +3978,7 @@ MonoBehaviour:
       Data: 
     - Name: objs
       Entry: 7
-      Data: 190|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
+      Data: 241|System.Collections.Generic.List`1[[Obj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -3106,14 +3989,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: control
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 15
     - Name: rule
       Entry: 6
       Data: 
     - Name: sceneType
       Entry: 7
-      Data: 191|SceneType, Assembly-CSharp
+      Data: 242|SceneType, Assembly-CSharp
     - Name: typeName
       Entry: 1
       Data: SceneType
@@ -3128,7 +4011,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 9
-      Data: 131
+      Data: 4
     - Name: 
       Entry: 13
       Data: 
@@ -3137,19 +4020,19 @@ MonoBehaviour:
       Data: 
     - Name: contractModel
       Entry: 7
-      Data: 192|ContractModel, Assembly-CSharp
+      Data: 243|ContractModel, Assembly-CSharp
     - Name: contractTemplate
       Entry: 7
-      Data: 193|System.Collections.Generic.List`1[[Contract, Assembly-CSharp]], mscorlib
+      Data: 244|System.Collections.Generic.List`1[[Contract, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 194|WorkContract, Assembly-CSharp
+      Data: 245|WorkContract, Assembly-CSharp
     - Name: cardInf
       Entry: 7
-      Data: 195|CardInf, Assembly-CSharp
+      Data: 246|CardInf, Assembly-CSharp
     - Name: title
       Entry: 1
       Data: "\u5DE5\u4F5C"
@@ -3170,7 +4053,7 @@ MonoBehaviour:
       Data: 
     - Name: bp
       Entry: 7
-      Data: 196|System.Collections.Generic.HashSet`1[[Person, Assembly-CSharp]],
+      Data: 247|System.Collections.Generic.HashSet`1[[Person, Assembly-CSharp]],
         System.Core
     - Name: 
       Entry: 12
@@ -3198,17 +4081,23 @@ MonoBehaviour:
       Data: false
     - Name: contractEff
       Entry: 7
-      Data: 197|ContractEff, Assembly-CSharp
+      Data: 248|ContractEff, Assembly-CSharp
     - Name: obj
       Entry: 7
-      Data: 198|Resource, Assembly-CSharp
+      Data: 249|Resource, Assembly-CSharp
+    - Name: maxSize
+      Entry: 3
+      Data: 0
+    - Name: nowSize
+      Entry: 3
+      Data: 0
     - Name: resources
       Entry: 7
-      Data: 199|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
+      Data: 250|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 200|System.Collections.Generic.EnumEqualityComparer`1[[ObjEnum, Assembly-CSharp]],
+      Data: 251|System.Collections.Generic.EnumEqualityComparer`1[[ObjEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -3239,14 +4128,20 @@ MonoBehaviour:
       Data: 
     - Name: assur
       Entry: 7
-      Data: 201|Resource, Assembly-CSharp
+      Data: 252|Resource, Assembly-CSharp
+    - Name: maxSize
+      Entry: 3
+      Data: 0
+    - Name: nowSize
+      Entry: 3
+      Data: 0
     - Name: resources
       Entry: 7
-      Data: 202|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
+      Data: 253|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 200
+      Data: 251
     - Name: 
       Entry: 12
       Data: 0
@@ -3279,11 +4174,11 @@ MonoBehaviour:
       Data: 
     - Name: aContract
       Entry: 7
-      Data: 203|System.Collections.Generic.Dictionary`2[[Person, Assembly-CSharp],[System.Collections.Generic.List`1[[Contract,
+      Data: 254|System.Collections.Generic.Dictionary`2[[Person, Assembly-CSharp],[System.Collections.Generic.List`1[[Contract,
         Assembly-CSharp]], mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 204|System.Collections.Generic.ObjectEqualityComparer`1[[Person, Assembly-CSharp]],
+      Data: 255|System.Collections.Generic.ObjectEqualityComparer`1[[Person, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 8
@@ -3299,16 +4194,16 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 7
-      Data: 205|System.Collections.Generic.List`1[[Contract, Assembly-CSharp]], mscorlib
+      Data: 256|System.Collections.Generic.List`1[[Contract, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 206|WorkContract, Assembly-CSharp
+      Data: 257|WorkContract, Assembly-CSharp
     - Name: cardInf
       Entry: 7
-      Data: 207|CardInf, Assembly-CSharp
+      Data: 258|CardInf, Assembly-CSharp
     - Name: title
       Entry: 1
       Data: "\u5DE5\u4F5C"
@@ -3329,7 +4224,7 @@ MonoBehaviour:
       Data: 2
     - Name: bp
       Entry: 7
-      Data: 208|System.Collections.Generic.HashSet`1[[Person, Assembly-CSharp]],
+      Data: 259|System.Collections.Generic.HashSet`1[[Person, Assembly-CSharp]],
         System.Core
     - Name: 
       Entry: 12
@@ -3351,7 +4246,7 @@ MonoBehaviour:
       Data: 6000
     - Name: codeData
       Entry: 7
-      Data: 209|CodeSystemDataWeek, Assembly-CSharp
+      Data: 260|CodeSystemDataWeek, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: "\u5DE5\u4F5C_885"
@@ -3360,7 +4255,7 @@ MonoBehaviour:
       Data: 0
     - Name: week
       Entry: 7
-      Data: 210|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+      Data: 261|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 7
@@ -3393,13 +4288,13 @@ MonoBehaviour:
       Data: 
     - Name: work
       Entry: 7
-      Data: 211|System.Collections.Generic.List`1[[CodeData, Assembly-CSharp]], mscorlib
+      Data: 262|System.Collections.Generic.List`1[[CodeData, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 212|CodeData, Assembly-CSharp
+      Data: 263|CodeData, Assembly-CSharp
     - Name: codeName
       Entry: 1
       Data: "\u5DE5\u4F5C"
@@ -3408,7 +4303,7 @@ MonoBehaviour:
       Data: 
     - Name: activity
       Entry: 7
-      Data: 213|CookAct, Assembly-CSharp
+      Data: 264|CookAct, Assembly-CSharp
     - Name: cond
       Entry: 6
       Data: 
@@ -3426,7 +4321,7 @@ MonoBehaviour:
       Data: 
     - Name: wins
       Entry: 7
-      Data: 214|System.Collections.Generic.List`1[[WinData, Assembly-CSharp]], mscorlib
+      Data: 265|System.Collections.Generic.List`1[[WinData, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -3447,14 +4342,14 @@ MonoBehaviour:
       Data: 
     - Name: dayWork
       Entry: 7
-      Data: 215|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.String,
+      Data: 266|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.String,
         mscorlib]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 216|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+      Data: 267|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 48
@@ -3610,7 +4505,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 217|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+      Data: 268|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 48
@@ -3778,17 +4673,23 @@ MonoBehaviour:
       Data: false
     - Name: contractEff
       Entry: 7
-      Data: 218|ContractEff, Assembly-CSharp
+      Data: 269|ContractEff, Assembly-CSharp
     - Name: obj
       Entry: 7
-      Data: 219|Resource, Assembly-CSharp
+      Data: 270|Resource, Assembly-CSharp
+    - Name: maxSize
+      Entry: 3
+      Data: 0
+    - Name: nowSize
+      Entry: 3
+      Data: 0
     - Name: resources
       Entry: 7
-      Data: 220|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
+      Data: 271|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 221|System.Collections.Generic.EnumEqualityComparer`1[[ObjEnum, Assembly-CSharp]],
+      Data: 272|System.Collections.Generic.EnumEqualityComparer`1[[ObjEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -3819,14 +4720,20 @@ MonoBehaviour:
       Data: 
     - Name: assur
       Entry: 7
-      Data: 222|Resource, Assembly-CSharp
+      Data: 273|Resource, Assembly-CSharp
+    - Name: maxSize
+      Entry: 3
+      Data: 0
+    - Name: nowSize
+      Entry: 3
+      Data: 0
     - Name: resources
       Entry: 7
-      Data: 223|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
+      Data: 274|System.Collections.Generic.Dictionary`2[[ObjEnum, Assembly-CSharp],[ObjContBase,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 221
+      Data: 272
     - Name: 
       Entry: 12
       Data: 0
@@ -3868,11 +4775,11 @@ MonoBehaviour:
       Data: 
     - Name: bContract
       Entry: 7
-      Data: 224|System.Collections.Generic.Dictionary`2[[Person, Assembly-CSharp],[System.Collections.Generic.List`1[[Contract,
+      Data: 275|System.Collections.Generic.Dictionary`2[[Person, Assembly-CSharp],[System.Collections.Generic.List`1[[Contract,
         Assembly-CSharp]], mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 204
+      Data: 255
     - Name: 
       Entry: 12
       Data: 1
@@ -3884,7 +4791,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 7
-      Data: 225|System.Collections.Generic.List`1[[Contract, Assembly-CSharp]], mscorlib
+      Data: 276|System.Collections.Generic.List`1[[Contract, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -3905,14 +4812,14 @@ MonoBehaviour:
       Data: 
     - Name: contracts
       Entry: 7
-      Data: 226|System.Collections.Generic.HashSet`1[[Contract, Assembly-CSharp]],
+      Data: 277|System.Collections.Generic.HashSet`1[[Contract, Assembly-CSharp]],
         System.Core
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 206
+      Data: 257
     - Name: 
       Entry: 13
       Data: 
@@ -3927,14 +4834,14 @@ MonoBehaviour:
       Data: 
     - Name: codeDatas
       Entry: 7
-      Data: 227|System.Collections.Generic.List`1[[CodeSystemData, Assembly-CSharp]],
+      Data: 278|System.Collections.Generic.List`1[[CodeSystemData, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 228|CodeSystemDataWeek, Assembly-CSharp
+      Data: 279|CodeSystemDataWeek, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: "\u5DE5\u4F5C_885"
@@ -3943,7 +4850,7 @@ MonoBehaviour:
       Data: 0
     - Name: week
       Entry: 7
-      Data: 229|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+      Data: 280|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 7
@@ -3976,13 +4883,13 @@ MonoBehaviour:
       Data: 
     - Name: work
       Entry: 7
-      Data: 230|System.Collections.Generic.List`1[[CodeData, Assembly-CSharp]], mscorlib
+      Data: 281|System.Collections.Generic.List`1[[CodeData, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 231|CodeData, Assembly-CSharp
+      Data: 282|CodeData, Assembly-CSharp
     - Name: codeName
       Entry: 1
       Data: "\u5DE5\u4F5C"
@@ -3991,7 +4898,7 @@ MonoBehaviour:
       Data: 
     - Name: activity
       Entry: 7
-      Data: 232|CookAct, Assembly-CSharp
+      Data: 283|CookAct, Assembly-CSharp
     - Name: cond
       Entry: 6
       Data: 
@@ -4009,7 +4916,7 @@ MonoBehaviour:
       Data: 
     - Name: wins
       Entry: 7
-      Data: 233|System.Collections.Generic.List`1[[WinData, Assembly-CSharp]], mscorlib
+      Data: 284|System.Collections.Generic.List`1[[WinData, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -4030,14 +4937,14 @@ MonoBehaviour:
       Data: 
     - Name: dayWork
       Entry: 7
-      Data: 234|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.String,
+      Data: 285|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.String,
         mscorlib]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 235|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+      Data: 286|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 48
@@ -4193,7 +5100,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 236|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+      Data: 287|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 48

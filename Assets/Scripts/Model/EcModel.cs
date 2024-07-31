@@ -291,7 +291,10 @@ public class Resource
 
     public int Get(ObjEnum obj)
     {
-        return resources[obj].remain;
+        if(resources.ContainsKey(obj))
+            return resources[obj].remain;
+        else
+            return 0;
     }
     public int GetRemain(ObjEnum obj)
     {

@@ -159,11 +159,11 @@ public class WorldMap
 		{
 			foreach(var x in xx.Value)
             {
-				var t1= ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.tables.Find(e => { return e.TableName == xx.Key; });
-				var t2=((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.tables.Find(e => { return e.TableName == x.y; });
+				//var t1= ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.tables.Find(e => { return e.TableName == xx.Key; });
+				//var t2=((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.tables.Find(e => { return e.TableName == x.y; });
 				//Debug.Log(t1);
 				//Debug.Log(t2);
-				activities.Add(new Go(t1,t2 , x.wastTime));
+				activities.Add(new Go(xx.Key, x.y, x.wastTime));
 			}
 		}
     }

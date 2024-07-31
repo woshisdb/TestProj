@@ -364,7 +364,7 @@ public class BuildingObj : Obj
                 ); })));
         }
         resource.SetSites(sits);
-        resource.Add(ObjEnum.PlaceObjE,GetSaver().container);
+        //resource.Add(ObjEnum.PlaceObjE,GetSaver().container);
     }
     public override void Init()
     {

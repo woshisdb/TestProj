@@ -444,8 +444,11 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
                     List<CardInf> cardInfList = new List<CardInf>();
                     for (int l = 0; l < person.belong.objs[j].activities.Count; l++)
                     {
-                        var res = person.belong.objs[j].activities[l].OutputSelect(person, person.belong.objs[j]);//一个可选项
-                        cardInfList.Add(res);
+                        if (person.belong.objs[j].activities[l].Condition(person.belong.objs[j], person))
+                        {
+                            var res = person.belong.objs[j].activities[l].OutputSelect(person, person.belong.objs[j]);//一个可选项
+                            cardInfList.Add(res);
+                        }
                     }
                     result[person.belong.objs[j]] = cardInfList.ToArray();
                 }
@@ -598,7 +601,7 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
             return;
         }
         var x = (PathObj)Sc.objs.Find(e => { return objName == e.name; });
-        x.activities.RemoveAll(e => { return ((Go)e).x == Sc; });//删除所有目的地节点
+        x.activities.RemoveAll(e => { return ((Go)e).xname == Sc.TableName; });//删除所有目的地节点
         Sc.RemoveToTable(x);
     }
     /// <summary>
