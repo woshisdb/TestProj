@@ -25,6 +25,12 @@ public class DecisionTex:WinCon
             };
         }
     }
+    public override void Decision(WinData winData)
+    {
+        var wd = (DecData)winData;
+        var x=cards.Find(e => { return e.title == wd.selc; });
+        x.effect();
+    }
 }
 /// <summary>
 /// 一个决策节点

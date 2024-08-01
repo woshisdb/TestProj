@@ -260,7 +260,52 @@ public class PersonSaver : AnimalSaver
     [SerializeField]
     public HungryVals HungryVals;
 }
-
+/// <summary>
+/// 活动结构，时间和活动
+/// </summary>
+[System.Serializable]
+public class CodeData
+{
+    /// <summary>
+    /// 代码的名字
+    /// </summary>
+    public string codeName;
+    /// <summary>
+    /// 当前的对象
+    /// </summary>
+    [ValueDropdown("Objs")]
+    public Obj obj;
+    /// <summary>
+    /// 需要执行的活动
+    /// </summary>
+    public Activity activity;
+    [SerializeField]
+    /// <summary>
+    /// 需要连续执行的活动
+    /// </summary>
+    public List<WinData> wins;
+    public CodeData()
+    {
+        wins = new List<WinData>();
+    }
+    public CodeData(CodeData codeData)
+    {
+        this.codeName = codeData.codeName;
+        obj = codeData.obj;
+        activity = codeData.activity;
+        wins = new List<WinData>();
+        wins.AddRange(codeData.wins);
+    }
+    public static IEnumerable Objs()
+    {
+        var ret = new ValueDropdownList<Obj>();
+        foreach (var x in GameArchitect.get.tableAsset.tableSaver.objs)
+        {
+            ret.Add(x.name, x);
+        }
+        return ret;
+    }
+}
 public class ContractManager
 {
     public Person person;
@@ -332,6 +377,7 @@ public class Person : AnimalObj
     public bool isPlayer;
     public string PersonName;
     public Resource resource;
+    public CodeData codeData;
     ///*********************知识**************************/
     ///// <summary>
     ///// 金融知识

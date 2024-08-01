@@ -8,6 +8,10 @@ using UnityEngine.Events;
 public class WinCon
 {
     public WinData data;
+    public virtual void Decision(WinData winData)
+    {
+        
+    }
 }
 
 public class SelectTex:WinCon
@@ -35,6 +39,17 @@ public class SelectTex:WinCon
             }
             return now;
         };
+    }
+    public override void Decision(WinData winData)
+    {
+        var wd = (SelData)winData;
+        for(int i = 0; i < wd.selects.Count; i++)
+        {
+            var sel=selects.Find(e => { return e.title == wd.selects[i].Item1; });
+            if(sel != null)
+            sel.num = wd.selects[i].Item2;
+        }
+        effect();
     }
 }
 

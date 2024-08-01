@@ -170,44 +170,7 @@ public class CodeSystemDataYear : CodeSystemData
     }
 }
 
-/// <summary>
-/// 活动结构，时间和活动
-/// </summary>
-[System.Serializable]
-public class CodeData
-{
-    /// <summary>
-    /// 代码的名字
-    /// </summary>
-    public string codeName;
-    /// <summary>
-    /// 当前的对象
-    /// </summary>
-    [ValueDropdown("Objs")]
-    public Obj obj;
-    /// <summary>
-    /// 需要执行的活动
-    /// </summary>
-    public Activity activity;
-    [SerializeField]
-    /// <summary>
-    /// 需要连续执行的活动
-    /// </summary>
-    public List<WinData> wins;
-    public CodeData()
-    {
-        wins = new List<WinData>();
-    }
-    public static IEnumerable Objs()
-    {
-        var ret=new ValueDropdownList<Obj>();
-        foreach(var x in GameArchitect.get.tableAsset.tableSaver.objs)
-        {
-            ret.Add(x.name,x);
-        }
-        return ret;
-    }
-}
+
 
 /// <summary>
 /// 选择行为
@@ -374,14 +337,22 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     }
     public IEnumerator AddDecision(Person person,WinCon decision)
     {
-        Debug.Log(person.name+","+decision.ToString());
-        if(person.isPlayer)
+        if (person.codeData != null && person.codeData.wins != null && person.codeData.wins.Count > 0)
         {
-            yield return GameArchitect.get.AddDecision(decision);
+            decision.Decision(person.codeData.wins[0]);
         }
-        else//调用游戏的决策系统
+        else
         {
-            //yield return GameArchitect.decisionUI.AddDecision(decision.title, decision.description, decision.cards);
+            Debug.Log(person.name + "," + decision.ToString());
+            if (person.isPlayer)
+            {
+                yield return GameArchitect.get.AddDecision(decision);
+                yield return GameArchitect.get.AddDecision(decision);
+            }
+            else//调用游戏的决策系统
+            {
+                //yield return GameArchitect.decisionUI.AddDecision(decision.title, decision.description, decision.cards);
+            }
         }
     }
     public int CmpPerson(Person p1,Person p2)
@@ -438,26 +409,37 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
             GameArchitect.nowPerson = person;//当前角色
             if (!person.hasSelect.val)//没有任务就初始化可执行的活动
             {
-                var result = new Dictionary<Obj,CardInf[]>();
-                for (int j = 0; j < person.belong.objs.Count; j++)
+                if (person.contractManager.GetCode()!=null)
                 {
-                    List<CardInf> cardInfList = new List<CardInf>();
-                    for (int l = 0; l < person.belong.objs[j].activities.Count; l++)
+                    var data=person.contractManager.GetCode();
+                    person.codeData = new CodeData(data);
+                    if(data.activity.Condition(data.obj,person))
                     {
-                        if (person.belong.objs[j].activities[l].Condition(person.belong.objs[j], person))
-                        {
-                            var res = person.belong.objs[j].activities[l].OutputSelect(person, person.belong.objs[j]);//一个可选项
-                            cardInfList.Add(res);
-                        }
+                        person.SetAct(data.activity.Effect(data.obj, person));
                     }
-                    result[person.belong.objs[j]] = cardInfList.ToArray();
                 }
-                MainDispatch.Instance().Enqueue(
-                () =>
-                {
-                    optionModel.SetPersonOption(person, result);//当前的行为
-                });
-                await GameArchitect.Interface.GetModel<ThinkModelSet>().thinks[person].BeginThink(result);//等待思考完成
+                else {//否则就自由选择
+                    var result = new Dictionary<Obj, CardInf[]>();
+                    for (int j = 0; j < person.belong.objs.Count; j++)
+                    {
+                        List<CardInf> cardInfList = new List<CardInf>();
+                        for (int l = 0; l < person.belong.objs[j].activities.Count; l++)
+                        {
+                            if (person.belong.objs[j].activities[l].Condition(person.belong.objs[j], person))
+                            {
+                                var res = person.belong.objs[j].activities[l].OutputSelect(person, person.belong.objs[j]);//一个可选项
+                                cardInfList.Add(res);
+                            }
+                        }
+                        result[person.belong.objs[j]] = cardInfList.ToArray();
+                    }
+                    MainDispatch.Instance().Enqueue(
+                    () =>
+                    {
+                        optionModel.SetPersonOption(person, result);//当前的行为
+                    });
+                    await GameArchitect.Interface.GetModel<ThinkModelSet>().thinks[person].BeginThink(result);//等待思考完成
+                }
             }
         }
         GameArchitect.persons.Sort((p1, p2) => { return CmpPerson(p1, p2); });

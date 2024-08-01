@@ -116,6 +116,7 @@ public class KuangMiningObj : BuildingObj
         {
             int sum = Mathf.Min(res, resNum);
             resource.Remove(ObjEnum.KuangObjE,sum);
+            Debug.Log(sum);
             return new KeyValuePair<ObjEnum, int>(ObjEnum.KuangObjE,sum);
         }
         else if(resNum >= 0.3*starSource)

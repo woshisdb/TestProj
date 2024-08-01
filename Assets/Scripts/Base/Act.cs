@@ -413,7 +413,7 @@ public class WaKuangA : Act
         Debug.Log("Wa");
         var kuang = (KuangMiningObj)Obj;
         var t = kuang.GetRes(10);
-        kuang.resource.Add(t.Key,t.Value);
+        kuang.resource.Add(kuang.GetObj(),t.Value);
         if(time<=0)
         yield return Ret(new EndAct(Person, Obj), callback);
     }
