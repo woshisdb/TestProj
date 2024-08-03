@@ -68,7 +68,7 @@ public class KuangMiningObj : BuildingObj
         Init();
         starSource = 1000;
         resource = new Resource();
-        resource.Add(ObjEnum.TaotuObjE,starSource);
+        resource.Add(ObjEnum.KuangObjE,starSource);
     }
     public override List<Activity> InitActivities()
     {

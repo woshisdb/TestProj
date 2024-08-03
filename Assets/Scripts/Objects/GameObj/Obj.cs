@@ -49,6 +49,7 @@ public class In:Predicate
 
     }
 }
+[Map(null,"objSaver")]
 public class Obj:PDDL,ICanRegisterEvent
 {
     /// <summary>

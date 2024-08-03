@@ -39,6 +39,7 @@ public class AnimalSaver : ObjSaver
     [SerializeField]
     public PersonSVal sleepState;
 }
+[Map]
 public class AnimalObj : Obj
 {
     public Bool sex;//ÐÔ±ð

@@ -36,7 +36,6 @@ public enum ObjEnum
     BuildingObjE,
     RestaurantObjE,
     FarmObjE,
-    MiningSitObjE,
     //.........................ะกย๓ฯเนุ
     WheatObjE,
     WheatSeedObjE,

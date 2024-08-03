@@ -42,9 +42,12 @@ public class Map : Singleton<Map>
         Assembly assembly = Assembly.GetExecutingAssembly();
         // 查找所有带有 MapAttribute 属性的类
         var typesWithMapAttribute = assembly.GetTypes().Where(t => t.GetCustomAttributes(typeof(MapAttribute), false).Length > 0).ToList();
-            //.ToList();
-        foreach (var type in typesWithMapAttribute)
+        //.ToList();
+        foreach (ObjEnum hs1 in Enum.GetValues(typeof(ObjEnum)))
         {
+            var str=hs1.ToString().Substring(0, hs1.ToString().Length - 1);
+            Debug.Log(str);
+            var type = typesWithMapAttribute.Find(e =>{ return String.Equals(str, e.Name); } );
             Debug.Log(type.Name);
             var mapAttributes = type.GetCustomAttributes(typeof(MapAttribute), false);
             Type Objtype;
