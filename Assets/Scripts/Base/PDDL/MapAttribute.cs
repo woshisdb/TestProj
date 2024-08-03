@@ -52,6 +52,8 @@ public enum ObjEnum
     IronMiningObjE,
     CoalObjE,
     CoalMiningObjE,
+    TaotuObjE,
+    TaotuMiningObjE,
     //.............
     MoneyObjE,
     ToolObjE

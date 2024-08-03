@@ -131,7 +131,7 @@ public class ObjAsset : SerializedScriptableObject
     [NonSerialized, OdinSerialize]
     public RestaurantSaver restaurantSaver;
     [NonSerialized, OdinSerialize]
-    public MiningSitSaver miningSitSaver;
+    public ZaozhuanSitSaver zaozhuanSitSaver;
     [NonSerialized, OdinSerialize]
     public SeedSaver seedSaver;
     [NonSerialized, OdinSerialize]
@@ -167,6 +167,10 @@ public class ObjAsset : SerializedScriptableObject
     public CoalSaver coalSaver;
     [NonSerialized, OdinSerialize]
     public CoalMiningSaver coalMiningSaver;
+    [NonSerialized, OdinSerialize]
+    public TaotuSaver taotuSaver;
+    [NonSerialized, OdinSerialize]
+    public TaotuMiningSaver taotuMiningSaver;
     //....................
     [NonSerialized, OdinSerialize]
     public FarmSaver farmSaver;

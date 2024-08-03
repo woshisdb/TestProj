@@ -67,6 +67,8 @@ public class KuangMiningObj : BuildingObj
     {
         Init();
         starSource = 1000;
+        resource = new Resource();
+        resource.Add(ObjEnum.TaotuObjE,starSource);
     }
     public override List<Activity> InitActivities()
     {
@@ -94,9 +96,13 @@ public class KuangMiningObj : BuildingObj
         if (resource == null)
             resource = new Resource();
         if(resource.resources.ContainsKey(GetObj()))
-            str.AppendLine(resource.resources[GetObj()].remain +":" +starSource);
+            str.AppendLine(resource.resources[GetObj()].remain+"");
         else
             str.AppendLine(0 + ":" + starSource);
+        if(resource.resources.ContainsKey(ObjEnum.KuangObjE))
+        {
+            str.AppendLine(" £”‡‘≠¡œ:" + resource.resources[ObjEnum.KuangObjE].remain);
+        }
         cardInf.description = str.ToString();
         if (cardInf.cardControl)
             cardInf.cardControl.UpdateInf();

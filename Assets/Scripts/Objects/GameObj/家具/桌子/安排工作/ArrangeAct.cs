@@ -52,7 +52,8 @@ public class ArrangeContractAct : Activity
     }
     public override bool Condition(Obj obj, Person person,params object[] objs)
     {
-        return ((BuildingObj)obj).remainBuilder == 0;
+        var o = (BuildingObj)obj;
+        return o.owner != null && GameArchitect.get.GetModel<ContractModel>().GetUnSignContract(o.owner).Count > 0;//((BuildingObj)obj).remainBuilder == 0;
     }
     
     public override PAction GetAction()

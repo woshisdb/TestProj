@@ -2,26 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiningSitType: BuildingType
+public class ZaozhuanSitType: BuildingType
 {
-    public MiningSitType(string name = null) : base(name)
+    public ZaozhuanSitType(string name = null) : base(name)
     {
 
     }
 }
 [System.Serializable]
-public class MiningSitSaver : BuildingSaver
+public class ZaozhuanSitSaver : BuildingSaver
 {
     
 }
 
 [Map()]
 // Å©³¡
-public class MiningSitObj : BuildingObj
+public class ZaozhuanSitObj : BuildingObj
 {
     ///////////////////////////////////////
 
-    public MiningSitObj(BuildingSaver objAsset = null) : base(objAsset)
+    public ZaozhuanSitObj(BuildingSaver objAsset = null) : base(objAsset)
     {
         Init();
     }

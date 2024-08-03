@@ -122,6 +122,10 @@ public class CodeSystemDataWeek: CodeSystemData
 
         yield return GameArchitect.gameLogic.AddDecision(person,new DecisionTex(
         "工作的内容","选择工作的内容进行工作",sels));
+        foreach(var x in work)
+        {
+            x.obj = obj;
+        }
         var w=work.Find((x) => { return x.codeName == "工作"; });
         Person tempPerson = new Person();//自建Person
         BuildingObj buildingObj=new BuildingObj();
@@ -340,13 +344,13 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
         if (person.codeData != null && person.codeData.wins != null && person.codeData.wins.Count > 0)
         {
             decision.Decision(person.codeData.wins[0]);
+            person.codeData.wins.RemoveAt(0);
         }
         else
         {
             Debug.Log(person.name + "," + decision.ToString());
             if (person.isPlayer)
             {
-                yield return GameArchitect.get.AddDecision(decision);
                 yield return GameArchitect.get.AddDecision(decision);
             }
             else//调用游戏的决策系统
