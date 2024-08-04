@@ -139,7 +139,26 @@ public class AddContractA : Act
         nowContract.ap = person;
         yield return nowContract.Editor(nowContract.ap);
         //*********************************选择人物的具体细节
-        yield return nowContract.codeData.EditCodeSystem(person,Obj,Obj.InitActivities());
+
+        foreach(var x in nowContract.codeData.work)
+        {
+            List<CardInf> objs = new List<CardInf>();
+            Obj intObj = null;
+            foreach(var intAct in GameArchitect.get.tableAsset.tableSaver.objs)
+            {
+                var data = intAct;
+                objs.Add( new CardInf(data.name,data.cardInf.description,
+                    () =>
+                    {
+                        intObj = data;
+                    }
+                ));
+            }
+            yield return AddDecision(person,new DecisionTex("选择交互对象","",objs));
+            yield return nowContract.codeData.EditCodeSystem(person, intObj, x);
+        }
+
+
         GameArchitect.get.GetModel<ContractModel>().RegistContract(nowContract);
 
         ////////////////////////////////////////

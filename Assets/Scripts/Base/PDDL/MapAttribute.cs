@@ -28,7 +28,9 @@ public enum ObjEnum
     RawObjE,
     FoodObjE, 
     SeedObjE,
+    TreeSeedObjE,
     TreeObjE,
+    WoodObjE,
     BuildingResObjE,//建筑的资源
     KuangObjE,
     KuangMiningObjE,
@@ -45,14 +47,18 @@ public enum ObjEnum
     FullWheatPlaceObjE,
     WheatFlourObjE,
     //.............矿物
+    GoldKuangObjE,
     GoldObjE,
     GoldMiningObjE,
+    IronKuangObjE,
     IronObjE,
     IronMiningObjE,
     CoalObjE,
     CoalMiningObjE,
     TaotuObjE,
     TaotuMiningObjE,
+    ShuLinObjE,
+    GongchangObjE,
     //.............
     MoneyObjE,
     ToolObjE

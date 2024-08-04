@@ -103,6 +103,7 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
                 cardInfs.Add(new CardInf(x.name, "",
                 () => {
                     SetData(data);
+                    openScene.gameObject.SetActive(false);
                 }
                 ));
             }
@@ -165,7 +166,9 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
 
     public void SetData(CodeSystemData codeSystemData)
     {
+        hasSave = true;
         systemData = codeSystemData;
+        timeLineObj.gameObject.SetActive(true);
         for(int i=0;i<48;i++)
         {
             var btn=timeLine[i].GetComponent<Button>();

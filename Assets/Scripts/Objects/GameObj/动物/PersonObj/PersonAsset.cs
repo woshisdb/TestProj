@@ -208,7 +208,7 @@ public class SafetyState:Need
         var data=(int)CircularQueue<int>.CalculateAverage(foodMoney);
         var foodAll = person.foodState.r;//总能量
         var mySum = PDDL.Add(foodSum,person.foodState.val.func);
-        mySum=PDDL.Add(mySum,PDDL.Mul((I)data,person.money));
+        //mySum=PDDL.Add(mySum,PDDL.Mul((I)data,person.money));
         return PDDL.Div(mySum, (I)foodAll);//能够满足多久
     }
     public float retSatif()
@@ -216,7 +216,7 @@ public class SafetyState:Need
         float data= (float)CircularQueue<int>.CalculateAverage(foodMoney);
         float foodAll = person.foodState.r;//总能量
         float mySum = foodSum.val + person.foodState.val.val;// PDDL.Add(foodSum, person.foodState.val.func);
-        mySum = mySum + (data*(float)person.money.val);//PDDL.Add(mySum, PDDL.Mul((I)data, person.money));
+        //mySum = mySum + (data*(float)person.money.val);//PDDL.Add(mySum, PDDL.Mul((I)data, person.money));
         return mySum / foodAll;//PDDL.Div(mySum, (I)foodAll);//能够满足多久
     }
 }
@@ -368,11 +368,7 @@ public class Person : AnimalObj
     public ProblemGenerator problemGenerator;
     public PathGenerator pathGenerator;
     //**************************************************************
-    public PersonControler personControler;//角色控制器
-    public Num money;//自己手上的的钱
     /*************************个人思想******************************/
-    public SafetyState safetyState;//对安全的需要
-    public HungryState hungryState;//对饥饿的需求
     /******************************************************/
     public bool isPlayer;
     public string PersonName;
@@ -445,13 +441,15 @@ public class Person : AnimalObj
     ///// </summary>
     //public PersonState luck;
     public Act act;
-    public SetP<FoodObj> foodSet;
     /// <summary>
     /// 协议管理器
     /// </summary>
     public ContractManager contractManager;
     public void Init()
     {
+        domainGenerator = new DomainGenerator(this);
+        problemGenerator=new ProblemGenerator(this);
+        pathGenerator = new PathGenerator(this);
         PersonName = ((PersonSaver)objSaver).PersonName;
         isPlayer = ((PersonSaver)objSaver).isPlayer;
         if(cardInf==null)
@@ -459,7 +457,7 @@ public class Person : AnimalObj
             cardInf = new CardInf();
         }
         cardInf.title = PersonName;
-        cardInf.description = "This is a Test Case";
+        cardInf.description = "";
     }
     public Person(ObjSaver personAsset=null) : base(personAsset)
     {
@@ -469,7 +467,6 @@ public class Person : AnimalObj
         var g = GameObject.Instantiate<GameObject>(t);
         g.transform.parent = GameObject.Find("Persons").transform;
         g.GetComponent<PersonControler>().person = this;
-        personControler = g.GetComponent<PersonControler>();
         if (isPlayer)
         {
 
@@ -481,11 +478,7 @@ public class Person : AnimalObj
         if (personAsset != null)
         {
             PersonSaver ps = (PersonSaver)personAsset;
-            safetyState = new SafetyState(this, ps.SafetyVals);//安全需求
-            hungryState = new HungryState(this, ps.HungryVals);//饥饿的需求
         }
-        //contractManager = new ContractManager(this);
-        this.money = new Num(Money((PersonType)obj), 10);
     }
     /// <summary>
     /// 添加执行的活动
@@ -521,7 +514,17 @@ public class Person : AnimalObj
     {
         return (PersonSaver)objSaver;
     }
-
+    public override void LatUpdate()
+    {
+        base.LatUpdate();
+        if(str==null)
+        str=new System.Text.StringBuilder();
+        str.Clear();
+        cardInf.title = PersonName;
+        if (cardInf.cardControl)
+            cardInf.cardControl.UpdateInf();
+        cardInf.description = str.ToString();
+    }
     ///// <summary>
     ///// 获得活动
     ///// </summary>

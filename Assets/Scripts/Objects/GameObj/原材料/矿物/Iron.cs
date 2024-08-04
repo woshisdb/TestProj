@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
+
 public class KuangType : RawType
 {
     public KuangType(string name = null) : base(name)
@@ -63,12 +65,16 @@ public class KuangMiningObj : BuildingObj
     {
         return ObjEnum.KuangObjE;
     }
+    public virtual ObjEnum GetSource()
+    {
+        return ObjEnum.KuangObjE;
+    }
     public KuangMiningObj(KuangMiningSaver objAsset = null) : base(objAsset)
     {
         Init();
         starSource = 1000;
         resource = new Resource();
-        resource.Add(ObjEnum.KuangObjE,starSource);
+        resource.Add(GetSource(),starSource);
     }
     public override List<Activity> InitActivities()
     {
@@ -92,16 +98,16 @@ public class KuangMiningObj : BuildingObj
         //str.AppendLine(source.ToString());
         ////后续更新
         //this.cardInf.description =
-        str.AppendLine(GetObj().ToString());
+        str.AppendLine(GetObj().ToString()+":");
         if (resource == null)
             resource = new Resource();
         if(resource.resources.ContainsKey(GetObj()))
             str.AppendLine(resource.resources[GetObj()].remain+"");
         else
-            str.AppendLine(0 + ":" + starSource);
-        if(resource.resources.ContainsKey(ObjEnum.KuangObjE))
+            str.AppendLine(0 + "");
+        if(resource.resources.ContainsKey(GetSource()))
         {
-            str.AppendLine("剩余原料:" + resource.resources[ObjEnum.KuangObjE].remain);
+            str.AppendLine("剩余原料:" + resource.resources[GetSource()].remain);
         }
         cardInf.description = str.ToString();
         if (cardInf.cardControl)
@@ -139,7 +145,34 @@ public class KuangMiningObj : BuildingObj
         }
     }
 }
+public class IronKuangType : KuangType
+{
+    public IronKuangType(string name = null) : base(name)
+    {
 
+    }
+}
+[System.Serializable]
+public class IronKuangSaver : KuangSaver
+{
+
+}
+
+[Map()]
+// 铁
+public class IronKuangObj : KuangObj
+{
+    ///////////////////////////////////////
+    public IronKuangObj(RawSaver objAsset = null) : base(objAsset)
+    {
+        Init();
+    }
+    public override List<Activity> InitActivities()
+    {
+        var acts = base.InitActivities();
+        return acts;
+    }
+}
 
 public class IronType : KuangType
 {
@@ -199,5 +232,9 @@ public class IronMiningObj : KuangMiningObj
     public override ObjEnum GetObj()
     {
         return ObjEnum.IronObjE;
+    }
+    public override ObjEnum GetSource()
+    {
+        return ObjEnum.IronKuangObjE;
     }
 }

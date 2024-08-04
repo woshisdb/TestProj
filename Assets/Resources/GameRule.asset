@@ -22,92 +22,79 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   trans:
-  - title: "\u79CD\u9EA6\u5B50"
+  - title: "\u79CD\u6811"
     from:
       source:
-      - x: 13
-        y: 1
-      - x: 15
+      - x: 9
         y: 1
     to:
       source:
-      - x: 16
+      - x: 10
         y: 1
     edge:
       tras:
-      - x: 1
-        y: 1
-      time: 8
-  - title: "\u6536\u83B7\u9EA6\u5B50"
-    from:
-      source:
-      - x: 16
-        y: 1
-    to:
-      source:
-      - x: 17
-        y: 1
-      - x: 12
-        y: 1
-    edge:
-      tras:
-      - x: 2
+      - x: 3
         y: 4
-      time: 4
-  - title: "\u8015\u79CD\u9EA6\u5B50"
+      time: 4800
+    transEnum: 0
+  - title: "\u5236\u4F5C\u5DE5\u5177"
     from:
       source:
-      - x: 16
+      - x: 27
+        y: 1
+      - x: 11
         y: 1
     to:
       source:
-      - x: 17
+      - x: 38
         y: 1
     edge:
       tras:
-      - x: 1
-        y: 1
-      time: 144
-  - title: "\u6316\u91D1\u77FF"
-    from:
-      source:
-      - x: 22
-        y: 1
-    to:
-      source:
-      - x: 21
-        y: 1
-    edge:
-      tras:
-      - x: 0
+      - x: 8
         y: 1
       time: 10
-  - title: "\u6316\u94C1\u77FF"
+    transEnum: 1
+  - title: "\u751F\u4EA7\u6728\u5934"
     from:
       source:
-      - x: 24
+      - x: 10
         y: 1
     to:
       source:
-      - x: 23
-        y: 1
+      - x: 11
+        y: 5
     edge:
       tras:
-      - x: 0
+      - x: 4
         y: 1
-      time: 10
-  - title: "\u6316\u7164\u70AD"
+      time: 6
+    transEnum: 0
+  - title: "\u751F\u4EA7\u91D1\u5B50"
     from:
+      source:
+      - x: 25
+        y: 2
+    to:
       source:
       - x: 26
         y: 1
-    to:
-      source:
-      - x: 25
-        y: 1
     edge:
       tras:
       - x: 0
+        y: 0
+      time: 2
+    transEnum: 0
+  - title: "\u751F\u4EA7\u94C1"
+    from:
+      source:
+      - x: 28
+        y: 2
+    to:
+      source:
+      - x: 29
         y: 1
-      time: 10
+    edge:
+      tras: []
+      time: 2
+    transEnum: 0
   worldRule: []

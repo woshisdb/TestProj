@@ -6,6 +6,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class GoldKuangType : KuangType
+{
+    public GoldKuangType(string name = null) : base(name)
+    {
+
+    }
+}
+[System.Serializable]
+public class GoldKuangSaver : KuangSaver
+{
+
+}
+
+[Map()]
+// Н№зг
+public class GoldKuangObj : KuangObj
+{
+    ///////////////////////////////////////
+
+    public GoldKuangObj(RawSaver objAsset = null) : base(objAsset)
+    {
+        Init();
+    }
+    public override List<Activity> InitActivities()
+    {
+        var acts = base.InitActivities();
+        return acts;
+    }
+}
+
 public class GoldType : KuangType
 {
     public GoldType(string name = null) : base(name)
@@ -66,5 +96,9 @@ public class GoldMiningObj : KuangMiningObj
     public override ObjEnum GetObj()
     {
         return ObjEnum.GoldObjE;
+    }
+    public override ObjEnum GetSource()
+    {
+        return ObjEnum.GoldKuangObjE;
     }
 }

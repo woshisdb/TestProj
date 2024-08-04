@@ -24,8 +24,6 @@ public class ProblemGenerator
     public Pop Needs()
     {
         var metric = PDDL.Min(person.foodState.retSatifP(), person.sleepState.retSatifP());//目标优化
-        metric = PDDL.Min(metric,person.safetyState.retSatifP());
-        metric = PDDL.Min(metric,person.hungryState.retSatifP());
         return metric;
     }
 

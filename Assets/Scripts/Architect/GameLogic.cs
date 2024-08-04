@@ -91,9 +91,58 @@ public class CodeSystemData
         }
         dayWork.Add(t);
     }
-    public virtual IEnumerator EditCodeSystem(Person person, Obj obj, List<Activity> activities)
+    public virtual IEnumerator EditCodeSystem(Person person, Obj obj,CodeData codeData)
     {
-        yield break;
+        List<Activity> activities = obj.InitActivities();
+        List<CardInf> sels = new List<CardInf>();
+        Activity activity = null;
+        foreach (var x in activities)
+        {
+            var data = x;
+            sels.Add(new CardInf("选择:" + data.activityName, data.detail,
+                () =>
+                {
+                    activity = data;
+                }
+            ));
+        }
+
+        yield return GameArchitect.gameLogic.AddDecision(person, new DecisionTex(
+        "工作的内容", "选择工作的内容进行工作", sels));
+        foreach (var x in work)
+        {
+            x.obj = obj;
+        }
+        /////////////////////////////////////////////////////////////////
+        yield return GetActDec(codeData, obj, activity);
+    }
+    public IEnumerator GetActDec(CodeData codeData, Obj obj,Activity activity)
+    {
+        var w= codeData;
+        Person tempPerson = new Person();//自建Person
+        BuildingObj buildingObj = new BuildingObj();
+        w.activity = activity;
+        List<WinData> winDatas = new List<WinData>();
+        var eff = activity.Effect(obj, tempPerson, winDatas);
+        tempPerson.SetAct(eff);
+        tempPerson.isPlayer = true;
+        Debug.Log(eff.GetType().Name);
+        bool hasTime = GameLogic.hasTime;
+        while (tempPerson.hasSelect.val == true)
+        {
+            GameLogic.hasTime = true;
+            yield return tempPerson.act.Run(
+                (result) => {
+                    if (result is EndAct)
+                        tempPerson.RemoveAct();
+                    else if (result is Act)
+                        tempPerson.SetAct((Act)result);
+                }
+            );
+        }
+        GameLogic.hasTime = hasTime;
+        ///选择一系列活动
+        w.wins = winDatas;
     }
 }
 public class CodeSystemDataWeek: CodeSystemData
@@ -105,8 +154,9 @@ public class CodeSystemDataWeek: CodeSystemData
         for(int i = 0; i < 7; i++)
         { week.Add(0); }
     }
-    public override IEnumerator EditCodeSystem(Person person,Obj obj,List<Activity> activities)
+    public override IEnumerator EditCodeSystem(Person person,Obj obj, CodeData codeData)
     {
+        List<Activity> activities = obj.InitActivities();
         List<CardInf> sels = new List<CardInf>();
         Activity activity = null;
         foreach(var x in activities)
@@ -126,17 +176,53 @@ public class CodeSystemDataWeek: CodeSystemData
         {
             x.obj = obj;
         }
-        var w=work.Find((x) => { return x.codeName == "工作"; });
+        /////////////////////////////////////////////////////////////////
+        yield return GetActDec(codeData, obj,activity);
+    }
+}
+
+public class CodeSystemDataMove : CodeSystemData
+{
+    public CodeSystemDataMove() : base()
+    {
+        code = CodeSystemEnum.week;
+        week = new List<int>(7);
+        for (int i = 0; i < 7; i++)
+        { week.Add(0); }
+    }
+    public override IEnumerator EditCodeSystem(Person person, Obj obj, CodeData codeData)
+    {
+        List<Activity> activities = obj.InitActivities();
+        List<CardInf> sels = new List<CardInf>();
+        Activity activity = null;
+        foreach (var x in activities)
+        {
+            var data = x;
+            sels.Add(new CardInf("选择:" + data.activityName, data.detail,
+                () =>
+                {
+                    activity = data;
+                }
+            ));
+        }
+
+        yield return GameArchitect.gameLogic.AddDecision(person, new DecisionTex(
+        "工作的内容", "选择工作的内容进行工作", sels));
+        foreach (var x in work)
+        {
+            x.obj = obj;
+        }
+        var w = work.Find((x) => { return x.codeName == "搬运"; });
         Person tempPerson = new Person();//自建Person
-        BuildingObj buildingObj=new BuildingObj();
+        BuildingObj buildingObj = new BuildingObj();
         w.activity = activity;
         List<WinData> winDatas = new List<WinData>();
-        var eff=activity.Effect(obj,tempPerson,winDatas);
+        var eff = activity.Effect(obj, tempPerson, winDatas);
         tempPerson.SetAct(eff);
         tempPerson.isPlayer = true;
         Debug.Log(eff.GetType().Name);
         bool hasTime = GameLogic.hasTime;
-        while (tempPerson.hasSelect.val==true)
+        while (tempPerson.hasSelect.val == true)
         {
             GameLogic.hasTime = true;
             yield return tempPerson.act.Run(
@@ -153,6 +239,7 @@ public class CodeSystemDataWeek: CodeSystemData
         w.wins = winDatas;
     }
 }
+
 public class CodeSystemDataMonth : CodeSystemData
 {
     public CodeSystemDataMonth() : base()

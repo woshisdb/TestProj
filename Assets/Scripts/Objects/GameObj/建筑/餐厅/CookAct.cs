@@ -121,7 +121,7 @@ public class CookAct : Activity
     }
     public override bool Condition(Obj obj, Person person, params object[] objs)
     {
-        return ((BuildingObj)obj).remainBuilder == 0;
+        return true;// ((BuildingObj)obj).remainBuilder == 0;
     }
 
     public override PAction GetAction()

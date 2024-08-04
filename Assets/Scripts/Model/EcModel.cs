@@ -185,10 +185,10 @@ public class Resource
     public void Add(KeyValuePair<ObjEnum, ObjContBase> pair)
     {
         if (rates != null)
-        //foreach (var x in rates)
-        //{
-        //    x.Value.AddRate(pair.Key,pair.Value.size);
-        //}
+        foreach (var x in rates)
+        {
+            x.Value.AddRate(pair.Key, pair.Value.size);
+        }
         if (sites != null)
         foreach (var x in sites)
         {
@@ -230,11 +230,11 @@ public class Resource
     public void Add(ObjEnum objtype, int num,int time=0,Obj obj=null)
     {
         nowSize += num * GetSize(objtype);
-        //if(rates!=null)
-        //foreach (var x in rates)
-        //{
-        //    x.Value.AddRate(objtype,num);
-        //}
+        if (rates != null)
+        foreach (var x in rates)
+        {
+            x.Value.AddRate(objtype, num);
+        }
         if (sites != null)
         foreach (var x in sites)
         {

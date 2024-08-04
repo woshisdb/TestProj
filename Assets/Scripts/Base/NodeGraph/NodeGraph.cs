@@ -36,12 +36,25 @@ public enum TransationEnum
 	/// <summary>
 	/// 安装设备
 	/// </summary>
-	anZhuang
+	anZhuang,
+	/// <summary>
+	/// 制作工具
+	/// </summary>
+	zhiZuo,
+	/// <summary>
+	/// 开采
+	/// </summary>
+	kaiCai,
 }
 public enum SitEnum
 {
 	bed,
 	set
+}
+public enum TransEnum
+{
+	one,
+	conti
 }
 /// <summary>
 /// 物体转移关系
@@ -57,23 +70,27 @@ public class Trans
 	public Node to;
 	[SerializeField]
 	public Edge edge;
-
+	[SerializeField]
+	public TransEnum transEnum;
 	public virtual Source AddSource(Obj obj,Trans trans)
 	{
-		return new Source((BuildingObj)obj, ((BuildingObj)obj).resource, trans);
+		if (transEnum == TransEnum.one)
+			return new Source((BuildingObj)obj, ((BuildingObj)obj).resource, trans);
+		else
+			return new IterSource((BuildingObj)obj, ((BuildingObj)obj).resource, trans);
 	}
 }
-/// <summary>
-/// 持续需要资源的转移关系
-/// </summary>
-[System.Serializable]
-public class IterTrans:Trans
-{
-	public override Source AddSource(Obj obj, Trans trans)
-	{
-		return new IterSource((BuildingObj)obj, ((BuildingObj)obj).resource, trans);
-	}
-}
+///// <summary>
+///// 持续需要资源的转移关系
+///// </summary>
+//[System.Serializable]
+//public class IterTrans:Trans
+//{
+//	public override Source AddSource(Obj obj, Trans trans)
+//	{
+//		return new IterSource((BuildingObj)obj, ((BuildingObj)obj).resource, trans);
+//	}
+//}
 
 [Serializable]
 public class NodeItem
@@ -120,9 +137,10 @@ public class Edge
 [System.Serializable, CreateAssetMenu(fileName = "GameRule", menuName = "ScriptableObjects/RuleAsset")]
 public class NodeGraph:SerializedScriptableObject
 {
-	/// <summary>
-	/// 带有人性质的规则的转移
-	/// </summary>
+    /// <summary>
+    /// 带有人性质的规则的转移
+    /// </summary>
+    [SerializeField]
 	public List<Trans> trans;
     [Button]
 	public void AddTransToTrans(Trans t)

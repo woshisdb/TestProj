@@ -142,7 +142,7 @@ public class SelPipLineAct:Activity
     }
     public override bool Condition(Obj obj, Person person, params object[] objs)
     {
-        return ((BuildingObj)obj).remainBuilder == 0;
+        return true;// ((BuildingObj)obj).remainBuilder == 0;
     }
 
     public override PAction GetAction()
@@ -207,7 +207,7 @@ public class SetPipLineAct : Activity
     }
     public override bool Condition(Obj obj, Person person, params object[] objs)
     {
-        return ((BuildingObj)obj).remainBuilder == 0;
+        return true;// ((BuildingObj)obj).remainBuilder == 0;
     }
 
     public override PAction GetAction()
@@ -242,7 +242,7 @@ public class UseToolAct : Activity
     }
     public override bool Condition(Obj obj, Person person, params object[] objs)
     {
-        return ((BuildingObj)obj).remainBuilder == 0;
+        return true;
     }
 
     public override PAction GetAction()

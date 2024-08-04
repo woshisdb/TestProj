@@ -135,7 +135,11 @@ public class ObjAsset : SerializedScriptableObject
     [NonSerialized, OdinSerialize]
     public SeedSaver seedSaver;
     [NonSerialized, OdinSerialize]
+    public TreeSeedSaver treeSeedSaver;
+    [NonSerialized, OdinSerialize]
     public TreeSaver treeSaver;
+    [NonSerialized, OdinSerialize]
+    public WoodSaver woodSaver;
     //...........................小麦相关
     [NonSerialized, OdinSerialize]
     public WheatSaver wheatSaver;
@@ -156,9 +160,13 @@ public class ObjAsset : SerializedScriptableObject
     [NonSerialized, OdinSerialize]
     public KuangMiningSaver kuangMiningSaver;
     [NonSerialized, OdinSerialize]
+    public GoldKuangSaver goldKuangSaver;
+    [NonSerialized, OdinSerialize]
     public GoldSaver goldSaver;
     [NonSerialized, OdinSerialize]
     public GoldMiningSaver goldMiningSaver;
+    [NonSerialized, OdinSerialize]
+    public IronKuangSaver ironKuangSaver;
     [NonSerialized, OdinSerialize]
     public IronSaver ironSaver;
     [NonSerialized, OdinSerialize]
@@ -171,6 +179,10 @@ public class ObjAsset : SerializedScriptableObject
     public TaotuSaver taotuSaver;
     [NonSerialized, OdinSerialize]
     public TaotuMiningSaver taotuMiningSaver;
+    [NonSerialized, OdinSerialize]
+    public ShuLinSaver shuLinSaver;
+    [NonSerialized, OdinSerialize]
+    public GongchangSaver gongchangSaver;
     //....................
     [NonSerialized, OdinSerialize]
     public FarmSaver farmSaver;
@@ -180,12 +192,6 @@ public class ObjAsset : SerializedScriptableObject
     public ToolSaver toolSaver;
     [NonSerialized, OdinSerialize]
     public BuildingResSaver buildingResSaver;
-
-    /// <summary>
-    /// 一系列的食物
-    /// </summary>
-    [NonSerialized, OdinSerialize]
-    public List<FoodSaver> foods;
     public ObjAsset()
     {
     }
