@@ -161,10 +161,15 @@ public class ObjCont:ObjContBase
 /// </summary>
 public class Resource
 {
+    [Property]
     public int maxSize;
+    [Property]
     public int nowSize;
+    [Property]
     public Dictionary<ObjEnum, ObjContBase> resources;
+    [Property]
     public Dictionary<TransationEnum, Rate> rates;
+    [Property]
     public Dictionary<SitEnum, Sit> sites;
     public int GetSize(ObjEnum objEnum)
     {

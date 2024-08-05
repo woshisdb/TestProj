@@ -360,7 +360,7 @@ public class ContractManager
     //}
 }
 
-[Map(typeof(PersonType), "personSaver")]
+[Map(typeof(PersonType), "personSaver"),Class]
 public class Person : AnimalObj
 {
     //***************************生成器********************************
@@ -370,9 +370,13 @@ public class Person : AnimalObj
     //**************************************************************
     /*************************个人思想******************************/
     /******************************************************/
+    [Property]
     public bool isPlayer;
+    [Property]
     public string PersonName;
+    [Property]
     public Resource resource;
+    [Property]
     public CodeData codeData;
     ///*********************知识**************************/
     ///// <summary>
