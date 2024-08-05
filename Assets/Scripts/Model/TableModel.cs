@@ -4,25 +4,16 @@ using System.Text;
 using QFramework;
 using UnityEngine;
 
-public class SceneType:PType
-{
-    public SceneType(string name=""):base(name)
-    {
 
-    }
-}
 
 public struct TableChangeEvent
 {
     public TableModel Model;
 }
 [SerializeField]
-public class TableModel:ICanRegisterEvent
+public class TableModel:Obj
 {
-    public StringBuilder str;
-    public string tableNo;
     public string TableName;
-    public Person owner;
     /// <summary>
     /// 场景大小
     /// </summary>
@@ -31,13 +22,11 @@ public class TableModel:ICanRegisterEvent
     public List<Obj> objs;
     public TableControl control;//Table控制器
     public Rule rule;
-    public SceneType sceneType;
-    public TableModel()
+    public TableModel():base(null)
     {
         str = new StringBuilder();
         persons = new List<Person>();
         objs = new List<Obj>();
-        sceneType=new SceneType(TableName);
     }
 
     public IArchitecture GetArchitecture()

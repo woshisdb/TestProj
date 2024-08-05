@@ -2,13 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WheatPlaceType : PlaceType
-{
-    public WheatPlaceType(string name = null) : base(name)
-    {
 
-    }
-}
 public class WheatPlaceSaver : PlaceSaver
 {
 
@@ -23,13 +17,6 @@ public class WheatPlaceObj : PlaceObj
 }
 
 
-public class FullWheatPlaceType : PlaceType
-{
-    public FullWheatPlaceType(string name = null) : base(name)
-    {
-
-    }
-}
 public class FullWheatPlaceSaver : PlaceSaver
 {
 
@@ -43,13 +30,6 @@ public class FullWheatPlaceObj : PlaceObj
     }
 }
 
-public class PlaceType : ObjType
-{
-    public PlaceType(string name = null) : base(name)
-    {
-
-    }
-}
 [SerializeField]
 public class PlaceSaver : ObjSaver
 {

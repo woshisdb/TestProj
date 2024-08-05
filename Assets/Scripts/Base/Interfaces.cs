@@ -82,25 +82,7 @@ public class Map : Singleton<Map>
             Insert(objEnum,data , (ObjSaver)objSaverField.GetValue(GameArchitect.get.objAsset));
         }
     }
-    public ObjType GetObjType(Type type,string name="")
-    {
-        //Init();
-        var s=kv[type];
-        return (ObjType)Activator.CreateInstance(s,name);
-    }
 
-    /// <summary>
-    /// ´ýÍêÉÆ
-    /// </summary>
-    /// <param name="type"></param>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public ObjType GetObjType(ObjEnum type, string name="")
-    {
-        //Init();
-        var s = kv[ enum2Type[type]];
-        return (ObjType)Activator.CreateInstance(s, name);
-    }
 
     public Obj GetObj(ObjEnum type)
     {

@@ -2,13 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FarmType : BuildingType
-{
-    public FarmType(string name = null) : base(name)
-    {
 
-    }
-}
 [System.Serializable]
 public class FarmSaver : BuildingSaver
 {

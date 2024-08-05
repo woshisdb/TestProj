@@ -43,7 +43,6 @@ public class TableAsset : SerializedScriptableObject
     public void CreateTable(string name,int size)
     {
         TableModel table = new TableModel();
-        table.tableNo = "t" + Nm.num;
         table.TableName = name;
         table.size = size;
         tableSaver.tables.Add(table);

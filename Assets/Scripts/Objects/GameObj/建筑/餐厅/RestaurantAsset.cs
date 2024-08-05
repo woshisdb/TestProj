@@ -3,13 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // ²ÍÌü
-public class RestaurantType : BuildingType
-{
-    public RestaurantType(string name = null) : base(name)
-    {
 
-    }
-}
 [System.Serializable]
 public class RestaurantSaver : BuildingSaver
 {

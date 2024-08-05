@@ -111,7 +111,7 @@ public class ThinkModel : ICanRegisterEvent
     }
     public IEnumerator<object> RunPerson(Person person, System.Action<object> callback)
     {
-        while (GameLogic.hasTime&& person.hasSelect.val)//循环搜索
+        while (GameLogic.hasTime&& person.hasSelect)//循环搜索
         {
             yield return GameArchitect.gameLogic.StartCoroutine(
                 person.act.Run(callback)
@@ -157,7 +157,7 @@ public class PlayerThinkModel: ThinkModel
     /// <returns></returns>
     public override Task BeginThink(Dictionary<Obj, CardInf[]> opts)
     {
-        if (!person.hasSelect.val)//无活动
+        if (!person.hasSelect)//无活动
         {
             var c = person.contractManager.GetCode();
             if (c != null)//有可执行的活动
@@ -198,7 +198,7 @@ public class NPCThinkModel: ThinkModel
     public override Task BeginThink(Dictionary<Obj, CardInf[]> opts)
     {
         //return Task.CompletedTask;
-        if (!person.hasSelect.val)//无活动
+        if (!person.hasSelect)//无活动
         {
             var c = person.contractManager.GetCode();
             if (c != null)//有可执行的活动

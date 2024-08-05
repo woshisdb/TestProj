@@ -23,11 +23,10 @@ public class ClassAttribute : Attribute
 
 public class PDDLClassGenerater
 {
-	void Refresh()
+	public static void Refresh()
 	{
         // 获取当前程序集
         Assembly assembly = Assembly.GetExecutingAssembly();
-
         // 获取所有类型
         Type[] types = assembly.GetTypes();
 
@@ -37,10 +36,26 @@ public class PDDLClassGenerater
             .ToList();
         foreach(var type in classesWithAttribute)
         {
-            foreach (var field in type.GetFields())
+            GenerateType(type);
+        }
+    }
+    public static void GenerateType(Type type)
+    {
+        foreach (var field in type.GetFields())
+        {
+            var attributes = field.GetCustomAttributes(typeof(PropertyAttribute), false);
+            if (attributes.Any())
             {
-                var attributes = field.GetCustomAttributes(typeof(PropertyAttribute), false);
-                if (attributes.Any())
+                Debug.Log(type.Name + ":" + field.Name);
+                if(field.FieldType==typeof(bool))
+                {
+
+                }
+                else if (field.FieldType == typeof(int))
+                {
+
+                }
+                else if(field.FieldType == typeof(int))
                 {
 
                 }
@@ -51,23 +66,46 @@ public class PDDLClassGenerater
 /// <summary>
 /// PDDL基类
 /// </summary>
-public class PDDLClass
+public class PDDLClass<T>
 {
-    public Obj obj;
+    public T obj;
     public StringBuilder stringBuilder;
-    public List<Func<Obj,string>> fields;
     /// <summary>
     /// PDDLClass
     /// </summary>
     /// <param name="obj"></param>
-    public PDDLClass(Obj obj)
+    public PDDLClass(T obj)
     {
         this.obj = obj;
         stringBuilder = new StringBuilder();
     }
-    public virtual string GetProblem(Obj obj)
+    public virtual string GetProblem(T obj)
     {
         stringBuilder.Clear();
         return null;
+    }
+    public virtual string GetDomain(T obj)
+    {
+        stringBuilder.Clear();
+        return null;
+    }
+}
+
+public class Person_PDDL:PDDLClass<Person>
+{
+    public Bool isPlayer;
+    public Num money;
+    public Person_PDDL(Person obj):base(obj)
+    {
+        this.obj = obj;
+        stringBuilder = new StringBuilder();
+        isPlayer = new Bool(new Predicate("Person_isPlayer",obj.obj),()=> { return obj.isPlayer; });
+        money = new Num(new Func("Person_Money", obj.obj), () => { return obj.money; });
+    }
+    public override string GetProblem(Person obj)
+    {
+        stringBuilder.Clear();
+
+        return stringBuilder.ToString();
     }
 }

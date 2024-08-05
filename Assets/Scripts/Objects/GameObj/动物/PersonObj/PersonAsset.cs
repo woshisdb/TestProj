@@ -5,132 +5,17 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
-public class PersonType : AnimalType
-{
-    public PersonType(string name = null) : base(name)
-    {
-
-    }
-}
-
-
-
-[P]
-public class SleepValF:Func
-{
-    public SleepValF(ObjType objType):base(objType)
-    {
-
-    }
-}
-[P]
-public class FoodValF : Func
-{
-    public FoodValF(ObjType objType) : base(objType)
-    {
-
-    }
-}
-
-[P]
-public class HasSelectP : Predicate
-{
-    public HasSelectP(ObjType objType) : base(objType)
-    {
-
-    }
-}
-[P]
-public class IsUseObjP : Predicate
-{
-    public IsUseObjP(AnimalType personType, ObjType objType) : base(personType, objType)
-    {
-
-    }
-}
-//[P]
-//public class HasCloth : Predicate
-//{
-//    public HasCloth(PersonType personType, ObjType objType) : base(personType, objType)
-//    {
-
-//    }
-//}
-//[P]
-//public class FinancialKnowledge:Func
-//{
-//    public FinancialKnowledge(PersonType personType):base(personType)
-//    {
-
-//    }
-//}
-//[P]
-//public class ArtKnowledge : Func
-//{
-//    public ArtKnowledge(PersonType personType) : base(personType)
-//    {
-
-//    }
-//}
-//[P]
-//public class LanguageKnowledge : Func
-//{
-//    public LanguageKnowledge(PersonType personType) : base(personType)
-//    {
-
-//    }
-//}
-//[P]
-//public class MedicalKnowledge : Func
-//{
-//    public MedicalKnowledge(PersonType personType) : base(personType)
-//    {
-
-//    }
-//}
-//[P]
-//public class ManagementKnowledge : Func
-//{
-//    public ManagementKnowledge(PersonType personType) : base(personType)
-//    {
-
-//    }
-//}
-//[P]
-//public class AgriculturalKnowledge : Func
-//{
-//    public AgriculturalKnowledge(PersonType personType) : base(personType)
-//    {
-
-//    }
-//}
-//[P]
-//public class IndustrialKnowledge : Func
-//{
-//    public IndustrialKnowledge(PersonType personType) : base(personType)
-//    {
-
-//    }
-//}
-//[P]
-//public class GeneralHistoryKnowledge : Func
-//{
-//    public GeneralHistoryKnowledge(PersonType personType) : base(personType)
-//    {
-
-//    }
-//}
 public interface Need
 {
-    public Pop retSatifP();
-    public float retSatif();
+    //public Pop retSatifP();
+    //public float retSatif();
 }
 public class PersonState:Need
 {
     public AnimalObj person;
     //public int l;
     public int r;
-    public Num val;
+    public float val;
     public PersonState(AnimalObj person,int r)
     {
         this.person = person;
@@ -143,18 +28,18 @@ public class PersonState:Need
         //this.l = sv.l;
         this.r = sv.r;
     }
-    public Pop Add(Pop pop)
-    {
-        return PDDL.Min(PDDL.Max(PDDL.Add(val,pop),(I)0),(I)r);
-    }
-    public float retSatif()//返回满意度
-    {
-        return ((float)r - (float)val.val) / (float)r;
-    }
-    public Pop retSatifP()
-    {
-        return PDDL.Div(PDDL.Dec((I)r,val), (I)r);
-    }
+    //public Pop Add(Pop pop)
+    //{
+    //    return PDDL.Min(PDDL.Max(PDDL.Add(val,pop),(I)0),(I)r);
+    //}
+    //public float retSatif()//返回满意度
+    //{
+    //    return ((float)r - (float)val.val) / (float)r;
+    //}
+    //public Pop retSatifP()
+    //{
+    //    return PDDL.Div(PDDL.Dec((I)r,val), (I)r);
+    //}
 }
 [System.Serializable]
 public class PersonSVal
@@ -174,80 +59,74 @@ public class SafetyVals
     public int richLive;
     public List<int> foodMoney;
 }
-public class FoodSumF:Func
-{
-    public FoodSumF(PersonType personType):base(personType)
-    {
-    }
-}
 
 /// <summary>
 /// 对未来安全的满足情况,当前的金钱能够购买多少食物
 /// </summary>
-public class SafetyState:Need
-{
-    public Person person;
-    public int baseLive;//满足明天的生存
-    public int enoughLive;//满足一个星期的生存
-    public int richLive;//满足一月以上的生存
-    public CircularQueue<int> foodMoney;//一点能量所花费的价格
-    public Num foodSum;//所购买的食物总能量
+//public class SafetyState:Need
+//{
+//    public Person person;
+//    public int baseLive;//满足明天的生存
+//    public int enoughLive;//满足一个星期的生存
+//    public int richLive;//满足一月以上的生存
+//    public CircularQueue<int> foodMoney;//一点能量所花费的价格
+//    public Num foodSum;//所购买的食物总能量
 
-    public SafetyState(Person person,SafetyVals safetyVals)
-    {
-        this.person = person;
-        baseLive = safetyVals.baseLive;
-        enoughLive = safetyVals.enoughLive;
-        richLive = safetyVals.richLive;
-        foodMoney = new CircularQueue<int>(7);
-        foodSum = new Num(new FoodSumF((PersonType)person.obj));
-    }
+//    public SafetyState(Person person,SafetyVals safetyVals)
+//    {
+//        this.person = person;
+//        baseLive = safetyVals.baseLive;
+//        enoughLive = safetyVals.enoughLive;
+//        richLive = safetyVals.richLive;
+//        foodMoney = new CircularQueue<int>(7);
+//        foodSum = new Num(new FoodSumF((PersonType)person.obj));
+//    }
 
-    public Pop retSatifP()
-    {
-        var data=(int)CircularQueue<int>.CalculateAverage(foodMoney);
-        var foodAll = person.foodState.r;//总能量
-        var mySum = PDDL.Add(foodSum,person.foodState.val.func);
-        //mySum=PDDL.Add(mySum,PDDL.Mul((I)data,person.money));
-        return PDDL.Div(mySum, (I)foodAll);//能够满足多久
-    }
-    public float retSatif()
-    {
-        float data= (float)CircularQueue<int>.CalculateAverage(foodMoney);
-        float foodAll = person.foodState.r;//总能量
-        float mySum = foodSum.val + person.foodState.val.val;// PDDL.Add(foodSum, person.foodState.val.func);
-        //mySum = mySum + (data*(float)person.money.val);//PDDL.Add(mySum, PDDL.Mul((I)data, person.money));
-        return mySum / foodAll;//PDDL.Div(mySum, (I)foodAll);//能够满足多久
-    }
-}
-[System.Serializable]
-//饥饿的需求
-public class HungryVals
-{
-    [SerializeField]
-    public int r;//表示低于某个值会产生饥饿感
-}
-//饥饿的需求
-public class HungryState : Need
-{
-    Person person;
-    public int r;//表示低于某个值会产生饥饿感
-    public HungryState(Person person,HungryVals hungryVals)
-    {
-        this.person = person;
-        this.r = hungryVals.r;
-    }
+//    public Pop retSatifP()
+//    {
+//        var data=(int)CircularQueue<int>.CalculateAverage(foodMoney);
+//        var foodAll = person.foodState.r;//总能量
+//        var mySum = PDDL.Add(foodSum,person.foodState);
+//        //mySum=PDDL.Add(mySum,PDDL.Mul((I)data,person.money));
+//        return PDDL.Div(mySum, (I)foodAll);//能够满足多久
+//    }
+//    public float retSatif()
+//    {
+//        float data= (float)CircularQueue<int>.CalculateAverage(foodMoney);
+//        float foodAll = person.foodState.r;//总能量
+//        float mySum = foodSum.val + person.foodState.val.val;// PDDL.Add(foodSum, person.foodState.val.func);
+//        //mySum = mySum + (data*(float)person.money.val);//PDDL.Add(mySum, PDDL.Mul((I)data, person.money));
+//        return mySum / foodAll;//PDDL.Div(mySum, (I)foodAll);//能够满足多久
+//    }
+//}
+//[System.Serializable]
+////饥饿的需求
+//public class HungryVals
+//{
+//    [SerializeField]
+//    public int r;//表示低于某个值会产生饥饿感
+//}
+////饥饿的需求
+//public class HungryState : Need
+//{
+//    Person person;
+//    public int r;//表示低于某个值会产生饥饿感
+//    public HungryState(Person person,HungryVals hungryVals)
+//    {
+//        this.person = person;
+//        this.r = hungryVals.r;
+//    }
 
-    public float retSatif()
-    {
-        return person.foodState.val.val / (float)r;
-    }
+//    public float retSatif()
+//    {
+//        return person.foodState.val.val / (float)r;
+//    }
 
-    public Pop retSatifP()
-    {
-        return PDDL.Div(person.foodState.val , (I)r);
-    }
-}
+//    public Pop retSatifP()
+//    {
+//        return PDDL.Div(person.foodState.val , (I)r);
+//    }
+//}
 [System.Serializable]
 public class PersonSaver : AnimalSaver
 {
@@ -257,8 +136,8 @@ public class PersonSaver : AnimalSaver
     public bool isPlayer;
     [SerializeField]
     public SafetyVals SafetyVals;
-    [SerializeField]
-    public HungryVals HungryVals;
+    //[SerializeField]
+    //public HungryVals HungryVals;
 }
 /// <summary>
 /// 活动结构，时间和活动
@@ -360,7 +239,7 @@ public class ContractManager
     //}
 }
 
-[Map(typeof(PersonType), "personSaver"),Class]
+[Map(null, "personSaver"),Class]
 public class Person : AnimalObj
 {
     //***************************生成器********************************
@@ -378,6 +257,7 @@ public class Person : AnimalObj
     public Resource resource;
     [Property]
     public CodeData codeData;
+    public int money;
     ///*********************知识**************************/
     ///// <summary>
     ///// 金融知识
@@ -491,7 +371,7 @@ public class Person : AnimalObj
     public void SetAct(Act act)
     {
         this.act = act;
-        hasSelect.val = true;
+        hasSelect = true;
         this.SendEvent<EndTurnEvent>(new EndTurnEvent(GameArchitect.nowPerson));
     }
     /// <summary>
@@ -499,7 +379,7 @@ public class Person : AnimalObj
     /// </summary>
     public void RemoveAct()
     {
-        this.hasSelect.val = false;
+        this.hasSelect = false;
         this.act = null;
     }
     /// <summary>

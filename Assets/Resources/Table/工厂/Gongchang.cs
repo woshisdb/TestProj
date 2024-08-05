@@ -2,13 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GongchangType : BuildingType
-{
-    public GongchangType(string name = null) : base(name)
-    {
 
-    }
-}
 [System.Serializable]
 public class GongchangSaver : BuildingSaver
 {

@@ -107,7 +107,7 @@ public class OptionUIControl : MonoBehaviour, IController, ICanRegisterEvent
         {
             var cMang = updateCode.person.contractManager;
             var res = new List<CardInf>();
-            var time = GameArchitect.get.GetModel<TimeModel>().Time.val;
+            var time = GameArchitect.get.GetModel<TimeModel>().Time;
             for (int i = time; i < 48; i++)
             {
                 var code=updateCode.person.contractManager.GetCode(i);

@@ -11,51 +11,17 @@ public enum ActivityType
 {
     sleep,//睡觉行为
 }
-public class ObjType:PType
-{
-    public ObjType(string name = null) : base(name)
-    {
 
-    }
-}
-[P]
-public class ObjSizeF:Func
-{
-    public ObjSizeF(ObjType objType):base(objType)
-    {
 
-    }
-}
-[P]
-public class IsAliveP : Predicate
-{
-    public IsAliveP(ObjType objType):base(objType)
-    {
 
-    }
-}
-[P]
-public class Money:Func
-{
-    public Money(PersonType objType):base(objType)
-    {
 
-    }
-}
-public class In:Predicate
-{
-    public In(ObjType x,SceneType sceneType):base(x,sceneType)
-    {
-
-    }
-}
 [Map(null,"objSaver")]
 public class Obj:PDDL,ICanRegisterEvent
 {
     /// <summary>
     /// 对象类型
     /// </summary>
-    public ObjType obj;
+    public PType obj;
     public string name;
     public TableModel belong;//所属于的对象
     public ObjSaver objSaver;//对象的类型
@@ -111,6 +77,8 @@ public class Obj:PDDL,ICanRegisterEvent
     {
         objSaver = Map.Instance.GetSaver(GetType());//默认初始化
         this.name = getName();
+        this.obj = new PType(this.name);
+        this.obj.typeName=GetType().Name;
     }
     ///// <summary>
     ///// 摧毁的方法
@@ -140,7 +108,6 @@ public class Obj:PDDL,ICanRegisterEvent
     public virtual StringBuilder GetString()
     {
         str.Clear();//清除
-        str.AppendLine(new In(obj,belong.sceneType).ToString());//所在的位置
         return str;
     }
     public ObjSaver Saver()

@@ -3,13 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Desk.cs
-public class DeskType : ObjType
-{
-    public DeskType(string name = null) : base(name)
-    {
 
-    }
-}
 [System.Serializable]
 public class DeskSaver : ObjSaver
 {

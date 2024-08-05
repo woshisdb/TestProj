@@ -32,7 +32,7 @@ public class SaveSystem :Singleton<SaveSystem>
         GameArchitect game= (GameArchitect)GameArchitect.Interface;
         game.tableAsset.tableSaver.lastNm = Nm.x;
         if (GameArchitect.get.GetModel<TimeModel>()!=null)
-            game.tableAsset.tableSaver.time = GameArchitect.get.GetModel<TimeModel>().Time.val;
+            game.tableAsset.tableSaver.time = GameArchitect.get.GetModel<TimeModel>().Time;
         byte[] tablebytes = SerializationUtility.SerializeValue(game.tableAsset.tableSaver, DataFormat.JSON);
         File.WriteAllBytes(tablesavePath, tablebytes);
         Debug.Log("Game Saved.");

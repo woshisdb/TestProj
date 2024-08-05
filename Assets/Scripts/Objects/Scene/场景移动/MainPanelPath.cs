@@ -69,13 +69,6 @@ public class Go : Activity
         detail = wasteTime + "(H/2)";
     }
 }
-public class PathType:ObjType
-{
-    public PathType(string name = null) : base(name)
-    {
-
-    }
-}
 [System.Serializable]
 public class PathSaver:ObjSaver
 {

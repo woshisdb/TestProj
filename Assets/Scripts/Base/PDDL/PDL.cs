@@ -124,9 +124,7 @@ public class Nm
 public class PType: PDDL
 {
     public string typeName;//类型名
-    //public PType fa;//父类
     public string objName;
-    //public bool isVal;
     public PType(string objName="")
     {
         if(objName=="")
@@ -135,20 +133,10 @@ public class PType: PDDL
         }
         else
         this.objName = objName;
-        typeName = this.GetType().Name;
     }
     public override string ToString()
     {
         return objName;
-        //var s1= typeName;
-        //if(GetType().BaseType==typeof(PDDL))
-        //{
-        //    return s1;
-        //}
-        //else
-        //{
-        //    return s1 + " - " + GetType().BaseType.Name;
-        //}
     }
     public string ObjName()
     {
@@ -163,52 +151,14 @@ public class PType: PDDL
         }
     }
 }
-public class CustomPredicate:Predicate
-{
-    public CustomPredicate(string name,params PType[] x):base(x)
-    {
-        this.name = name;
-    }
-}
-
-public class CustomFunc : Func
-{
-    public string name;
-    public List<PType> objects;
-    public CustomFunc(string name,params PType[] x):base(x)
-    {
-        this.name = name;
-    }
-    public override string ToString()
-    {
-        StringBuilder sb = new StringBuilder("(");
-        sb.Append(name + " ");
-        for (var i = 0; i < objects.Count; i++)
-        {
-            sb.AppendFormat(" ?{0}", objects[i].objName);
-        }
-        sb.Append(")");
-        return sb.ToString();
-    }
-    public string f()
-    {
-        StringBuilder sb = new StringBuilder("(" + name + " ");
-        for (int i = 0; i < objects.Count; i++)
-        {
-            sb.AppendFormat("?{0}-{1}", objects[i].objName, objects[i].typeName);
-        }
-        sb.Append(")");
-        return sb.ToString();
-    }
-}
 
 public class Predicate : Pop
 {
     public string name;
     public List<PType> objects;
-    public Predicate(params PType[] x)
+    public Predicate(string name,params PType[] x)
     {
-        name=GetType().Name;
+        this.name=name;
         objects= new List<PType>(x);
     }
     public override string ToString()
@@ -235,9 +185,9 @@ public class Func : Pop
 {
     public string name;
     public List<PType> objects;
-    public Func(params PType[] x)
+    public Func(string name,params PType[] x)
     {
-        name = GetType().Name;
+        this.name = name;
         objects = new List<PType>(x);
     }
     public override string ToString()
@@ -858,28 +808,29 @@ public class Derived
 public class VBool
 {
     public static Dictionary<string,Dictionary<string,Derived>> map=new Dictionary<string, Dictionary<string, Derived>>();
-    public VBool(Derived derived,ObjType objType)
+    public VBool(Derived derived,PType objType)
     {
         map[derived.dpre.name].Add(objType.typeName, derived);//将这个设置到里面
     }
 }
 public class Bool:PDDL
 {
-    public bool val;
+    public Func<bool> val;
     public Predicate predicate;
-    /// <summary>
-    /// 获取和设置对象
-    /// </summary>
-    public PType obj;
     public Bool(Predicate predicate,bool val=false)
     {
-        this.obj = predicate.objects[0];
+        this.val =()=> { return val; };
+        this.predicate = predicate;
+    }
+    public Bool(Predicate predicate, Func<bool> val)
+    {
         this.val = val;
         this.predicate = predicate;
     }
+
     public override string ToString()
     {
-        if (val)
+        if (val())
             return predicate.ToString();
         else
             return Not(predicate).ToString();
@@ -898,22 +849,14 @@ public class Bool:PDDL
 }
 public class Num:PDDL
 {
-    public int val;
+    public Func<int> val;
     public Func func;
-    /// <summary>
-    /// 获取和设置对象
-    /// </summary>
-    public PType obj;
     public Num(Func func, int val = 0)
     {
-        if (func.objects.Count > 0)
-        {
-            obj = func.objects[0];
-        }
-        this.val = val;
+        this.val = ()=> { return val; };
         this.func = func;
     }
-    public void Bind(Func func)
+    public Num(Func func,Func<int> val)
     {
 
     }
@@ -1125,7 +1068,7 @@ public abstract class Problem : PDDL
 [P]
 public class NowT:Func
 {
-    public NowT():base()
+    public NowT():base("NowTime")
     {
 
     }

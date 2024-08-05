@@ -2,13 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZaozhuanSitType: BuildingType
-{
-    public ZaozhuanSitType(string name = null) : base(name)
-    {
 
-    }
-}
 [System.Serializable]
 public class ZaozhuanSitSaver : BuildingSaver
 {

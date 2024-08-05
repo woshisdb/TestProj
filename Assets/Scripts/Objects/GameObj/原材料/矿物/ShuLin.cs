@@ -2,13 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShuLinType : BuildingType
-{
-    public ShuLinType(string name = null) : base(name)
-    {
 
-    }
-}
 [System.Serializable]
 public class ShuLinSaver : BuildingSaver
 {

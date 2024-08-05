@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RawType : ObjType
+public class RawType : PType
 {
     public RawType(string name = null) : base(name)
     {

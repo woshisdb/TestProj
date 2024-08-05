@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Michsky.MUIP;
 using PimDeWitte.UnityMainThreadDispatcher;
@@ -128,7 +129,7 @@ public class CodeSystemData
         tempPerson.isPlayer = true;
         Debug.Log(eff.GetType().Name);
         bool hasTime = GameLogic.hasTime;
-        while (tempPerson.hasSelect.val == true)
+        while (tempPerson.hasSelect == true)
         {
             GameLogic.hasTime = true;
             yield return tempPerson.act.Run(
@@ -222,7 +223,7 @@ public class CodeSystemDataMove : CodeSystemData
         tempPerson.isPlayer = true;
         Debug.Log(eff.GetType().Name);
         bool hasTime = GameLogic.hasTime;
-        while (tempPerson.hasSelect.val == true)
+        while (tempPerson.hasSelect == true)
         {
             GameLogic.hasTime = true;
             yield return tempPerson.act.Run(
@@ -346,6 +347,11 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
         windowsmanager.onWindowChange.AddListener(e=> { OnWinChange(e); });
         unityActions = new List<UnityAction>();
         StartCoroutine(WindowSwitch());
+    }
+    [Button]
+    public void Refresh()
+    {
+        PDDLClassGenerater.Refresh();
     }
     public void OnWinChange(int win)//待修改
     {
@@ -474,7 +480,12 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
         }
         Sc.AddToTable(val);
     }
-
+    [Button]
+    public void GetPDDL()
+    {
+        Expression<Func<int, int, int, int, int>> func = (i, j, x, y) => (i * j) + (x * y);
+        Debug.Log(func);
+    }
     [Button]
     public void AddResource(string name,ObjEnum objEnum,int num)
     {
@@ -498,7 +509,7 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
         {
             var person=GameArchitect.persons[i];//当前角色
             GameArchitect.nowPerson = person;//当前角色
-            if (!person.hasSelect.val)//没有任务就初始化可执行的活动
+            if (!person.hasSelect)//没有任务就初始化可执行的活动
             {
                 if (person.contractManager.GetCode()!=null)
                 {

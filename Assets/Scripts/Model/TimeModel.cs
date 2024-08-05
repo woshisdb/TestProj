@@ -48,16 +48,16 @@ public class TimeModel : AbstractModel
     /// <summary>
     /// 表示一天24小时
     /// </summary>
-    public Num Time;
+    public int Time;
     protected override void OnInit()
     {
-        Time = new Num(new NowT());
-        Time.val = GameArchitect.get.tableAsset.tableSaver.time;
+        Time = 1;
+        Time = GameArchitect.get.tableAsset.tableSaver.time;
     }
     public void AddTime()
     {
-        Time.val++;
-        this.SendEvent<TimeUpdateEvent>(new TimeUpdateEvent(Time.val));
+        Time++;
+        this.SendEvent<TimeUpdateEvent>(new TimeUpdateEvent(Time));
     }
     public static int GetHours(int time)
     {
@@ -65,39 +65,39 @@ public class TimeModel : AbstractModel
     }
     public int GetTime()
     {
-        return Time.val;
+        return Time;
     }
     public int GetBeginDay()
     {
-        return Time.val-Time.val % timeStep;
+        return Time-Time % timeStep;
     }
     public int GetBeginWeek()
     {
-        return Time.val - Time.val % (timeStep * 7);
+        return Time - Time % (timeStep * 7);
     }
     public int GetBeginMonth()
     {
-        return Time.val-Time.val%(timeStep * 30);
+        return Time-Time%(timeStep * 30);
     }
     public int GetBeginYear()
     {
-        return Time.val - Time.val % (timeStep * 360);
+        return Time - Time % (timeStep * 360);
     }
     public int GetDay()
     {
-        return Time.val / timeStep;
+        return Time / timeStep;
     }
     public int GetWeek()
     {
-        return (Time.val / timeStep)%7;
+        return (Time / timeStep)%7;
     }
     public int GetMonth()
     {
-        return (Time.val / timeStep)/30;
+        return (Time / timeStep)/30;
     }
     public int GetYear()
     {
-        return (Time.val / timeStep) / 360;
+        return (Time / timeStep) / 360;
     }
     ///...............................
     public int GetTime(int t)
@@ -123,7 +123,7 @@ public class TimeModel : AbstractModel
     //................................
     public string GetTimeStr()
     {
-        return Time.val / timeStep + "/" + Time.val % timeStep;
+        return Time / timeStep + "/" + Time % timeStep;
     }
     public string GetTimeHour(int time)
     {
@@ -132,6 +132,6 @@ public class TimeModel : AbstractModel
     }
     public int NextDay(int day)
     {
-        return Time.val + timeStep * day;
+        return Time + timeStep * day;
     }
 }

@@ -23,49 +23,49 @@ public class ProblemGenerator
     /// </summary>
     public Pop Needs()
     {
-        var metric = PDDL.Min(person.foodState.retSatifP(), person.sleepState.retSatifP());//目标优化
+        Pop metric = null;//PDDL.Min(person.foodState.retSatifP(), person.sleepState.retSatifP());//目标优化
         return metric;
     }
 
     public string GenerateProblem()
     {
-        //[0代表非常痛苦，1代表无事发生]
-        var sleepval = person.sleepState.retSatif(); //睡眠
-        var foodval= person.foodState.retSatif();//食物
-        var metric = Needs();
-        stringBuilder =new StringBuilder();
-        stringBuilder.AppendFormat("(define (problem {0})\n","Problem"+person.name);//问题名字
-        stringBuilder.AppendLine("(:domain robot-domain)\n");//域名字
-        //生成对象
-        stringBuilder.AppendLine("(:objects\n");
-        foreach(var p in GameArchitect.get.tableAsset.tableSaver.tables)//生成Table的约束
-        {
-            stringBuilder.AppendFormat("{0} - {1}\n",p.sceneType.objName,p.sceneType.typeName);
-        }
-        foreach(var x in GameArchitect.get.tableAsset.tableSaver.objs)//初始化一系列的对象
-        {
-            //stringBuilder.AppendFormat("{0} - {1}\n",x.obj.objName,x.obj.typeName);
-        }
-        stringBuilder.AppendLine("\n)");
-        //初始化
-        stringBuilder.AppendLine("(:init\n");
-        //添加Time
-        stringBuilder.AppendLine(GameArchitect.get.GetModel<TimeModel>().Time.func.ToString());
-        foreach (var x in GameArchitect.get.tableAsset.tableSaver.objs)//初始化一系列的对象
-        {
-            stringBuilder.AppendFormat(x.GetString().ToString());
-        }
-        stringBuilder.AppendLine("\n)");
-        //目标是增加在给定时间做决策
-        stringBuilder.AppendLine("(:goal");
-        Pop goal=null;//= PDDL.G((I)(GameArchitect.get.GetModel<TimeModel>().Time.val+TimeModel.GetStep(1)), GameArchitect.get.GetModel<TimeModel>().Time);
-        stringBuilder.AppendLine(goal.ToString());
-        stringBuilder.AppendLine(")");
-        //***************目标最小化痛苦
-        stringBuilder.Append("(:metric\n");
-        stringBuilder.Append(metric.ToString());
-        stringBuilder.AppendLine(")");
-        stringBuilder.AppendLine(")");
+        ////[0代表非常痛苦，1代表无事发生]
+        //var sleepval = person.sleepState.retSatif(); //睡眠
+        //var foodval= person.foodState.retSatif();//食物
+        //var metric = Needs();
+        //stringBuilder =new StringBuilder();
+        //stringBuilder.AppendFormat("(define (problem {0})\n","Problem"+person.name);//问题名字
+        //stringBuilder.AppendLine("(:domain robot-domain)\n");//域名字
+        ////生成对象
+        //stringBuilder.AppendLine("(:objects\n");
+        ////foreach(var p in GameArchitect.get.tableAsset.tableSaver.tables)//生成Table的约束
+        ////{
+        ////    stringBuilder.AppendFormat("{0} - {1}\n",p.sceneType.objName,p.sceneType.typeName);
+        ////}
+        //foreach(var x in GameArchitect.get.tableAsset.tableSaver.objs)//初始化一系列的对象
+        //{
+        //    //stringBuilder.AppendFormat("{0} - {1}\n",x.obj.objName,x.obj.typeName);
+        //}
+        //stringBuilder.AppendLine("\n)");
+        ////初始化
+        //stringBuilder.AppendLine("(:init\n");
+        ////添加Time
+        //stringBuilder.AppendLine(GameArchitect.get.GetModel<TimeModel>().Time.func.ToString());
+        //foreach (var x in GameArchitect.get.tableAsset.tableSaver.objs)//初始化一系列的对象
+        //{
+        //    stringBuilder.AppendFormat(x.GetString().ToString());
+        //}
+        //stringBuilder.AppendLine("\n)");
+        ////目标是增加在给定时间做决策
+        //stringBuilder.AppendLine("(:goal");
+        //Pop goal=null;//= PDDL.G((I)(GameArchitect.get.GetModel<TimeModel>().Time.val+TimeModel.GetStep(1)), GameArchitect.get.GetModel<TimeModel>().Time);
+        //stringBuilder.AppendLine(goal.ToString());
+        //stringBuilder.AppendLine(")");
+        ////***************目标最小化痛苦
+        //stringBuilder.Append("(:metric\n");
+        //stringBuilder.Append(metric.ToString());
+        //stringBuilder.AppendLine(")");
+        //stringBuilder.AppendLine(")");
         return stringBuilder.ToString();
     }
 }
@@ -112,20 +112,20 @@ public class DomainGenerator
         //定义predicated
         str.AppendLine("(:predicates");
         List<Type> predicateTypes = GetSubclassesOf(typeof(Predicate), assembly);
-        foreach(Type t in predicateTypes)
-        {
-            if(t!=typeof(Predicate)&&t!=typeof(CustomPredicate))
-            str.AppendLine(Predicate.f(t));
-        }
+        //foreach(Type t in predicateTypes)
+        //{
+        //    if(t!=typeof(Predicate)&&t!=typeof(CustomPredicate))
+        //    str.AppendLine(Predicate.f(t));
+        //}
         str.AppendLine(")");
         //定义predicated
         str.AppendLine("(:functions");
         List<Type> functionTypes = GetSubclassesOf(typeof(Func), assembly);
-        foreach (Type t in functionTypes)
-        {
-            if (t != typeof(Func) && t != typeof(CustomFunc))
-                str.AppendLine(Func.f(t));
-        }
+        //foreach (Type t in functionTypes)
+        //{
+        //    if (t != typeof(Func) && t != typeof(CustomFunc))
+        //        str.AppendLine(Func.f(t));
+        //}
         str.AppendLine(")");
         //定义一系列的活动
         foreach (var x in GameArchitect.activities)

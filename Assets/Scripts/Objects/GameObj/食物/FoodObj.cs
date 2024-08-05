@@ -66,16 +66,7 @@ public class MoneyObj : RawObj
     }
 }
 
-/// <summary>
-/// Ê³Îï
-/// </summary>
-public class ToolType : ObjType
-{
-    public ToolType(string name = null) : base(name)
-    {
 
-    }
-}
 [System.Serializable]
 public class ToolSaver:ObjSaver
 {
