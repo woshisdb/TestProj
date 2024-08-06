@@ -744,7 +744,11 @@ public class VBool
         map[derived.dpre.name].Add(objType.typeName, derived);//将这个设置到里面
     }
 }
-public class Bool:PDDL
+public interface PDDLProperty
+{
+    public Pop GetPop();
+}
+public class Bool:PDDL, PDDLProperty
 {
     public Func<bool> val;
     public Predicate predicate;
@@ -766,7 +770,13 @@ public class Bool:PDDL
         else
             return new Not(predicate).ToString();
     }
-    public PType this[int row]
+
+	public Pop GetPop()
+	{
+        return predicate;
+	}
+
+	public PType this[int row]
     {
         get
         {
@@ -778,7 +788,7 @@ public class Bool:PDDL
         }
     }
 }
-public class Num:PDDL
+public class Num:PDDL, PDDLProperty
 {
     public Func<int> val;
     public Func func;
@@ -795,7 +805,13 @@ public class Num:PDDL
     {
         return "(=" + "(" +func.ToString()+")" +" "+val+ ")";
     }
-    public PType this[int row]
+
+	public Pop GetPop()
+	{
+        return func;
+	}
+
+	public PType this[int row]
     {
         get
         {

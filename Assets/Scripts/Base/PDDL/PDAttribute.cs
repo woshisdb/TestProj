@@ -63,21 +63,25 @@ public class PDDLClassGenerater
         }
     }
 }
+public interface PDDLClass
+{
+    public abstract Pop GetPop(string name);
+}
 /// <summary>
 /// PDDL»ùÀà
 /// </summary>
-public class PDDLClass<T>
+public class PDDLClass<T>:PDDLClass
 {
-    public T obj;
+    public Dictionary<string, PDDLProperty> mapNodes;
     public StringBuilder stringBuilder;
     /// <summary>
     /// PDDLClass
     /// </summary>
     /// <param name="obj"></param>
-    public PDDLClass(T obj)
+    public PDDLClass()
     {
-        this.obj = obj;
         stringBuilder = new StringBuilder();
+        mapNodes = new Dictionary<string, PDDLProperty>();
     }
     public virtual string GetProblem(T obj)
     {
@@ -89,23 +93,45 @@ public class PDDLClass<T>
         stringBuilder.Clear();
         return null;
     }
+
+	public Pop GetPop(string name)
+	{
+        return mapNodes[name].GetPop();
+	}
 }
 
+public class PDDLMapVal<T>
+{
+    public Func<T, Pop> pop;
+    public Func<T, string> val;
+    public PDDLMapVal(Func<T, Pop> pop, Func<T, string> val)
+    {
+        this.pop = pop;
+        this.val = val;
+    }
+}
 public class Person_PDDL:PDDLClass<Person>
 {
-    public Bool isPlayer;
-    public Num money;
-    public Person_PDDL(Person obj):base(obj)
+    public PDDLMapVal<Person> isPlayer;
+    public PDDLMapVal<Person> money;
+    public Person_PDDL():base()
     {
-        this.obj = obj;
         stringBuilder = new StringBuilder();
-        isPlayer = new Bool(new Predicate("Person_isPlayer",obj.obj),()=> { return obj.isPlayer; });
-        money = new Num(new Func("Person_Money", obj.obj), () => { return obj.money; });
+        isPlayer = new PDDLMapVal<Person>(
+        (obj)=> 
+        {
+            return new Predicate("Person_isPlayer");
+        },
+        (obj)=>
+        {
+            return obj.isPlayer.ToString();
+        });
     }
     public override string GetProblem(Person obj)
     {
         stringBuilder.Clear();
-
         return stringBuilder.ToString();
     }
 }
+
+
