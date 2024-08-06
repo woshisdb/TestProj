@@ -483,9 +483,166 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     [Button]
     public void GetPDDL()
     {
-        Expression<Func<int, int, int, int, int>> func = (i, j, x, y) => (i * j) + (x * y);
-        Debug.Log(func);
+        Expression<Func<Person, int>> func = (a) => a.resource.maxSize;
+        //TraverseExpression(func);
+        TraverseExpression(func.Body);
     }
+    private static void TraverseExpression(Expression expr)
+    {
+        if (expr.NodeType == ExpressionType.Lambda)
+        {
+            var lambda = (LambdaExpression)expr;
+            Debug.Log("Lambda: " + lambda);
+            TraverseExpression(lambda.Body);
+            foreach (var param in lambda.Parameters)
+            {
+                Debug.Log("Parameter: " + param.Name + " Type: " + param.Type);
+            }
+        }
+        else if (expr.NodeType == ExpressionType.GreaterThan ||
+                 expr.NodeType == ExpressionType.LessThan ||
+                 expr.NodeType == ExpressionType.Equal ||
+                 expr.NodeType == ExpressionType.NotEqual)
+        {
+            var binaryExpr = (BinaryExpression)expr;
+            Debug.Log("Binary Expression: " + binaryExpr.NodeType);
+            TraverseExpression(binaryExpr.Left);
+            TraverseExpression(binaryExpr.Right);
+        }
+        else if (expr.NodeType == ExpressionType.Parameter)
+        {
+            var paramExpr = (ParameterExpression)expr;
+            Debug.Log("Parameter: " + paramExpr.Name + " Type: " + paramExpr.Type);
+        }
+        else if (expr.NodeType == ExpressionType.Constant)
+        {
+            var constExpr = (ConstantExpression)expr;
+            Debug.Log("Constant: " + constExpr.Value + " Type: " + constExpr.Type);
+        }
+        else if (expr.NodeType == ExpressionType.MemberAccess)
+        {
+            var memberExpr = (MemberExpression)expr;
+            Debug.Log("Member Access: " + memberExpr.Member.Name);
+            TraverseExpression(memberExpr.Expression);
+        }
+        else if (expr.NodeType == ExpressionType.Call)
+        {
+            var callExpr = (MethodCallExpression)expr;
+            Debug.Log("Method Call: " + callExpr.Method.Name);
+            foreach (var arg in callExpr.Arguments)
+            {
+                TraverseExpression(arg);
+            }
+            TraverseExpression(callExpr.Object);
+        }
+        else
+        {
+            Debug.Log("Unhandled expression type: " + expr.NodeType);
+        }
+    }
+    //private static Pop TraverseExpression(Expression expr)
+    //{
+    //    Pop ret = null;
+    //    if (expr.NodeType == ExpressionType.Lambda)
+    //    {
+    //        var lambda = (LambdaExpression)expr;
+    //        Debug.Log("Lambda: " + lambda);
+    //        TraverseExpression(lambda.Body);
+    //        foreach (var param in lambda.Parameters)
+    //        {
+    //            Debug.Log("Parameter: " + param.Name + " Type: " + param.Type);
+    //        }
+    //    }
+    //    else if (expr.NodeType == ExpressionType.GreaterThan)
+    //    {
+    //        var binaryExpr = (BinaryExpression)expr;
+    //        Debug.Log("Binary Expression: " + binaryExpr.NodeType);
+    //        ret = new Great(TraverseExpression(binaryExpr.Left), TraverseExpression(binaryExpr.Right));
+    //    }
+    //    else if (expr.NodeType == ExpressionType.GreaterThanOrEqual)
+    //    {
+    //        var binaryExpr = (BinaryExpression)expr;
+    //        Debug.Log("Binary Expression: " + binaryExpr.NodeType);
+    //        ret = new GreatEqual(TraverseExpression(binaryExpr.Left), TraverseExpression(binaryExpr.Right));
+    //    }
+    //    else if (expr.NodeType == ExpressionType.LessThan)
+    //    {
+    //        var binaryExpr = (BinaryExpression)expr;
+    //        Debug.Log("Binary Expression: " + binaryExpr.NodeType);
+    //        ret = new Less(TraverseExpression(binaryExpr.Left), TraverseExpression(binaryExpr.Right));
+    //    }
+    //    else if (expr.NodeType == ExpressionType.LessThanOrEqual)
+    //    {
+    //        var binaryExpr = (BinaryExpression)expr;
+    //        Debug.Log("Binary Expression: " + binaryExpr.NodeType);
+    //        ret = new LessEqual(TraverseExpression(binaryExpr.Left), TraverseExpression(binaryExpr.Right));
+    //    }
+    //    else if (expr.NodeType == ExpressionType.Equal)
+    //    {
+    //        var binaryExpr = (BinaryExpression)expr;
+    //        Debug.Log("Binary Expression: " + binaryExpr.NodeType);
+    //        ret = new Equal(TraverseExpression(binaryExpr.Left), TraverseExpression(binaryExpr.Right));
+    //    }
+    //    else if (expr.NodeType == ExpressionType.Add)
+    //    {
+    //        var binaryExpr = (BinaryExpression)expr;
+    //        Debug.Log("Binary Expression: " + binaryExpr.NodeType);
+    //        ret = new Add(TraverseExpression(binaryExpr.Left), TraverseExpression(binaryExpr.Right));
+    //    }
+    //    else if (expr.NodeType == ExpressionType.Multiply)
+    //    {
+    //        var binaryExpr = (BinaryExpression)expr;
+    //        Debug.Log("Binary Expression: " + binaryExpr.NodeType);
+    //        ret = new Mul(TraverseExpression(binaryExpr.Left), TraverseExpression(binaryExpr.Right));
+    //    }
+    //    else if (expr.NodeType == ExpressionType.Subtract)
+    //    {
+    //        var binaryExpr = (BinaryExpression)expr;
+    //        Debug.Log("Binary Expression: " + binaryExpr.NodeType);
+    //        ret = new Subtract(TraverseExpression(binaryExpr.Left), TraverseExpression(binaryExpr.Right));
+    //    }
+    //    else if (expr.NodeType == ExpressionType.Divide)
+    //    {
+    //        var binaryExpr = (BinaryExpression)expr;
+    //        Debug.Log("Binary Expression: " + binaryExpr.NodeType);
+    //        ret = new Div(TraverseExpression(binaryExpr.Left), TraverseExpression(binaryExpr.Right));
+    //    }
+    //    else if (expr.NodeType == ExpressionType.Parameter)
+    //    {
+    //        var paramExpr = (ParameterExpression)expr;
+    //        Debug.Log("Parameter: " + paramExpr.Name + " Type: " + paramExpr.Type);
+    //    }
+    //    else if (expr.NodeType == ExpressionType.Constant)
+    //    {
+    //        var constExpr = (ConstantExpression)expr;
+    //        Debug.Log("Constant: " + constExpr.Value + " Type: " + constExpr.Type);
+    //        if(constExpr.Value is int)
+    //            ret = new I((int)constExpr.Value);
+    //        else if(constExpr.Value is float)
+    //            ret=new I((float)constExpr.Value);
+    //    }
+    //    else if (expr.NodeType == ExpressionType.MemberAccess)
+    //    {
+    //        var memberExpr = (MemberExpression)expr;
+    //        Debug.Log("Member Access: " + memberExpr.Member.Name);
+    //        TraverseExpression(memberExpr.Expression);
+    //    }
+    //    else if (expr.NodeType == ExpressionType.Call)
+    //    {
+    //        var callExpr = (MethodCallExpression)expr;
+    //        Debug.Log("Method Call: " + callExpr.Method.Name);
+    //        foreach (var arg in callExpr.Arguments)
+    //        {
+    //            TraverseExpression(arg);
+    //        }
+    //        TraverseExpression(callExpr.Object);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Unhandled expression type: " + expr.NodeType);
+    //    }
+    //    return ret;
+    //}
     [Button]
     public void AddResource(string name,ObjEnum objEnum,int num)
     {

@@ -6,114 +6,7 @@ using System.Text;
 using UnityEngine;
 public class PDDL: PD
 {
-    public static Pop Wup()
-    {
-        return Increase(NowT(),IT());
-    }
-    public static Or Or(params Pop[] numbers)
-    {
-        return new Or(numbers);
-    }
-    public static And And(params Pop[] numbers)
-    {
-        return new And(numbers);
-    }
-    public static To To(Pop x, Pop y)
-    {
-        return new To(x, y);
-    }
-    public static L L(Pop x, Pop y)
-    {
-        return new L(x, y);
-    }
-    public static Eq Eq(Pop x, Pop y)
-    {
-        return new Eq(x, y);
-    }
-    public static G G(Pop x, Pop y)
-    {
-        return new G(x, y);
-    }
-    public static Add Add(Pop x, Pop y)
-    {
-        return new Add(x, y);
-    }
-    public static Increase Increase(Pop x, Pop y)
-    {
-        return new Increase(x, y);
-    }
-    public static Dec Dec(Pop x, Pop y)
-    {
-        return new Dec(x, y);
-    }
-    public static Mul Mul(Pop x, Pop y)
-    {
-        return new Mul(x, y);
-    }
-    public static Div Div(Pop x, Pop y)
-    {
-        return new Div(x, y);
-    }
-    public static As As(Pop x, Pop y)
-    {
-        return new As(x, y);
-    }
-    public static Not Not(Pop number)
-    {
-        return new Not(number);
-    }
-    public static OverALL OverALL(Pop number)
-    {
-        return new OverALL(number);
-    }
-    public static AtEnd AtEnd(Pop number)
-    {
-        return new AtEnd(number);
-    }
-    public static AtStart AtStart(Pop number)
-    {
-        return new AtStart(number);
-    }
-    public static ForAll ForAll(Pop when, Pop express, params PType[] numbers)
-    {
-        return new ForAll(when, express, numbers);
-    }
-    public static Exist Exist(Pop express, params PType[] numbers)
-    {
-        return new Exist(express, numbers);
-    }
-    public static PO PO(PType pType)
-    {
-        return new PO(pType);
-    }
-    public static PT PT(PType pType)
-    {
-        return new PT(pType);
-    }
-    public static Pop Max(Pop x, Pop y)
-    { return new Max(x, y); }
-    public static Pop Min(Pop x, Pop y)
-    { return new Min(x, y); }
-    public static Pop When(Pop x, Pop y)
-    { return new When(x, y); }
-    /// <summary>
-    /// ±ß½ç¼Ó·¨
-    /// </summary>
-    /// <param name="func"></param>
-    /// <param name="x"></param>
-    /// <param name="l"></param>
-    /// <param name="r"></param>
-    /// <returns></returns>
-    public static Pop BoundAdd(Func func,int x,int l,int r)
-    {
-        return Min(Max(Add(func, (I)x), (I)l),(I)r);
-    }
-    public static Pop Abs(Pop x)
-    {
-        return new Abs(x);
-    }
-    /***************************************/
-
+   
 }
 public class Nm
 {
@@ -304,11 +197,11 @@ public class When : Pop
         return sb.ToString();
     }
 }
-public class L : Pop
+public class Less : Pop
 {
     public Pop x;
     public Pop y;
-    public L(Pop x, Pop y)
+    public Less(Pop x, Pop y)
     {
         this.x = x;
         this.y = y;
@@ -323,11 +216,30 @@ public class L : Pop
         return sb.ToString();
     }
 }
-public class Eq : Pop
+public class LessEqual : Pop
 {
     public Pop x;
     public Pop y;
-    public Eq(Pop x, Pop y)
+    public LessEqual(Pop x, Pop y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder("( <= ");
+        sb.Append(x.ToString());
+        sb = sb.Append(" ");
+        sb.Append(y.ToString());
+        sb.Append(") ");
+        return sb.ToString();
+    }
+}
+public class Equal : Pop
+{
+    public Pop x;
+    public Pop y;
+    public Equal(Pop x, Pop y)
     {
         this.x = x;
         this.y = y;
@@ -342,11 +254,11 @@ public class Eq : Pop
         return sb.ToString();
     }
 }
-public class G : Pop
+public class Great : Pop
 {
     public Pop x;
     public Pop y;
-    public G(Pop x, Pop y)
+    public Great(Pop x, Pop y)
     {
         this.x = x;
         this.y = y;
@@ -354,6 +266,25 @@ public class G : Pop
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder("( > ");
+        sb.Append(x.ToString());
+        sb = sb.Append(" ");
+        sb.Append(y.ToString());
+        sb.Append(") ");
+        return sb.ToString();
+    }
+}
+public class GreatEqual : Pop
+{
+    public Pop x;
+    public Pop y;
+    public GreatEqual(Pop x, Pop y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder("( >= ");
         sb.Append(x.ToString());
         sb = sb.Append(" ");
         sb.Append(y.ToString());
@@ -452,11 +383,11 @@ public class Min : Pop
         return sb.ToString();
     }
 }
-public class Dec : Pop
+public class Subtract : Pop
 {
     public Pop x;
     public Pop y;
-    public Dec(Pop x, Pop y)
+    public Subtract(Pop x, Pop y)
     {
         this.x = x;
         this.y = y;
@@ -833,7 +764,7 @@ public class Bool:PDDL
         if (val())
             return predicate.ToString();
         else
-            return Not(predicate).ToString();
+            return new Not(predicate).ToString();
     }
     public PType this[int row]
     {
@@ -878,8 +809,12 @@ public class Num:PDDL
 }
 public class I : Pop
 {
-    public int x;
+    public float x;
     public I(int x)
+    {
+        this.x = x;
+    }
+    public I(float x)
     {
         this.x = x;
     }
