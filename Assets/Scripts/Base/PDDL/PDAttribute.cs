@@ -63,16 +63,12 @@ public class PDDLClassGenerater
         }
     }
 }
-public interface PDDLClass
-{
-    public abstract Pop GetPop(string name);
-}
 /// <summary>
 /// PDDL»ùÀà
 /// </summary>
-public class PDDLClass<T>:PDDLClass
+public class PDDLClass
 {
-    public Dictionary<string, PDDLProperty> mapNodes;
+    public Dictionary<string, PDDLMapVal> mapNodes;
     public StringBuilder stringBuilder;
     /// <summary>
     /// PDDLClass
@@ -81,56 +77,40 @@ public class PDDLClass<T>:PDDLClass
     public PDDLClass()
     {
         stringBuilder = new StringBuilder();
-        mapNodes = new Dictionary<string, PDDLProperty>();
+        mapNodes = new Dictionary<string, PDDLMapVal>();
     }
-    public virtual string GetProblem(T obj)
-    {
-        stringBuilder.Clear();
-        return null;
-    }
-    public virtual string GetDomain(T obj)
-    {
-        stringBuilder.Clear();
-        return null;
-    }
-
-	public Pop GetPop(string name)
+	public Pop GetPop(Obj obj,string name)
 	{
-        return mapNodes[name].GetPop();
+        return mapNodes[name].pop(obj);
 	}
 }
 
-public class PDDLMapVal<T>
+public class PDDLMapVal
 {
-    public Func<T, Pop> pop;
-    public Func<T, string> val;
-    public PDDLMapVal(Func<T, Pop> pop, Func<T, string> val)
+    public Func<Obj, Pop> pop;
+    public Func<Obj, string> val;
+    public PDDLMapVal(Func<Obj, Pop> pop, Func<Obj, string> val)
     {
         this.pop = pop;
         this.val = val;
     }
 }
-public class Person_PDDL:PDDLClass<Person>
+public class Person_PDDL:PDDLClass
 {
-    public PDDLMapVal<Person> isPlayer;
-    public PDDLMapVal<Person> money;
+    public PDDLMapVal isPlayer;
     public Person_PDDL():base()
     {
         stringBuilder = new StringBuilder();
-        isPlayer = new PDDLMapVal<Person>(
+        isPlayer = new PDDLMapVal(
         (obj)=> 
         {
-            return new Predicate("Person_isPlayer");
+            return new Predicate("Person_isPlayer",obj.obj);
         },
         (obj)=>
         {
-            return obj.isPlayer.ToString();
+            return ((Person)obj).isPlayer.ToString();
         });
-    }
-    public override string GetProblem(Person obj)
-    {
-        stringBuilder.Clear();
-        return stringBuilder.ToString();
+        mapNodes.Add("Person_isPlayer",isPlayer);
     }
 }
 

@@ -13,6 +13,7 @@ public class Map : Singleton<Map>
     public Dictionary<ObjEnum,Type> enum2Type;
     public Dictionary<ObjEnum,Obj> enum2Ins;
     public Dictionary<Type,ObjEnum> saver2Enum;
+    public Dictionary<Type, PDDLClass> type2pddl;
     protected Map()
     {
         
@@ -83,6 +84,11 @@ public class Map : Singleton<Map>
         }
     }
 
+    public void InitPDDL()
+    {
+        type2pddl = new Dictionary<Type, PDDLClass>();
+        type2pddl.Add(typeof(Person),new Person_PDDL());
+    }
 
     public Obj GetObj(ObjEnum type)
     {
