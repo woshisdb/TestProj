@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 ///// <summary>
 ///// ŒÔ∆∑
@@ -156,3 +158,66 @@ using UnityEngine;
 
 //    }
 //}
+public class Domain
+{
+    public List<Type> pTypes;
+    public List<Predicate> predicates;
+    public List<Func> funcs;
+    public List<PAction> pActions;
+    public string domainName;
+    public Domain()
+    {
+        pTypes = new List<Type>();
+        predicates = new List<Predicate>();
+        funcs = new List<Func>();
+        pActions = new List<PAction>();
+    }
+    public void Print()
+    {
+        StringBuilder str = new StringBuilder();
+        str.AppendLine("(");
+        str.AppendFormat("(domain {0})\n", domainName);
+
+        if (pTypes.Count > 0)
+        {
+            str.AppendLine("(:types\n");
+            str.AppendLine("PType``");
+            for (int i = 0; i < pTypes.Count; i++)
+            {
+                str.AppendFormat("{0}-{1}\n", pTypes[i].Name, pTypes[i].BaseType.Name);
+            }
+            str.AppendLine("\n)\n");
+        }
+        if (predicates.Count > 0)
+        {
+            str.AppendLine("(:predicates\n");
+
+            for (int j = 0; j < predicates.Count; j++)
+            {
+                predicates[j].f(str);
+                str.Append(" ");
+            }
+            str.AppendLine("\n)");
+        }
+        if (funcs.Count > 0)
+        {
+            str.AppendLine("(:functions\n");
+
+            for (int j = 0; j < funcs.Count; j++)
+            {
+                str.Append(funcs[j].ToString() + " ");
+            }
+            str.AppendLine("\n)");
+        }
+
+        for (int i = 0; i < pActions.Count; i++)
+        {
+            str.AppendLine(pActions[i].ToString());
+        }
+        //for (int i = 0; i < axioms.Count; i++)
+        //{
+        //    str.AppendLine(axioms[i].ToString());
+        //}
+        Debug.Log( str.ToString());
+    }
+}

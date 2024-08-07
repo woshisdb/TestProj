@@ -13,10 +13,9 @@ public class Map : Singleton<Map>
     public Dictionary<ObjEnum,Type> enum2Type;
     public Dictionary<ObjEnum,Obj> enum2Ins;
     public Dictionary<Type,ObjEnum> saver2Enum;
-    public Dictionary<Type, PDDLClass> type2pddl;
-    protected Map()
+    public Map()
     {
-        
+
     }
     public void Insert(ObjEnum objEnum,Obj obj,ObjSaver objSaver)
     {
@@ -83,11 +82,53 @@ public class Map : Singleton<Map>
             Insert(objEnum,data , (ObjSaver)objSaverField.GetValue(GameArchitect.get.objAsset));
         }
     }
-
-    public void InitPDDL()
+    public static List<Type> GetData<T> ()
     {
-        type2pddl = new Dictionary<Type, PDDLClass>();
-        type2pddl.Add(typeof(Person),new Person_PDDL());
+        Assembly assembly = Assembly.GetExecutingAssembly();
+        var ret = assembly.GetTypes().Where(t => t.GetCustomAttributes(typeof(T), false).Length > 0).ToList();
+        return ret;
+    }
+    public static List<Type> GetAllSubclasses(Type baseType)
+    {
+        List<Type> result = new List<Type>();
+        Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+        foreach (Assembly assembly in assemblies)
+        {
+            foreach (Type type in assembly.GetTypes())
+            {
+                if (type.IsSubclassOf(baseType))
+                {
+                    result.Add(type);
+                }
+            }
+        }
+        // Sort to ensure that superclasses come before their subclasses
+        result.Sort((type1, type2) => type1.IsSubclassOf(type2) ? 1 : type2.IsSubclassOf(type1) ? -1 : 0);
+        return result;
+    }
+    public static Domain InitPDDL()
+    {
+        Domain domain = new Domain();
+        var domainTypes = GetAllSubclasses(typeof(PType));
+        domain.pTypes = domainTypes;
+        var datas=GetData<ActAttribute>();
+        ///一系列的Actions
+        foreach(var x in datas)
+        {
+            var act=(Activity)Activator.CreateInstance(x);
+            domain.pActions.Add(act.GetAction());
+            domain.predicates.AddRange(act.GetPredicates());
+            domain.funcs.AddRange(act.GetFuncs());
+        }
+        List<PDDLClass> pddlClasss = new List<PDDLClass>();
+        pddlClasss.Add(new Person_PDDL(new PersonType()));
+        foreach(var x in pddlClasss)
+        {
+            domain.predicates.AddRange(x.GetPreds());
+            domain.funcs.AddRange(x.GetFuncs());
+        }
+        return domain;
     }
 
     public Obj GetObj(ObjEnum type)

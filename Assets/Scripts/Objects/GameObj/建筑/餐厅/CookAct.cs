@@ -110,7 +110,7 @@ public class CookAct : Activity
     /// </summary>
     /// <param name="cond"></param>
     /// <param name="eff"></param>
-    public CookAct(Func<Obj, Person,object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null) : base(cond, eff)
+    public CookAct() : base()
     {
         activityName = "Åëâ¿";
         detail = "Åëâ¿¶«Î÷";

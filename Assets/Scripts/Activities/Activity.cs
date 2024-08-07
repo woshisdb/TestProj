@@ -10,10 +10,10 @@ public abstract class Activity
 {
     public Func<Obj, Person, object[], bool> cond;
     public Func<Obj, Person, object[], Act> eff;
-    public Activity(Func<Obj, Person,object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null)
+    public Activity()
     {
-        this.cond = cond;
-        this.eff = eff;
+        this.cond = null;
+        this.eff = null;
     }
     [SerializeField]
     public string activityName;
@@ -31,6 +31,15 @@ public abstract class Activity
     /// <param name="person"></param>
     /// <returns></returns>
     public abstract PAction GetAction();
+
+    public virtual List<Predicate> GetPredicates()
+    {
+        return new List<Predicate>();
+    }
+    public virtual List<Func> GetFuncs()
+    {
+        return new List<Func>();
+    }
     /// <summary>
     /// Êä³öUIµÄSelect
     /// </summary>

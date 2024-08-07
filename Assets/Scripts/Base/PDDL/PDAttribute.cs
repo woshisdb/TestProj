@@ -166,6 +166,12 @@ public class PDDLClassGenerater
         }
     }
 }
+public abstract class PDDLClass
+{
+    public abstract string PDDLDomain();
+    public abstract List<Predicate> GetPreds();
+    public abstract List<Func> GetFuncs();
+}
 /// <summary>
 /// PDDL»ùÀà
 /// </summary>
@@ -173,7 +179,7 @@ public class PDDLClass<T,F>:PDDLClass
 where T : Obj
 where F : PType
 {
-    public Dictionary<string, PDDLMapVal> mapNodes;
+    public Dictionary<string, PDDLVal> mapNodes;
     public StringBuilder stringBuilder;
     public F pType;
     public T obj;
@@ -184,12 +190,26 @@ where F : PType
     public PDDLClass()
     {
         stringBuilder = new StringBuilder();
-        mapNodes = new Dictionary<string, PDDLMapVal>();
+        mapNodes = new Dictionary<string, PDDLVal>();
     }
 	public Pop GetPop(Obj obj,string name)
 	{
-        return mapNodes[name].pop(obj);
+        return mapNodes[name].pop();
 	}
+
+    public override List<Predicate> GetPreds()
+    {
+        return null;
+    }
+    public override List<Func> GetFuncs()
+    {
+        return null;
+    }
+    public override string PDDLDomain()
+    {
+        return null;
+    }
+
     public void SetObj(T obj)
     {
         this.obj = obj;
@@ -234,10 +254,17 @@ public class Person_PDDL:PDDLClass<Person,PersonType>
             return obj.money.ToString();
         });
     }
-	public override string GetProblem(Person obj)
+    public override List<Predicate> GetPreds()
     {
-        stringBuilder.Clear();
-        return stringBuilder.ToString();
+        return new List<Predicate>() {
+            (Predicate)isPlayer.pop(),
+        };
+    }
+    public override List<Func> GetFuncs()
+    {
+        return new List<Func>(){
+            (Func)money.pop(),
+        };
     }
 }
 

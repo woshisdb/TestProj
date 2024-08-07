@@ -50,7 +50,7 @@ public class SleepA : Act
 public class SleepAct : Activity
 {
     public int use;
-    public SleepAct(Func<Obj, Person, object[],bool> cond=null,Func<Obj, Person, object[], Act> eff=null):base(cond,eff)
+    public SleepAct():base()
     {
         use = 0;
         activityName = "Ë¯¾õ";

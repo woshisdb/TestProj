@@ -22,7 +22,7 @@ public class PType: PDDL
     {
         if (typeName == "")
         {
-            typeName = this.GetType().Name;
+            this.typeName = this.GetType().Name;
         }
         else
             this.typeName = typeName;
@@ -70,12 +70,11 @@ public class Predicate : Pop
         sb.Append(")");
         return sb.ToString();
     }
-    public static string f(Type type)
+    public string f(StringBuilder sb)
     {
-        StringBuilder sb = new StringBuilder("(" + type.Name + " ");
-        ConstructorInfo constructors = type.GetConstructors()[0];
-        foreach (ParameterInfo parameter in constructors.GetParameters())
-            sb.AppendFormat("?{0}-{1} ", parameter.Name, parameter.ParameterType.Name);
+        sb.Append("(" + name + " ");
+        foreach (var parameter in objects)
+            sb.AppendFormat("?{0}-{1} ", parameter.objName, parameter.typeName);
         sb.Append(" )");
         return sb.ToString();
     }
@@ -666,9 +665,12 @@ public class PAction : PDDL
         //str.AppendLine(":precondition(");
         //str.AppendLine(condition.ToString());
         //str.AppendLine(")\n");
-        str.AppendLine(":effect(\n");
-        str.AppendLine(effect.ToString());
-        str.AppendLine(")\n");
+        if (effect != null)
+        {
+            str.AppendLine(":effect(\n");
+            str.AppendLine(effect.ToString());
+            str.AppendLine(")\n");
+        }
         str.AppendLine(")\n");
         return str.ToString();
     }

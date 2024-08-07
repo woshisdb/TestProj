@@ -134,7 +134,7 @@ public class SelectPiplineA : Act
 public class SelPipLineAct:Activity
 {
     public int use;
-    public SelPipLineAct(Func<Obj, Person, object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null) : base(cond, eff)
+    public SelPipLineAct() : base()
     {
         use = 0;
         activityName = "选择管线";
@@ -199,7 +199,7 @@ public class SetPiplineA : Act
 public class SetPipLineAct : Activity
 {
     public int use;
-    public SetPipLineAct(Func<Obj, Person, object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null) : base(cond, eff)
+    public SetPipLineAct() : base()
     {
         use = 0;
         activityName = "设定管线限度";
@@ -234,7 +234,7 @@ public class SetPipLineAct : Activity
 public class UseToolAct : Activity
 {
     public int use;
-    public UseToolAct(Func<Obj, Person, object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null) : base(cond, eff)
+    public UseToolAct():base()
     {
         use = 0;
         activityName = "使用工具";
@@ -365,7 +365,7 @@ public class BuildA : Act
 public class BuildAct : Activity
 {
     public int use;
-    public BuildAct(Func<Obj, Person, object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null) : base(cond, eff)
+    public BuildAct() : base()
     {
         use = 0;
         activityName = "设定管线限度";
@@ -424,7 +424,7 @@ public class WaKuangA : Act
 public class WaKuangAct : Activity
 {
     public int use;
-    public WaKuangAct(Func<Obj, Person, object[], bool> cond = null, Func<Obj, Person, object[], Act> eff = null) : base(cond, eff)
+    public WaKuangAct() : base()
     {
         use = 0;
         activityName = "挖矿";

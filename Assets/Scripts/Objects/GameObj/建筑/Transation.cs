@@ -46,7 +46,7 @@ public class BuyA : Act
 /// </summary>
 public class BuyAct : Activity
 {
-    public BuyAct(Func<Obj, Person,object[], bool> cond=null, Func<Obj, Person,object[], Act> eff = null) : base(cond, eff)
+    public BuyAct() : base()
     {
         activityName = "买";
         detail = "购买物品";
@@ -109,7 +109,7 @@ public class SellA : Act
 /// </summary>
 public class SellAct : Activity
 {
-    public SellAct(Func<Obj, Person,object[], bool> cond = null, Func<Obj, Person,object[], Act> eff = null) : base(cond, eff)
+    public SellAct() : base()
     {
         activityName = "卖";
         detail = "卖物品";

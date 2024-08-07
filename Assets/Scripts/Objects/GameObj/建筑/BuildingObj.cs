@@ -374,9 +374,7 @@ public class BuildingObj : Obj
     public override List<Activity> InitActivities()
     {
         return new List<Activity>() {
-        new SleepAct(
-            (obj, person, objs) => {return sits[SitEnum.bed].remainSit < sits[SitEnum.bed].sit; }
-        ),//睡眠活动
+        new SleepAct(),//睡眠活动
         new ArrangeContractAct(),//签署协议
         new AddContractAct(),//添加协议
         new RemoveContractAct(),//移除协议
