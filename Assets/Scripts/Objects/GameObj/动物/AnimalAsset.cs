@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimalType:PType
+public class AnimalType: ObjType
 {
-    public AnimalType(string name=null):base(name)
+    public AnimalType():base()
     {
 
     }

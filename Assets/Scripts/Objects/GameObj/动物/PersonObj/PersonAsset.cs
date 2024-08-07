@@ -238,6 +238,10 @@ public class ContractManager
     //    return false;
     //}
 }
+public class PersonType:AnimalType
+{
+
+}
 
 [Map(null, "personSaver"),Class]
 public class Person : AnimalObj

@@ -3,3 +3,11 @@ Logs/
 Temp/
 *.vsidx
 *.csproj
+UserSettings/Layouts/default-2021_BACKUP_1072.dwlt
+UserSettings/Layouts/default-2021_BASE_1072.dwlt
+UserSettings/Layouts/default-2021_LOCAL_1072.dwlt
+UserSettings/Layouts/default-2021_REMOTE_1072.dwlt
+Assets/Scripts/Base/PDDL/PDAttribute_BACKUP_1133.cs
+Assets/Scripts/Base/PDDL/PDAttribute_BASE_1133.cs
+Assets/Scripts/Base/PDDL/PDAttribute_LOCAL_1133.cs
+Assets/Scripts/Base/PDDL/PDAttribute_REMOTE_1133.cs
