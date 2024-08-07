@@ -18,14 +18,20 @@ public class PType: PDDL
 {
     public string typeName;//¿‡–Õ√˚
     public string objName;
-    public PType(string objName="")
+    public PType(string typeName="",string objName="")
     {
-        if(objName=="")
+        if (typeName == "")
+        {
+            typeName = this.GetType().Name;
+        }
+        else
+            this.typeName = typeName;
+        if (objName == "")
         {
             this.objName = this.GetType().Name + "_" + Nm.num;
         }
         else
-        this.objName = objName;
+            this.objName = objName;
     }
     public override string ToString()
     {

@@ -18,7 +18,110 @@ public class PropertyAttribute : Attribute
 [AttributeUsage(AttributeTargets.Class)]
 public class ClassAttribute : Attribute
 {
+    
+}
+public static class P
+{
+    public static And And(params Pop[] numbers)
+    {
+        return new And(numbers);
+    }
 
+    public static Or Or(params Pop[] numbers)
+    {
+        return new Or(numbers);
+    }
+
+    public static To To( Pop x, Pop y)
+    {
+        return new To(x, y);
+    }
+
+    public static When When( Pop x, Pop y)
+    {
+        return new When(x, y);
+    }
+
+    public static Less Less( Pop x, Pop y)
+    {
+        return new Less(x, y);
+    }
+
+    public static LessEqual LessEqual( Pop x, Pop y)
+    {
+        return new LessEqual(x, y);
+    }
+
+    public static Equal Equal( Pop x, Pop y)
+    {
+        return new Equal(x, y);
+    }
+
+    public static Great Great( Pop x, Pop y)
+    {
+        return new Great(x, y);
+    }
+
+    public static Abs Abs( Pop x)
+    {
+        return new Abs(x);
+    }
+    public static Add Add(Pop x, Pop y)
+    {
+        return new Add(x, y);
+    }
+    public static Increase Increase(Pop x, Pop y)
+    {
+        return new Increase(x, y);
+    }
+    public static Max Max(Pop x, Pop y)
+    {
+        return new Max(x, y);
+    }
+    public static Min Min(Pop x, Pop y)
+    {
+        return new Min(x, y);
+    }
+    public static Subtract Subtract(Pop x, Pop y)
+    {
+        return new Subtract(x, y);
+    }
+    public static Mul Mul(Pop x, Pop y)
+    {
+        return new Mul(x, y);
+    }
+    public static Div Div(Pop x, Pop y)
+    {
+        return new Div(x, y);
+    }
+    public static As As(Pop x, Pop y)
+    {
+        return new As(x, y);
+    }
+    public static Not Not(Pop x)
+    {
+        return new Not(x);
+    }
+    public static OverALL OverALL(Pop x)
+    {
+        return new OverALL(x);
+    }
+    public static AtEnd AtEnd(Pop x)
+    {
+        return new AtEnd(x);
+    }
+    public static AtStart AtStart(Pop x)
+    {
+        return new AtStart(x);
+    }
+    public static ForAll ForAll(Pop when, Pop express, params PType[] numbers)
+    {
+        return new ForAll(when,express,numbers);
+    }
+    public static Exist Exist(Pop express, params PType[] numbers)
+    {
+        return new Exist(express,numbers);
+    }
 }
 
 public class PDDLClassGenerater
@@ -70,10 +173,14 @@ public interface PDDLClass
 /// <summary>
 /// PDDL»ùÀà
 /// </summary>
-public class PDDLClass<T>:PDDLClass
+public class PDDLClass<T,F>:PDDLClass 
+where T : Obj
+where F : PType
 {
     public Dictionary<string, PDDLProperty> mapNodes;
     public StringBuilder stringBuilder;
+    public F pType;
+    public T obj;
     /// <summary>
     /// PDDLClass
     /// </summary>
@@ -98,36 +205,54 @@ public class PDDLClass<T>:PDDLClass
 	{
         return mapNodes[name].GetPop();
 	}
+    public void SetObj(T obj)
+    {
+        this.obj = obj;
+    }
 }
 
-public class PDDLMapVal<T>
+public class PDDLVal
 {
-    public Func<T, Pop> pop;
-    public Func<T, string> val;
-    public PDDLMapVal(Func<T, Pop> pop, Func<T, string> val)
+    public Func<Pop> pop;
+    public Func<string> val;
+    public PDDLVal(Func<Pop> pop, Func<string> val)
     {
         this.pop = pop;
         this.val = val;
     }
 }
-public class Person_PDDL:PDDLClass<Person>
+public class PDDLMap
 {
-    public PDDLMapVal<Person> isPlayer;
-    public PDDLMapVal<Person> money;
-    public Person_PDDL():base()
+    public Func<Pop>
+}
+public class Person_PDDL:PDDLClass<Person,PersonType>
+{
+    public PDDLVal isPlayer;
+    public PDDLVal money;
+    public Person_PDDL(PersonType pType):base()
     {
+        this.pType = pType;
         stringBuilder = new StringBuilder();
-        isPlayer = new PDDLMapVal<Person>(
-        (obj)=> 
+        isPlayer = new PDDLVal(
+        ()=> 
         {
-            return new Predicate("Person_isPlayer");
+            return new Predicate("Person_isPlayer",pType);
         },
-        (obj)=>
+        ()=>
         {
             return obj.isPlayer.ToString();
         });
+        money = new PDDLVal(
+        () =>
+        {
+            return new Func("Person_money", pType);
+        },
+        () =>
+        {
+            return obj.money.ToString();
+        });
     }
-    public override string GetProblem(Person obj)
+	public override string GetProblem(Person obj)
     {
         stringBuilder.Clear();
         return stringBuilder.ToString();

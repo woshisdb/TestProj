@@ -13,11 +13,15 @@ public enum ActivityType
 }
 
 
-
+public class ObjType:PType
+{
+    
+}
 
 [Map(null,"objSaver")]
 public class Obj:PDDL,ICanRegisterEvent
 {
+    public PDDLClass pddl;
     /// <summary>
     /// 对象类型
     /// </summary>
