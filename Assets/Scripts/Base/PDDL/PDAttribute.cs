@@ -1,3 +1,4 @@
+using QFramework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -215,8 +216,12 @@ where F : PType
         this.obj = obj;
     }
 }
-
-public class PDDLVal
+public interface PDVal
+{
+    public Pop GetPop();
+    public string GetVal();
+}
+public class PDDLVal:PDVal
 {
     public Func<Pop> pop;
     public Func<string> val;
@@ -225,7 +230,35 @@ public class PDDLVal
         this.pop = pop;
         this.val = val;
     }
+
+	public Pop GetPop()
+	{
+        return pop();
+	}
+
+    public string GetVal()
+	{
+        return val();
+	}
 }
+
+public class NumType:PType
+{
+    
+}
+public class PDDLMap
+{
+    
+}
+/// <summary>
+/// 处理集合对象
+/// </summary>
+public class PDDLObjs
+{
+    public PType type;
+    public List<Func> funcs;
+}
+
 public class Person_PDDL:PDDLClass<Person,PersonType>
 {
     public PDDLVal isPlayer;
