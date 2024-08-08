@@ -246,10 +246,7 @@ public class NumType:PType
 {
     
 }
-public class PDDLMap
-{
-    
-}
+
 /// <summary>
 /// 处理集合对象
 /// </summary>
