@@ -11,3 +11,4 @@ Assets/Scripts/Base/PDDL/PDAttribute_BACKUP_1133.cs
 Assets/Scripts/Base/PDDL/PDAttribute_BASE_1133.cs
 Assets/Scripts/Base/PDDL/PDAttribute_LOCAL_1133.cs
 Assets/Scripts/Base/PDDL/PDAttribute_REMOTE_1133.cs
+*.meta
