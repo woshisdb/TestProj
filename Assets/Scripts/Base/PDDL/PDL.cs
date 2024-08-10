@@ -109,6 +109,8 @@ public class Func : Pop
         return sb.ToString();
     }
 }
+
+
 public class Pop : PDDL
 {
     public override string ToString()
@@ -557,7 +559,13 @@ public class ForAll : Pop
         return sb.ToString();
     }
 }
+public class Belong : Predicate
+{
+    public Belong(PType x,PType y) : base("BelongPDDL", x,y)
+    {
 
+    }
+}
 public class Exist : Pop
 {
     public Pop express;
@@ -979,14 +987,14 @@ public class Duration:Pop
 //        return str.ToString();
 //    }
 //}
-public abstract class Problem : PDDL
+public class Problem : PDDL
 {
     public string problemName;
     public string domainName;
     public List<PType> objects;
     public List<PDDL> initVal;
     public Pop goal;
-    public Problem(Person person)
+    public Problem()
     {
         problemName = GetType().Name;
         objects = new List<PType>();
@@ -1030,5 +1038,54 @@ public class NowT:Func
     public NowT():base("NowTime")
     {
 
+    }
+}
+public class DicType<T,F>:PType
+{
+    public DicType():base("Dic_"+typeof(T).Name+"_"+typeof(F).Name)
+    {
+
+    }
+}
+
+public class Dic_PDDL<T, F> : PDDLClass<Dic<T,F>,DicType<T,F>>
+{
+    public Dic_PDDL()
+    {
+    }
+
+    public override List<Func> GetFuncs()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override List<Pop> GetFuncsVal()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override PType GetObj()
+    {
+        return obj.obj;
+    }
+
+    public override List<PAction> GetPActions()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override List<Predicate> GetPreds()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override List<Pop> GetPredsVal()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void SetObj(object obj)
+    {
+        obj = (Dictionary<T, F>)(obj);
     }
 }

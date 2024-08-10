@@ -16,7 +16,7 @@ public class PropertyAttribute : Attribute
 /// <summary>
 /// PDDL的对象
 /// </summary>
-[AttributeUsage(AttributeTargets.Class)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum)]
 public class ClassAttribute : Attribute
 {
     
@@ -42,7 +42,10 @@ public static class P
     {
         return new When(x, y);
     }
-
+    public static Bool Belong(PType x,PType y)
+    {
+        return new Bool( new Belong(x, y),true);
+    }
     public static Less Less( Pop x, Pop y)
     {
         return new Less(x, y);
@@ -130,15 +133,22 @@ public class CNode
     public Type type;
     public class Node
     {
-        public String prex;
-        public String clasx;
+        public string TypeName;
+        public string prex;
+        public string clasx;
     }
     public List<Node> bools;
     public List<Node> ints;
+    public List<Node> dics;
+    public List<Node> enums;
+    public List<Node> custs;
     public CNode()
     {
         this.bools = new List<Node>();
         this.ints = new List<Node>();
+        dics = new List<Node>();
+        enums = new List<Node>();
+        custs = new List<Node>();
     }
 }
 
@@ -157,11 +167,14 @@ public class PDDLClassGenerater
             .ToList();
         List<CNode> cNodes =new List<CNode>();
         foreach (var type in classesWithAttribute)
-        { 
-            var t = new CNode();
-            t.type = type;
-            GenerateType(type,t);
-            cNodes.Add(t);
+        {
+            if (type.IsEnum == false)
+            {
+                var t = new CNode();
+                t.type = type;
+                GenerateType(type, t);
+                cNodes.Add(t);
+            }
         }
         return cNodes;
     }
@@ -172,56 +185,121 @@ public class PDDLClassGenerater
             var attributes = field.GetCustomAttributes(typeof(PropertyAttribute), false);
             if (attributes.Any())
             {
-                FieldGen(type.Name+"_",type.Name+".",type,cNode);
-            }
-        }
-    }
-    public static void FieldGen(string prexPath,string classPath,Type type,CNode cNode)
-    {
-        foreach (var field in type.GetFields())
-        {
-            var attributes = field.GetCustomAttributes(typeof(PropertyAttribute), false);
-            if (attributes.Any())
-            {
-                Debug.Log(type.Name + ":" + field.Name);
                 if (field.FieldType == typeof(bool))
                 {
-                    var node=new CNode.Node();
-                    node.prex=prexPath+"_"+field.Name;
-                    node.clasx = classPath + "." + field.Name;
+                    var node = new CNode.Node();
+                    node.TypeName = "PDDLVal";
+                    node.prex = field.Name;
+                    node.clasx = field.Name;
                     cNode.bools.Add(node);
                 }
                 else if (field.FieldType == typeof(int))
                 {
                     var node = new CNode.Node();
-                    node.prex = prexPath + "_" + field.Name;
-                    node.clasx = classPath + "." + field.Name;
+                    node.TypeName = "PDDLVal";
+                    node.prex = field.Name;
+                    node.clasx = field.Name;
                     cNode.ints.Add(node);
                 }
-                else
+                else if (field.FieldType is IDictionary)
                 {
-                    FieldGen(prexPath + "_" + field.Name+"_", classPath + "." + field.Name+".",field.FieldType,cNode);
+                    var node=new CNode.Node();
+                    Type[] genericArguments = field.FieldType.GetGenericArguments();
+                    Type keyType = genericArguments[0];
+                    Type valueType = genericArguments[1];
+                    node.TypeName = $"Dictionary_PDDL<{keyType.Name},{valueType.Name}>";
+                    node.prex = field.Name;
+                    node.clasx = field.Name;
+                    cNode.dics.Add(node);
+                }
+                else if(field.FieldType.IsEnum)
+                {
+                    var node = new CNode.Node();
+                    node.TypeName = $"Enum_PDDL<{field.FieldType.Name}>";
+                    node.prex = field.Name;
+                    node.clasx = field.Name;
+                    cNode.enums.Add(node);
+                }
+                else if(field.FieldType.GetCustomAttributes(typeof(ClassAttribute), false).Any())//如果是个已经生成的类
+                {
+                    var tf= field.FieldType+"_PDDL";
+                    var node = new CNode.Node();
+                    node.TypeName = tf;
+                    node.prex = field.Name;
+                    node.clasx = field.Name;
+                    cNode.custs.Add(node);
                 }
             }
         }
     }
+    //public static void FieldGen(string prexPath,string classPath,Type type,CNode cNode)
+    //{
+    //    foreach (var field in type.GetFields())
+    //    {
+    //        var attributes = field.GetCustomAttributes(typeof(PropertyAttribute), false);
+    //        if (attributes.Any())
+    //        {
+    //            Debug.Log(type.Name + ":" + field.Name);
+    //            if (field.FieldType == typeof(bool))
+    //            {
+    //                var node=new CNode.Node();
+    //                node.prex=prexPath+field.Name;
+    //                node.clasx = classPath+ field.Name;
+    //                cNode.bools.Add(node);
+    //            }
+    //            else if (field.FieldType == typeof(int))
+    //            {
+    //                var node = new CNode.Node();
+    //                node.prex = prexPath+ field.Name;
+    //                node.clasx = classPath+ field.Name;
+    //                cNode.ints.Add(node);
+    //            }
+    //            else
+    //            {
+    //                FieldGen(prexPath+ field.Name+"_", classPath+ field.Name+".",field.FieldType,cNode);
+    //            }
+    //        }
+    //    }
+    //}
 }
+/// <summary>
+/// PDDL对象应该能够获取相应的函数和Predx
+/// </summary>
 public abstract class PDDLClass
 {
-    public abstract string PDDLDomain();
+    public virtual void SetDomain(Domain domain)
+    {
+        domain.funcs.AddRange(GetFuncs());
+        domain.predicates.AddRange(GetPreds());
+    }
+    public virtual void SetProblem(Problem problem)
+    {
+        problem.objects.AddRange(GetObjs());//添加自己
+        problem.initVal.AddRange(GetPredsVal());
+        problem.initVal.AddRange(GetFuncsVal());
+    }
     public abstract List<Predicate> GetPreds();
     public abstract List<Func> GetFuncs();
+    public abstract List<Pop> GetPredsVal();
+    public abstract List<Pop> GetFuncsVal();
+    public abstract PType GetPType();
+    public virtual List<PType> GetObjs()
+    {
+        var data= new List<PType>();
+        data.Add(GetObj());
+        return data;
+    }
+    public abstract void SetObj(object obj);
+    public abstract PType GetObj();
+    public abstract List<PAction> GetPActions();
 }
 /// <summary>
 /// PDDL基类
 /// </summary>
 public class PDDLClass<T,F>:PDDLClass 
-where T : Obj
-where F : PType
+where T : IPDDL
+where F : PType, new()
 {
-    public Dictionary<string, PDDLVal> mapNodes;
-    public StringBuilder stringBuilder;
-    public F pType;
     public T obj;
     /// <summary>
     /// PDDLClass
@@ -229,13 +307,7 @@ where F : PType
     /// <param name="obj"></param>
     public PDDLClass()
     {
-        stringBuilder = new StringBuilder();
-        mapNodes = new Dictionary<string, PDDLVal>();
     }
-	public Pop GetPop(Obj obj,string name)
-	{
-        return mapNodes[name].pop();
-	}
 
     public override List<Predicate> GetPreds()
     {
@@ -245,26 +317,71 @@ where F : PType
     {
         return null;
     }
-    public override string PDDLDomain()
+
+    public override void SetObj(object obj)
+    {
+        this.obj = (T)obj;
+    }
+    /// <summary>
+    /// 初始化Domain
+    /// </summary>
+    /// <returns></returns>
+    public override PType GetPType()
+    {
+        return new F();
+    }
+
+    public override List<Pop> GetPredsVal()
     {
         return null;
     }
 
-    public void SetObj(T obj)
+    public override List<Pop> GetFuncsVal()
     {
-        this.obj = obj;
+        return null;
+    }
+
+    public override List<PAction> GetPActions()
+    {
+        return null;
+        //var acs= obj.InitActivities();
+        //var ret = new List<PAction>();
+        //foreach (var act in acs)
+        //{
+        //    ret.Add(act.GetAction());
+        //}
+        //return ret;
+    }
+
+    public override PType GetObj()
+    {
+        return obj.GetPtype();
     }
 }
+
+public class Dic<T, F> : Dictionary<T, F>, IPDDL
+{
+    public PType obj;
+    public PType GetPtype()
+    {
+        return obj;
+    }
+    public Dic()
+    {
+        this.obj = new DicType<T,F>();
+    }
+}
+
 public interface PDVal
 {
     public Pop GetPop();
-    public string GetVal();
+    public Pop GetVal();
 }
 public class PDDLVal:PDVal
 {
     public Func<Pop> pop;
-    public Func<string> val;
-    public PDDLVal(Func<Pop> pop, Func<string> val)
+    public Func<Pop> val;
+    public PDDLVal(Func<Pop> pop, Func<Pop> val)
     {
         this.pop = pop;
         this.val = val;
@@ -274,67 +391,15 @@ public class PDDLVal:PDVal
 	{
         return pop();
 	}
-
-    public string GetVal()
-	{
+    public Pop GetVal()
+    {
         return val();
-	}
+    }
 }
 
 public class NumType:PType
 {
     
-}
-
-/// <summary>
-/// 处理集合对象
-/// </summary>
-public class PDDLObjs
-{
-    public PType type;
-    public List<Func> funcs;
-}
-
-public class Person_PDDL:PDDLClass<Person,PersonType>
-{
-    public PDDLVal isPlayer;
-    public PDDLVal money;
-    public Person_PDDL(PersonType pType):base()
-    {
-        this.pType = pType;
-        stringBuilder = new StringBuilder();
-        isPlayer = new PDDLVal(
-        ()=> 
-        {
-            return new Predicate("Person_isPlayer",pType);
-        },
-        ()=>
-        {
-            return ((Person)obj).isPlayer.ToString();
-        });
-        mapNodes.Add("Person_isPlayer",isPlayer);
-        money = new PDDLVal(
-        () =>
-        {
-            return new Func("Person_money", pType);
-        },
-        () =>
-        {
-            return obj.money.ToString();
-        });
-    }
-    public override List<Predicate> GetPreds()
-    {
-        return new List<Predicate>() {
-            (Predicate)isPlayer.pop(),
-        };
-    }
-    public override List<Func> GetFuncs()
-    {
-        return new List<Func>(){
-            (Func)money.pop(),
-        };
-    }
 }
 
 

@@ -261,6 +261,7 @@ public class Person : AnimalObj
     public Resource resource;
     [Property]
     public CodeData codeData;
+    [Property]
     public int money;
     ///*********************֪ʶ**************************/
     ///// <summary>

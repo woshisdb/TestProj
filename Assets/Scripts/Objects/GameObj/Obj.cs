@@ -17,9 +17,17 @@ public class ObjType:PType
 {
     
 }
+public interface IPPDLExtent
+{
+
+}
+public interface IPDDL
+{
+    public PType GetPtype();
+}
 
 [Map(null,"objSaver")]
-public class Obj:PDDL,ICanRegisterEvent
+public class Obj:PDDL,ICanRegisterEvent,IPDDL
 {
     public PDDLClass pddl;
     /// <summary>
@@ -41,6 +49,10 @@ public class Obj:PDDL,ICanRegisterEvent
     {
         ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.objs.Add(this);
         this.activities = GameArchitect.activities[GetType()];//一系列的活动
+    }
+    public PType GetPtype()
+    {
+        return obj;
     }
     public ObjEnum GetEnum()
     {

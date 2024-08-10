@@ -47,7 +47,7 @@ public class IdleAct : Activity
     public override PAction GetAction()
     {
         PAction action = new PAction();
-        Person_PDDL person = new Person_PDDL(new PersonType());
+        //Person_PDDL person = new Person_PDDL(new PersonType());
         return action;
     }
     [Button]

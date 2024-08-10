@@ -110,6 +110,7 @@ public class Map : Singleton<Map>
     public static Domain InitPDDL()
     {
         Domain domain = new Domain();
+        Problem problem = new Problem();
         var domainTypes = GetAllSubclasses(typeof(PType));
         domain.pTypes = domainTypes;
         var datas=GetData<ActAttribute>();
@@ -122,7 +123,7 @@ public class Map : Singleton<Map>
             domain.funcs.AddRange(act.GetFuncs());
         }
         List<PDDLClass> pddlClasss = new List<PDDLClass>();
-        pddlClasss.Add(new Person_PDDL(new PersonType()));
+        //pddlClasss.Add(new Person_PDDL(new PersonType()));
         foreach(var x in pddlClasss)
         {
             domain.predicates.AddRange(x.GetPreds());

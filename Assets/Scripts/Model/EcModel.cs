@@ -6,8 +6,9 @@ using QFramework;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class ObjContBase
+public class ObjContBase:IPDDL
 {
+    public PType pType;
     public int size;//容量
     public int remain;//剩余
     public virtual void Add(int num,Obj obj=null,int time=0)
@@ -34,6 +35,11 @@ public class ObjContBase
     {
         size -= objContBase.size;
         remain -= objContBase.remain;
+    }
+
+    public PType GetPtype()
+    {
+        return pType;
     }
 }
 
@@ -156,20 +162,63 @@ public class ObjCont:ObjContBase
     }
 }
 
+public class ResourceType:PType
+{
+
+}
+
+//public class Resource_PDDL : PDDLClass<Resource,ResourceType>
+//{
+    
+//    public override List<Func> GetFuncs()
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public override List<Pop> GetFuncsVal()
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public override PType GetObj()
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public override List<PAction> GetPActions()
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public override List<Predicate> GetPreds()
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public override List<Pop> GetPredsVal()
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//}
+
 /// <summary>
 /// 一系列的资源
 /// </summary>
-public class Resource
+[Class]
+public class Resource:IPDDL
 {
+    /// <summary>
+    /// 资源类
+    /// </summary>
+    public ResourceType obj;
     [Property]
     public int maxSize;
     [Property]
     public int nowSize;
     [Property]
     public Dictionary<ObjEnum, ObjContBase> resources;
-    [Property]
     public Dictionary<TransationEnum, Rate> rates;
-    [Property]
     public Dictionary<SitEnum, Sit> sites;
     public int GetSize(ObjEnum objEnum)
     {
@@ -178,6 +227,7 @@ public class Resource
     public Resource()
     {
         resources = new Dictionary<ObjEnum, ObjContBase>();
+        obj = new ResourceType();
     }
     public void SetRate(Dictionary<TransationEnum, Rate> rates)
     {
@@ -362,6 +412,11 @@ public class Resource
     {
         r1.Remove(objEnum,num);
         r2.Add(objEnum,num);
+    }
+
+    public PType GetPtype()
+    {
+        return obj;
     }
 }
 

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
@@ -79,18 +80,37 @@ public class PD{
     public static void PDDLGen(CNode cNode)
     {
         StringBuilder strbuilder = new StringBuilder();
-        strbuilder.AppendLine($@"public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{cNode.type.Name}Type>{{");
+        strbuilder.AppendLine($@"
+using QFramework;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using UnityEngine;
+public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{cNode.type.Name}Type>{{");
         foreach(var t in cNode.bools)
         {
-            strbuilder.AppendLine($"public PDDLVal {t.prex};");
+            strbuilder.AppendLine($"public {t.TypeName} {t.prex};");
         }
         foreach (var t in cNode.ints)
         {
-            strbuilder.AppendLine($"public PDDLVal {t.prex};");
+            strbuilder.AppendLine($"public {t.TypeName} {t.prex};");
         }
-        strbuilder.AppendLine($@"public {cNode.type.Name}_PDDL({cNode.type.Name}Type pType):base(){{
-            this.pType = pType;
-            stringBuilder = new StringBuilder();
+        foreach (var t in cNode.dics)
+        {
+            strbuilder.AppendLine($"public {t.TypeName} {t.prex};");
+        }
+        foreach (var t in cNode.enums)
+        {
+            strbuilder.AppendLine($"public {t.TypeName} {t.prex};");
+        }
+        foreach (var t in cNode.custs)
+        {
+            strbuilder.AppendLine($"public {t.TypeName} {t.prex};");
+        }
+        strbuilder.AppendLine($@"public {cNode.type.Name}_PDDL():base(){{
             ");
         foreach (var t in cNode.bools)
         {
@@ -98,11 +118,11 @@ public class PD{
                 {t.prex} = new PDDLVal(
                 () =>
                 {{
-                    return new Predicate(""{t.prex}"", pType);
+                    return new Predicate(""{cNode.type.Name}_{t.prex}"", obj.GetPtype());
                 }},
                 () =>
                 {{
-                   return {t.clasx}.ToString();
+                   return new Bool(new Predicate(""{cNode.type.Name}_{t.prex}"", obj.GetPtype()),obj.{t.prex});
                 }});
             ");
         }
@@ -112,37 +132,116 @@ public class PD{
                 {t.prex} = new PDDLVal(
                 () =>
                 {{
-                    return new Func(""{t.prex}"", pType);
+                    return new Func(""{cNode.type.Name}_{t.prex}"", obj.GetPtype());
                 }},
                 () =>
                 {{
-                   return {t.clasx}.ToString();
+                   return new Num(new Func(""{cNode.type.Name}_{t.prex}"", obj.GetPtype()),obj.{t.prex});
                 }});
             ");
         }
-        strbuilder.AppendLine($@"
-            public override List<Predicate> GetPreds()
-            {{
-                return new List<Predicate>() {{");
+        foreach (var t in cNode.enums)
+        {
+            strbuilder.AppendLine($@"{t.prex}=new {t.TypeName}();");
+            strbuilder.AppendLine($@"{t.prex}.SetObj(()=>{{return obj.{t.prex};}});");
+        }
+        foreach (var t in cNode.dics)
+        {
+            strbuilder.AppendLine($@"{t.prex}=new {t.TypeName}();");
+            strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
+        }
+        foreach (var t in cNode.custs)
+        {
+            strbuilder.AppendLine($@"{t.prex}=new {t.TypeName}();");
+            strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
+        }
+        strbuilder.AppendLine($@"}}
+        public override List<Predicate> GetPreds()
+        {{
+            var ret= new List<Predicate>() {{");
         foreach (var t in cNode.bools) {
             strbuilder.AppendLine($@"(Predicate){t.prex}.pop(),");
         }
-         strbuilder.AppendLine($@"}};
+        //foreach (var t in cNode.ints)
+        //{
+        //    strbuilder.AppendLine($@"(Predicate){t.prex}.pop(),");
+        //}
+        //foreach (var t in cNode.enums)
+        //{
+        //    strbuilder.AppendLine($@"(Predicate){t.prex}.pop(),");
+        //}
+        strbuilder.AppendLine($@"}};");
+        //foreach (var t in cNode.custs)
+        //{
+        //    strbuilder.AppendLine($@"ret.AddRange( (Func){t.prex}.GetPreds() );");
+        //}
+        strbuilder.AppendLine($@"
+            return ret;
             }}
         ");
         strbuilder.AppendLine($@"
             public override List<Func> GetFuncs()
             {{
-                return new List<Func>() {{");
+                var ret= new List<Func>() {{");
         foreach (var t in cNode.ints)
         {
-            strbuilder.AppendLine($@"(Func){t.prex}.pop(),");
+            strbuilder.AppendLine($@"               (Func){t.prex}.pop(),");
         }
-        strbuilder.AppendLine($@"}};
+        //foreach (var t in cNode.bools)
+        //{
+        //    strbuilder.AppendLine($@"(Func){t.prex}.pop(),");
+        //}
+        //foreach (var t in cNode.enums)
+        //{
+        //    strbuilder.AppendLine($@"(Func){t.prex}.pop(),");
+        //}
+        strbuilder.AppendLine($@"}};");
+        //foreach (var t in cNode.custs)
+        //{
+        //    strbuilder.AppendLine($@"ret.AddRange( (Func){t.prex}.GetFuncs() );");
+        //}
+        strbuilder.AppendLine($@"
+                return ret;
             }}
         ");
+        strbuilder.AppendLine($@"public override List<Pop> GetPredsVal(){{var ret= new List<Pop>();");
+        //foreach (var t in cNode.ints)
+        //{
+        //    strbuilder.AppendLine($@"ret.Add({t.prex}.val());");
+        //}
+        foreach (var t in cNode.bools)
+        {
+            strbuilder.AppendLine($@"ret.Add({t.prex}.val());");
+        }
+        foreach (var t in cNode.enums)
+        {
+            strbuilder.AppendLine($@"ret.Add( P.Belong( GetObj() , {t.prex}.GetObj() ) );");
+        }
+        foreach (var t in cNode.custs)
+        {
+            strbuilder.AppendLine($@"ret.Add( P.Belong( GetObj() , {t.prex}.GetObj() ) );");
+        }
+        strbuilder.AppendLine($@"return ret;}}");
+        strbuilder.AppendLine($@"public override List<Pop> GetFuncsVal(){{var ret= new List<Pop>();");
+        foreach (var t in cNode.ints)
+        {
+            strbuilder.AppendLine($@"ret.Add({t.prex}.val());");
+        }
+        //foreach (var t in cNode.bools)
+        //{
+        //    strbuilder.AppendLine($@"ret.Add({t.prex}.val());");
+        //}
+        //foreach (var t in cNode.enums)
+        //{
+        //    strbuilder.AppendLine($@"ret.Add({t.prex}.val());");
+        //}
+        //foreach (var t in cNode.custs)
+        //{
+        //    strbuilder.AppendLine($@"ret.AddRange({t.prex}.GetPredsVal() );");
+        //}
+        strbuilder.AppendLine($@"return ret;}}");
         strbuilder.AppendLine("}");
-        File.WriteAllText($"Assets/Scripts/Base/PDDL/{cNode.type.Name}_PDDLClASS.cs", strbuilder.ToString());
+        File.WriteAllText($"Assets/Scripts/Base/PDDL/PDDLClass/{cNode.type.Name}_PDDLClASS.cs", strbuilder.ToString());
         AssetDatabase.Refresh();
     }
 }
