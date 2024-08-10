@@ -125,6 +125,18 @@ public static class P
     }
 }
 
+public class CNode
+{
+    public Type type;
+    public class Node
+    {
+        public String prex;
+        public String clasx;
+    }
+    public List<Node> bools;
+    public List<Node> ints;
+}
+
 public class PDDLClassGenerater
 {
 	public static void Refresh()
@@ -139,11 +151,24 @@ public class PDDLClassGenerater
             .Where(t => t.GetCustomAttributes(typeof(ClassAttribute), false).Any())
             .ToList();
         foreach(var type in classesWithAttribute)
-        {
-            GenerateType(type);
+        { 
+            var t = new CNode();
+            t.type = type;
+            GenerateType(type,t);
         }
     }
-    public static void GenerateType(Type type)
+    public static void GenerateType(Type type,CNode cNode)
+    {
+        foreach (var field in type.GetFields())
+        {
+            var attributes = field.GetCustomAttributes(typeof(PropertyAttribute), false);
+            if (attributes.Any())
+            {
+                FieldGen(type.Name+"_",type.Name+".",type,cNode);
+            }
+        }
+    }
+    public static void FieldGen(string prexPath,string classPath,Type type,CNode cNode)
     {
         foreach (var field in type.GetFields())
         {
@@ -151,17 +176,23 @@ public class PDDLClassGenerater
             if (attributes.Any())
             {
                 Debug.Log(type.Name + ":" + field.Name);
-                if(field.FieldType==typeof(bool))
+                if (field.FieldType == typeof(bool))
                 {
-
+                    var node=new CNode.Node();
+                    node.prex=prexPath+"_"+field.Name;
+                    node.clasx = classPath + "." + field.Name;
+                    cNode.bools.Add(node);
                 }
                 else if (field.FieldType == typeof(int))
                 {
-
+                    var node = new CNode.Node();
+                    node.prex = prexPath + "_" + field.Name;
+                    node.clasx = classPath + "." + field.Name;
+                    cNode.ints.Add(node);
                 }
-                else if(field.FieldType == typeof(int))
+                else
                 {
-
+                    FieldGen(prexPath + "_" + field.Name+"_", classPath + "." + field.Name+".",field.FieldType,cNode);
                 }
             }
         }

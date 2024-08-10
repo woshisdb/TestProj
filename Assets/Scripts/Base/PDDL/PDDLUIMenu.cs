@@ -12,6 +12,7 @@ using UnityEngine;
 [ExecuteAlways]
 public class PDDLUIMenu : MonoBehaviour
 {
+
     [ReadOnly]
     public string path= "Assets/Scripts/Base/PDDL/PDDL.cs";
     [Button("Init")]
@@ -73,6 +74,75 @@ public class PD{
         }
         strbuilder.Append('}');
         File.WriteAllText(path,strbuilder.ToString());
+        AssetDatabase.Refresh();
+    }
+    public static void PDDLGen(CNode cNode)
+    {
+        StringBuilder strbuilder = new StringBuilder();
+        strbuilder.AppendLine($@"public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{cNode.type.Name}Type>{{");
+        foreach(var t in cNode.bools)
+        {
+            strbuilder.AppendLine($"public PDDLVal {t.prex};");
+        }
+        foreach (var t in cNode.ints)
+        {
+            strbuilder.AppendLine($"public PDDLVal {t.prex};");
+        }
+        strbuilder.AppendLine($@"public {cNode.type.Name}_PDDL({cNode.type.Name}Type pType):base(){{
+            this.pType = pType;
+            stringBuilder = new StringBuilder();
+            ");
+        foreach (var t in cNode.bools)
+        {
+            strbuilder.AppendLine($@"
+                {t.prex} = new PDDLVal(
+                () =>
+                {{
+                    return new Predicate(""{t.prex}"", pType);
+                }},
+                () =>
+                {{
+                   return {t.clasx}.ToString();
+                }});
+            ");
+        }
+        foreach (var t in cNode.ints)
+        {
+            strbuilder.AppendLine($@"
+                {t.prex} = new PDDLVal(
+                () =>
+                {{
+                    return new Func(""{t.prex}"", pType);
+                }},
+                () =>
+                {{
+                   return {t.clasx}.ToString();
+                }});
+            ");
+        }
+        strbuilder.AppendLine($@"
+            public override List<Predicate> GetPreds()
+            {{
+                return new List<Predicate>() {{");
+        foreach (var t in cNode.bools) {
+            strbuilder.AppendLine($@"(Predicate){t.prex}.pop(),");
+        }
+         strbuilder.AppendLine($@"}};
+            }}
+        ");
+        strbuilder.AppendLine($@"
+            public override List<Func> GetFuncs()
+            {{
+                return new List<Func>() {{");
+        foreach (var t in cNode.ints)
+        {
+            strbuilder.AppendLine($@"(Func){t.prex}.pop(),");
+        }
+        strbuilder.AppendLine($@"}};
+            }}
+        ");
+        strbuilder.AppendLine("}");
+        File.WriteAllText("Assets/Scripts/Base/PDDL/PDDLClASS.cs", strbuilder.ToString());
         AssetDatabase.Refresh();
     }
 }
