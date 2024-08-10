@@ -351,7 +351,11 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     [Button]
     public void Refresh()
     {
-        PDDLClassGenerater.Refresh();
+        var cnodes=PDDLClassGenerater.Refresh();
+        foreach(var x in cnodes)
+        {
+            PDDLUIMenu.PDDLGen(x);
+        }
     }
     public void OnWinChange(int win)//´ýÐÞ¸Ä
     {

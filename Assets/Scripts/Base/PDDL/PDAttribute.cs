@@ -135,11 +135,16 @@ public class CNode
     }
     public List<Node> bools;
     public List<Node> ints;
+    public CNode()
+    {
+        this.bools = new List<Node>();
+        this.ints = new List<Node>();
+    }
 }
 
 public class PDDLClassGenerater
 {
-	public static void Refresh()
+    public static List<CNode> Refresh()
 	{
         // 获取当前程序集
         Assembly assembly = Assembly.GetExecutingAssembly();
@@ -150,12 +155,15 @@ public class PDDLClassGenerater
         var classesWithAttribute = types
             .Where(t => t.GetCustomAttributes(typeof(ClassAttribute), false).Any())
             .ToList();
-        foreach(var type in classesWithAttribute)
+        List<CNode> cNodes =new List<CNode>();
+        foreach (var type in classesWithAttribute)
         { 
             var t = new CNode();
             t.type = type;
             GenerateType(type,t);
+            cNodes.Add(t);
         }
+        return cNodes;
     }
     public static void GenerateType(Type type,CNode cNode)
     {

@@ -142,7 +142,7 @@ public class PD{
             }}
         ");
         strbuilder.AppendLine("}");
-        File.WriteAllText("Assets/Scripts/Base/PDDL/PDDLClASS.cs", strbuilder.ToString());
+        File.WriteAllText($"Assets/Scripts/Base/PDDL/{cNode.type.Name}_PDDLClASS.cs", strbuilder.ToString());
         AssetDatabase.Refresh();
     }
 }
