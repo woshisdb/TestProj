@@ -56,11 +56,11 @@ public class ArrangeContractAct : Activity
         return o.owner != null && GameArchitect.get.GetModel<ContractModel>().GetUnSignContract(o.owner).Count > 0;//((BuildingObj)obj).remainBuilder == 0;
     }
     
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
     [Button]
     public void ShowAction()
     {
@@ -182,11 +182,11 @@ public class AddContractAct : Activity
         return true;// ((BuildingObj)obj).remainBuilder == 0;
     }
 
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
     [Button]
     public void ShowAction()
     {
@@ -252,11 +252,11 @@ public class RemoveContractAct : Activity
         return ((BuildingObj)obj).remainBuilder == 0;
     }
 
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
     [Button]
     public void ShowAction()
     {

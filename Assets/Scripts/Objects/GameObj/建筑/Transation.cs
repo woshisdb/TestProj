@@ -61,11 +61,11 @@ public class BuyAct : Activity
         return true;// ((BuildingObj)obj).remainBuilder == 0;
     }
 
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
 }
 /// <summary>
 /// 挂到单子上
@@ -123,9 +123,9 @@ public class SellAct : Activity
     {
         return true;// ((BuildingObj)obj).remainBuilder == 0;
     }
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
 }

@@ -124,9 +124,9 @@ public class CookAct : Activity
         return true;  
     }
 
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
 }

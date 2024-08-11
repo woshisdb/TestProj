@@ -44,12 +44,12 @@ public class IdleAct : Activity
         return true;
     }
 
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        //Person_PDDL person = new Person_PDDL(new PersonType());
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    //Person_PDDL person = new Person_PDDL(new PersonType());
+    //    return action;
+    //}
     [Button]
     public void ShowAction()
     {

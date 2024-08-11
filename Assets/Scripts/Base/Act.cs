@@ -145,11 +145,11 @@ public class SelPipLineAct:Activity
         return true;// ((BuildingObj)obj).remainBuilder == 0;
     }
 
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
 
     /// <summary>
     /// 效果
@@ -210,11 +210,11 @@ public class SetPipLineAct : Activity
         return true;// ((BuildingObj)obj).remainBuilder == 0;
     }
 
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
 
     /// <summary>
     /// 效果
@@ -245,11 +245,11 @@ public class UseToolAct : Activity
         return true;
     }
 
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
 
     /// <summary>
     /// 效果
@@ -376,11 +376,11 @@ public class BuildAct : Activity
         return ((BuildingObj)obj).remainBuilder == 0;
     }
 
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
 
     /// <summary>
     /// 效果
@@ -435,11 +435,11 @@ public class WaKuangAct : Activity
         return ((BuildingObj)obj).remainBuilder == 0;
     }
 
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
 
     /// <summary>
     /// 效果

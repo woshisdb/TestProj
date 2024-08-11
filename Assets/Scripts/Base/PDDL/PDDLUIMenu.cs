@@ -244,14 +244,14 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
                 return ret;
             }}
         ");
-        strbuilder.AppendLine($@"public override List<Pop> GetPredsVal(){{var ret= new List<Pop>();");
+        strbuilder.AppendLine($@"public override List<Bool> GetPredsVal(){{var ret= new List<Bool>();");
         //foreach (var t in cNode.ints)
         //{
         //    strbuilder.AppendLine($@"ret.Add({t.prex}.val());");
         //}
         foreach (var t in cNode.bools)
         {
-            strbuilder.AppendLine($@"ret.Add({t.prex}.val());");
+            strbuilder.AppendLine($@"ret.Add( (Bool) ({t.prex}.val()));");
         }
         foreach (var t in cNode.enums)
         {
@@ -262,10 +262,10 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
             strbuilder.AppendLine($@"ret.Add( P.Belong( GetObj() , {t.prex}.GetObj() ) );");
         }
         strbuilder.AppendLine($@"return ret;}}");
-        strbuilder.AppendLine($@"public override List<Pop> GetFuncsVal(){{var ret= new List<Pop>();");
+        strbuilder.AppendLine($@"public override List<Num> GetFuncsVal(){{var ret= new List<Num>();");
         foreach (var t in cNode.ints)
         {
-            strbuilder.AppendLine($@"ret.Add({t.prex}.val());");
+            strbuilder.AppendLine($@"ret.Add( (Num)( {t.prex}.val() ) );");
         }
         //foreach (var t in cNode.bools)
         //{
@@ -306,6 +306,7 @@ public abstract class PDDLSet
     }
     public abstract PDDLClass Add();
     public abstract void Remove(PDDLClass pDDL);
+    public abstract HashSet<PDDLClass> GetPddls();
 }
 public class PDDLSet<T>:PDDLSet
     where T: PDDLClass,new()
@@ -332,6 +333,11 @@ public class PDDLSet<T>:PDDLSet
             use.Add(t);
             return t;
         }
+    }
+
+    public override HashSet<PDDLClass> GetPddls()
+    {
+        return use;
     }
 
     public override void Remove(PDDLClass pDDL)

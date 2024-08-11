@@ -29,7 +29,7 @@ where T : Enum
         return null;
     }
 
-    public override List<Pop> GetFuncsVal()
+    public override List<Num> GetFuncsVal()
     {
         return null;
     }
@@ -44,7 +44,7 @@ where T : Enum
         return null;
     }
 
-    public override List<Pop> GetPredsVal()
+    public override List<Bool> GetPredsVal()
     {
         return null;
     }

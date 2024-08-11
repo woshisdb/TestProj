@@ -73,11 +73,11 @@ public class BanYunAct : Activity
         return true;
     }
 
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
     [Button]
     public void ShowAction()
     {
@@ -111,11 +111,11 @@ public class FangZhiAct : Activity
         return true;
     }
 
-    public override PAction GetAction()
-    {
-        PAction action = new PAction();
-        return action;
-    }
+    //public override PAction GetAction()
+    //{
+    //    PAction action = new PAction();
+    //    return action;
+    //}
     [Button]
     public void ShowAction()
     {

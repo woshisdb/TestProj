@@ -13,6 +13,7 @@ public class Map : Singleton<Map>
     public Dictionary<ObjEnum,Type> enum2Type;
     public Dictionary<ObjEnum,Obj> enum2Ins;
     public Dictionary<Type,ObjEnum> saver2Enum;
+    public static List<PType> types;
     protected Map():base()
     {
 
@@ -104,16 +105,104 @@ public class Map : Singleton<Map>
             }
         }
         // Sort to ensure that superclasses come before their subclasses
-        result.Sort((type1, type2) => type1.IsSubclassOf(type2) ? 1 : type2.IsSubclassOf(type1) ? -1 : 0);
+        result=SortTypesByInheritance(result);
         return result;
     }
-    public static Domain InitPDDL()
+    public static List<Type> SortTypesByInheritance(List<Type> types)
+    {
+        var graph = new Dictionary<Type, HashSet<Type>>();
+        var inDegree = new Dictionary<Type, int>();
+
+        // 初始化图和入度字典
+        foreach (var type in types)
+        {
+            if (!graph.ContainsKey(type))
+                graph[type] = new HashSet<Type>();
+
+            if (!inDegree.ContainsKey(type))
+                inDegree[type] = 0;
+        }
+
+        // 构建图和计算入度
+        foreach (var type in types)
+        {
+            var baseTypes = type.BaseType != null ? new[] { type.BaseType } : Enumerable.Empty<Type>();
+            foreach (var baseType in baseTypes)
+            {
+                if (types.Contains(baseType))
+                {
+                    if (!graph.ContainsKey(baseType))
+                        graph[baseType] = new HashSet<Type>();
+
+                    if (!graph[baseType].Contains(type))
+                        graph[baseType].Add(type);
+
+                    inDegree[type]++;
+                }
+            }
+        }
+
+        // Kahn's Algorithm (拓扑排序)
+        var queue = new Queue<Type>(inDegree.Where(x => x.Value == 0).Select(x => x.Key));
+        var sortedTypes = new List<Type>();
+
+        while (queue.Count > 0)
+        {
+            var current = queue.Dequeue();
+            sortedTypes.Add(current);
+
+            if (graph.ContainsKey(current))
+            {
+                foreach (var neighbor in graph[current])
+                {
+                    inDegree[neighbor]--;
+                    if (inDegree[neighbor] == 0)
+                        queue.Enqueue(neighbor);
+                }
+            }
+        }
+
+        return sortedTypes;
+    }
+    static int CompareTypes(Type x, Type y)
+    {
+        if (x == y) return 0;
+        if (IsSubclassOf(x, y)) return 1;
+        if (IsSubclassOf(y, x)) return -1;
+        return 0;
+    }
+
+    static bool IsSubclassOf(Type x, Type y)
+    {
+        // 检查 x 是否是 y 的子类或后代类
+        while (x != null && x != typeof(object))
+        {
+            if (x == y)
+                return true;
+            x = x.BaseType;
+        }
+        return false;
+    }
+    public static System.Tuple<Domain,Problem> InitPDDL()
     {
         Domain domain = new Domain();
         Problem problem = new Problem();
         var datas=GetData<ActAttribute>();
+        if (types == null)
+        {
+            types = new List<PType>();
+            var typeClasss = GetAllSubclasses(typeof(PType));
+            foreach(var type in typeClasss)
+            {
+                if(type!=typeof(DicType<,>))
+                {
+                    types.Add((PType)Activator.CreateInstance(type));
+                }
+            }
+        }
+        domain.AddTypes(types);
         ///一系列的Actions初始化
-        foreach(var x in datas)
+        foreach (var x in datas)
         {
             var act=(Activity)Activator.CreateInstance(x);
             domain.pActions.Add(act.GetAction());
@@ -121,14 +210,17 @@ public class Map : Singleton<Map>
             domain.AddFuncs(act.GetFuncs());
         }
         //初始化一系列的Object
-        List<PDDLClass> pddlClasss = new List<PDDLClass>();
+        var pddlClasss = PDDLClassGet.kv;
         //pddlClasss.Add(new Person_PDDL());
         foreach(var x in pddlClasss)
         {
-            x.SetDomain(domain);
-            x.SetProblem(problem);
+            foreach (var y in x.Value.GetPddls())
+            {
+                y.SetDomain(domain);
+                y.SetProblem(problem);
+            }
         }
-        return domain;
+        return new System.Tuple<Domain,Problem>(domain,problem);
     }
 
     public Obj GetObj(ObjEnum type)

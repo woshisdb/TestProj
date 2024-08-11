@@ -6,7 +6,10 @@ using System.Text;
 using UnityEngine;
 public class PDDL: PD
 {
-   
+   public virtual string InitVal()
+    {
+        return null;
+    }
 }
 public class Nm
 {
@@ -791,8 +794,14 @@ public class Bool:PDDL, PDDLProperty
         else
             return new Not(predicate).ToString();
     }
-
-	public Pop GetPop()
+    public override string InitVal()
+    {
+        if (val())
+            return predicate.ToString();
+        else
+            return new Not(predicate).ToString();
+    }
+    public Pop GetPop()
 	{
         return predicate;
 	}
@@ -824,10 +833,18 @@ public class Num:PDDL, PDDLProperty
     }
     public override string ToString()
     {
-        return "(=" + "(" +func.ToString()+")" +" "+val+ ")";
+        return "(=" + "(" +func.ToString()+")" +" "+val()+ ")";
     }
-
-	public Pop GetPop()
+    public override string InitVal()
+    {
+        var str = "";
+        foreach(var x in func.objects)
+        {
+            str=str+x.objName+" ";
+        }
+        return $"({func.name} {str} {val()})";
+    }
+    public Pop GetPop()
 	{
         return func;
 	}
@@ -999,6 +1016,8 @@ public class Problem : PDDL
     {
         public bool Equals(PType x, PType y)
         {
+            if (x == null||y==null)
+                return false;
             return x.typeName == y.typeName&&x.objName==y.objName;
         }
 
@@ -1015,10 +1034,11 @@ public class Problem : PDDL
     public Problem()
     {
         problemName = GetType().Name;
+        domainName = "TestDomain";
         objects = new HashSet<PType>(new ObjComparer());
         initVal = new List<PDDL>();
     }
-    public override string ToString()
+    public string Print()
     {
         StringBuilder str = new StringBuilder();
         str.AppendFormat(@"(define
@@ -1031,8 +1051,8 @@ public class Problem : PDDL
         {
             if (x.IsEnum)
             {
-                foreach(var e in Enum.GetValues(x.GetType()))
-                str.AppendFormat("{0}-{1}\n", x.Name, e.ToString());
+                foreach(var e in Enum.GetValues(x))
+                str.AppendFormat("{0}-{1}\n", e.ToString(), x.Name);
             }
         }
         foreach (var p in objects)
@@ -1046,12 +1066,16 @@ public class Problem : PDDL
         ////////////////////Enum/////////////////////////
         for(int i=0;i<initVal.Count;i++)
         {
-            str.AppendLine(initVal[i].ToString());
+            Debug.Log(initVal[i].GetType().Name);
+            str.AppendLine(initVal[i].InitVal());
         }
         str.AppendLine("\n)\n");
-        str.AppendLine("(:goal\n");
-        str.AppendLine(goal.ToString());
-        str.AppendLine("\n)\n");
+        if (goal != null)
+        {
+            str.AppendLine("(:goal\n");
+            str.AppendLine(goal.ToString());
+            str.AppendLine("\n)\n");
+        }
         str.Append(")");
         return str.ToString();
     }
@@ -1061,7 +1085,7 @@ public class Problem : PDDL
         {
             foreach (var p in pTypes)
             {
-                if (objects.Contains(p))
+                if (!objects.Contains(p))
                 {
                     objects.Add(p);
                 }
@@ -1099,7 +1123,7 @@ public class Dic_PDDL<T, F> : PDDLClass<Dic<T,F>,DicType<T,F>>
         throw new NotImplementedException();
     }
 
-    public override List<Pop> GetFuncsVal()
+    public override List<Num> GetFuncsVal()
     {
         throw new NotImplementedException();
     }
@@ -1119,7 +1143,7 @@ public class Dic_PDDL<T, F> : PDDLClass<Dic<T,F>,DicType<T,F>>
         throw new NotImplementedException();
     }
 
-    public override List<Pop> GetPredsVal()
+    public override List<Bool> GetPredsVal()
     {
         throw new NotImplementedException();
     }

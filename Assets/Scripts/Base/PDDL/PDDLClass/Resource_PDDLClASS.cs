@@ -58,11 +58,11 @@ public override List<Predicate> GetPreds()
                 return ret;
             }
         
-public override List<Pop> GetPredsVal(){var ret= new List<Pop>();
+public override List<Bool> GetPredsVal(){var ret= new List<Bool>();
 return ret;}
-public override List<Pop> GetFuncsVal(){var ret= new List<Pop>();
-ret.Add(maxSize.val());
-ret.Add(nowSize.val());
+public override List<Num> GetFuncsVal(){var ret= new List<Num>();
+ret.Add( (Num)( maxSize.val() ) );
+ret.Add( (Num)( nowSize.val() ) );
 return ret;}
 public override List<PType> GetTypes(){
             var ret=new List<PType>();

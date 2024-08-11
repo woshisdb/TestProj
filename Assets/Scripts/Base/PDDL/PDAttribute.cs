@@ -282,8 +282,8 @@ public abstract class PDDLClass
     public abstract List<PType> GetTypes();
     public abstract List<Predicate> GetPreds();
     public abstract List<Func> GetFuncs();
-    public abstract List<Pop> GetPredsVal();
-    public abstract List<Pop> GetFuncsVal();
+    public abstract List<Bool> GetPredsVal();
+    public abstract List<Num> GetFuncsVal();
     public abstract PType GetPType();
     public virtual List<PType> GetObjs()
     {
@@ -333,12 +333,12 @@ where F : PType, new()
         return new F();
     }
 
-    public override List<Pop> GetPredsVal()
+    public override List<Bool> GetPredsVal()
     {
         return null;
     }
 
-    public override List<Pop> GetFuncsVal()
+    public override List<Num> GetFuncsVal()
     {
         return null;
     }
@@ -393,24 +393,24 @@ public class Dic<T, F> : Dictionary<T, F>, IPDDL
 
 public interface PDVal
 {
-    public Pop GetPop();
-    public Pop GetVal();
+    public PDDL GetPop();
+    public PDDL GetVal();
 }
 public class PDDLVal:PDVal
 {
-    public Func<Pop> pop;
-    public Func<Pop> val;
-    public PDDLVal(Func<Pop> pop, Func<Pop> val)
+    public Func<PDDL> pop;
+    public Func<PDDL> val;
+    public PDDLVal(Func<PDDL> pop, Func<PDDL> val)
     {
         this.pop = pop;
         this.val = val;
     }
 
-	public Pop GetPop()
+	public PDDL GetPop()
 	{
         return pop();
 	}
-    public Pop GetVal()
+    public PDDL GetVal()
     {
         return val();
     }

@@ -165,6 +165,8 @@ public class Domain
     {
         public bool Equals(PType x, PType y)
         {
+            if (x is null || y is null)
+                return false;
             return x.typeName == y.typeName;
         }
 
@@ -178,6 +180,8 @@ public class Domain
     {
         public bool Equals(Func x, Func y)
         {
+            if (x is null || y is null)
+                return false;
             return x.name == y.name;
         }
 
@@ -191,6 +195,8 @@ public class Domain
     {
         public bool Equals(Predicate x, Predicate y)
         {
+            if (x is null || y is null)
+                return false;
             return x.name == y.name;
         }
 
@@ -204,6 +210,8 @@ public class Domain
     {
         public bool Equals(PAction x, PAction y)
         {
+            if (x is null || y is null)
+                return false;
             return x.actionName == y.actionName;
         }
 
@@ -220,12 +228,14 @@ public class Domain
     public string domainName;
     public Domain()
     {
+        domainName = "TestDomain";
         pTypes = new HashSet<PType>(new MyCustomComparer());
         predicates = new HashSet<Predicate>(new PredicateComparer());
+        predicates.Add(P.Belong(new PType(),new PType()).predicate);
         funcs = new HashSet<Func>(new FuncComparer());
         pActions = new HashSet<PAction>(new PActionComparer());
     }
-    public void Print()
+    public string Print()
     {
         StringBuilder str = new StringBuilder();
         str.AppendLine("(");
@@ -236,7 +246,7 @@ public class Domain
             str.AppendLine("PType");
             foreach (var p in pTypes)
             {
-                str.AppendFormat("{0}-{1}\n", p.typeName, p.GetType().BaseType.GetType().Name);
+                str.AppendFormat("{0}-{1}\n", p.typeName, p.GetType().BaseType.Name);
             }
             str.AppendLine("\n)\n");
         }
@@ -247,7 +257,7 @@ public class Domain
             foreach (var p in predicates)
             {
                 p.f(str);
-                str.Append(" ");
+                str.Append("\n");
             }
             str.AppendLine("\n)");
         }
@@ -257,7 +267,7 @@ public class Domain
 
             foreach (var p in funcs)
             {
-                str.Append(p.ToString() + " ");
+                str.AppendLine(p.ToString() + " ");
             }
             str.AppendLine("\n)");
         }
@@ -270,7 +280,7 @@ public class Domain
         //{
         //    str.AppendLine(axioms[i].ToString());
         //}
-        Debug.Log( str.ToString());
+        return str.ToString();
     }
     public void AddTypes(List<PType> ps)
     {

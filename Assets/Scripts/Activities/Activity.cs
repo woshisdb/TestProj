@@ -30,7 +30,12 @@ public abstract class Activity
     /// <param name="obj"></param>
     /// <param name="person"></param>
     /// <returns></returns>
-    public abstract PAction GetAction();
+    public virtual PAction GetAction()
+    {
+        PAction action = new PAction();
+        action.actionName = GetType().Name;
+        return action;
+    }
 
     public virtual List<Predicate> GetPredicates()
     {

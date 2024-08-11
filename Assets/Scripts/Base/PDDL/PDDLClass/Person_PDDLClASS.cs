@@ -62,12 +62,12 @@ public override List<Predicate> GetPreds()
                 return ret;
             }
         
-public override List<Pop> GetPredsVal(){var ret= new List<Pop>();
-ret.Add(isPlayer.val());
+public override List<Bool> GetPredsVal(){var ret= new List<Bool>();
+ret.Add( (Bool) (isPlayer.val()));
 ret.Add( P.Belong( GetObj() , resource.GetObj() ) );
 return ret;}
-public override List<Pop> GetFuncsVal(){var ret= new List<Pop>();
-ret.Add(money.val());
+public override List<Num> GetFuncsVal(){var ret= new List<Num>();
+ret.Add( (Num)( money.val() ) );
 return ret;}
 public override List<PType> GetTypes(){
             var ret=new List<PType>();

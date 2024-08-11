@@ -488,8 +488,9 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     [Button]
     public void GetPDDL()
     {
-        var domain=Map.InitPDDL();
-        domain.Print();
+        var ret=Map.InitPDDL();
+        Debug.Log( ret.Item1.Print() );
+        Debug.Log(ret.Item2.Print() );
         //Expression<Func<Person, int>> func = (a) => a.resource.maxSize;
         ////TraverseExpression(func);
         //TraverseExpression(func.Body);
