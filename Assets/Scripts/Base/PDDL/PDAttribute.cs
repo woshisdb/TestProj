@@ -190,7 +190,7 @@ public class PDDLClassGenerater
                     var node = new CNode.Node();
                     node.TypeName = "PDDLVal";
                     node.prex = field.Name;
-                    node.clasx = field.Name;
+                    node.clasx = field.FieldType.Name;
                     cNode.bools.Add(node);
                 }
                 else if (field.FieldType == typeof(int))
@@ -198,7 +198,7 @@ public class PDDLClassGenerater
                     var node = new CNode.Node();
                     node.TypeName = "PDDLVal";
                     node.prex = field.Name;
-                    node.clasx = field.Name;
+                    node.clasx = field.FieldType.Name;
                     cNode.ints.Add(node);
                 }
                 else if (field.FieldType is IDictionary)
@@ -209,7 +209,7 @@ public class PDDLClassGenerater
                     Type valueType = genericArguments[1];
                     node.TypeName = $"Dictionary_PDDL<{keyType.Name},{valueType.Name}>";
                     node.prex = field.Name;
-                    node.clasx = field.Name;
+                    node.clasx = field.FieldType.Name;
                     cNode.dics.Add(node);
                 }
                 else if(field.FieldType.IsEnum)
@@ -217,7 +217,7 @@ public class PDDLClassGenerater
                     var node = new CNode.Node();
                     node.TypeName = $"Enum_PDDL<{field.FieldType.Name}>";
                     node.prex = field.Name;
-                    node.clasx = field.Name;
+                    node.clasx = field.FieldType.Name;
                     cNode.enums.Add(node);
                 }
                 else if(field.FieldType.GetCustomAttributes(typeof(ClassAttribute), false).Any())//如果是个已经生成的类
@@ -226,7 +226,7 @@ public class PDDLClassGenerater
                     var node = new CNode.Node();
                     node.TypeName = tf;
                     node.prex = field.Name;
-                    node.clasx = field.Name;
+                    node.clasx = field.FieldType.Name;
                     cNode.custs.Add(node);
                 }
             }

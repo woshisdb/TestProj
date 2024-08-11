@@ -28,7 +28,7 @@ public interface IPDDL
     public PDDLClass GetPDDLClass();
 }
 
-[Map(null,"objSaver")]
+[Map(null,"objSaver"),Class]
 public class Obj:PDDL,ICanRegisterEvent,IPDDL
 {
     public PDDLClass pddl;
@@ -154,7 +154,7 @@ public class Obj:PDDL,ICanRegisterEvent,IPDDL
 
     public PDDLClass GetPDDLClass()
     {
-        throw new NotImplementedException();
+        return pddl;
     }
     ~Obj()
     {

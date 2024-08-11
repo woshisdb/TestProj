@@ -37,6 +37,7 @@ public Resource_PDDL():base(){
 }
 public override void SetObj(object obj){
             this.obj=(Resource)obj;
+            ((Resource)obj).pddl = this;
 }
 public override List<Predicate> GetPreds()
         {

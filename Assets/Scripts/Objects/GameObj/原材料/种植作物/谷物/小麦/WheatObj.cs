@@ -6,16 +6,12 @@ using UnityEngine;
 /// </summary>
 public class WheatType : RawType
 {
-    public WheatType(string name = null) : base(name)
-    {
-
-    }
 }
 public class WheatSaver:RawSaver
 {
 
 }
-[Map()]
+[Map(),Class]
 public class WheatObj : RawObj
 {
     public WheatObj(WheatSaver objSaver=null):base(objSaver)

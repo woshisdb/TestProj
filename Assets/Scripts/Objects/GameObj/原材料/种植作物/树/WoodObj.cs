@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class WoodType : RawType
 {
-    public WoodType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class WoodSaver : RawSaver
 {
 
 }
-[Map()]
+[Map(),Class]
 public class WoodObj : RawObj
 {
     public WoodObj(WoodSaver objSaver = null) : base(objSaver)

@@ -24,7 +24,7 @@ public class AnimalSaver : ObjSaver
     [SerializeField]
     public PersonSVal sleepState;
 }
-[Map]
+[Map, Class]
 public class AnimalObj : Obj
 {
     public bool sex;//ÐÔ±ð

@@ -77,9 +77,26 @@ public class PD{
         File.WriteAllText(path,strbuilder.ToString());
         AssetDatabase.Refresh();
     }
+    static string ModifyString(string x)
+    {
+        if (x == "Obj")
+            return "PType";
+        // 检查 x 是否以 "Obj" 结尾
+        if (x.EndsWith("Obj"))
+        {
+            // 如果是，则用 "Type" 替换 "Obj"
+            return x.Substring(0, x.Length - 3) + "Type";
+        }
+        else
+        {
+            // 否则，直接在 x 的末尾添加 "Type"
+            return x + "Type";
+        }
+    }
     public static void PDDLGen(CNode cNode)
     {
         StringBuilder strbuilder = new StringBuilder();
+        string STRType = ModifyString(cNode.type.Name);
         strbuilder.AppendLine($@"
 using QFramework;
 using System;
@@ -89,7 +106,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
-public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{cNode.type.Name}Type>{{");
+public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
         foreach(var t in cNode.bools)
         {
             strbuilder.AppendLine($"public {t.TypeName} {t.prex};");
@@ -142,36 +159,40 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{cNode.type.Name
         }
         foreach (var t in cNode.enums)
         {
-            strbuilder.AppendLine($@"{t.prex}=new {t.TypeName}();");
-            //strbuilder.AppendLine($@"{t.prex}.SetObj(()=>{{return obj.{t.prex};}});");
+            strbuilder.AppendLine($@"{t.prex}=  ({t.TypeName})PDDLClassGet.Generate(typeof({t.clasx}));");
+            strbuilder.AppendLine($@"{t.prex}.SetObj(()=>{{return obj.{t.prex};}});");
         }
         foreach (var t in cNode.dics)
         {
-            strbuilder.AppendLine($@"{t.prex}=new {t.TypeName}();");
+            strbuilder.AppendLine($@"{t.prex}=  ({t.TypeName})PDDLClassGet.Generate(typeof({t.clasx}));");
             //strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
         }
         foreach (var t in cNode.custs)
         {
-            strbuilder.AppendLine($@"{t.prex}=new {t.TypeName}();");
+            strbuilder.AppendLine($@"{t.prex}=  ({t.TypeName})PDDLClassGet.Generate(typeof({t.clasx}));");
             //strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
         }
         strbuilder.AppendLine($@"}}");
 
         strbuilder.AppendLine($@"public override void SetObj(object obj){{
-            this.obj=({cNode.type.Name})obj;");
-        foreach (var t in cNode.enums)
-        {
-            strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
-            //strbuilder.AppendLine($@"{t.prex}.SetObj(()=>{{return obj.{t.prex};}});");
-        }
+            this.obj=({cNode.type.Name})obj;
+            (({cNode.type.Name})obj).pddl = this;");
+        //foreach (var t in cNode.enums)
+        //{
+        //    strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
+        //    strbuilder.AppendLine($@"  (({cNode.type.Name})obj).{t.prex}.pddl = {t.prex};  ");
+        //    //strbuilder.AppendLine($@"{t.prex}.SetObj(()=>{{return obj.{t.prex};}});");
+        //}
         foreach (var t in cNode.dics)
         {
             strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
+            strbuilder.AppendLine($@"  (({cNode.type.Name})obj).{t.prex}.pddl = {t.prex};  ");
             //strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
         }
         foreach (var t in cNode.custs)
         {
             strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
+            strbuilder.AppendLine($@"  (({cNode.type.Name})obj).{t.prex}.pddl = {t.prex};  ");
         }
         strbuilder.AppendLine($@"}}");
 
@@ -332,9 +353,10 @@ public class PDDLClassGet
     }
     public static PDDLClass Generate(Type type)
     {
-        if(kv.ContainsKey(type))
+        if(kv.ContainsKey(type)==false)
         {
             var pddlType = Assembly.GetExecutingAssembly().GetType(type.Name+"_PDDL");
+            Debug.Log(type.Name + "_PDDL");
             Type genericTypeDefinition = typeof(PDDLSet<>);
             Type specificType = genericTypeDefinition.MakeGenericType(pddlType);
             object pddlSetInstance = Activator.CreateInstance(specificType);

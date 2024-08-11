@@ -277,7 +277,7 @@ public class BuildingType: ObjType
 {
 
 }
-[Map()]
+[Map(), Class]
 public class BuildingObj : Obj
 {
     public int requireBuilding;

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public class RestaurantType : BuildingType
+{
+}
 // ²ÍÌü
 
 [System.Serializable]
@@ -10,7 +12,7 @@ public class RestaurantSaver : BuildingSaver
     
 }
 
-[Map()]
+[Map(),Class]
 // ²ÍÌü
 public class RestaurantObj : BuildingObj
 {

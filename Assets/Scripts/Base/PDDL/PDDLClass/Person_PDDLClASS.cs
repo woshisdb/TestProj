@@ -35,11 +35,13 @@ public Person_PDDL():base(){
                    return new Num(new Func("Person_money", obj.GetPtype()),obj.money);
                 });
             
-resource=new Resource_PDDL();
+resource=  (Resource_PDDL)PDDLClassGet.Generate(typeof(Resource));
 }
 public override void SetObj(object obj){
             this.obj=(Person)obj;
+            ((Person)obj).pddl = this;
 resource.SetObj(((Person)obj).resource);
+  ((Person)obj).resource.pddl = resource;  
 }
 public override List<Predicate> GetPreds()
         {

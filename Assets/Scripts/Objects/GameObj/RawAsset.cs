@@ -5,13 +5,9 @@ using UnityEngine;
 
 public class RawType : PType
 {
-    public RawType(string name = null) : base(name)
-    {
-
-    }
 }
 
-[Map()]
+[Map(),Class]
 /// <summary>
 /// »ù´¡×ÊÔ´
 /// </summary>

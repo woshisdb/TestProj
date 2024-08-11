@@ -11,10 +11,6 @@ using UnityEngine;
 
 public class KuangType : RawType
 {
-    public KuangType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class KuangSaver : RawSaver
@@ -22,7 +18,7 @@ public class KuangSaver : RawSaver
 
 }
 
-[Map()]
+[Map(),Class]
 // Ìú
 public class KuangObj : RawObj
 {
@@ -41,10 +37,6 @@ public class KuangObj : RawObj
 
 public class KuangMiningType : RawType
 {
-    public KuangMiningType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class KuangMiningSaver : BuildingSaver
@@ -52,7 +44,7 @@ public class KuangMiningSaver : BuildingSaver
 
 }
 
-[Map()]
+[Map(),Class]
 // Ìú¿ó
 public class KuangMiningObj : BuildingObj
 {
@@ -147,10 +139,6 @@ public class KuangMiningObj : BuildingObj
 }
 public class IronKuangType : KuangType
 {
-    public IronKuangType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class IronKuangSaver : KuangSaver
@@ -158,7 +146,7 @@ public class IronKuangSaver : KuangSaver
 
 }
 
-[Map()]
+[Map(),Class]
 // Ìú
 public class IronKuangObj : KuangObj
 {
@@ -176,7 +164,7 @@ public class IronKuangObj : KuangObj
 
 public class IronType : KuangType
 {
-    public IronType(string name = null) : base(name)
+    public IronType() : base()
     {
 
     }
@@ -187,7 +175,7 @@ public class IronSaver : KuangSaver
 
 }
 
-[Map()]
+[Map(),Class]
 // Ìú
 public class IronObj : KuangObj
 {
@@ -205,10 +193,6 @@ public class IronObj : KuangObj
 
 public class IronMiningType : KuangMiningType
 {
-    public IronMiningType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class IronMiningSaver : KuangMiningSaver
@@ -216,7 +200,7 @@ public class IronMiningSaver : KuangMiningSaver
     
 }
 
-[Map()]
+[Map(),Class]
 // Ìú¿ó
 public class IronMiningObj : KuangMiningObj
 {

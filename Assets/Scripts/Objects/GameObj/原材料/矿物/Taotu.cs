@@ -8,10 +8,6 @@ using UnityEngine;
 
 public class TaotuType : KuangType
 {
-    public TaotuType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class TaotuSaver : KuangSaver
@@ -19,7 +15,7 @@ public class TaotuSaver : KuangSaver
 
 }
 
-[Map()]
+[Map(),Class]
 // ½ð×Ó
 public class TaotuObj : KuangObj
 {
@@ -38,10 +34,6 @@ public class TaotuObj : KuangObj
 
 public class TaotuMiningType : KuangMiningType
 {
-    public TaotuMiningType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class TaotuMiningSaver : KuangMiningSaver
@@ -49,7 +41,7 @@ public class TaotuMiningSaver : KuangMiningSaver
    
 }
 
-[Map()]
+[Map(),Class]
 // ½ð¿ó
 public class TaotuMiningObj : KuangMiningObj
 {

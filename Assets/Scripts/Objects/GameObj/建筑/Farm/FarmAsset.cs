@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+public class FarmType : BuildingType
+{
+}
 [System.Serializable]
 public class FarmSaver : BuildingSaver
 {
 
 }
 
-[Map()]
+[Map(),Class]
 // Å©³¡
 public class FarmObj : BuildingObj
 {

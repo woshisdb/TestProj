@@ -33,6 +33,11 @@ public class PType: PDDL
         else
             this.objName = objName;
     }
+    public PType()
+    {
+        this.typeName = this.GetType().Name;
+        this.objName = this.GetType().Name + "_" + Nm.num;
+    }
     public override string ToString()
     {
         return objName;

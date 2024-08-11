@@ -26,6 +26,13 @@ public class GameArchitect : Architecture<GameArchitect>
     public ObjAsset objAsset;
     public Person player;
     //public static Dictionary<string, Activity> actDic;
+    protected void PDDLInit()
+    {
+        foreach(var x in tableAsset.tableSaver.objs)
+        {
+            x.InitPDDLClass();
+        }
+    }
     protected override void Init()
     {
         winCons = new List<WinCon>();
@@ -43,8 +50,13 @@ public class GameArchitect : Architecture<GameArchitect>
         if(tableAsset.tableSaver.pddlSet==null)
         {
             tableAsset.tableSaver.pddlSet = new Dictionary<Type, PDDLSet>();
+            PDDLClassGet.kv = tableAsset.tableSaver.pddlSet;
+            PDDLInit();
         }
-        PDDLClassGet.kv = tableAsset.tableSaver.pddlSet;
+        else
+        {
+            PDDLClassGet.kv = tableAsset.tableSaver.pddlSet;
+        }
         objAsset.map.Init();
         //for(int i=0;i<persons.Count;i++)
         //{

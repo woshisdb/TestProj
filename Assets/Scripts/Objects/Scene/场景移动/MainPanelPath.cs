@@ -69,6 +69,9 @@ public class Go : Activity
         detail = wasteTime + "(H/2)";
     }
 }
+public class PathType : ObjType
+{
+}
 [System.Serializable]
 public class PathSaver:ObjSaver
 {
@@ -77,7 +80,7 @@ public class PathSaver:ObjSaver
         size = 1;
     }
 }
-[Map()]
+[Map(),Class]
 public class PathObj:Obj
 {
     public PathObj(PathSaver objSaver=null) : base(objSaver)

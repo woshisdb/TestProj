@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+public class BedType:ObjType
+{
+    
+}
 
 [System.Serializable]
 public class BedSaver:ObjSaver
@@ -12,7 +15,7 @@ public class BedSaver:ObjSaver
 /// <summary>
 /// 只能存在于另一个obj里面
 /// </summary>
-[Map()]
+[Map(),Class]
 public class BedObj : Obj
 {
     public BedObj(ObjSaver objAsset=null) : base(objAsset)

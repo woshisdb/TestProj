@@ -6,10 +6,6 @@ using UnityEngine;
 /// </summary>
 public class FoodType : RawType
 {
-    public FoodType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class FoodSaver : RawSaver
@@ -30,7 +26,7 @@ public class FoodSaver : RawSaver
 /// <summary>
 /// 1点能量代表坚持一个回合
 /// </summary>
-[Map()]
+[Map(),Class]
 public class FoodObj : RawObj
 {
 
@@ -45,7 +41,7 @@ public class FoodObj : RawObj
 
 public class MoneyType : RawType
 {
-    public MoneyType(string name = null) : base(name)
+    public MoneyType() : base()
     {
 
     }
@@ -54,7 +50,7 @@ public class MoneyType : RawType
 public class MoneySaver : RawSaver
 {
 }
-[Map()]
+[Map(), Class]
 public class MoneyObj : RawObj
 {
     public MoneyObj(MoneySaver objAsset = null) : base(objAsset)
@@ -65,7 +61,9 @@ public class MoneyObj : RawObj
         return (MoneySaver)objSaver;
     }
 }
-
+public class ToolType : ObjType
+{
+}
 
 [System.Serializable]
 public class ToolSaver:ObjSaver
@@ -78,7 +76,7 @@ public class ToolSaver:ObjSaver
 /// <summary>
 /// 1点能量代表坚持一个回合
 /// </summary>
-[Map()]
+[Map(), Class]
 public class ToolObj : Obj
 {
     public ToolObj(ToolSaver objAsset = null) : base(objAsset)

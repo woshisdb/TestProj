@@ -6,17 +6,13 @@ using UnityEngine;
 /// </summary>
 public class WheatTreeType : TreeType
 {
-    public WheatTreeType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class WheatTreeSaver : TreeSaver
 {
 
 }
-[Map()]
+[Map(),Class]
 public class WheatTreeObj : TreeObj
 {
     public WheatTreeObj(WheatTreeSaver objSaver = null) : base(objSaver)

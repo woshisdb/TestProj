@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+public class GongchangType : BuildingType
+{
+}
 [System.Serializable]
 public class GongchangSaver : BuildingSaver
 {
 
 }
 
-[Map()]
+[Map(), Class]
 // ½ð¿ó
 public class GongchangObj : BuildingObj
 {

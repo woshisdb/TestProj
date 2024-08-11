@@ -4,11 +4,16 @@ using UnityEngine;
 
 // Desk.cs
 
+public class DeskType : ObjType
+{
+
+}
+
 [System.Serializable]
 public class DeskSaver : ObjSaver
 {
 }
-[Map()]
+[Map(),Class]
 // DeskObj.cs
 public class DeskObj : Obj
 {

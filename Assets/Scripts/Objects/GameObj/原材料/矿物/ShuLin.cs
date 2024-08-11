@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public class ShuLinType : BuildingType
+{
+}
 
 [System.Serializable]
 public class ShuLinSaver : BuildingSaver
@@ -9,7 +11,7 @@ public class ShuLinSaver : BuildingSaver
 
 }
 
-[Map()]
+[Map(), Class]
 // ½ð¿ó
 public class ShuLinObj : BuildingObj
 {

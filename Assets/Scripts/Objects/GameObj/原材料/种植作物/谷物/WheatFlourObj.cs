@@ -6,10 +6,6 @@ using UnityEngine;
 /// </summary>
 public class WheatFlourType : RawType
 {
-    public WheatFlourType(string name = null) : base(name)
-    {
-
-    }
 }
 
 [System.Serializable]
@@ -17,7 +13,7 @@ public class WheatFlourSaver : RawSaver
 {
 }
 
-[Map()]
+[Map(),Class]
 public class WheatFlourObj : RawObj
 {
     public WheatFlourObj(ObjAsset objAsset)

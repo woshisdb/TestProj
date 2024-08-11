@@ -6,17 +6,13 @@ using UnityEngine;
 /// </summary>
 public class WheatSeedType : SeedType
 {
-    public WheatSeedType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class WheatSeedSaver : SeedSaver
 {
 
 }
-[Map()]
+[Map(),Class]
 public class WheatSeedObj : SeedObj
 {
     public WheatSeedObj(WheatSeedSaver objSaver = null) : base(objSaver)

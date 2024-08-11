@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class BuildingResType : RawType
 {
-    public BuildingResType(string name = null) : base(name)
+    public BuildingResType() : base()
     {
 
     }
@@ -20,7 +20,7 @@ public class BuildingResSaver : RawSaver
 
 }
 
-[Map()]
+[Map(),Class]
 // ½¨Öþ×ÊÔ´
 public class BuildingResObj : RawObj
 {

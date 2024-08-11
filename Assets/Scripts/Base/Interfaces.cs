@@ -13,7 +13,7 @@ public class Map : Singleton<Map>
     public Dictionary<ObjEnum,Type> enum2Type;
     public Dictionary<ObjEnum,Obj> enum2Ins;
     public Dictionary<Type,ObjEnum> saver2Enum;
-    public Map()
+    protected Map():base()
     {
 
     }

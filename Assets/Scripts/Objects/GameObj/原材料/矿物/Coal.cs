@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class CoalType : KuangType
 {
-    public CoalType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class CoalSaver : KuangSaver
@@ -15,7 +11,7 @@ public class CoalSaver : KuangSaver
 
 }
 
-[Map()]
+[Map(),Class]
 // Ìú
 public class CoalObj : KuangObj
 {
@@ -34,10 +30,6 @@ public class CoalObj : KuangObj
 
 public class CoalMiningType : KuangType
 {
-    public CoalMiningType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class CoalMiningSaver : KuangMiningSaver
@@ -45,7 +37,7 @@ public class CoalMiningSaver : KuangMiningSaver
 
 }
 
-[Map()]
+[Map(),Class]
 // Ìú¿ó
 public class CoalMiningObj : KuangMiningObj
 {

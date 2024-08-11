@@ -8,10 +8,6 @@ using UnityEngine;
 
 public class GoldKuangType : KuangType
 {
-    public GoldKuangType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class GoldKuangSaver : KuangSaver
@@ -19,7 +15,7 @@ public class GoldKuangSaver : KuangSaver
 
 }
 
-[Map()]
+[Map(),Class]
 // 金子
 public class GoldKuangObj : KuangObj
 {
@@ -38,10 +34,6 @@ public class GoldKuangObj : KuangObj
 
 public class GoldType : KuangType
 {
-    public GoldType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class GoldSaver : KuangSaver
@@ -49,7 +41,7 @@ public class GoldSaver : KuangSaver
 
 }
 
-[Map()]
+[Map(),Class]
 // 金子
 public class GoldObj : KuangObj
 {
@@ -68,10 +60,6 @@ public class GoldObj : KuangObj
 
 public class GoldMiningType : KuangMiningType
 {
-    public GoldMiningType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class GoldMiningSaver : KuangMiningSaver
@@ -79,7 +67,7 @@ public class GoldMiningSaver : KuangMiningSaver
    
 }
 
-[Map()]
+[Map(),Class]
 // 金矿
 public class GoldMiningObj : KuangMiningObj
 {

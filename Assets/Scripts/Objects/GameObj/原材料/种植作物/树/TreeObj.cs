@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class TreeType : RawType
 {
-    public TreeType(string name = null) : base(name)
-    {
-
-    }
 }
 [System.Serializable]
 public class TreeSaver : RawSaver
 {
 
 }
-[Map()]
+[Map(),Class]
 public class TreeObj : RawObj
 {
     public TreeObj(TreeSaver objSaver = null) : base(objSaver)
