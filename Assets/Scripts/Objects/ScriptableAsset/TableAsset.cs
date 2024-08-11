@@ -22,7 +22,8 @@ public class TableSaver
     public List<Person> personList;
     [OdinSerialize]
     public List<TableModel> tables;
-
+    [OdinSerialize]
+    public Dictionary<Type, PDDLSet> pddlSet;
     [OdinSerialize]
     public ContractModel contractModel;
     public TableSaver()

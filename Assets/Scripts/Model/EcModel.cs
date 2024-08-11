@@ -5,9 +5,14 @@ using System.Linq;
 using QFramework;
 using Sirenix.OdinInspector;
 using UnityEngine;
+public class ObjContBaseType:PType
+{
+
+}
 
 public class ObjContBase:IPDDL
 {
+    public PDDLClass pddl;
     public PType pType;
     public int size;//容量
     public int remain;//剩余
@@ -23,6 +28,7 @@ public class ObjContBase:IPDDL
     }
     public ObjContBase(int size,int remain)
     {
+        pType = new ObjContBaseType();
         this.size = size;
         this.remain = remain;
     }
@@ -40,6 +46,17 @@ public class ObjContBase:IPDDL
     public PType GetPtype()
     {
         return pType;
+    }
+
+    public void InitPDDLClass()
+    {
+        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl.SetObj(this);
+    }
+
+    public PDDLClass GetPDDLClass()
+    {
+        return pddl;
     }
 }
 
@@ -208,6 +225,7 @@ public class ResourceType:PType
 [Class]
 public class Resource:IPDDL
 {
+    public PDDLClass pddl;
     /// <summary>
     /// 资源类
     /// </summary>
@@ -417,6 +435,21 @@ public class Resource:IPDDL
     public PType GetPtype()
     {
         return obj;
+    }
+
+    public void InitPDDLClass()
+    {
+        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl.SetObj(this);
+    }
+
+    public PDDLClass GetPDDLClass()
+    {
+        return pddl;
+    }
+    ~Resource()
+    {
+        PDDLClassGet.Remove(pddl);
     }
 }
 

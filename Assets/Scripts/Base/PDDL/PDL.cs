@@ -987,17 +987,30 @@ public class Duration:Pop
 //        return str.ToString();
 //    }
 //}
+
 public class Problem : PDDL
 {
+    protected class ObjComparer : IEqualityComparer<PType>
+    {
+        public bool Equals(PType x, PType y)
+        {
+            return x.typeName == y.typeName&&x.objName==y.objName;
+        }
+
+        public int GetHashCode(PType obj)
+        {
+            return obj.typeName.GetHashCode();
+        }
+    }
     public string problemName;
     public string domainName;
-    public List<PType> objects;
+    public HashSet<PType> objects;
     public List<PDDL> initVal;
     public Pop goal;
     public Problem()
     {
         problemName = GetType().Name;
-        objects = new List<PType>();
+        objects = new HashSet<PType>(new ObjComparer());
         initVal = new List<PDDL>();
     }
     public override string ToString()
@@ -1008,15 +1021,24 @@ public class Problem : PDDL
         (:domain {1})
         (:objects
         ", problemName, domainName);
-
-        for (int i = 0; i < objects.Count; i++)
+        var enums = Map.GetData<ClassAttribute>();
+        foreach (var x in enums)
         {
-            str.AppendFormat("{0}-{1}\n", objects[i].objName, objects[i].typeName);
+            if (x.IsEnum)
+            {
+                foreach(var e in Enum.GetValues(x.GetType()))
+                str.AppendFormat("{0}-{1}\n", x.Name, e.ToString());
+            }
+        }
+        foreach (var p in objects)
+        {
+            str.AppendFormat("{0}-{1}\n", p.objName, p.typeName);
         }
         str.AppendLine(")\n");
 
         str.AppendLine("(:init\n");
-
+        
+        ////////////////////Enum/////////////////////////
         for(int i=0;i<initVal.Count;i++)
         {
             str.AppendLine(initVal[i].ToString());
@@ -1027,6 +1049,19 @@ public class Problem : PDDL
         str.AppendLine("\n)\n");
         str.Append(")");
         return str.ToString();
+    }
+    public void GetObjs(List<PType> pTypes)
+    {
+        if (pTypes != null)
+        {
+            foreach (var p in pTypes)
+            {
+                if (objects.Contains(p))
+                {
+                    objects.Add(p);
+                }
+            }
+        }
     }
 }
 /// <summary>
@@ -1066,7 +1101,7 @@ public class Dic_PDDL<T, F> : PDDLClass<Dic<T,F>,DicType<T,F>>
 
     public override PType GetObj()
     {
-        return obj.obj;
+        return obj.type;
     }
 
     public override List<PAction> GetPActions()

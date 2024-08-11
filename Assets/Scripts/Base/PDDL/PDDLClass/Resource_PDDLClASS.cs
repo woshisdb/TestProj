@@ -35,7 +35,10 @@ public Resource_PDDL():base(){
                 });
             
 }
-        public override List<Predicate> GetPreds()
+public override void SetObj(object obj){
+            this.obj=(Resource)obj;
+}
+public override List<Predicate> GetPreds()
         {
             var ret= new List<Predicate>() {
 };
@@ -60,4 +63,9 @@ public override List<Pop> GetFuncsVal(){var ret= new List<Pop>();
 ret.Add(maxSize.val());
 ret.Add(nowSize.val());
 return ret;}
+public override List<PType> GetTypes(){
+            var ret=new List<PType>();
+ret.Add(obj.GetPtype());
+return ret;
+     }
 }

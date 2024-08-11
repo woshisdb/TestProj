@@ -72,6 +72,11 @@ where T : Enum
     {
         return new PType(GetType().Name, enumVal().ToString());
     }
+
+    public override List<PType> GetTypes()
+    {
+        return null;
+    }
 }
 
 public class ObjEnumType:PType

@@ -36,8 +36,15 @@ public class GameArchitect : Architecture<GameArchitect>
         //InitActivities();
         var tableRess = Resources.Load<TableAsset>("Table/TableAsset");
         this.tableAsset = tableRess;
-        SaveSystem.Instance.Load();
+        SaveSystem.Instance.Load();//加载数据
+        //初始化一系列
         persons = tableAsset.tableSaver.personList;
+        //初始化PDDL类
+        if(tableAsset.tableSaver.pddlSet==null)
+        {
+            tableAsset.tableSaver.pddlSet = new Dictionary<Type, PDDLSet>();
+        }
+        PDDLClassGet.kv = tableAsset.tableSaver.pddlSet;
         objAsset.map.Init();
         //for(int i=0;i<persons.Count;i++)
         //{

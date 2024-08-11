@@ -143,20 +143,39 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{cNode.type.Name
         foreach (var t in cNode.enums)
         {
             strbuilder.AppendLine($@"{t.prex}=new {t.TypeName}();");
-            strbuilder.AppendLine($@"{t.prex}.SetObj(()=>{{return obj.{t.prex};}});");
+            //strbuilder.AppendLine($@"{t.prex}.SetObj(()=>{{return obj.{t.prex};}});");
         }
         foreach (var t in cNode.dics)
         {
             strbuilder.AppendLine($@"{t.prex}=new {t.TypeName}();");
-            strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
+            //strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
         }
         foreach (var t in cNode.custs)
         {
             strbuilder.AppendLine($@"{t.prex}=new {t.TypeName}();");
-            strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
+            //strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
         }
-        strbuilder.AppendLine($@"}}
-        public override List<Predicate> GetPreds()
+        strbuilder.AppendLine($@"}}");
+
+        strbuilder.AppendLine($@"public override void SetObj(object obj){{
+            this.obj=({cNode.type.Name})obj;");
+        foreach (var t in cNode.enums)
+        {
+            strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
+            //strbuilder.AppendLine($@"{t.prex}.SetObj(()=>{{return obj.{t.prex};}});");
+        }
+        foreach (var t in cNode.dics)
+        {
+            strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
+            //strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
+        }
+        foreach (var t in cNode.custs)
+        {
+            strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
+        }
+        strbuilder.AppendLine($@"}}");
+
+        strbuilder.AppendLine($@"public override List<Predicate> GetPreds()
         {{
             var ret= new List<Predicate>() {{");
         foreach (var t in cNode.bools) {
@@ -240,8 +259,91 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{cNode.type.Name
         //    strbuilder.AppendLine($@"ret.AddRange({t.prex}.GetPredsVal() );");
         //}
         strbuilder.AppendLine($@"return ret;}}");
+
+        strbuilder.AppendLine($@"public override List<PType> GetTypes(){{
+            var ret=new List<PType>();");
+        strbuilder.AppendLine($@"ret.Add(obj.GetPtype());");
+        foreach (var t in cNode.enums)
+            strbuilder.AppendLine($@"ret.Add({t.prex}.GetPType());");
+        foreach(var t in cNode.dics)
+            strbuilder.AppendLine($@"ret.Add({t.prex}.GetPType());");
+        foreach (var t in cNode.custs)
+            strbuilder.AppendLine($@"ret.Add({t.prex}.GetPType());");
+        strbuilder.AppendLine("return ret;");
+        strbuilder.AppendLine("     }");
         strbuilder.AppendLine("}");
         File.WriteAllText($"Assets/Scripts/Base/PDDL/PDDLClass/{cNode.type.Name}_PDDLClASS.cs", strbuilder.ToString());
         AssetDatabase.Refresh();
+
+    }
+}
+
+public abstract class PDDLSet
+{
+    public PDDLSet()
+    {
+    }
+    public abstract PDDLClass Add();
+    public abstract void Remove(PDDLClass pDDL);
+}
+public class PDDLSet<T>:PDDLSet
+    where T: PDDLClass,new()
+{
+    public HashSet<PDDLClass> use;
+    public Queue<PDDLClass> free;
+    public PDDLSet():base()
+    {
+        use = new HashSet<PDDLClass>();
+        free = new Queue<PDDLClass>();
+    }
+
+    public override PDDLClass Add()
+    {
+        if(free.Count>0)
+        {
+            var x= free.Dequeue();
+            use.Add(x);
+            return x;
+        }
+        else
+        {
+            var t=new T();
+            use.Add(t);
+            return t;
+        }
+    }
+
+    public override void Remove(PDDLClass pDDL)
+    {
+        free.Enqueue(pDDL);
+        use.Remove(pDDL);
+    }
+}
+
+public class PDDLClassGet
+{
+    public static Dictionary<Type,PDDLSet> kv;
+    public PDDLClassGet()
+    {
+        kv = new Dictionary<Type,PDDLSet>();
+    }
+    public void Init()
+    {
+    }
+    public static PDDLClass Generate(Type type)
+    {
+        if(kv.ContainsKey(type))
+        {
+            var pddlType = Assembly.GetExecutingAssembly().GetType(type.Name+"_PDDL");
+            Type genericTypeDefinition = typeof(PDDLSet<>);
+            Type specificType = genericTypeDefinition.MakeGenericType(pddlType);
+            object pddlSetInstance = Activator.CreateInstance(specificType);
+            kv.TryAdd(type, (PDDLSet)pddlSetInstance);
+        }
+        return kv[type].Add();
+    }
+    public static void Remove(PDDLClass pDDLClass)
+    {
+        kv[pDDLClass.GetType()].Remove(pDDLClass);
     }
 }

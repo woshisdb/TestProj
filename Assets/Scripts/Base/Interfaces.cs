@@ -111,23 +111,22 @@ public class Map : Singleton<Map>
     {
         Domain domain = new Domain();
         Problem problem = new Problem();
-        var domainTypes = GetAllSubclasses(typeof(PType));
-        domain.pTypes = domainTypes;
         var datas=GetData<ActAttribute>();
-        ///一系列的Actions
+        ///一系列的Actions初始化
         foreach(var x in datas)
         {
             var act=(Activity)Activator.CreateInstance(x);
             domain.pActions.Add(act.GetAction());
-            domain.predicates.AddRange(act.GetPredicates());
-            domain.funcs.AddRange(act.GetFuncs());
+            domain.AddPreds(act.GetPredicates());
+            domain.AddFuncs(act.GetFuncs());
         }
+        //初始化一系列的Object
         List<PDDLClass> pddlClasss = new List<PDDLClass>();
-        //pddlClasss.Add(new Person_PDDL(new PersonType()));
+        //pddlClasss.Add(new Person_PDDL());
         foreach(var x in pddlClasss)
         {
-            domain.predicates.AddRange(x.GetPreds());
-            domain.funcs.AddRange(x.GetFuncs());
+            x.SetDomain(domain);
+            x.SetProblem(problem);
         }
         return domain;
     }

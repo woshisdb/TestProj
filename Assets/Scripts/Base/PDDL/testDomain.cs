@@ -158,33 +158,85 @@ using UnityEngine;
 
 //    }
 //}
+
 public class Domain
 {
-    public List<Type> pTypes;
-    public List<Predicate> predicates;
-    public List<Func> funcs;
-    public List<PAction> pActions;
+    protected class MyCustomComparer : IEqualityComparer<PType>
+    {
+        public bool Equals(PType x, PType y)
+        {
+            return x.typeName == y.typeName;
+        }
+
+        public int GetHashCode(PType obj)
+        {
+            return obj.typeName.GetHashCode();
+        }
+    }
+
+    protected class FuncComparer : IEqualityComparer<Func>
+    {
+        public bool Equals(Func x, Func y)
+        {
+            return x.name == y.name;
+        }
+
+        public int GetHashCode(Func obj)
+        {
+            return obj.name.GetHashCode();
+        }
+    }
+
+    protected class PredicateComparer : IEqualityComparer<Predicate>
+    {
+        public bool Equals(Predicate x, Predicate y)
+        {
+            return x.name == y.name;
+        }
+
+        public int GetHashCode(Predicate obj)
+        {
+            return obj.name.GetHashCode();
+        }
+    }
+
+    protected class PActionComparer : IEqualityComparer<PAction>
+    {
+        public bool Equals(PAction x, PAction y)
+        {
+            return x.actionName == y.actionName;
+        }
+
+        public int GetHashCode(PAction obj)
+        {
+            return obj.actionName.GetHashCode();
+        }
+    }
+
+    public HashSet<PType> pTypes;
+    public HashSet<Predicate> predicates;
+    public HashSet<Func> funcs;
+    public HashSet<PAction> pActions;
     public string domainName;
     public Domain()
     {
-        pTypes = new List<Type>();
-        predicates = new List<Predicate>();
-        funcs = new List<Func>();
-        pActions = new List<PAction>();
+        pTypes = new HashSet<PType>(new MyCustomComparer());
+        predicates = new HashSet<Predicate>(new PredicateComparer());
+        funcs = new HashSet<Func>(new FuncComparer());
+        pActions = new HashSet<PAction>(new PActionComparer());
     }
     public void Print()
     {
         StringBuilder str = new StringBuilder();
         str.AppendLine("(");
         str.AppendFormat("(domain {0})\n", domainName);
-
         if (pTypes.Count > 0)
         {
             str.AppendLine("(:types\n");
-            str.AppendLine("PType``");
-            for (int i = 0; i < pTypes.Count; i++)
+            str.AppendLine("PType");
+            foreach (var p in pTypes)
             {
-                str.AppendFormat("{0}-{1}\n", pTypes[i].Name, pTypes[i].BaseType.Name);
+                str.AppendFormat("{0}-{1}\n", p.typeName, p.GetType().BaseType.GetType().Name);
             }
             str.AppendLine("\n)\n");
         }
@@ -192,9 +244,9 @@ public class Domain
         {
             str.AppendLine("(:predicates\n");
 
-            for (int j = 0; j < predicates.Count; j++)
+            foreach (var p in predicates)
             {
-                predicates[j].f(str);
+                p.f(str);
                 str.Append(" ");
             }
             str.AppendLine("\n)");
@@ -203,21 +255,64 @@ public class Domain
         {
             str.AppendLine("(:functions\n");
 
-            for (int j = 0; j < funcs.Count; j++)
+            foreach (var p in funcs)
             {
-                str.Append(funcs[j].ToString() + " ");
+                str.Append(p.ToString() + " ");
             }
             str.AppendLine("\n)");
         }
 
-        for (int i = 0; i < pActions.Count; i++)
+        foreach (var p in pActions)
         {
-            str.AppendLine(pActions[i].ToString());
+            str.AppendLine(p.ToString());
         }
         //for (int i = 0; i < axioms.Count; i++)
         //{
         //    str.AppendLine(axioms[i].ToString());
         //}
         Debug.Log( str.ToString());
+    }
+    public void AddTypes(List<PType> ps)
+    {
+        if (ps != null)
+        {
+            foreach (var x in ps)
+            {
+               var has= pTypes.Contains(x);
+                if(!has)
+                {
+                    pTypes.Add(x);
+                }
+            }
+        }
+    }
+    public void AddFuncs(List<Func> ps)
+    {
+        if (ps != null)
+        {
+            foreach (var x in ps)
+            {
+                var has = funcs.Contains(x);
+                if (!has)
+                {
+                    funcs.Add(x);
+                }
+            }
+        }
+    }
+
+    public void AddPreds(List<Predicate> ps)
+    {
+        if (ps != null)
+        {
+            foreach (var x in ps)
+            {
+                var has = predicates.Contains(x);
+                if (!has)
+                {
+                    predicates.Add(x);
+                }
+            }
+        }
     }
 }

@@ -356,6 +356,7 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
         {
             PDDLUIMenu.PDDLGen(x);
         }
+
     }
     public void OnWinChange(int win)//´ýÐÞ¸Ä
     {

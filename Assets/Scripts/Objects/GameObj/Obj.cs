@@ -24,6 +24,8 @@ public interface IPPDLExtent
 public interface IPDDL
 {
     public PType GetPtype();
+    public void InitPDDLClass();
+    public PDDLClass GetPDDLClass();
 }
 
 [Map(null,"objSaver")]
@@ -49,6 +51,8 @@ public class Obj:PDDL,ICanRegisterEvent,IPDDL
     {
         ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.objs.Add(this);
         this.activities = GameArchitect.activities[GetType()];//一系列的活动
+        //初始化PDDL类
+        InitPDDLClass();
     }
     public PType GetPtype()
     {
@@ -140,6 +144,21 @@ public class Obj:PDDL,ICanRegisterEvent,IPDDL
     public virtual void LatUpdate()
     {
         
+    }
+
+    public void InitPDDLClass()
+    {
+        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl.SetObj(this);
+    }
+
+    public PDDLClass GetPDDLClass()
+    {
+        throw new NotImplementedException();
+    }
+    ~Obj()
+    {
+        PDDLClassGet.Remove(pddl);
     }
 }
 

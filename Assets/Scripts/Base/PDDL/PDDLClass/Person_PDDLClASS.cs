@@ -36,9 +36,12 @@ public Person_PDDL():base(){
                 });
             
 resource=new Resource_PDDL();
-resource.SetObj(obj.resource);
 }
-        public override List<Predicate> GetPreds()
+public override void SetObj(object obj){
+            this.obj=(Person)obj;
+resource.SetObj(((Person)obj).resource);
+}
+public override List<Predicate> GetPreds()
         {
             var ret= new List<Predicate>() {
 (Predicate)isPlayer.pop(),
@@ -64,4 +67,10 @@ return ret;}
 public override List<Pop> GetFuncsVal(){var ret= new List<Pop>();
 ret.Add(money.val());
 return ret;}
+public override List<PType> GetTypes(){
+            var ret=new List<PType>();
+ret.Add(obj.GetPtype());
+ret.Add(resource.GetPType());
+return ret;
+     }
 }

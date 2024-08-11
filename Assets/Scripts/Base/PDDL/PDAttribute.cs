@@ -269,15 +269,17 @@ public abstract class PDDLClass
 {
     public virtual void SetDomain(Domain domain)
     {
-        domain.funcs.AddRange(GetFuncs());
-        domain.predicates.AddRange(GetPreds());
+        domain.AddTypes(GetTypes());
+        domain.AddFuncs(GetFuncs());
+        domain.AddPreds(GetPreds());
     }
     public virtual void SetProblem(Problem problem)
     {
-        problem.objects.AddRange(GetObjs());//添加自己
+        problem.GetObjs(GetObjs());//添加自己
         problem.initVal.AddRange(GetPredsVal());
         problem.initVal.AddRange(GetFuncsVal());
     }
+    public abstract List<PType> GetTypes();
     public abstract List<Predicate> GetPreds();
     public abstract List<Func> GetFuncs();
     public abstract List<Pop> GetPredsVal();
@@ -357,18 +359,35 @@ where F : PType, new()
     {
         return obj.GetPtype();
     }
+    public override List<PType> GetTypes()
+    {
+        return null;
+    }
 }
 
 public class Dic<T, F> : Dictionary<T, F>, IPDDL
 {
-    public PType obj;
+    public PType type;
+    public PDDLClass pddl;
     public PType GetPtype()
     {
-        return obj;
+        return type;
     }
+
+    public void InitPDDLClass()
+    {
+        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl.SetObj(this);
+    }
+
+    public PDDLClass GetPDDLClass()
+    {
+        return pddl;
+    }
+
     public Dic()
     {
-        this.obj = new DicType<T,F>();
+        type = new DicType<T, F>();
     }
 }
 
