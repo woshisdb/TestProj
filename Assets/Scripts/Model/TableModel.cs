@@ -4,13 +4,16 @@ using System.Text;
 using QFramework;
 using UnityEngine;
 
+public class TableModelType:ObjType
+{
 
+}
 
 public struct TableChangeEvent
 {
     public TableModel Model;
 }
-[SerializeField]
+[SerializeField,Class]
 public class TableModel:Obj
 {
     public string TableName;

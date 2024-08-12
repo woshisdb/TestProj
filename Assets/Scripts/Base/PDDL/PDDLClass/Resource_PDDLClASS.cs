@@ -20,7 +20,7 @@ public Resource_PDDL():base(){
                 },
                 () =>
                 {
-                   return new Num(new Func("Resource_maxSize", obj.GetPtype()),obj.maxSize);
+                   return new Num(new Func("Resource_maxSize", obj.GetPtype()),()=>{return obj.maxSize;});
                 });
             
 
@@ -31,7 +31,7 @@ public Resource_PDDL():base(){
                 },
                 () =>
                 {
-                   return new Num(new Func("Resource_nowSize", obj.GetPtype()),obj.nowSize);
+                   return new Num(new Func("Resource_nowSize", obj.GetPtype()),()=>{return obj.nowSize;});
                 });
             
 }

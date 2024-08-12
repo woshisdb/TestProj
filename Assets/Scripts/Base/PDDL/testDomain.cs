@@ -231,7 +231,7 @@ public class Domain
         domainName = "TestDomain";
         pTypes = new HashSet<PType>(new MyCustomComparer());
         predicates = new HashSet<Predicate>(new PredicateComparer());
-        predicates.Add(P.Belong(new PType(),new PType()).predicate);
+        predicates.Add(P.Is(new PType(),new PType()).predicate);
         funcs = new HashSet<Func>(new FuncComparer());
         pActions = new HashSet<PAction>(new PActionComparer());
     }

@@ -42,9 +42,9 @@ public static class P
     {
         return new When(x, y);
     }
-    public static Bool Belong(PType x,PType y)
+    public static Bool Is(PType x,PType y)
     {
-        return new Bool( new Belong(x, y),true);
+        return new Bool( new Is(x, y),true);
     }
     public static Less Less( Pop x, Pop y)
     {
@@ -180,7 +180,8 @@ public class PDDLClassGenerater
     }
     public static void GenerateType(Type type,CNode cNode)
     {
-        foreach (var field in type.GetFields())
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
+        foreach (var field in fields)
         {
             var attributes = field.GetCustomAttributes(typeof(PropertyAttribute), false);
             if (attributes.Any())

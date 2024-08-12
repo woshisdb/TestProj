@@ -43,7 +43,7 @@ public class Go : Activity
     public int wasteTime;
     public override bool Condition(Obj obj, Person person,params object[] objs)
     {
-        return person.belong.TableName == xname;
+        return person.belong == GameArchitect.get.GetModel<TableModelSet>().Get(xname);
     }
     //public override PAction GetAction()
     //{

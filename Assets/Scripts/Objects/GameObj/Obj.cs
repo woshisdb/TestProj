@@ -37,6 +37,7 @@ public class Obj:PDDL,ICanRegisterEvent,IPDDL
     /// </summary>
     public PType obj;
     public string name;
+    [Property]
     public TableModel belong;//所属于的对象
     public ObjSaver objSaver;//对象的类型
     public CardInf cardInf;

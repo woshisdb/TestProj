@@ -567,9 +567,9 @@ public class ForAll : Pop
         return sb.ToString();
     }
 }
-public class Belong : Predicate
+public class Is : Predicate
 {
-    public Belong(PType x,PType y) : base("BelongPDDL", x,y)
+    public Is(PType x,PType y) : base("IsPDDL", x,y)
     {
 
     }
@@ -649,7 +649,7 @@ public class PAction : PDDL
     public Pop duration;
     public PAction()
     {
-        actionName = GetType().Name;
+        actionName = GetType().Name+"_Action";
         objects = new List<PType>();
         condition = null;
         effect = null;
@@ -690,13 +690,8 @@ public class PAction : PDDL
         str.AppendLine(")\n");
         return str.ToString();
     }
-    public void Init(string actionName, PType[] objects, Pop condition, Pop effect,Pop duration=null)
+    public virtual void Init(Domain domain,Problem problem)
     {
-        this.actionName = actionName;
-        this.objects =new List<PType>(objects);
-        this.condition = condition;
-        this.effect = effect;
-        this.duration = duration;
     }
 }
 public class Derived
@@ -829,7 +824,8 @@ public class Num:PDDL, PDDLProperty
     }
     public Num(Func func,Func<int> val)
     {
-
+        this.val = val;
+        this.func = func;
     }
     public override string ToString()
     {
@@ -838,6 +834,7 @@ public class Num:PDDL, PDDLProperty
     public override string InitVal()
     {
         var str = "";
+        Debug.Log(func.name);
         foreach(var x in func.objects)
         {
             str=str+x.objName+" ";
@@ -1066,7 +1063,6 @@ public class Problem : PDDL
         ////////////////////Enum/////////////////////////
         for(int i=0;i<initVal.Count;i++)
         {
-            Debug.Log(initVal[i].GetType().Name);
             str.AppendLine(initVal[i].InitVal());
         }
         str.AppendLine("\n)\n");

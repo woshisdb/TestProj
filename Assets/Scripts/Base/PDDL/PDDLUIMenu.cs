@@ -139,7 +139,7 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
                 }},
                 () =>
                 {{
-                   return new Bool(new Predicate(""{cNode.type.Name}_{t.prex}"", obj.GetPtype()),obj.{t.prex});
+                   return new Bool(new Predicate(""{cNode.type.Name}_{t.prex}"", obj.GetPtype()),()=>{{return obj.{t.prex};}});
                 }});
             ");
         }
@@ -153,7 +153,7 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
                 }},
                 () =>
                 {{
-                   return new Num(new Func(""{cNode.type.Name}_{t.prex}"", obj.GetPtype()),obj.{t.prex});
+                   return new Num(new Func(""{cNode.type.Name}_{t.prex}"", obj.GetPtype()),()=>{{return obj.{t.prex};}});
                 }});
             ");
         }
@@ -255,11 +255,11 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
         }
         foreach (var t in cNode.enums)
         {
-            strbuilder.AppendLine($@"ret.Add( P.Belong( GetObj() , {t.prex}.GetObj() ) );");
+            strbuilder.AppendLine($@"ret.Add( P.Is( GetObj() , {t.prex}.GetObj() ) );");
         }
         foreach (var t in cNode.custs)
         {
-            strbuilder.AppendLine($@"ret.Add( P.Belong( GetObj() , {t.prex}.GetObj() ) );");
+            strbuilder.AppendLine($@"ret.Add( P.Is( GetObj() , {t.prex}.GetObj() ) );");
         }
         strbuilder.AppendLine($@"return ret;}}");
         strbuilder.AppendLine($@"public override List<Num> GetFuncsVal(){{var ret= new List<Num>();");

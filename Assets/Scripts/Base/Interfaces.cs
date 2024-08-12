@@ -205,9 +205,9 @@ public class Map : Singleton<Map>
         foreach (var x in datas)
         {
             var act=(Activity)Activator.CreateInstance(x);
-            domain.pActions.Add(act.GetAction());
-            domain.AddPreds(act.GetPredicates());
-            domain.AddFuncs(act.GetFuncs());
+            var actData = act.GetAction();
+            domain.pActions.Add(actData);
+            actData.Init(domain,problem);
         }
         //初始化一系列的Object
         var pddlClasss = PDDLClassGet.kv;

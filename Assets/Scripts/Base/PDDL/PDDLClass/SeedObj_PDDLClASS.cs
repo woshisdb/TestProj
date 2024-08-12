@@ -8,12 +8,16 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 public class SeedObj_PDDL:PDDLClass<SeedObj,SeedType>{
+public TableModel_PDDL belong;
 public SeedObj_PDDL():base(){
             
+belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(SeedObj)obj;
             ((SeedObj)obj).pddl = this;
+belong.SetObj(((SeedObj)obj).belong);
+  ((SeedObj)obj).belong.pddl = belong;  
 }
 public override List<Predicate> GetPreds()
         {
@@ -33,12 +37,14 @@ public override List<Predicate> GetPreds()
             }
         
 public override List<Bool> GetPredsVal(){var ret= new List<Bool>();
+ret.Add( P.Is( GetObj() , belong.GetObj() ) );
 return ret;}
 public override List<Num> GetFuncsVal(){var ret= new List<Num>();
 return ret;}
 public override List<PType> GetTypes(){
             var ret=new List<PType>();
 ret.Add(obj.GetPtype());
+ret.Add(belong.GetPType());
 return ret;
      }
 }

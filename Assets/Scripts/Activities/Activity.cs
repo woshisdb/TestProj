@@ -37,14 +37,6 @@ public abstract class Activity
         return action;
     }
 
-    public virtual List<Predicate> GetPredicates()
-    {
-        return new List<Predicate>();
-    }
-    public virtual List<Func> GetFuncs()
-    {
-        return new List<Func>();
-    }
     /// <summary>
     /// Êä³öUIµÄSelect
     /// </summary>

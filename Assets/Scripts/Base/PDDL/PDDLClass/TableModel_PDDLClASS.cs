@@ -7,17 +7,17 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
-public class IronKuangObj_PDDL:PDDLClass<IronKuangObj,IronKuangType>{
+public class TableModel_PDDL:PDDLClass<TableModel,TableModelType>{
 public TableModel_PDDL belong;
-public IronKuangObj_PDDL():base(){
+public TableModel_PDDL():base(){
             
 belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
-            this.obj=(IronKuangObj)obj;
-            ((IronKuangObj)obj).pddl = this;
-belong.SetObj(((IronKuangObj)obj).belong);
-  ((IronKuangObj)obj).belong.pddl = belong;  
+            this.obj=(TableModel)obj;
+            ((TableModel)obj).pddl = this;
+belong.SetObj(((TableModel)obj).belong);
+  ((TableModel)obj).belong.pddl = belong;  
 }
 public override List<Predicate> GetPreds()
         {
