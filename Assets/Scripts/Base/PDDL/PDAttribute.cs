@@ -46,6 +46,10 @@ public static class P
     {
         return new Bool( new Is(x, y),true);
     }
+    public static Bool Is(IPDDL x,IPDDL y)
+    {
+        return Is(x.GetPtype(),y.GetPtype());
+    }
     public static Less Less( Pop x, Pop y)
     {
         return new Less(x, y);
@@ -304,12 +308,14 @@ where T : IPDDL
 where F : PType, new()
 {
     public T obj;
+    public F ptype;
     /// <summary>
     /// PDDLClass
     /// </summary>
     /// <param name="obj"></param>
     public PDDLClass()
     {
+        ptype = new F();
     }
 
     public override List<Predicate> GetPreds()
@@ -331,7 +337,7 @@ where F : PType, new()
     /// <returns></returns>
     public override PType GetPType()
     {
-        return new F();
+        return ptype;
     }
 
     public override List<Bool> GetPredsVal()
@@ -358,7 +364,7 @@ where F : PType, new()
 
     public override PType GetObj()
     {
-        return obj.GetPtype();
+        return ptype;
     }
     public override List<PType> GetTypes()
     {

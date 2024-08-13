@@ -649,7 +649,6 @@ public class PAction : PDDL
     public Pop duration;
     public PAction()
     {
-        actionName = GetType().Name+"_Action";
         objects = new List<PType>();
         condition = null;
         effect = null;

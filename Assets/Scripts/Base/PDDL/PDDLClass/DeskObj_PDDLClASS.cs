@@ -11,7 +11,6 @@ public class DeskObj_PDDL:PDDLClass<DeskObj,DeskType>{
 public TableModel_PDDL belong;
 public DeskObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(DeskObj)obj;

@@ -11,7 +11,6 @@ public class WheatPlaceObj_PDDL:PDDLClass<WheatPlaceObj,WheatPlaceType>{
 public TableModel_PDDL belong;
 public WheatPlaceObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(WheatPlaceObj)obj;

@@ -11,7 +11,6 @@ public class FoodObj_PDDL:PDDLClass<FoodObj,FoodType>{
 public TableModel_PDDL belong;
 public FoodObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(FoodObj)obj;

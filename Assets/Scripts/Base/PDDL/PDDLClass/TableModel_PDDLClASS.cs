@@ -11,7 +11,6 @@ public class TableModel_PDDL:PDDLClass<TableModel,TableModelType>{
 public TableModel_PDDL belong;
 public TableModel_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(TableModel)obj;

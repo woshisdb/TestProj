@@ -11,7 +11,6 @@ public class KuangMiningObj_PDDL:PDDLClass<KuangMiningObj,KuangMiningType>{
 public TableModel_PDDL belong;
 public KuangMiningObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(KuangMiningObj)obj;

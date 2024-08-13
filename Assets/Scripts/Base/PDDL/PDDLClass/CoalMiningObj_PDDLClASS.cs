@@ -11,7 +11,6 @@ public class CoalMiningObj_PDDL:PDDLClass<CoalMiningObj,CoalMiningType>{
 public TableModel_PDDL belong;
 public CoalMiningObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(CoalMiningObj)obj;

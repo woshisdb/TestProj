@@ -246,6 +246,7 @@ public class Resource:IPDDL
     {
         resources = new Dictionary<ObjEnum, ObjContBase>();
         obj = new ResourceType();
+        InitPDDLClass();
     }
     public void SetRate(Dictionary<TransationEnum, Rate> rates)
     {

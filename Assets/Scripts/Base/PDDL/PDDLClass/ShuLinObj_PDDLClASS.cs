@@ -11,7 +11,6 @@ public class ShuLinObj_PDDL:PDDLClass<ShuLinObj,ShuLinType>{
 public TableModel_PDDL belong;
 public ShuLinObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(ShuLinObj)obj;

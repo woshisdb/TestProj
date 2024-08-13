@@ -36,8 +36,6 @@ public Person_PDDL():base(){
                    return new Num(new Func("Person_money", obj.GetPtype()),()=>{return obj.money;});
                 });
             
-resource=  (Resource_PDDL)PDDLClassGet.Generate(typeof(Resource));
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(Person)obj;

@@ -11,7 +11,6 @@ public class TreeSeedObj_PDDL:PDDLClass<TreeSeedObj,TreeSeedType>{
 public TableModel_PDDL belong;
 public TreeSeedObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(TreeSeedObj)obj;

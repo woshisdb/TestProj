@@ -11,7 +11,6 @@ public class GoldKuangObj_PDDL:PDDLClass<GoldKuangObj,GoldKuangType>{
 public TableModel_PDDL belong;
 public GoldKuangObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(GoldKuangObj)obj;

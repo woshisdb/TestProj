@@ -11,7 +11,6 @@ public class FarmObj_PDDL:PDDLClass<FarmObj,FarmType>{
 public TableModel_PDDL belong;
 public FarmObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(FarmObj)obj;

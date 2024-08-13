@@ -11,7 +11,6 @@ public class ToolObj_PDDL:PDDLClass<ToolObj,ToolType>{
 public TableModel_PDDL belong;
 public ToolObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(ToolObj)obj;

@@ -50,8 +50,18 @@ public class Go : Activity
     //    PAction action = new PAction();
     //    return action;
     //}
-
-    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
+    public override PAction GetAction()
+	{
+		PAction action = new PAction();
+        action.actionName = "GoAct";
+        var person = new Person();
+        var table = new TableModel();
+        var aimTable = new TableModel();
+        action.objects = new List<PType>() { person.GetPtype(), table.GetPtype(), aimTable.GetPtype() };
+        action.condition =P.And( P.Is(((Person_PDDL)(person.pddl)).belong.GetPType(),table) );
+		return action;
+	}
+	public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
         return new SeqAct(person, obj,
             new LeaveA(person, obj, xname),

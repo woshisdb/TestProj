@@ -11,7 +11,6 @@ public class MoneyObj_PDDL:PDDLClass<MoneyObj,MoneyType>{
 public TableModel_PDDL belong;
 public MoneyObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(MoneyObj)obj;

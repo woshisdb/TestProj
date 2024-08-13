@@ -11,7 +11,6 @@ public class PathObj_PDDL:PDDLClass<PathObj,PathType>{
 public TableModel_PDDL belong;
 public PathObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(PathObj)obj;

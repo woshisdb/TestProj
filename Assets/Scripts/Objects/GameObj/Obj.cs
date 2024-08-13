@@ -35,7 +35,7 @@ public class Obj:PDDL,ICanRegisterEvent,IPDDL
     /// <summary>
     /// 对象类型
     /// </summary>
-    public PType obj;
+    public PType obj { get { return pddl.GetPType(); } }
     public string name;
     [Property]
     public TableModel belong;//所属于的对象
@@ -53,7 +53,6 @@ public class Obj:PDDL,ICanRegisterEvent,IPDDL
         ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.objs.Add(this);
         this.activities = GameArchitect.activities[GetType()];//一系列的活动
         //初始化PDDL类
-        InitPDDLClass();
     }
     public PType GetPtype()
     {
@@ -81,6 +80,7 @@ public class Obj:PDDL,ICanRegisterEvent,IPDDL
             this.SendEvent<SelectCardEvent>(new SelectCardEvent(cardInf, GameArchitect.get.player));
         }    
         );
+        InitPDDLClass();
     }
 
     public IArchitecture GetArchitecture()
@@ -98,8 +98,6 @@ public class Obj:PDDL,ICanRegisterEvent,IPDDL
     {
         objSaver = Map.Instance.GetSaver(GetType());//默认初始化
         this.name = getName();
-        this.obj = new PType(this.name);
-        this.obj.typeName=GetType().Name;
     }
     ///// <summary>
     ///// 摧毁的方法

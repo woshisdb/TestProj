@@ -11,7 +11,6 @@ public class IronObj_PDDL:PDDLClass<IronObj,IronType>{
 public TableModel_PDDL belong;
 public IronObj_PDDL():base(){
             
-belong=  (TableModel_PDDL)PDDLClassGet.Generate(typeof(TableModel));
 }
 public override void SetObj(object obj){
             this.obj=(IronObj)obj;
