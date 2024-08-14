@@ -8,8 +8,14 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 public class ShuLinObj_PDDL:PDDLClass<ShuLinObj,ShuLinType>{
-public TableModel_PDDL belong;
+public PDDLValRef<TableModel_PDDL,TableModel> belong;
 public ShuLinObj_PDDL():base(){
+            
+
+            belong = new PDDLValRef<TableModel_PDDL,TableModel>(
+            () => { return new Predicate("ShuLinObj_belong",obj.GetPtype(),obj.belong.GetPtype()); },
+            () => { return (TableModel_PDDL)(obj.belong.GetPDDLClass()); },
+            () => { return obj.belong; });
             
 }
 public override void SetObj(object obj){

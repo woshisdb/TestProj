@@ -125,7 +125,8 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
         }
         foreach (var t in cNode.custs)
         {
-            strbuilder.AppendLine($"public {t.TypeName} {t.prex};");
+            Debug.Log(t.prex);
+            strbuilder.AppendLine($"public PDDLValRef<{t.TypeName},{t.clasx}> {t.prex};");
         }
         strbuilder.AppendLine($@"public {cNode.type.Name}_PDDL():base(){{
             ");
@@ -162,18 +163,28 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
             strbuilder.AppendLine($@"{t.prex}=  ({t.TypeName})PDDLClassGet.Generate(typeof({t.clasx}));");
             strbuilder.AppendLine($@"{t.prex}.SetObj(()=>{{return obj.{t.prex};}});");
         }
-        //foreach (var t in cNode.dics)
-        //{
-        //    //strbuilder.AppendLine($@"{t.prex}=  ({t.TypeName})PDDLClassGet.Generate(typeof({t.clasx}));");
-        //    strbuilder.AppendLine($@"{t.prex}=({t.TypeName}) obj.{t.clasx}.pddl ;");
-        //    //strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
-        //}
-        //foreach (var t in cNode.custs)
-        //{
-        //    strbuilder.AppendLine($@"{t.prex}=({t.TypeName}) obj.{t.clasx}.pddl ;");
-        //    //strbuilder.AppendLine($@"{t.prex}=  ({t.TypeName})PDDLClassGet.Generate(typeof({t.clasx}));");
-        //    //strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
-        //}
+        foreach (var t in cNode.dics)
+        {
+            //strbuilder.AppendLine($@"{t.prex}=  ({t.TypeName})PDDLClassGet.Generate(typeof({t.clasx}));");
+            strbuilder.AppendLine($@"
+            {t.prex} = new PDDLValRef<{t.TypeName},{t.clasx}>(
+            () => {{ return new Predicate(""{cNode.type.Name}_{t.prex}"",obj.GetPtype(),obj.{t.prex}.GetPtype()); }},
+            () => {{ return ({t.TypeName})(obj.{t.prex}.GetPDDLClass()); }},
+            () => {{ return obj.{t.prex}; }});
+            ");
+            //strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
+        }
+        foreach (var t in cNode.custs)
+        {
+            strbuilder.AppendLine($@"
+            {t.prex} = new PDDLValRef<{t.TypeName},{t.clasx}>(
+            () => {{ return new Predicate(""{cNode.type.Name}_{t.prex}"",obj.GetPtype(),obj.{t.prex}.GetPtype()); }},
+            () => {{ return ({t.TypeName})(obj.{t.prex}.GetPDDLClass()); }},
+            () => {{ return obj.{t.prex}; }});
+            ");
+            //strbuilder.AppendLine($@"{t.prex}=  ({t.TypeName})PDDLClassGet.Generate(typeof({t.clasx}));");
+            //strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
+        }
         strbuilder.AppendLine($@"}}");
 
         strbuilder.AppendLine($@"public override void SetObj(object obj){{

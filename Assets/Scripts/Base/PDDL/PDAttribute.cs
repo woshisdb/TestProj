@@ -372,6 +372,30 @@ where F : PType, new()
     }
 }
 
+public class PreCondition
+{
+
+}
+
+public class PDDLValRef<T,F>
+{
+    public Func<List<PDDL>,T> reg;
+    public Func<T> pVal;
+    public Func<F> val;
+    public Func<Predicate> pop;
+    public PDDLValRef(Func<Predicate> pop,Func<T> pVal, Func<F> val)
+    {
+        this.pop = pop;
+        this.pVal = pVal;
+        this.val = val;
+        reg = (ret) =>
+        {
+            ret.Add(this.pop());
+            return pVal();
+        };
+    }
+}
+
 public class Dic<T, F> : Dictionary<T, F>, IPDDL
 {
     public PType type;
@@ -422,6 +446,8 @@ public class PDDLVal:PDVal
         return val();
     }
 }
+
+
 
 public class NumType:PType
 {

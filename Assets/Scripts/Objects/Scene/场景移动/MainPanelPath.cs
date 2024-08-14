@@ -58,7 +58,9 @@ public class Go : Activity
         var table = new TableModel();
         var aimTable = new TableModel();
         action.objects = new List<PType>() { person.GetPtype(), table.GetPtype(), aimTable.GetPtype() };
-        action.condition =P.And( P.Is(((Person_PDDL)(person.pddl)).belong.GetPType(),table) );
+        List<PDDL> list = new List<PDDL>();
+        ((Person_PDDL)person.GetPDDLClass()).belong.reg(list).belong.reg(list).belong.reg(list);
+        action.condition =P.And( P.Is(person.obj,table.GetPtype()) );
 		return action;
 	}
 	public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)

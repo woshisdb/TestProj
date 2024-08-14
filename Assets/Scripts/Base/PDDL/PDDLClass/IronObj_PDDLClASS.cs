@@ -8,8 +8,14 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 public class IronObj_PDDL:PDDLClass<IronObj,IronType>{
-public TableModel_PDDL belong;
+public PDDLValRef<TableModel_PDDL,TableModel> belong;
 public IronObj_PDDL():base(){
+            
+
+            belong = new PDDLValRef<TableModel_PDDL,TableModel>(
+            () => { return new Predicate("IronObj_belong",obj.GetPtype(),obj.belong.GetPtype()); },
+            () => { return (TableModel_PDDL)(obj.belong.GetPDDLClass()); },
+            () => { return obj.belong; });
             
 }
 public override void SetObj(object obj){

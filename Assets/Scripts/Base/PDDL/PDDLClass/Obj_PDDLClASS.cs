@@ -8,8 +8,14 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 public class Obj_PDDL:PDDLClass<Obj,PType>{
-public TableModel_PDDL belong;
+public PDDLValRef<TableModel_PDDL,TableModel> belong;
 public Obj_PDDL():base(){
+            
+
+            belong = new PDDLValRef<TableModel_PDDL,TableModel>(
+            () => { return new Predicate("Obj_belong",obj.GetPtype(),obj.belong.GetPtype()); },
+            () => { return (TableModel_PDDL)(obj.belong.GetPDDLClass()); },
+            () => { return obj.belong; });
             
 }
 public override void SetObj(object obj){

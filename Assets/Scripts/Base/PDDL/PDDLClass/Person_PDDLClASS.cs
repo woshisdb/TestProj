@@ -10,8 +10,8 @@ using UnityEngine;
 public class Person_PDDL:PDDLClass<Person,PersonType>{
 public PDDLVal isPlayer;
 public PDDLVal money;
-public Resource_PDDL resource;
-public TableModel_PDDL belong;
+public PDDLValRef<Resource_PDDL,Resource> resource;
+public PDDLValRef<TableModel_PDDL,TableModel> belong;
 public Person_PDDL():base(){
             
 
@@ -35,6 +35,18 @@ public Person_PDDL():base(){
                 {
                    return new Num(new Func("Person_money", obj.GetPtype()),()=>{return obj.money;});
                 });
+            
+
+            resource = new PDDLValRef<Resource_PDDL,Resource>(
+            () => { return new Predicate("Person_resource",obj.GetPtype(),obj.resource.GetPtype()); },
+            () => { return (Resource_PDDL)(obj.resource.GetPDDLClass()); },
+            () => { return obj.resource; });
+            
+
+            belong = new PDDLValRef<TableModel_PDDL,TableModel>(
+            () => { return new Predicate("Person_belong",obj.GetPtype(),obj.belong.GetPtype()); },
+            () => { return (TableModel_PDDL)(obj.belong.GetPDDLClass()); },
+            () => { return obj.belong; });
             
 }
 public override void SetObj(object obj){
