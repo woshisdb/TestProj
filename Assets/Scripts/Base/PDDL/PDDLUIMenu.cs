@@ -168,6 +168,7 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
             //strbuilder.AppendLine($@"{t.prex}=  ({t.TypeName})PDDLClassGet.Generate(typeof({t.clasx}));");
             strbuilder.AppendLine($@"
             {t.prex} = new PDDLValRef<{t.TypeName},{t.clasx}>(
+            (p)=> {{ return new Predicate(""{cNode.type.Name}_{t.prex}"", obj.GetPtype(), p); }},
             () => {{ return new Predicate(""{cNode.type.Name}_{t.prex}"",obj.GetPtype(),obj.{t.prex}.GetPtype()); }},
             () => {{ return ({t.TypeName})(obj.{t.prex}.GetPDDLClass()); }},
             () => {{ return obj.{t.prex}; }});
@@ -178,6 +179,7 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
         {
             strbuilder.AppendLine($@"
             {t.prex} = new PDDLValRef<{t.TypeName},{t.clasx}>(
+            (p)=> {{ return new Predicate(""{cNode.type.Name}_{t.prex}"", obj.GetPtype(), p); }},
             () => {{ return new Predicate(""{cNode.type.Name}_{t.prex}"",obj.GetPtype(),obj.{t.prex}.GetPtype()); }},
             () => {{ return ({t.TypeName})(obj.{t.prex}.GetPDDLClass()); }},
             () => {{ return obj.{t.prex}; }});
@@ -190,23 +192,21 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
         strbuilder.AppendLine($@"public override void SetObj(object obj){{
             this.obj=({cNode.type.Name})obj;
             (({cNode.type.Name})obj).pddl = this;");
-        //foreach (var t in cNode.enums)
-        //{
-        //    strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
-        //    strbuilder.AppendLine($@"  (({cNode.type.Name})obj).{t.prex}.pddl = {t.prex};  ");
-        //    //strbuilder.AppendLine($@"{t.prex}.SetObj(()=>{{return obj.{t.prex};}});");
-        //}
-        foreach (var t in cNode.dics)
-        {
-            strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
-            strbuilder.AppendLine($@"  (({cNode.type.Name})obj).{t.prex}.pddl = {t.prex};  ");
-            //strbuilder.AppendLine($@"{t.prex}.SetObj(obj.{t.prex});");
-        }
-        foreach (var t in cNode.custs)
-        {
-            strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
-            strbuilder.AppendLine($@"  (({cNode.type.Name})obj).{t.prex}.pddl = {t.prex};  ");
-        }
+		//foreach (var t in cNode.enums)
+		//{
+		//	strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
+		//	strbuilder.AppendLine($@"  (({cNode.type.Name})obj).{t.prex}.pddl = {t.prex};  ");
+		//}
+		//foreach (var t in cNode.dics)
+  //      {
+  //          strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
+  //          strbuilder.AppendLine($@"  (({cNode.type.Name})obj).{t.prex}.pddl = {t.prex};  ");
+  //      }
+  //      foreach (var t in cNode.custs)
+  //      {
+  //          strbuilder.AppendLine($@"{t.prex}.SetObj((({cNode.type.Name})obj).{t.prex});");
+  //          strbuilder.AppendLine($@"  (({cNode.type.Name})obj).{t.prex}.pddl = {t.prex};  ");
+  //      }
         strbuilder.AppendLine($@"}}");
 
         strbuilder.AppendLine($@"public override List<Predicate> GetPreds()
@@ -266,13 +266,13 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
         {
             strbuilder.AppendLine($@"ret.Add( (Bool) ({t.prex}.val()));");
         }
-        foreach (var t in cNode.enums)
-        {
-            strbuilder.AppendLine($@"ret.Add( P.Is( GetObj() , {t.prex}.GetObj() ) );");
-        }
+        //foreach (var t in cNode.enums)
+        //{
+        //    strbuilder.AppendLine($@"ret.Add( {t.prex}.pop() );");
+        //}
         foreach (var t in cNode.custs)
         {
-            strbuilder.AppendLine($@"ret.Add( P.Is( GetObj() , {t.prex}.GetObj() ) );");
+            strbuilder.AppendLine($@"ret.Add( new Bool( {t.prex}.pop(),true ) );");
         }
         strbuilder.AppendLine($@"return ret;}}");
         strbuilder.AppendLine($@"public override List<Num> GetFuncsVal(){{var ret= new List<Num>();");

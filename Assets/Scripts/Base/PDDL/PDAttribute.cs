@@ -378,13 +378,17 @@ public class PreCondition
 }
 
 public class PDDLValRef<T,F>
+where F: IPDDL
 {
-    public Func<List<PDDL>,T> reg;
+    public Func<List<Pop>,T> reg;
     public Func<T> pVal;
     public Func<F> val;
     public Func<Predicate> pop;
-    public PDDLValRef(Func<Predicate> pop,Func<T> pVal, Func<F> val)
+    public Func<PType, Predicate> Is;
+    public Func<PType> GetPType;
+    public PDDLValRef(Func<PType,Predicate> op, Func<Predicate> pop,Func<T> pVal, Func<F> val)
     {
+        this.Is = op;
         this.pop = pop;
         this.pVal = pVal;
         this.val = val;
@@ -392,6 +396,9 @@ public class PDDLValRef<T,F>
         {
             ret.Add(this.pop());
             return pVal();
+        };
+        GetPType = () => {
+            return val().GetPtype();
         };
     }
 }

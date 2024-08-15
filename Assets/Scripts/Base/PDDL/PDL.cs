@@ -647,12 +647,17 @@ public class PAction : PDDL
     public Pop condition;
     public Pop effect;
     public Pop duration;
+    /// <summary>
+    /// 条件生成所需要的必要信息
+    /// </summary>
+    public List<Pop> conditionEnv;
     public PAction()
     {
         objects = new List<PType>();
         condition = null;
         effect = null;
         duration = null;
+        conditionEnv = new List<Pop>();
     }
     public override string ToString()
     {
@@ -692,6 +697,40 @@ public class PAction : PDDL
     public virtual void Init(Domain domain,Problem problem)
     {
     }
+    /// <summary>
+    /// 注册引用对象
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="F"></typeparam>
+    /// <param name="obj"></param>
+    public void RegRefVal<T,F>(PDDLValRef<T,F> obj) where F:IPDDL
+    {
+        var valInf = obj.val().GetPtype();
+        if (objects.Find((e)=> { return valInf == e; })==null)//不存在则将这个Type列入输入参数
+		{
+            objects.Add(valInf);
+		}
+        conditionEnv.Add(obj.pop());
+    }
+    /// <summary>
+    /// 注册输入的参数
+    /// </summary>
+    /// <param name="pType"></param>
+    public void RegPType(PType pType)
+    {
+        if (objects.Find((e) => { return pType == e; }) == null)//不存在则将这个Type列入输入参数
+        {
+            objects.Add(pType);
+        }
+    }
+    public void RegPDDL(PDDLClass obj)
+    {
+        if (objects.Find((e) => { return obj.GetObj() == e; }) == null)//不存在则将这个Type列入输入参数
+        {
+            objects.Add(obj.GetObj());
+        }
+    }
+
 }
 public class Derived
 {
