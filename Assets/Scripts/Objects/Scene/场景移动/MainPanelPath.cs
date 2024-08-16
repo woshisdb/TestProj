@@ -45,21 +45,27 @@ public class Go : Activity
     {
         return person.belong == GameArchitect.get.GetModel<TableModelSet>().Get(xname);
     }
-	//public override PAction GetAction()
-	//{
-	//	PAction action = new PAction();
-	//	action.actionName = "GoAct";
-	//	var person = new Person();
-	//	var personP = (Person_PDDL)person.GetPDDLClass();
- //       var belong = person.belong;
- //       var belongP = personP.belong;
-	//	var table = new TableModel();
-	//	var tableP = (TableModel_PDDL)table.GetPDDLClass();
- //       action.RegPDDL(personP);
- //       action.RegRefVal(belongP);
-
- //       return action;
-	//}
+	public override PAction GetAction()
+	{
+		PAction action = new PAction();
+		action.actionName = "GoAct";
+		var person = new Person();
+		var personP = (Person_PDDL)person.GetPDDLClass();
+		var belong = person.belong;
+		var belongP = personP.belong;
+		var table = new TableModel();
+		var tableP = (TableModel_PDDL)table.GetPDDLClass();
+		action.RegPDDL(personP);
+		action.RegRefVal(belongP);
+		action.RegPDDL(tableP);
+        action.RegCondition(
+            belongP.Is(tableP.GetObj())
+        );
+        action.RegEffect(
+            belongP.Is(tableP.GetObj())
+        );
+		return action;
+	}
 	public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
         return new SeqAct(person, obj,

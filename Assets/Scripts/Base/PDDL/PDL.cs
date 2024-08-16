@@ -730,6 +730,15 @@ public class PAction : PDDL
             objects.Add(obj.GetObj());
         }
     }
+    public void RegCondition(Pop condition)
+    {
+        conditionEnv.Add(condition);
+        condition = P.And(conditionEnv.ToArray());
+    }
+    public void RegEffect(Pop effect)
+    {
+        this.effect = effect;
+    }
 
 }
 public class Derived
