@@ -305,13 +305,24 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
             strbuilder.AppendLine($@"ret.Add({t.prex}.GetPType());");
         strbuilder.AppendLine("return ret;");
         strbuilder.AppendLine("     }");
+
+        strbuilder.AppendLine($@"public override List<PDDLClass> GetPddls(){{
+        var ret = new List<PDDLClass>();");
+        strbuilder.AppendLine($@"ret.Add(this);");
+        foreach (var t in cNode.enums)
+            strbuilder.AppendLine($@"ret.Add({t.prex}.pVal());");
+        foreach (var t in cNode.dics)
+            strbuilder.AppendLine($@"ret.Add({t.prex}.pVal());");
+        foreach (var t in cNode.custs)
+            strbuilder.AppendLine($@"ret.Add({t.prex}.pVal());");
+        strbuilder.AppendLine($@"return ret;}}");
         strbuilder.AppendLine("}");
         File.WriteAllText($"Assets/Scripts/Base/PDDL/PDDLClass/{cNode.type.Name}_PDDLClASS.cs", strbuilder.ToString());
         AssetDatabase.Refresh();
 
     }
 }
-
+[SerializeField]
 public abstract class PDDLSet
 {
     public PDDLSet()
@@ -321,6 +332,7 @@ public abstract class PDDLSet
     public abstract void Remove(PDDLClass pDDL);
     public abstract HashSet<PDDLClass> GetPddls();
 }
+[SerializeField]
 public class PDDLSet<T>:PDDLSet
     where T: PDDLClass,new()
 {
@@ -362,10 +374,9 @@ public class PDDLSet<T>:PDDLSet
 
 public class PDDLClassGet
 {
-    public static Dictionary<Type,PDDLSet> kv;
+    public static Dictionary<Type, PDDLSet> kv { get { return GameArchitect.get.pddlSet; } }
     public PDDLClassGet()
     {
-        kv = new Dictionary<Type,PDDLSet>();
     }
     public void Init()
     {

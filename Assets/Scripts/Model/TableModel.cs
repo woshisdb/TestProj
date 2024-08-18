@@ -14,8 +14,10 @@ public struct TableChangeEvent
     public TableModel Model;
 }
 [SerializeField,Class]
-public class TableModel:Obj
+public class TableModel: IPDDL, ICanRegisterEvent
 {
+    public PDDLClass pddl;
+    public PType obj { get { return pddl.GetPType(); } }
     public string TableName;
     /// <summary>
     /// 场景大小
@@ -25,11 +27,11 @@ public class TableModel:Obj
     public List<Obj> objs;
     public TableControl control;//Table控制器
     public Rule rule;
-    public TableModel():base(null)
+    public TableModel()
     {
-        str = new StringBuilder();
         persons = new List<Person>();
         objs = new List<Obj>();
+        InitPDDLClass();
     }
 
     public IArchitecture GetArchitecture()
@@ -77,27 +79,35 @@ public class TableModel:Obj
         GameArchitect.get.tableAsset.tableSaver.objs.Remove(obj);
         UpdateTable();
     }
-    //public StringBuilder GetString()
-    //{
-    //    str.Clear();
-    //    str.AppendLine("");
-    //    return str;
-    //}
+
+    public PType GetPtype()
+    {
+        return pddl.GetPType();
+    }
+
+    public void InitPDDLClass()
+    {
+        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl.SetObj(this);
+    }
+
+    public PDDLClass GetPDDLClass()
+    {
+        return pddl;
+    }
+    ~TableModel()
+    {
+        PDDLClassGet.Remove(pddl);
+    }
 }
 public class TableModelSet : AbstractModel
 {
-    public List<TableModel> tableModels;
+    public List<TableModel> tableModels { get { return GameArchitect.get.tableAsset.tableSaver.tables; } }
     GameObject table;
     public TableModelSet(TableAsset tableAsset)
     {
-        tableModels = tableAsset.tableSaver.tables;
-    }
-    protected override void OnInit()
-    {
-        var ts = ((GameArchitect)GameArchitect.Interface).tableAsset;
-        tableModels = ts.tableSaver.tables;
         table = Resources.Load<GameObject>("Controler/Table");
-        for (int i=0;i<tableModels.Count; i++)
+        for (int i = 0; i < tableModels.Count; i++)
         {
             AddTable(i);
             //var data=GameObject.Instantiate<GameObject>(table);
@@ -108,7 +118,7 @@ public class TableModelSet : AbstractModel
             //data.transform.SetParent(root.transform);
             //data.transform.localPosition = new Vector3(i*25,0, 0);
         }
-        for(int i=0;i<tableModels.Count;i++)
+        for (int i = 0; i < tableModels.Count; i++)
         {
             tableModels[i].UpdateTable();
         }
@@ -117,6 +127,10 @@ public class TableModelSet : AbstractModel
             obj.belong = tableModels.Find(x => { return x.TableName == obj.belong.TableName; });
         }
     }
+    protected override void OnInit()
+    {
+        
+    }
     public TableModel Get(string name)
     {
         return tableModels.Find(x => { return name == x.TableName; });
@@ -124,6 +138,7 @@ public class TableModelSet : AbstractModel
     public void AddTable(int i)
     {
         var data = GameObject.Instantiate<GameObject>(table);
+        //Debug.Log(tableModels.Count);
         data.GetComponent<TableControl>().tableModel = tableModels[i];
         tableModels[i].control = data.GetComponent<TableControl>();//它的控制器
         data.GetComponent<TableControl>().Init();

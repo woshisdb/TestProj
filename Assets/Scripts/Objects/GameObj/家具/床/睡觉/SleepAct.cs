@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using Unity.VisualScripting;
+//using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -66,11 +66,6 @@ public class SleepAct : Activity
     //    PAction action = new PAction();
     //    return action;
     //}
-    [Button]
-    public void ShowAction()
-    {
-        Debug.Log(GetAction().ToString());
-    }
     /// <summary>
     /// Ë¯¾õÐ§¹û
     /// </summary>

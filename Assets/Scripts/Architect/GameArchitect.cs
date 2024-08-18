@@ -19,56 +19,63 @@ public class GameArchitect : Architecture<GameArchitect>
     public static List<WinCon> winCons;
     //一系列获得行为
     public static Dictionary<Type, List<Activity>> activities;
-    public static List<Person> persons;
     public static GameLogic gameLogic;
     public static Person nowPerson;
     public TableAsset tableAsset;
     public ObjAsset objAsset;
+    public Dictionary<Type, PDDLSet> pddlSet { get { return tableAsset.tableSaver.pddlSet; } }
+    public List<Obj> objs { get { return GameArchitect.get.tableAsset.tableSaver.objs; } }
+    public List<TableModel> tables { get { return GameArchitect.get.tableAsset.tableSaver.tables; } }
+    public static List<Person> persons { get {return GameArchitect.get.tableAsset.tableSaver.personList; } }
     public Person player;
     //public static Dictionary<string, Activity> actDic;
-    protected void PDDLInit()
+    public void SetPlayer(Person person)
     {
-        foreach(var x in tableAsset.tableSaver.objs)
+        Debug.Log(person);
+        //Debug.Log("?????????");
+        this.player = person;
+        if (GameArchitect.get.player != null)
         {
-            x.InitPDDLClass();
+            gameLogic.camera.transform.position = GameArchitect.get.player.belong.control.CenterPos();
         }
     }
     protected override void Init()
     {
         winCons = new List<WinCon>();
         this.objAsset = Resources.Load<ObjAsset>("ObjAsset");
-        /****************初始化对象*********************/
-        MapInit();
-        /*********************************************/
-        //InitActivities();
         var tableRess = Resources.Load<TableAsset>("Table/TableAsset");
         this.tableAsset = tableRess;
+        tableAsset.tableSaver = new TableSaver();
+        /****************初始化对象*********************/
+        MapInit();
+        GameArchitect.get.InitActivities();
+        /*********************************************/
+        //InitActivities();
         SaveSystem.Instance.Load();//加载数据
         //初始化一系列
-        persons = tableAsset.tableSaver.personList;
         //初始化PDDL类
-        if(tableAsset.tableSaver.pddlSet==null)
-        {
-            tableAsset.tableSaver.pddlSet = new Dictionary<Type, PDDLSet>();
-            PDDLClassGet.kv = tableAsset.tableSaver.pddlSet;
-            PDDLInit();
-        }
-        else
-        {
-            PDDLClassGet.kv = tableAsset.tableSaver.pddlSet;
-        }
+        
         objAsset.map.Init();
         //for(int i=0;i<persons.Count;i++)
         //{
         //    persons[i].contractManager = new ContractManager(persons[i]);
         //}
-        player = persons.Find(e => { return e.isPlayer; });
         GameArchitect.gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
-        this.RegisterModel<PersonsOptionModel>(new PersonsOptionModel(persons));
         this.RegisterModel<TableModelSet>(new TableModelSet(tableAsset));
+        this.RegisterModel<PersonsOptionModel>(new PersonsOptionModel(persons));
         this.RegisterModel<ThinkModelSet>(new ThinkModelSet());
         this.RegisterModel<TimeModel>(new TimeModel());
         this.RegisterModel<EcModel>(new EcModel());
+        if (SaveSystem.Instance.firstInit)
+        {
+            //Debug.Log(111111211111);
+            tableAsset.CreateTable("TestTable", 100000);
+            //Debug.Log(11131111);
+            //var person = new Person(Map.Instance.GetSaver(ObjEnum.PersonE));
+            GameArchitect.gameLogic.CreatePerson(true, "Person", true, "TestTable");
+            //Debug.Log(111111111111);
+        }
+        SetPlayer( persons.Find(e => { return e.isPlayer; }));
         var cM = tableAsset.tableSaver.contractModel;
         if (cM == null)
         {

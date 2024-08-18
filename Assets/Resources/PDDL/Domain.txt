@@ -1,0 +1,89 @@
+(
+(domain TestDomain)
+(:types
+
+PType
+ObjEnumType-PType
+NumType-PType
+ObjContBaseType-PType
+ResourceType-PType
+ObjType-PType
+RawType-PType
+TableModelType-ObjType
+AnimalType-ObjType
+PlaceType-ObjType
+BedType-ObjType
+DeskType-ObjType
+BuildingType-ObjType
+ToolType-ObjType
+PathType-ObjType
+BuildingResType-RawType
+KuangType-RawType
+KuangMiningType-RawType
+TreeType-RawType
+WoodType-RawType
+SeedType-RawType
+WheatFlourType-RawType
+WheatType-RawType
+FoodType-RawType
+MoneyType-RawType
+PersonType-AnimalType
+WheatPlaceType-PlaceType
+FullWheatPlaceType-PlaceType
+GongchangType-BuildingType
+ShuLinType-BuildingType
+FarmType-BuildingType
+RestaurantType-BuildingType
+CoalType-KuangType
+CoalMiningType-KuangType
+GoldKuangType-KuangType
+GoldType-KuangType
+IronKuangType-KuangType
+IronType-KuangType
+TaotuType-KuangType
+GoldMiningType-KuangMiningType
+IronMiningType-KuangMiningType
+TaotuMiningType-KuangMiningType
+WheatTreeType-TreeType
+TreeSeedType-SeedType
+WheatSeedType-SeedType
+
+)
+
+(:predicates
+
+(IsPDDL ?PType_124-PType ?PType_125-PType  )
+(HasMap ?TableModelType_126-TableModelType ?TableModelType_127-TableModelType  )
+
+)
+(:functions
+
+(MapLen  ?TableModelType_128 ?TableModelType_129) 
+
+)
+(:durative-action GoAct
+:parameters(?PersonType_131-PersonType ?TableModelType_133-TableModelType ?TableModelType_134-TableModelType )
+
+:duration(=?duration (MapLen  ?TableModelType_133 ?TableModelType_134))
+:condition(
+( and (Person_belong  PersonType_131  TableModelType_133 ) (HasMap  TableModelType_133  TableModelType_134 ) )
+)
+
+:effect(
+
+( and (Person_belong  PersonType_131  TableModelType_134 ) ( not (Person_belong  PersonType_131  TableModelType_133 ))  )
+)
+
+)
+
+
+(:action UseToolAct
+:parameters()
+
+:condition(
+( and )
+)
+
+)
+
+

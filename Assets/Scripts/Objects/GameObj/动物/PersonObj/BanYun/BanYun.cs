@@ -73,16 +73,6 @@ public class BanYunAct : Activity
         return true;
     }
 
-    //public override PAction GetAction()
-    //{
-    //    PAction action = new PAction();
-    //    return action;
-    //}
-    [Button]
-    public void ShowAction()
-    {
-        Debug.Log(GetAction().ToString());
-    }
     /// <summary>
     /// 睡觉效果
     /// </summary>
@@ -116,11 +106,6 @@ public class FangZhiAct : Activity
     //    PAction action = new PAction();
     //    return action;
     //}
-    [Button]
-    public void ShowAction()
-    {
-        Debug.Log(GetAction().ToString());
-    }
     /// <summary>
     /// 睡觉效果
     /// </summary>

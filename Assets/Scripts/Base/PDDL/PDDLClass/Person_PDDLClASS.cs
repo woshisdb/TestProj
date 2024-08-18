@@ -89,4 +89,10 @@ ret.Add(resource.GetPType());
 ret.Add(belong.GetPType());
 return ret;
      }
+public override List<PDDLClass> GetPddls(){
+        var ret = new List<PDDLClass>();
+ret.Add(this);
+ret.Add(resource.pVal());
+ret.Add(belong.pVal());
+return ret;}
 }

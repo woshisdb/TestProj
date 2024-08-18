@@ -111,7 +111,7 @@ public class OptionUIControl : MonoBehaviour, IController, ICanRegisterEvent
             for (int i = time; i < 48; i++)
             {
                 var code=updateCode.person.contractManager.GetCode(i);
-                if (code==null)
+                if (code!=null)
                     res.Add(new CardInf(code.codeName, code.activity.activityName, () => { }));
                 else
                     res.Add(new CardInf("无", "自由活动", () => { }));

@@ -368,6 +368,7 @@ public class Person : AnimalObj
         {
             PersonSaver ps = (PersonSaver)personAsset;
         }
+        contractManager=new ContractManager(this);
     }
     /// <summary>
     /// 添加执行的活动

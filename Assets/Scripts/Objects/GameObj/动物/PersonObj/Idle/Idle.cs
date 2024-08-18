@@ -50,11 +50,6 @@ public class IdleAct : Activity
     //    //Person_PDDL person = new Person_PDDL(new PersonType());
     //    return action;
     //}
-    [Button]
-    public void ShowAction()
-    {
-        Debug.Log(GetAction().ToString());
-    }
     /// <summary>
     /// Ë¯¾õÐ§¹û
     /// </summary>

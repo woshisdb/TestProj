@@ -5,9 +5,11 @@ using QFramework;
 using Sirenix.Serialization;
 using System.IO;
 using Sirenix.OdinInspector;
+using System;
 
 public class SaveSystem :Singleton<SaveSystem>
 {
+    public bool firstInit;
     string tablesavePath;
     HashSet<int> savedObj;
     private SaveSystem()
@@ -37,17 +39,33 @@ public class SaveSystem :Singleton<SaveSystem>
         File.WriteAllBytes(tablesavePath, tablebytes);
         Debug.Log("Game Saved.");
     }
+    //protected void PDDLInit()
+    //{
+    //    foreach (var x in tableAsset.tableSaver.objs)
+    //    {
+    //        x.InitPDDLClass();
+    //    }
+    //}
     [Button("Load Game")]
     public void Load()
     {
         GameArchitect game = (GameArchitect)GameArchitect.Interface;
         if (File.Exists(tablesavePath))
         {
+            firstInit = false;
             byte[] tableBytes = File.ReadAllBytes(tablesavePath);
             game.tableAsset.tableSaver=SerializationUtility.DeserializeValue<TableSaver>(tableBytes, DataFormat.JSON); // 假设TableType是game.tableAsset的类型
+            if (game.tableAsset.tableSaver.pddlSet == null)
+            {
+                Debug.Log("haja");
+                game.tableAsset.tableSaver.pddlSet = new Dictionary<Type, PDDLSet>();
+                //PDDLInit();
+            }
+            else
+            {
+            }
             Nm.x = game.tableAsset.tableSaver.lastNm;
             Debug.Log("Table data loaded.");
-            GameArchitect.get.InitActivities();
             foreach(var obj in game.tableAsset.tableSaver.objs)
             {
                 //Debug.Log(obj.GetType().Name);
@@ -57,12 +75,26 @@ public class SaveSystem :Singleton<SaveSystem>
         }
         else
         {
+            firstInit = true;
+            game.tableAsset.tableSaver = new TableSaver();
+            Nm.x = game.tableAsset.tableSaver.lastNm;
+            Debug.Log("Table data loaded.");
+            foreach (var obj in game.tableAsset.tableSaver.objs)
+            {
+                //Debug.Log(obj.GetType().Name);
+                obj.activities = GameArchitect.activities[obj.GetType()];//一系列的活动
+                obj.cardInf.effect = () => { obj.SendEvent<SelectObjEvent>(new SelectObjEvent(obj)); };
+            }
             Debug.LogWarning("No table save file found.");
         }
-        if(game.tableAsset.tableSaver==null)
-        {
-            game.tableAsset.tableSaver = new TableSaver();
-        }
+        //if(game.tableAsset.tableSaver==null)
+        //{
+        //    game.tableAsset.tableSaver = new TableSaver();
+        //    game.tableAsset.CreateTable("TestTable",100000);
+        //    var person = new Person(Map.Instance.GetSaver(ObjEnum.PersonE));
+        //    GameArchitect.gameLogic.CreatePerson(true,"Person",true,"TestTable");
+
+        //}
         //GameArchitect.get.GetModel<TimeModel>().Time.val = game.tableAsset.tableSaver.time;
     }
 }

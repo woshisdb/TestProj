@@ -3,52 +3,52 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PimDeWitte.UnityMainThreadDispatcher;
 using QFramework;
-using Unity.VisualScripting;
-using UnityEngine;
-public class EndTurnNode : Unit, ICanRegisterEvent
-{
-    //这两个是必须有的，是左右的小箭头，只需要固定这么写
-    [DoNotSerialize]
-    public ControlInput inputTrigger;
-    [DoNotSerialize]
-    public ControlOutput outputTrigger;
-    public IArchitecture GetArchitecture()
-    {
-        return GameArchitect.Interface;
-    }
+//using Unity.VisualScripting;
+//using UnityEngine;
+//public class EndTurnNode : Unit, ICanRegisterEvent
+//{
+//    //这两个是必须有的，是左右的小箭头，只需要固定这么写
+//    [DoNotSerialize]
+//    public ControlInput inputTrigger;
+//    [DoNotSerialize]
+//    public ControlOutput outputTrigger;
+//    public IArchitecture GetArchitecture()
+//    {
+//        return GameArchitect.Interface;
+//    }
 
-    protected override void Definition() //The method to set what our node will be doing.
-    {
-        inputTrigger = ControlInput("inputTrigger", (flow) => {
-            this.SendEvent<EndTurnEvent>(new EndTurnEvent(GameArchitect.nowPerson));
-            return outputTrigger;
-        });
-        //Making the ControlOutput port visible and setting its key.
-        outputTrigger = ControlOutput("outputTrigger");
-    }
-}
-public class EndWorkNode : Unit, ICanRegisterEvent
-{
-    //这两个是必须有的，是左右的小箭头，只需要固定这么写
-    [DoNotSerialize]
-    public ControlInput inputTrigger;
-    [DoNotSerialize]
-    public ControlOutput outputTrigger;
-    public IArchitecture GetArchitecture()
-    {
-        return GameArchitect.Interface;
-    }
+//    protected override void Definition() //The method to set what our node will be doing.
+//    {
+//        inputTrigger = ControlInput("inputTrigger", (flow) => {
+//            this.SendEvent<EndTurnEvent>(new EndTurnEvent(GameArchitect.nowPerson));
+//            return outputTrigger;
+//        });
+//        //Making the ControlOutput port visible and setting its key.
+//        outputTrigger = ControlOutput("outputTrigger");
+//    }
+//}
+//public class EndWorkNode : Unit, ICanRegisterEvent
+//{
+//    //这两个是必须有的，是左右的小箭头，只需要固定这么写
+//    [DoNotSerialize]
+//    public ControlInput inputTrigger;
+//    [DoNotSerialize]
+//    public ControlOutput outputTrigger;
+//    public IArchitecture GetArchitecture()
+//    {
+//        return GameArchitect.Interface;
+//    }
 
-    protected override void Definition() //The method to set what our node will be doing.
-    {
-        inputTrigger = ControlInput("inputTrigger", (flow) => {
-            this.SendEvent<EndWorkEvent>(new EndWorkEvent(GameArchitect.nowPerson));
-            return outputTrigger;
-        });
-        //Making the ControlOutput port visible and setting its key.
-        outputTrigger = ControlOutput("outputTrigger");
-    }
-}
+//    protected override void Definition() //The method to set what our node will be doing.
+//    {
+//        inputTrigger = ControlInput("inputTrigger", (flow) => {
+//            this.SendEvent<EndWorkEvent>(new EndWorkEvent(GameArchitect.nowPerson));
+//            return outputTrigger;
+//        });
+//        //Making the ControlOutput port visible and setting its key.
+//        outputTrigger = ControlOutput("outputTrigger");
+//    }
+//}
 /// <summary>
 ///工作结束
 /// </summary>
@@ -145,7 +145,7 @@ public class PlayerThinkModel: ThinkModel
         (e) => {
             if (e.person == this.person)
             {
-                Debug.Log(tcs);
+                //Debug.Log(tcs);
                 tcs.TrySetResult(true);
             }
         }

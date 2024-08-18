@@ -20,8 +20,8 @@ public class Map : Singleton<Map>
     }
     public void Insert(ObjEnum objEnum,Obj obj,ObjSaver objSaver)
     {
-        Debug.Log(objEnum);
-        Debug.Log(obj.GetType().Name);
+        //Debug.Log(objEnum);
+        //Debug.Log(obj.GetType().Name);
         enum2Ins.Add(objEnum,obj);
         //Map.Instance.ks.Add(obj.GetType(), objSaver);
         enum2Type.Add(objEnum, obj.GetType());
@@ -202,23 +202,24 @@ public class Map : Singleton<Map>
         }
         domain.AddTypes(types);
         ///一系列的Actions初始化
-        foreach (var x in datas)
+        foreach (var x in ActionPddls.GetPDDLActions())
         {
-            var act=(Activity)Activator.CreateInstance(x);
-            var actData = act.GetAction();
+            var actData = x.Item2;
             domain.pActions.Add(actData);
             actData.Init(domain,problem);
         }
         //初始化一系列的Object
         var pddlClasss = PDDLClassGet.kv;
-        //pddlClasss.Add(new Person_PDDL());
-        foreach(var x in pddlClasss)
+
+        foreach(var x in GameArchitect.get.objs)
         {
-            foreach (var y in x.Value.GetPddls())
-            {
-                y.SetDomain(domain);
-                y.SetProblem(problem);
-            }
+            x.GetPDDLClass().SetDomain(domain);
+            x.GetPDDLClass().SetProblem(problem);
+        }
+        foreach(var x in GameArchitect.get.tables)
+        {
+            x.GetPDDLClass().SetDomain(domain);
+            x.GetPDDLClass().SetProblem(problem);
         }
         return new System.Tuple<Domain,Problem>(domain,problem);
     }

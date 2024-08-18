@@ -163,6 +163,7 @@ public class MapTo
 	public int wastTime;
 }
 
+
 public class WorldMap
 {
     [SerializeField]
@@ -185,4 +186,28 @@ public class WorldMap
 			}
 		}
     }
+	public List<Bool> GetPredVals()
+    {
+		var predVals = new List<Bool>();
+		foreach(var xx in tos)
+        {
+			foreach(var y in xx.Value)
+            {
+				predVals.Add(new Bool( P.HasMap((TableModelType)(GameArchitect.get.tables.Find(e => { return e.TableName == xx.Key; }).obj) ,(TableModelType)( GameArchitect.get.tables.Find(e => { return e.TableName == xx.Key; })).obj) ,true));
+            }
+        }
+		return predVals;
+    }
+	public List<Num> GetFuncVals()
+	{
+		var predVals = new List<Num>();
+		foreach (var xx in tos)
+		{
+			foreach (var y in xx.Value)
+			{
+				predVals.Add(new Num(P.MapLen((TableModelType)(GameArchitect.get.tables.Find(e => { return e.TableName == xx.Key; }).obj), (TableModelType)(GameArchitect.get.tables.Find(e => { return e.TableName == xx.Key; })).obj),y.wastTime));
+			}
+		}
+		return predVals;
+	}
 }

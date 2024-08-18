@@ -13,7 +13,7 @@ public class ObjContBaseType:PType
 public class ObjContBase:IPDDL
 {
     public PDDLClass pddl;
-    public PType pType;
+    public PType pType { get { return pddl.GetPType(); } }
     public int size;//容量
     public int remain;//剩余
     public virtual void Add(int num,Obj obj=null,int time=0)
@@ -28,7 +28,6 @@ public class ObjContBase:IPDDL
     }
     public ObjContBase(int size,int remain)
     {
-        pType = new ObjContBaseType();
         this.size = size;
         this.remain = remain;
     }
@@ -186,7 +185,7 @@ public class ResourceType:PType
 
 //public class Resource_PDDL : PDDLClass<Resource,ResourceType>
 //{
-    
+
 //    public override List<Func> GetFuncs()
 //    {
 //        throw new NotImplementedException();
@@ -223,13 +222,13 @@ public class ResourceType:PType
 /// 一系列的资源
 /// </summary>
 [Class]
-public class Resource:IPDDL
+public class Resource : IPDDL
 {
     public PDDLClass pddl;
     /// <summary>
     /// 资源类
     /// </summary>
-    public ResourceType obj;
+    public PType obj{get{return pddl.GetPType();}}
     [Property]
     public int maxSize;
     [Property]
@@ -245,7 +244,6 @@ public class Resource:IPDDL
     public Resource()
     {
         resources = new Dictionary<ObjEnum, ObjContBase>();
-        obj = new ResourceType();
         InitPDDLClass();
     }
     public void SetRate(Dictionary<TransationEnum, Rate> rates)

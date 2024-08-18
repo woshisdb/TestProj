@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using Unity.VisualScripting;
+//using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -61,11 +61,7 @@ public class ArrangeContractAct : Activity
     //    PAction action = new PAction();
     //    return action;
     //}
-    [Button]
-    public void ShowAction()
-    {
-        Debug.Log(GetAction().ToString());
-    }
+
 
     /// <summary>
     /// 睡觉效果
@@ -187,11 +183,7 @@ public class AddContractAct : Activity
     //    PAction action = new PAction();
     //    return action;
     //}
-    [Button]
-    public void ShowAction()
-    {
-        Debug.Log(GetAction().ToString());
-    }
+
     /// <summary>
     /// 睡觉效果
     /// </summary>
@@ -257,11 +249,7 @@ public class RemoveContractAct : Activity
     //    PAction action = new PAction();
     //    return action;
     //}
-    [Button]
-    public void ShowAction()
-    {
-        Debug.Log(GetAction().ToString());
-    }
+
     /// <summary>
     /// 睡觉效果
     /// </summary>

@@ -31,6 +31,7 @@ public class TableSaver
         tables = new List<TableModel>();
         objs=new List<Obj>();
         personList = new List<Person>();
+        pddlSet=new Dictionary<Type, PDDLSet>();
     }
 }
 
@@ -47,6 +48,7 @@ public class TableAsset : SerializedScriptableObject
         table.TableName = name;
         table.size = size;
         tableSaver.tables.Add(table);
+        //Debug.Log(tableSaver.tables.Count);
         codeDatas = new List<CodeSystemData>();
         GameArchitect.Interface.GetModel<TableModelSet>().AddTable(tableSaver.tables.Count-1);
     }

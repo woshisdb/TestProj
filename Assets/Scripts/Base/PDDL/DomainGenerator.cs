@@ -128,13 +128,9 @@ public class DomainGenerator
         //}
         str.AppendLine(")");
         //定义一系列的活动
-        foreach (var x in GameArchitect.activities)
+        foreach (var x in ActionPddls.GetPDDLActions())
         {
-            var acts=x.Value;
-            foreach(var act in acts)
-            {
-                str.AppendLine(act.GetAction().ToString());//添加字符串
-            }
+            str.AppendLine(x.Item2.ToString());//添加字符串
         }
         str.AppendLine(")");
         domainText = str.ToString();

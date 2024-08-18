@@ -676,7 +676,9 @@ public class PAction : PDDL
         {
             str.AppendFormat(":duration(=?duration {0})\n",duration.ToString());
         }
-        if(condition != null)
+
+        this.condition = P.And(conditionEnv.ToArray());
+        if (condition != null)
         {
             str.AppendLine(":condition(");
             str.AppendLine(condition.ToString());
@@ -733,7 +735,6 @@ public class PAction : PDDL
     public void RegCondition(Pop condition)
     {
         conditionEnv.Add(condition);
-        condition = P.And(conditionEnv.ToArray());
     }
     public void RegEffect(Pop effect)
     {
@@ -881,7 +882,7 @@ public class Num:PDDL, PDDLProperty
     public override string InitVal()
     {
         var str = "";
-        Debug.Log(func.name);
+        //Debug.Log(func.name);
         foreach(var x in func.objects)
         {
             str=str+x.objName+" ";
@@ -1081,6 +1082,8 @@ public class Problem : PDDL
         domainName = "TestDomain";
         objects = new HashSet<PType>(new ObjComparer());
         initVal = new List<PDDL>();
+        initVal.AddRange(DomainProblemStatic.GetPredVals());
+        initVal.AddRange(DomainProblemStatic.GetNums());
     }
     public string Print()
     {
@@ -1133,6 +1136,13 @@ public class Problem : PDDL
                     objects.Add(p);
                 }
             }
+        }
+    }
+    public void GetObj(PType pType)
+    {
+        if(!objects.Contains(pType))
+        {
+            objects.Add(pType);
         }
     }
 }

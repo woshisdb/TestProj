@@ -1,14 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq.Expressions;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Michsky.MUIP;
 using PimDeWitte.UnityMainThreadDispatcher;
 using QFramework;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Networking;
 /// <summary>
 /// 更新环境
 /// </summary>
@@ -360,7 +364,7 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     }
     public void OnWinChange(int win)//待修改
     {
-        Debug.Log(win);
+        //Debug.Log(win);
         if (win == 2)
         {
             GameLogic.isCoding = true;
@@ -415,7 +419,10 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
             }
         );
         this.SendEvent<EnvirUpdateEvent>();//开始执行
-        camera.transform.position = GameArchitect.get. player.belong.control.CenterPos();
+        if (GameArchitect.get.player != null)
+        {
+            camera.transform.position = GameArchitect.get.player.belong.control.CenterPos();
+        }
     }
     //更新环境信息
     public void UpdateEnvir(EnvirUpdateEvent envirUpdateEvent)
@@ -486,14 +493,52 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
         Sc.AddToTable(val);
     }
     [Button]
-    public void GetPDDL()
+    public void GetPDDLAsync()
     {
         var ret=Map.InitPDDL();
-        Debug.Log( ret.Item1.Print() );
-        Debug.Log(ret.Item2.Print() );
+        //Debug.Log( ret.Item1.Print() );
+        File.WriteAllText($"Assets/Resources/PDDL/Domain.txt", ret.Item1.Print());
+        //Debug.Log(ret.Item2.Print() );
+        File.WriteAllText($"Assets/Resources/PDDL/Problem.txt", ret.Item2.Print());
+        AssetDatabase.Refresh();
+        string url = "http://127.0.0.1:8000";
+        StartCoroutine(GetRequest(url));
         //Expression<Func<Person, int>> func = (a) => a.resource.maxSize;
         ////TraverseExpression(func);
         //TraverseExpression(func.Body);
+    }
+    [System.Serializable]
+    private class ActionListWrapper
+    {
+        public List<List<string>> actions;
+    }
+    IEnumerator GetRequest(string uri)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        {
+            // Send the request and wait for a response
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError($"Error: {webRequest.error}");
+            }
+            else
+            {
+                // Get and parse the response
+                string jsonResponse = webRequest.downloadHandler.text;
+                Debug.Log($"Response: {jsonResponse}");
+
+                // Deserialize the JSON response into C# data structures
+                List<List<string>> actions = JsonUtility.FromJson<ActionListWrapper>(jsonResponse).actions;
+
+                // Process the data
+                foreach (var action in actions)
+                {
+                    Debug.Log($"Action: {string.Join(", ", action)}");
+                }
+            }
+        }
     }
     //private static void TraverseExpression(Expression expr)
     //{

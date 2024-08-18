@@ -233,10 +233,8 @@ public class SetPipLineAct : Activity
 
 public class UseToolAct : Activity
 {
-    public int use;
     public UseToolAct():base()
     {
-        use = 0;
         activityName = "使用工具";
         detail = "使用工具来工作";
     }

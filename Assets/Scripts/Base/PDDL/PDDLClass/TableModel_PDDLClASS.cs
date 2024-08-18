@@ -8,15 +8,7 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 public class TableModel_PDDL:PDDLClass<TableModel,TableModelType>{
-public PDDLValRef<TableModel_PDDL,TableModel> belong;
 public TableModel_PDDL():base(){
-            
-
-            belong = new PDDLValRef<TableModel_PDDL,TableModel>(
-            (p)=> { return new Predicate("TableModel_belong", obj.GetPtype(), p); },
-            () => { return new Predicate("TableModel_belong",obj.GetPtype(),obj.belong.GetPtype()); },
-            () => { return (TableModel_PDDL)(obj.belong.GetPDDLClass()); },
-            () => { return obj.belong; });
             
 }
 public override void SetObj(object obj){
@@ -41,14 +33,16 @@ public override List<Predicate> GetPreds()
             }
         
 public override List<Bool> GetPredsVal(){var ret= new List<Bool>();
-ret.Add( new Bool( belong.pop(),true ) );
 return ret;}
 public override List<Num> GetFuncsVal(){var ret= new List<Num>();
 return ret;}
 public override List<PType> GetTypes(){
             var ret=new List<PType>();
 ret.Add(obj.GetPtype());
-ret.Add(belong.GetPType());
 return ret;
      }
+public override List<PDDLClass> GetPddls(){
+        var ret = new List<PDDLClass>();
+ret.Add(this);
+return ret;}
 }

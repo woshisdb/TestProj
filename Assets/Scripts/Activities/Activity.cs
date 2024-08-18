@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+//using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -24,18 +24,6 @@ public abstract class Activity
         return true;
     }
     public abstract Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs);
-    /// <summary>
-    /// 获得当前行为的PDDL形式
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <param name="person"></param>
-    /// <returns></returns>
-    public virtual PAction GetAction()
-    {
-        PAction action = new PAction();
-        action.actionName = GetType().Name;
-        return action;
-    }
 
     /// <summary>
     /// 输出UI的Select

@@ -80,7 +80,7 @@ public class KuangMiningObj : BuildingObj
         new UseToolAct(),
         new WaKuangAct()
         };
-        Debug.Log(acts.Count);
+        //Debug.Log(acts.Count);
         return acts;
     }
     public override void LatUpdate()

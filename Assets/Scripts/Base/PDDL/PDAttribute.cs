@@ -23,6 +23,14 @@ public class ClassAttribute : Attribute
 }
 public static class P
 {
+    public static Func MapLen(TableModelType t1,TableModelType t2)
+    {
+        return new Func("MapLen", t1,t2);
+    }
+    public static Predicate HasMap(TableModelType t1, TableModelType t2)
+    {
+        return new Predicate("HasMap", t1, t2);
+    }
     public static And And(params Pop[] numbers)
     {
         return new And(numbers);
@@ -274,15 +282,44 @@ public abstract class PDDLClass
 {
     public virtual void SetDomain(Domain domain)
     {
-        domain.AddTypes(GetTypes());
-        domain.AddFuncs(GetFuncs());
-        domain.AddPreds(GetPreds());
+        if (!domain.pTypes.Contains(GetPType()))
+        {
+            domain.AddTypes(GetTypes());
+            domain.AddFuncs(GetFuncs());
+            domain.AddPreds(GetPreds());
+        }
+        foreach (var x in GetPddls())
+        {
+            if (domain.pTypes.Contains(x.GetPType()))//如果已经有这个了，则不用管了
+            {
+
+            }
+            else//递归添加
+            {
+                x.SetDomain(domain);
+            }
+        }
     }
     public virtual void SetProblem(Problem problem)
     {
-        problem.GetObjs(GetObjs());//添加自己
-        problem.initVal.AddRange(GetPredsVal());
-        problem.initVal.AddRange(GetFuncsVal());
+        if (!problem.objects.Contains(GetPType()))
+        {
+            problem.GetObj(GetPType());//添加自己
+            problem.initVal.AddRange(GetPredsVal());
+            problem.initVal.AddRange(GetFuncsVal());
+        }
+        var s = GetPddls();
+        foreach (var x in s)
+        {
+            if(problem.objects.Contains(x.GetPType()))//如果已经有这个了，则不用管了
+            {
+
+            }
+            else//递归添加
+            {
+                x.SetProblem(problem);
+            }
+        }
     }
     public abstract List<PType> GetTypes();
     public abstract List<Predicate> GetPreds();
@@ -299,6 +336,10 @@ public abstract class PDDLClass
     public abstract void SetObj(object obj);
     public abstract PType GetObj();
     public abstract List<PAction> GetPActions();
+    public virtual List<PDDLClass> GetPddls()
+    {
+        return new List<PDDLClass>();
+    }
 }
 /// <summary>
 /// PDDL基类

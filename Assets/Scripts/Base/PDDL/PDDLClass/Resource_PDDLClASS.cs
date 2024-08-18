@@ -69,4 +69,8 @@ public override List<PType> GetTypes(){
 ret.Add(obj.GetPtype());
 return ret;
      }
+public override List<PDDLClass> GetPddls(){
+        var ret = new List<PDDLClass>();
+ret.Add(this);
+return ret;}
 }
