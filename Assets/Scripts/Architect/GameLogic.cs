@@ -9,10 +9,12 @@ using Michsky.MUIP;
 using PimDeWitte.UnityMainThreadDispatcher;
 using QFramework;
 using Sirenix.OdinInspector;
+using System.Text.Json;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
+using Newtonsoft.Json;
 /// <summary>
 /// 更新环境
 /// </summary>
@@ -495,14 +497,16 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     [Button]
     public void GetPDDLAsync()
     {
-        var ret=Map.InitPDDL();
-        //Debug.Log( ret.Item1.Print() );
-        File.WriteAllText($"Assets/Resources/PDDL/Domain.txt", ret.Item1.Print());
-        //Debug.Log(ret.Item2.Print() );
-        File.WriteAllText($"Assets/Resources/PDDL/Problem.txt", ret.Item2.Print());
-        AssetDatabase.Refresh();
-        string url = "http://127.0.0.1:8000";
-        StartCoroutine(GetRequest(url));
+        //var ret=Map.InitPDDL();
+        ////Debug.Log( ret.Item1.Print() );
+        //File.WriteAllText($"Assets/Resources/PDDL/Domain.txt", ret.Item1.Print());
+        ////Debug.Log(ret.Item2.Print() );
+        //File.WriteAllText($"Assets/Resources/PDDL/Problem.txt", ret.Item2.Print());
+        //AssetDatabase.Refresh();
+        string url = "http://localhost:8000/run";
+        //StartCoroutine(GetRequest(url));
+        SendPostRequestAsync(url);
+        //Debug.Log("Response Content: " + response);
         //Expression<Func<Person, int>> func = (a) => a.resource.maxSize;
         ////TraverseExpression(func);
         //TraverseExpression(func.Body);
@@ -512,34 +516,70 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     {
         public List<List<string>> actions;
     }
-    IEnumerator GetRequest(string uri)
+    public static List<List<string>> ParseJsonString(string jsonString)
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        // 使用JsonConvert.DeserializeObject将JSON字符串解析为List<List<string>>
+        List<List<string>> parsedData = JsonConvert.DeserializeObject<List<List<string>>>(jsonString);
+        return parsedData;
+    }
+    public static async Task<HttpResponseMessage> SendPostRequestAsync(string url)
+    {
+        using (HttpClient client = new HttpClient())
         {
-            // Send the request and wait for a response
-            yield return webRequest.SendWebRequest();
+            string domainFilePath = Path.Combine(Application.dataPath, "domain.pddl");
+            string problemFilePath = Path.Combine(Application.dataPath, "problem.pddl");
 
-            if (webRequest.result != UnityWebRequest.Result.Success)
-            {
-                Debug.LogError($"Error: {webRequest.error}");
-            }
-            else
-            {
-                // Get and parse the response
-                string jsonResponse = webRequest.downloadHandler.text;
-                Debug.Log($"Response: {jsonResponse}");
-
-                // Deserialize the JSON response into C# data structures
-                List<List<string>> actions = JsonUtility.FromJson<ActionListWrapper>(jsonResponse).actions;
-
-                // Process the data
-                foreach (var action in actions)
-                {
-                    Debug.Log($"Action: {string.Join(", ", action)}");
-                }
-            }
+            // 读取文件内容
+            string domainContent = File.ReadAllText(domainFilePath);
+            string problemContent = File.ReadAllText(problemFilePath);
+            var data = new MultipartFormDataContent();
+            data.Add(new StringContent("x"), domainContent);
+            data.Add(new StringContent("y"), problemContent);
+            HttpResponseMessage response = await client.PostAsync(url, data);
+            Debug.Log("Response Content: " + response);
+            return response;
         }
     }
+    //IEnumerator GetRequest(string url)
+    //{
+    //    // 定义文件路径
+    //    string domainFilePath = Path.Combine(Application.dataPath, "domain.pddl");
+    //    string problemFilePath = Path.Combine(Application.dataPath, "problem.pddl");
+
+    //    // 读取文件内容
+    //    string domainContent = File.ReadAllText(domainFilePath);
+    //    string problemContent = File.ReadAllText(problemFilePath);
+
+    //    // 创建一个表单数据，类似于MultipartFormDataContent
+    //    WWWForm form = new WWWForm();
+    //    form.AddField("x", domainContent);
+    //    form.AddField("y", problemContent);
+
+    //    // 使用 UnityWebRequest 发送POST请求
+    //    UnityWebRequest www = UnityWebRequest.Post(url, form);
+
+    //    // 发送请求并等待响应
+    //    yield return www.SendWebRequest();
+
+    //    if (www.result != UnityWebRequest.Result.Success)
+    //    {
+    //        Debug.LogError("POST请求失败: " + www.error);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log(www.downloadHandler.text);
+    //        List<List<string>> result = ParseJsonString(www.downloadHandler.text);
+    //        // 打印解析后的数据
+    //    if (result != null)
+    //    {
+    //        foreach (var itemList in result)
+    //        {
+    //            Debug.Log(string.Join(", ", itemList));
+    //        }
+    //    }
+    //        //Debug.Log("POST请求成功，服务器响应: " + www.downloadHandler.text);
+    //    }
+    //}
     //private static void TraverseExpression(Expression expr)
     //{
     //    if (expr.NodeType == ExpressionType.Lambda)

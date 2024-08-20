@@ -20,7 +20,7 @@ def main():
     content_b = read_file(file_b_path)
     
     # Define the URL of the Flask endpoint
-    url = 'http://localhost:8080/'
+    url = 'http://localhost:8000/run'
     
     # Prepare the data to send in the POST request
     data = {
