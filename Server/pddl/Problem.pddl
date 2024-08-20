@@ -1,14 +1,24 @@
-(define (problem simple-problem)
-  (:domain simple-domain)
-  (:objects
-    room1 room2 - room
-  )
+(define (problem block-world-problem)
+  (:domain block-world)
+  (:objects A B C - block)
 
   (:init
-    (at room1)  ;; The robot starts in room1
+    (ontable A)
+    (ontable B)
+    (ontable C)
+    (clear A)
+    (clear B)
+    (clear C)
+    (not (holding A))
+    (not (holding B))
+    (not (holding C))
   )
 
   (:goal
-    (at room2)  ;; The goal is to be in room2
+    (and
+      (on A B)
+      (on B C)
+      (clear A)
+    )
   )
 )
