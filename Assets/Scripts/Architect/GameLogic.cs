@@ -503,7 +503,7 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
         ////Debug.Log(ret.Item2.Print() );
         //File.WriteAllText($"Assets/Resources/PDDL/Problem.txt", ret.Item2.Print());
         //AssetDatabase.Refresh();
-        string url = "http://localhost:8000/run";
+        string url = "http://localhost:8080/run";
         //StartCoroutine(GetRequest(url));
         SendPostRequestAsync(url);
         //Debug.Log("Response Content: " + response);
@@ -531,12 +531,25 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
 
             // 读取文件内容
             string domainContent = File.ReadAllText(domainFilePath);
+            Debug.Log(domainContent);
             string problemContent = File.ReadAllText(problemFilePath);
+            Debug.Log(problemContent);
             var data = new MultipartFormDataContent();
-            data.Add(new StringContent("x"), domainContent);
-            data.Add(new StringContent("y"), problemContent);
+            data.Add(new StringContent(domainContent), "x");
+            data.Add(new StringContent(problemContent),"y");
             HttpResponseMessage response = await client.PostAsync(url, data);
-            Debug.Log("Response Content: " + response);
+            if (response.IsSuccessStatusCode)
+            {
+                // 获取响应内容
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Debug.Log(responseBody);
+                var result= ParseJsonString(responseBody);
+                Debug.Log(result.Count);
+    //            foreach (var itemList in result)
+				//{
+				//	Debug.Log(string.Join(", ", itemList));
+				//}
+			}
             return response;
         }
     }
