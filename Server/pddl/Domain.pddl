@@ -1,35 +1,17 @@
-(define (domain block-world)
+(define (domain simple-domain)
   (:requirements :strips :typing)
-  (:types block - object)
+  (:types room - object)
 
   (:predicates
-    (on ?x - block ?y - block)
-    (clear ?x - block)
-    (holding ?x - block)
-    (ontable ?x - block)
+    (at ?r - room)  ;; The robot is in room ?r
   )
 
-  (:action pick-up
-    :parameters (?x - block)
-    :precondition (and (clear ?x) (ontable ?x) (not (holding ?x)))
-    :effect (and (holding ?x) (not (ontable ?x)) (not (clear ?x)))
-  )
-
-  (:action put-down
-    :parameters (?x - block)
-    :precondition (holding ?x)
-    :effect (and (ontable ?x) (clear ?x) (not (holding ?x)))
-  )
-
-  (:action stack
-    :parameters (?x - block ?y - block)
-    :precondition (and (holding ?x) (clear ?y))
-    :effect (and (not (holding ?x)) (not (clear ?y)) (on ?x ?y) (clear ?x))
-  )
-
-  (:action unstack
-    :parameters (?x - block ?y - block)
-    :precondition (and (on ?x ?y) (clear ?x) (clear ?y) (not (holding ?x)))
-    :effect (and (holding ?x) (clear ?y) (not (clear ?x)) (not (on ?x ?y)))
+  (:action move
+    :parameters (?from - room ?to - room)
+    :precondition (at ?from)
+    :effect (and
+      (not (at ?from))
+      (at ?to)
+    )
   )
 )
