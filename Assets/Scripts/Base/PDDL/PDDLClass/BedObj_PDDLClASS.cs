@@ -26,6 +26,7 @@ public override void SetObj(object obj){
 public override List<Predicate> GetPreds()
         {
             var ret= new List<Predicate>() {
+(Predicate)belong.pop(),
 };
 
             return ret;

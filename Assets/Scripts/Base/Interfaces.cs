@@ -200,14 +200,14 @@ public class Map : Singleton<Map>
                 }
             }
         }
-        domain.AddTypes(types);
+        //domain.AddTypes(types);
         ///一系列的Actions初始化
-        foreach (var x in ActionPddls.GetPDDLActions())
-        {
-            var actData = x.Item2;
-            domain.pActions.Add(actData);
-            actData.Init(domain,problem);
-        }
+        //foreach (var x in ActionPddls.GetPDDLActions())
+        //{
+        //    var actData = x.Item2;
+        //    domain.pActions.Add(actData);
+        //    actData.Init(domain,problem);
+        //}
         //初始化一系列的Object
         var pddlClasss = PDDLClassGet.kv;
 
@@ -221,6 +221,13 @@ public class Map : Singleton<Map>
             x.GetPDDLClass().SetDomain(domain);
             x.GetPDDLClass().SetProblem(problem);
         }
+        foreach (var x in ActionPddls.GetPDDLActions())
+        {
+            var actData = x.Item2;
+            domain.pActions.Add(actData);
+            actData.Init(domain, problem);
+        }
+        domain.AddTypes(types);
         return new System.Tuple<Domain,Problem>(domain,problem);
     }
 

@@ -125,11 +125,11 @@ public class Domain
     public string Print()
     {
         StringBuilder str = new StringBuilder();
-        str.AppendLine("(");
-        str.AppendFormat("(domain {0})\n", domainName);
+        str.AppendFormat("(define (domain {0})\n", domainName);
+        str.AppendLine("(:requirements :strips :typing :durative-actions)");
         if (pTypes.Count > 0)
         {
-            str.AppendLine("(:types\n");
+            str.AppendLine("(:types ");
             str.AppendLine("PType");
             foreach (var p in pTypes)
             {
@@ -163,6 +163,7 @@ public class Domain
         {
             str.AppendLine(p.ToString());
         }
+        str.AppendLine(")");
         //for (int i = 0; i < axioms.Count; i++)
         //{
         //    str.AppendLine(axioms[i].ToString());
@@ -175,11 +176,12 @@ public class Domain
         {
             foreach (var x in ps)
             {
-               var has= pTypes.Contains(x);
-                if(!has)
-                {
-                    pTypes.Add(x);
-                }
+                AddType(x);
+               //var has= pTypes.Contains(x);
+               // if(!has)
+               // {
+               //     pTypes.Add(x);
+               // }
             }
         }
     }

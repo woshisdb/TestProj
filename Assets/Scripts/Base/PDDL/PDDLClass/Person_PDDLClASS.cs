@@ -59,6 +59,8 @@ public override List<Predicate> GetPreds()
         {
             var ret= new List<Predicate>() {
 (Predicate)isPlayer.pop(),
+(Predicate)resource.pop(),
+(Predicate)belong.pop(),
 };
 
             return ret;

@@ -215,6 +215,10 @@ public class {cNode.type.Name}_PDDL:PDDLClass<{cNode.type.Name},{STRType}>{{");
         foreach (var t in cNode.bools) {
             strbuilder.AppendLine($@"(Predicate){t.prex}.pop(),");
         }
+        foreach (var t in cNode.custs)
+        {
+            strbuilder.AppendLine($@"(Predicate){t.prex}.pop(),");
+        }
         //foreach (var t in cNode.ints)
         //{
         //    strbuilder.AppendLine($@"(Predicate){t.prex}.pop(),");

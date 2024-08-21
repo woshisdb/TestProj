@@ -15,7 +15,7 @@ public class ActionPddls
         var ret= new List<Tuple<Type,PAction>>();
         /**********Go***********/
         ret.Add(new Tuple<Type, PAction>(typeof(Go),Go()));
-        ret.Add(new Tuple<Type, PAction>(typeof(UseToolAct),UseToolAct()));
+        //ret.Add(new Tuple<Type, PAction>(typeof(UseToolAct),UseToolAct()));
         return ret;
     }
     public static PAction Go()
@@ -33,10 +33,15 @@ public class ActionPddls
         action.RegRefVal(belongP);
         action.RegPDDL(tableP);
         action.RegCondition(
+            P.AtStart(
             P.HasMap((TableModelType)belongP.GetPType(), (TableModelType)tableP.GetPType())
+            )
         ) ;
         action.RegEffect(
-            P.And(belongP.Is(tableP.GetObj()), P.Not(belongP.Is(belongP.GetPType())))
+            P.AtEnd(
+            P.And(belongP.Is(tableP.GetObj()),
+            P.Not(belongP.Is(belongP.GetPType())))
+            )
         );
         action.duration = P.MapLen((TableModelType)belongP.GetPType(), (TableModelType)tableP.GetPType());
         return action;

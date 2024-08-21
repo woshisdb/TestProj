@@ -284,7 +284,7 @@ public abstract class PDDLClass
     {
         if (!domain.pTypes.Contains(GetPType()))
         {
-            domain.AddTypes(GetTypes());
+            domain.AddType(GetTypes()[0]);
             domain.AddFuncs(GetFuncs());
             domain.AddPreds(GetPreds());
         }

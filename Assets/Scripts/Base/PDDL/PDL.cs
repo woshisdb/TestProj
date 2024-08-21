@@ -677,21 +677,21 @@ public class PAction : PDDL
             str.AppendFormat(":duration(=?duration {0})\n",duration.ToString());
         }
 
-        this.condition = P.And(conditionEnv.ToArray());
+        //this.condition = P.And(conditionEnv.ToArray());
         if (condition != null)
         {
-            str.AppendLine(":condition(");
+            str.AppendLine(":condition ");
             str.AppendLine(condition.ToString());
-            str.AppendLine(")\n");
+            str.AppendLine("\n");
         }
         //str.AppendLine(":precondition(");
         //str.AppendLine(condition.ToString());
         //str.AppendLine(")\n");
         if (effect != null)
         {
-            str.AppendLine(":effect(\n");
+            str.AppendLine(":effect \n");
             str.AppendLine(effect.ToString());
-            str.AppendLine(")\n");
+            str.AppendLine("\n");
         }
         str.AppendLine(")\n");
         return str.ToString();
@@ -732,9 +732,13 @@ public class PAction : PDDL
             objects.Add(obj.GetObj());
         }
     }
+    /// <summary>
+    /// 这个一定要最后调用
+    /// </summary>
+    /// <param name="condition"></param>
     public void RegCondition(Pop condition)
     {
-        conditionEnv.Add(condition);
+        this.condition = P.And( P.AtStart( P.And(conditionEnv.ToArray())),condition );
     }
     public void RegEffect(Pop effect)
     {

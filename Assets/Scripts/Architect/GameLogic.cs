@@ -497,15 +497,17 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     [Button]
     public void GetPDDLAsync()
     {
-        //var ret=Map.InitPDDL();
-        ////Debug.Log( ret.Item1.Print() );
-        //File.WriteAllText($"Assets/Resources/PDDL/Domain.txt", ret.Item1.Print());
-        ////Debug.Log(ret.Item2.Print() );
-        //File.WriteAllText($"Assets/Resources/PDDL/Problem.txt", ret.Item2.Print());
-        //AssetDatabase.Refresh();
-        string url = "http://localhost:8080/run";
+		var ret = Map.InitPDDL();
+        string domainStr = ret.Item1.Print();
+        string problemStr = ret.Item2.Print();
+  //      Debug.Log(ret.Item1.Print());
+		////File.WriteAllText($"Assets/Resources/PDDL/Domain.txt", ret.Item1.Print());
+		//Debug.Log(ret.Item2.Print());
+		//File.WriteAllText($"Assets/Resources/PDDL/Problem.txt", ret.Item2.Print());
+		//AssetDatabase.Refresh();
+		string url = "http://localhost:8080/run";
         //StartCoroutine(GetRequest(url));
-        SendPostRequestAsync(url);
+        SendPostRequestAsync(url,domainStr,problemStr);
         //Debug.Log("Response Content: " + response);
         //Expression<Func<Person, int>> func = (a) => a.resource.maxSize;
         ////TraverseExpression(func);
@@ -522,19 +524,23 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
         List<List<string>> parsedData = JsonConvert.DeserializeObject<List<List<string>>>(jsonString);
         return parsedData;
     }
-    public static async Task<HttpResponseMessage> SendPostRequestAsync(string url)
+    public static async Task<HttpResponseMessage> SendPostRequestAsync(string url, string domainStr, string problemStr)
     {
         using (HttpClient client = new HttpClient())
         {
-            string domainFilePath = Path.Combine(Application.dataPath, "domain.pddl");
-            string problemFilePath = Path.Combine(Application.dataPath, "problem.pddl");
+			//string domainFilePath = Path.Combine(Application.dataPath, "domain.pddl");
+			//string problemFilePath = Path.Combine(Application.dataPath, "problem.pddl");
 
-            // 读取文件内容
-            string domainContent = File.ReadAllText(domainFilePath);
-            Debug.Log(domainContent);
-            string problemContent = File.ReadAllText(problemFilePath);
-            Debug.Log(problemContent);
-            var data = new MultipartFormDataContent();
+			//// 读取文件内容
+			//string domainContent = File.ReadAllText(domainFilePath);
+			//Debug.Log(domainContent);
+			//string problemContent = File.ReadAllText(problemFilePath);
+			//Debug.Log(problemContent);
+
+			string domainContent = domainStr;
+			string problemContent = problemStr;
+
+			var data = new MultipartFormDataContent();
             data.Add(new StringContent(domainContent), "x");
             data.Add(new StringContent(problemContent),"y");
             HttpResponseMessage response = await client.PostAsync(url, data);
@@ -545,10 +551,6 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
                 Debug.Log(responseBody);
                 var result= ParseJsonString(responseBody);
                 Debug.Log(result.Count);
-    //            foreach (var itemList in result)
-				//{
-				//	Debug.Log(string.Join(", ", itemList));
-				//}
 			}
             return response;
         }
