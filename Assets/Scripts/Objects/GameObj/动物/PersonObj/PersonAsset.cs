@@ -251,7 +251,6 @@ public class Person : AnimalObj
     public ProblemGenerator problemGenerator;
     public PathGenerator pathGenerator;
     //**************************************************************
-    /*************************个人思想******************************/
     /******************************************************/
     [Property]
     public bool isPlayer;
@@ -261,9 +260,6 @@ public class Person : AnimalObj
     public Resource resource;
     [Property]
     public CodeData codeData;
-    [Property]
-    public int money;
-    ///*********************知识**************************/
     ///// <summary>
     ///// 金融知识
     ///// </summary>
@@ -296,7 +292,6 @@ public class Person : AnimalObj
     ///// 通史知识
     ///// </summary>
     //public PersonState generalHistoryKnowledge;
-    ///*************************特性**********************/
     ///// <summary>
     ///// 力量
     ///// </summary>

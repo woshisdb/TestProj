@@ -14,6 +14,7 @@ public class Map : Singleton<Map>
     public Dictionary<ObjEnum,Obj> enum2Ins;
     public Dictionary<Type,ObjEnum> saver2Enum;
     public static List<PType> types;
+    public Dictionary<Type, PType> type2PDDL;
     protected Map():base()
     {
 

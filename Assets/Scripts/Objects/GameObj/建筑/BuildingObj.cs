@@ -92,7 +92,7 @@ public class Rate
     {
         return func(obj);
     }
-    public Dictionary<ObjEnum,ObjContBase> ObjList()
+    public Dic<ObjEnum,ObjContBase> ObjList()
     {
         var s=resource.resources.Keys.Where(kv => can(Map.Instance.GetSaver(kv))).ToList();
         return resource.resources.Where(kv => s.Contains(kv.Key)).ToDictionary(kv => kv.Key, kv => kv.Value);
@@ -241,11 +241,11 @@ public class PipLineManager
     /// <summary>
     /// 管线的条目
     /// </summary>
-    public Dictionary<Trans,Source> piplineItem;
+    public Dic<Trans,Source> piplineItem;
     /// <summary>
     /// 世界规则固定不变的管线
     /// </summary>
-    public Dictionary<Trans,Source> worldPipline;
+    public Dic<Trans,Source> worldPipline;
     public void SetTrans(List<Trans> trans)
     {
         piplineItem.Clear();
@@ -257,8 +257,8 @@ public class PipLineManager
     public PipLineManager(BuildingObj obj)
     {
         this.obj = obj;
-        piplineItem = new Dictionary<Trans, Source>();
-        worldPipline = new Dictionary<Trans,Source>();
+        piplineItem = new Dic<Trans, Source>();
+        worldPipline = new Dic<Trans,Source>();
         foreach (var x in GameArchitect.get.objAsset.nodeGraph.worldRule)
         {
             worldPipline.Add(x, x.AddSource(obj,x));
@@ -294,11 +294,11 @@ public class BuildingObj : Obj
     /// <summary>
     /// 可选的对象
     /// </summary>
-    public Dictionary<TransationEnum, Rate> rates;
+    public Dic<TransationEnum, Rate> rates;
     /// <summary>
     /// 不可选，固定值
     /// </summary>
-    public Dictionary<SitEnum, Sit> sits;
+    public Dic<SitEnum, Sit> sits;
     /*******************************************************************/
     /// <summary>
     /// 用于交易的物品
@@ -314,7 +314,7 @@ public class BuildingObj : Obj
         requireBuilding = GetSaver().size;
         resource = new Resource();
         if (rates==null)
-            rates = new Dictionary<TransationEnum, Rate>();
+            rates = new Dic<TransationEnum, Rate>();
         /*******************添加Rate*******************/
         foreach (TransationEnum x in Enum.GetValues(typeof(TransationEnum)))
         {
@@ -353,7 +353,7 @@ public class BuildingObj : Obj
         resource.SetRate(rates);
         goodsManager = new GoodsManager(resource, this);
         pipLineManager = new PipLineManager(this);
-        sits = new Dictionary<SitEnum, Sit>();
+        sits = new Dic<SitEnum, Sit>();
         foreach (SitEnum x in Enum.GetValues(typeof(SitEnum)))
         {
             var data = x;

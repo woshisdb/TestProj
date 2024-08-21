@@ -34,10 +34,10 @@ public class ObjSaver
     public string title;
     public string description;
     [OdinSerialize]
-    public Dictionary<TransationEnum, ObjInf> transPairs=new Dictionary<TransationEnum, ObjInf>();
+    public Dic<TransationEnum, ObjInf> transPairs=new Dic<TransationEnum, ObjInf>();
     ////////////////////////////////////////////////////////
     [OdinSerialize]
-    public Dictionary<SitEnum,int> sits=new Dictionary<SitEnum, int>();
+    public Dic<SitEnum,int> sits=new Dic<SitEnum, int>();
     public int SitVal(SitEnum sitEnum)
     {
         if(sits.ContainsKey(sitEnum))

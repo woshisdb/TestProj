@@ -29,7 +29,7 @@ public class BuyA : Act
             selects,
             () =>
             {
-                Dictionary<Goods, int> resource = new Dictionary<Goods, int>();
+                Dic<Goods, int> resource = new Dic<Goods, int>();
                 for(int i=0;i<selects.Count;i++)
                 {
                     var sx=(Goods)selects[i].obj;

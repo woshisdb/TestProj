@@ -375,7 +375,9 @@ public class PDDLSet<T>:PDDLSet
         use.Remove(pDDL);
     }
 }
-
+/// <summary>
+/// 用来设置PDDL类和删除PDDL类
+/// </summary>
 public class PDDLClassGet
 {
     public static Dictionary<Type, PDDLSet> kv { get { return GameArchitect.get.pddlSet; } }

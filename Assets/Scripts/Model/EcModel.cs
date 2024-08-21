@@ -94,76 +94,76 @@ public class ObjSingle:ObjContBase, ICanRegisterEvent
         objs = objs.Except(content.objs).ToList();
     }
 }
-public class ObjTime<T> : ObjContBase, ICanRegisterEvent where T : PassTime, new()
-{
-    public T Time;
-    public Dictionary<int,int> objs;
-    public Action<T> act;
-    public override void Add(int num, Obj obj = null, int time = 0)
-    {
-        base.Add(num, obj);
-        objs.TryAdd(time, num);
-        objs[time]+=num;
-    }
-    public override void Remove(int num, Obj obj = null,int time=0)
-    {
-        base.Remove(num, obj);
-        if (time == 0)
-            time = Time.NowTime();
-        objs[time]-=num;
-        if (objs[time]==0)
-            objs.Remove(time);
-    }
-    public IArchitecture GetArchitecture()
-    {
-        return GameArchitect.get;
-    }
-    public ObjTime(int x,int y) : base(x,y)
-    {
-        Time = new T();
-        objs = new Dictionary<int, int>();
-        act = (e) =>
-         {
-             objs.Add(e.NowTime(),0);
-         };
-        this.RegisterEvent<T>(
-            act
-        );
-    }
+//public class ObjTime<T> : ObjContBase, ICanRegisterEvent where T : PassTime, new()
+//{
+//    public T Time;
+//    public Dic<int,int> objs;
+//    public Action<T> act;
+//    public override void Add(int num, Obj obj = null, int time = 0)
+//    {
+//        base.Add(num, obj);
+//        objs.TryAdd(time, num);
+//        objs[time]+=num;
+//    }
+//    public override void Remove(int num, Obj obj = null,int time=0)
+//    {
+//        base.Remove(num, obj);
+//        if (time == 0)
+//            time = Time.NowTime();
+//        objs[time]-=num;
+//        if (objs[time]==0)
+//            objs.Remove(time);
+//    }
+//    public IArchitecture GetArchitecture()
+//    {
+//        return GameArchitect.get;
+//    }
+//    public ObjTime(int x,int y) : base(x,y)
+//    {
+//        Time = new T();
+//        objs = new Dictionary<int, int>();
+//        act = (e) =>
+//         {
+//             objs.Add(e.NowTime(),0);
+//         };
+//        this.RegisterEvent<T>(
+//            act
+//        );
+//    }
 
-	public override void Combine(ObjContBase objCont)
-	{
-		base.Combine(objCont);
-        var objv = (ObjTime<T>)objCont;
-        foreach(var x in objv.objs)
-        {
-            if (objs.ContainsKey(x.Key))
-            {
-                objs.Add(x.Key, x.Value);
-            }
-            else
-			{
-                objs[x.Key] += x.Value;
-			}
-        }
-	}
-	public override void Delete(ObjContBase objContBase)
-	{
-		base.Delete(objContBase);
-        var objv = (ObjTime<T>)objContBase;
-        foreach (var x in objv.objs)
-        {
-            if (objs.ContainsKey(x.Key))
-            {
-                objs[x.Key] = Math.Max(0, objs[x.Key] - x.Value);
-            }
-        }
-	}
-	~ObjTime()
-    {
-        this.UnRegisterEvent<T>(act);
-    }
-}
+//	public override void Combine(ObjContBase objCont)
+//	{
+//		base.Combine(objCont);
+//        var objv = (ObjTime<T>)objCont;
+//        foreach(var x in objv.objs)
+//        {
+//            if (objs.ContainsKey(x.Key))
+//            {
+//                objs.Add(x.Key, x.Value);
+//            }
+//            else
+//			{
+//                objs[x.Key] += x.Value;
+//			}
+//        }
+//	}
+//	public override void Delete(ObjContBase objContBase)
+//	{
+//		base.Delete(objContBase);
+//        var objv = (ObjTime<T>)objContBase;
+//        foreach (var x in objv.objs)
+//        {
+//            if (objs.ContainsKey(x.Key))
+//            {
+//                objs[x.Key] = Math.Max(0, objs[x.Key] - x.Value);
+//            }
+//        }
+//	}
+//	~ObjTime()
+//    {
+//        this.UnRegisterEvent<T>(act);
+//    }
+//}
 /// <summary>
 /// 资源数目
 /// </summary>
@@ -234,23 +234,24 @@ public class Resource : IPDDL
     [Property]
     public int nowSize;
     [Property]
-    public Dictionary<ObjEnum, ObjContBase> resources;
-    public Dictionary<TransationEnum, Rate> rates;
-    public Dictionary<SitEnum, Sit> sites;
+    public Dic<ObjEnum, ObjContBase> resources;
+    [Property]
+    public Dic<TransationEnum, Rate> rates;
+    public Dic<SitEnum, Sit> sites;
     public int GetSize(ObjEnum objEnum)
     {
         return Map.Instance.GetSaver(objEnum).size;
     }
     public Resource()
     {
-        resources = new Dictionary<ObjEnum, ObjContBase>();
+        resources = new Dic<ObjEnum, ObjContBase>();
         InitPDDLClass();
     }
-    public void SetRate(Dictionary<TransationEnum, Rate> rates)
+    public void SetRate(Dic<TransationEnum, Rate> rates)
     {
         this.rates = rates;
     }
-    public void SetSites(Dictionary<SitEnum, Sit> sites)
+    public void SetSites(Dic<SitEnum, Sit> sites)
     {
         this.sites = sites;
     }
@@ -323,18 +324,18 @@ public class Resource : IPDDL
             {
                 resources.Add(objtype, new ObjCont(Map.Instance.GetObj(objtype), 0, 0));
             }
-            else if (type==SaveTye.day)
-            {
-                resources.Add(objtype, new ObjTime<PassDay>(0, 0));
-            }
-            else if (type == SaveTye.month)
-            {
-                resources.Add(objtype, new ObjTime<PassMonth>(0, 0));
-            }
-            else if (type == SaveTye.year)
-            {
-                resources.Add(objtype, new ObjTime<PassYear>(0, 0));
-            }
+            //else if (type==SaveTye.day)
+            //{
+            //    resources.Add(objtype, new ObjTime<PassDay>(0, 0));
+            //}
+            //else if (type == SaveTye.month)
+            //{
+            //    resources.Add(objtype, new ObjTime<PassMonth>(0, 0));
+            //}
+            //else if (type == SaveTye.year)
+            //{
+            //    resources.Add(objtype, new ObjTime<PassYear>(0, 0));
+            //}
         }
         resources[objtype].Add(num, obj);
     }
@@ -379,9 +380,9 @@ public class Resource : IPDDL
             return 0;
         }
     }
-    public Dictionary<ObjEnum, ObjContBase> GetObjs(ObjEnum objEnum)
+    public Dic<ObjEnum, ObjContBase> GetObjs(ObjEnum objEnum)
     {
-        var ret = new Dictionary<ObjEnum, ObjContBase>();
+        var ret = new Dic<ObjEnum, ObjContBase>();
         var s = Map.Instance.GetSaver(objEnum);
         foreach (var x in resources)
         {
@@ -460,14 +461,14 @@ public class GoodsManager
     /// <summary>
     /// 一系列的商品
     /// </summary>
-    public Dictionary<Goods,int> goods;
+    public Dic<Goods,int> goods;
     public Resource originResource;
     public Obj obj;
     public GoodsManager(Resource originresource,Obj obj)
     {
         this.obj = obj;
         this.originResource = originresource;
-        goods = new Dictionary<Goods, int>();
+        goods = new Dic<Goods, int>();
     }
     public void SellEc(Goods goodsItem,int n)
     {
@@ -515,7 +516,7 @@ public class EcModel : AbstractModel
                 g2.Remove(x);
             }
     }
-    public bool TryEc(Dictionary<Goods, int> resource, GoodsManager g1, Resource g2)
+    public bool TryEc(Dic<Goods, int> resource, GoodsManager g1, Resource g2)
     {
         Resource resource1=new Resource();
         foreach (var x in resource)

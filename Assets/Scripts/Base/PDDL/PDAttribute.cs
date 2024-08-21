@@ -276,16 +276,28 @@ public class PDDLClassGenerater
     //}
 }
 /// <summary>
+/// 用来管理Domain和Problem的
+/// </summary>
+public interface IDomainProblemCont
+{
+    public void SetDomain(Domain domain);
+    public void SetProblem(Problem problem);
+}
+/// <summary>
 /// PDDL对象应该能够获取相应的函数和Predx
 /// </summary>
-public abstract class PDDLClass
+public abstract class PDDLClass: IDomainProblemCont
 {
     public virtual void SetDomain(Domain domain)
     {
         if (!domain.pTypes.Contains(GetPType()))
         {
             domain.AddType(GetTypes()[0]);
-            domain.AddFuncs(GetFuncs());
+            var tempFunc = GetFuncs();
+            if(tempFunc!=null)
+            domain.AddFuncs(tempFunc);
+            var tempPred = GetPreds();
+            if(tempPred!=null)
             domain.AddPreds(GetPreds());
         }
         foreach (var x in GetPddls())
@@ -305,8 +317,12 @@ public abstract class PDDLClass
         if (!problem.objects.Contains(GetPType()))
         {
             problem.GetObj(GetPType());//添加自己
-            problem.initVal.AddRange(GetPredsVal());
-            problem.initVal.AddRange(GetFuncsVal());
+            var tempPredVal = GetPredsVal();
+            if(tempPredVal!=null)
+                problem.initVal.AddRange(tempPredVal);
+            var tempFuncVal = GetFuncsVal();
+            if (tempFuncVal != null)
+                problem.initVal.AddRange(tempFuncVal);
         }
         var s = GetPddls();
         foreach (var x in s)
@@ -341,6 +357,8 @@ public abstract class PDDLClass
         return new List<PDDLClass>();
     }
 }
+
+
 /// <summary>
 /// PDDL基类
 /// </summary>
@@ -444,13 +462,14 @@ where F: IPDDL
     }
 }
 
-public class Dic<T, F> : Dictionary<T, F>, IPDDL
+public class Dic<T, F> : Dictionary<T, F>, IPDDL 
+where T:IPDDL
+where F:IPDDL
 {
-    public PType type;
     public PDDLClass pddl;
     public PType GetPtype()
     {
-        return type;
+        return pddl.GetObj();
     }
 
     public void InitPDDLClass()
@@ -466,7 +485,6 @@ public class Dic<T, F> : Dictionary<T, F>, IPDDL
 
     public Dic()
     {
-        type = new DicType<T, F>();
     }
 }
 

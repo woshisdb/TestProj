@@ -15,7 +15,7 @@ public enum ContractEnum
 /// <summary>
 /// 人与人之间的合约模板
 /// </summary>
-public abstract class Contract
+public abstract class Contract: IPDDL
 {
     //public CodeData codeData;
     public CardInf cardInf;
@@ -64,6 +64,21 @@ public abstract class Contract
     {
         yield break;
     }
+
+	public PType GetPtype()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void InitPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
+
+	public PDDLClass GetPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
 }
 public class ContractEff
 {

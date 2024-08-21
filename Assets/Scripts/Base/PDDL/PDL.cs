@@ -804,17 +804,7 @@ public class Derived
 //    }
 //}
 
-/// <summary>
-/// 允许自定义
-/// </summary>
-public class VBool
-{
-    public static Dictionary<string,Dictionary<string,Derived>> map=new Dictionary<string, Dictionary<string, Derived>>();
-    public VBool(Derived derived,PType objType)
-    {
-        map[derived.dpre.name].Add(objType.typeName, derived);//将这个设置到里面
-    }
-}
+
 public interface PDDLProperty
 {
     public Pop GetPop();
@@ -1170,43 +1160,64 @@ public class DicType<T,F>:PType
 }
 
 public class Dic_PDDL<T, F> : PDDLClass<Dic<T,F>,DicType<T,F>>
+where T : IPDDL,new ()
+where F : IPDDL,new ()
 {
+    /// <summary>
+    /// 调用判断是否在里面
+    /// </summary>
+    /// <returns></returns>
+    public Predicate In(PType pType1,PType pType2)
+    {
+        return new Predicate("Dic_" + typeof(T).Name + "_" + typeof(F).Name + "_IN", GetObj(),pType1,pType2);
+    }
     public Dic_PDDL()
     {
-    }
+        ptype= new DicType<T, F>();
+	}
 
     public override List<Func> GetFuncs()
     {
-        throw new NotImplementedException();
+        return null;
     }
 
     public override List<Num> GetFuncsVal()
     {
-        throw new NotImplementedException();
+        return null;
     }
 
     public override PType GetObj()
     {
-        return obj.type;
+        return ptype;
     }
 
     public override List<PAction> GetPActions()
     {
-        throw new NotImplementedException();
+        return new List<PAction>();
     }
 
     public override List<Predicate> GetPreds()
     {
-        throw new NotImplementedException();
+        var temp1 = new T();
+        var temp2 = new F();
+        List<Predicate> ret = new List<Predicate>() {
+            new Predicate("Dic_"+typeof(T).Name+"_"+typeof(F).Name+"_IN", GetObj(),temp1.GetPtype(),temp2.GetPtype())
+        };
+        return ret;
     }
 
     public override List<Bool> GetPredsVal()
     {
-        throw new NotImplementedException();
+        var ret =new List<Bool>();
+        foreach (var x in obj)
+        {
+            ret.Add(new Bool(In(x.Key.GetPtype(),x.Value.GetPtype()),true));
+        }
+        return ret;
     }
 
     public override void SetObj(object obj)
     {
-        obj = (Dictionary<T, F>)(obj);
+        this.obj = (Dic<T, F>)(obj);
     }
 }
