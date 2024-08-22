@@ -1290,6 +1290,93 @@ where F : IPDDL
     {
     }
 }
+
+public class DicType<T> : PType
+{
+    public DicType() : base("Dic_" + typeof(T).Name)
+    {
+
+    }
+}
+
+public class Dic_PDDL<T> : PDDLClass<Dic<T>, DicType<T>>
+where T : IPDDL, new()
+{
+    /// <summary>
+    /// 调用判断是否在里面
+    /// </summary>
+    /// <returns></returns>
+    public Predicate In(PType pType1)
+    {
+        return new Predicate("Dic_" + typeof(T).Name + "_IN", GetObj(), pType1);
+    }
+    /// <summary>
+    /// 调用判断是否在里面
+    /// </summary>
+    /// <returns></returns>
+    public Func Num(PType pType1)
+    {
+        return new Func("Dic_" + typeof(T).Name + "_IN_NUM", GetObj(), pType1);
+    }
+    public Dic_PDDL()
+    {
+        ptype = new DicType<T>();
+    }
+
+    public override List<Func> GetFuncs()
+    {
+        var temp1 = new T();
+        List<Func> ret = new List<Func>() {
+            Num(temp1.GetPtype())
+        };
+        return ret;
+    }
+
+    public override List<Num> GetFuncsVal()
+    {
+        var ret = new List<Num>();
+        foreach (var x in obj)
+        {
+            ret.Add(new Num(Num(x.Key.GetPtype()), x.Value));
+        }
+        return ret;
+    }
+
+    public override PType GetObj()
+    {
+        return ptype;
+    }
+
+    public override List<PAction> GetPActions()
+    {
+        return new List<PAction>();
+    }
+
+    public override List<Predicate> GetPreds()
+    {
+        var temp1 = new T();
+        List<Predicate> ret = new List<Predicate>() {
+            new Predicate("Dic_"+typeof(T).Name+"_IN", GetObj(),temp1.GetPtype())
+        };
+        return ret;
+    }
+
+    public override List<Bool> GetPredsVal()
+    {
+        var ret = new List<Bool>();
+        foreach (var x in obj)
+        {
+            ret.Add(new Bool(In(x.Key.GetPtype()), true));
+        }
+        return ret;
+    }
+
+    public override void SetObj(object obj)
+    {
+        this.obj = (Dic<T>)(obj);
+    }
+}
+
 public class Dic<T> : Dictionary<T,int>, IPDDL
 where T : IPDDL
 {
