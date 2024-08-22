@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goods
+public class Goods:IPDDL
 {
     /// <summary>
     /// 购买物品
@@ -12,6 +12,8 @@ public class Goods
     /// 需要用来交易的产品
     /// </summary>
     public Resource sellO;
+
+    public int sum;
 
     // 构造函数
     public Goods()
@@ -24,5 +26,20 @@ public class Goods
         buyO.Add(buy);
         sellO.Add(sell);
     }
+
+	public PDDLClass GetPDDLClass()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public PType GetPtype()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public void InitPDDLClass()
+	{
+		throw new System.NotImplementedException();
+	}
 }
 

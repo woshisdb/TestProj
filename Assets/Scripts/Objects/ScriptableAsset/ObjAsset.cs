@@ -4,10 +4,19 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
-[System.Serializable]
+
+
+public class ObjInfType : PType
+{
+    
+}
+
+[System.Serializable,Class]
 public class ObjInf
 {
+    [Property]
     public bool can;//是否可以
+    [Property]
     public int count;//提供数目
     public ObjInf()
     {
@@ -34,7 +43,7 @@ public class ObjSaver
     public string title;
     public string description;
     [OdinSerialize]
-    public Dic<TransationEnum, ObjInf> transPairs=new Dic<TransationEnum, ObjInf>();
+    public Dic<Enum<TransationEnum>, ObjInf> transPairs=new Dic<Enum<TransationEnum>, ObjInf>();
     ////////////////////////////////////////////////////////
     [OdinSerialize]
     public Dic<SitEnum,int> sits=new Dic<SitEnum, int>();
@@ -65,12 +74,48 @@ public class ObjSaver
 
     }
 }
-public class Enum<T> where T : System.Enum
+public class EnumType<T>:PType
 {
+    
+}
+public class Enum_PDDL<T> : PDDLClass<Enum<T>,EnumType<T>>
+where T: System.Enum
+{
+
+}
+public class Enum<T>:IPDDL where T : System.Enum
+{
+    public PDDLClass pddl;
     public T value;
     public Enum(T v)
     {
         value = v;
+    }
+
+	public PDDLClass GetPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
+
+	public PType GetPtype()
+	{
+        return pddl.GetObj();
+
+    }
+
+	public void InitPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
+    public static implicit operator T(Enum<T> enumObj)
+    {
+        return enumObj.value;
+    }
+
+    // Implicit conversion from T to Enum<T>
+    public static implicit operator Enum<T>(T value)
+    {
+        return new Enum<T>(value);
     }
 }
 

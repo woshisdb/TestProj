@@ -56,12 +56,24 @@ public enum TransEnum
 	one,
 	conti
 }
+
+public class TransType : PType
+{
+
+}
+
+public class Trans_PDDL : PDDLClass<Trans,TransType>
+{
+	
+}
+
 /// <summary>
 /// 物体转移关系
 /// </summary>
 [System.Serializable]
-public class Trans
+public class Trans:IPDDL
 {
+	public Trans_PDDL pddl;
     [SerializeField]
 	public string title;
 	[SerializeField]
@@ -78,6 +90,21 @@ public class Trans
 			return new Source((BuildingObj)obj, ((BuildingObj)obj).resource, trans);
 		else
 			return new IterSource((BuildingObj)obj, ((BuildingObj)obj).resource, trans);
+	}
+
+	public PDDLClass GetPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
+
+	public PType GetPtype()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void InitPDDLClass()
+	{
+		throw new NotImplementedException();
 	}
 }
 ///// <summary>

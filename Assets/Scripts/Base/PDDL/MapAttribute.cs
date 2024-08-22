@@ -17,67 +17,67 @@ public class MapAttribute : Attribute
     }
 }
 
-public class Enum_PDDL<T> : PDDLClass
-where T : Enum
-{
-    /// <summary>
-    /// 枚举值
-    /// </summary>
-    public Func<T> enumVal;
-    public override List<Func> GetFuncs()
-    {
-        return null;
-    }
+//public class Enum_PDDL<T> : PDDLClass
+//where T : Enum
+//{
+//    /// <summary>
+//    /// 枚举值
+//    /// </summary>
+//    public Func<T> enumVal;
+//    public override List<Func> GetFuncs()
+//    {
+//        return null;
+//    }
 
-    public override List<Num> GetFuncsVal()
-    {
-        return null;
-    }
+//    public override List<Num> GetFuncsVal()
+//    {
+//        return null;
+//    }
 
-    public override List<PAction> GetPActions()
-    {
-        return null;
-    }
+//    public override List<PAction> GetPActions()
+//    {
+//        return null;
+//    }
 
-    public override List<Predicate> GetPreds()
-    {
-        return null;
-    }
+//    public override List<Predicate> GetPreds()
+//    {
+//        return null;
+//    }
 
-    public override List<Bool> GetPredsVal()
-    {
-        return null;
-    }
+//    public override List<Bool> GetPredsVal()
+//    {
+//        return null;
+//    }
 
-    public override PType GetPType()
-    {
-        return new PType(GetType().Name);
-    }
+//    public override PType GetPType()
+//    {
+//        return new PType(GetType().Name);
+//    }
 
-    public override void SetObj(object obj)
-    {
-        this.enumVal= (Func<T>)obj;
-    }
-    public override List<PType> GetObjs()
-    {
-        var ps= new List<PType>();
-        foreach(var x in Enum.GetNames(typeof(T)))
-        {
-            ps.Add(new PType(GetType().Name,x));
-        }
-        return ps;
-    }
+//    public override void SetObj(object obj)
+//    {
+//        this.enumVal= (Func<T>)obj;
+//    }
+//    public override List<PType> GetObjs()
+//    {
+//        var ps= new List<PType>();
+//        foreach(var x in Enum.GetNames(typeof(T)))
+//        {
+//            ps.Add(new PType(GetType().Name,x));
+//        }
+//        return ps;
+//    }
 
-    public override PType GetObj()
-    {
-        return new PType(GetType().Name, enumVal().ToString());
-    }
+//    public override PType GetObj()
+//    {
+//        return new PType(GetType().Name, enumVal().ToString());
+//    }
 
-    public override List<PType> GetTypes()
-    {
-        return null;
-    }
-}
+//    public override List<PType> GetTypes()
+//    {
+//        return null;
+//    }
+//}
 
 public class ObjEnumType:PType
 {

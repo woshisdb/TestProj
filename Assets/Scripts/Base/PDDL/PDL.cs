@@ -1159,6 +1159,20 @@ public class DicType<T,F>:PType
     }
 }
 
+public class HashType<T> : PType
+{
+    public HashType() : base("Hash_" + typeof(T).Name)
+    {
+
+    }
+}
+
+public class Hash<T>: PDDLClass
+where T :IPDDL,new()
+{
+    
+}
+
 public class Dic_PDDL<T, F> : PDDLClass<Dic<T,F>,DicType<T,F>>
 where T : IPDDL,new ()
 where F : IPDDL,new ()

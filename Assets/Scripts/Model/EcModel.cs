@@ -234,24 +234,24 @@ public class Resource : IPDDL
     [Property]
     public int nowSize;
     [Property]
-    public Dic<ObjEnum, ObjContBase> resources;
+    public Dic<Enum<ObjEnum>, ObjContBase> resources;
     [Property]
-    public Dic<TransationEnum, Rate> rates;
-    public Dic<SitEnum, Sit> sites;
+    public Dic<Enum<TransationEnum>, Rate> rates;
+    public Dic<Enum<SitEnum>, Sit> sites;
     public int GetSize(ObjEnum objEnum)
     {
         return Map.Instance.GetSaver(objEnum).size;
     }
     public Resource()
     {
-        resources = new Dic<ObjEnum, ObjContBase>();
+        resources = new Dic<Enum<ObjEnum>, ObjContBase>();
         InitPDDLClass();
     }
-    public void SetRate(Dic<TransationEnum, Rate> rates)
+    public void SetRate(Dic<Enum<TransationEnum>, Rate> rates)
     {
         this.rates = rates;
     }
-    public void SetSites(Dic<SitEnum, Sit> sites)
+    public void SetSites(Dic<Enum<SitEnum>, Sit> sites)
     {
         this.sites = sites;
     }
@@ -380,9 +380,9 @@ public class Resource : IPDDL
             return 0;
         }
     }
-    public Dic<ObjEnum, ObjContBase> GetObjs(ObjEnum objEnum)
+    public Dic<Enum<ObjEnum>, ObjContBase> GetObjs(ObjEnum objEnum)
     {
-        var ret = new Dic<ObjEnum, ObjContBase>();
+        var ret = new Dic<Enum<ObjEnum>, ObjContBase>();
         var s = Map.Instance.GetSaver(objEnum);
         foreach (var x in resources)
         {
@@ -461,14 +461,14 @@ public class GoodsManager
     /// <summary>
     /// 一系列的商品
     /// </summary>
-    public Dic<Goods,int> goods;
+    public Hash<Goods> goods;
     public Resource originResource;
     public Obj obj;
     public GoodsManager(Resource originresource,Obj obj)
     {
         this.obj = obj;
         this.originResource = originresource;
-        goods = new Dic<Goods, int>();
+        goods = new Hash<Goods>();
     }
     public void SellEc(Goods goodsItem,int n)
     {

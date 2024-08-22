@@ -5,8 +5,12 @@ using System.Linq;
 using UnityEngine;
 
 
+public class SitType : PType
+{
 
-public class Sit
+}
+
+public class Sit:IPDDL
 {
     public int sit=0;
     public int remainSit=0;
@@ -41,11 +45,36 @@ public class Sit
         var t = sum(Map.Instance.GetSaver(objEnum));
         remainSit += num*t;
     }
+
+	public PType GetPtype()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void InitPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
+
+	public PDDLClass GetPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
 }
+
+public class RateType : PType
+{
+
+}
+public class Rate_PDDL : PDDLClass<Rate, RateType>
+{
+    
+}
+
 /// <summary>
 /// 某一行为的工作量
 /// </summary>
-public class Rate
+public class Rate: IPDDL
 {
     public TransationEnum transType;
     public Func<ObjSaver, int> func;//获取数据
@@ -92,14 +121,29 @@ public class Rate
     {
         return func(obj);
     }
-    public Dic<ObjEnum,ObjContBase> ObjList()
+    public Dic<Enum<ObjEnum>,ObjContBase> ObjList()
     {
         var s=resource.resources.Keys.Where(kv => can(Map.Instance.GetSaver(kv))).ToList();
         return resource.resources.Where(kv => s.Contains(kv.Key)).ToDictionary(kv => kv.Key, kv => kv.Value);
     }
+
+	public PType GetPtype()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void InitPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
+
+	public PDDLClass GetPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
 }
 //资源一次性提供
-public class Source
+public class Source:IPDDL
 {
     public BuildingObj obj;
     public Trans trans;
@@ -156,7 +200,23 @@ public class Source
                 }
             nums.First.Value = count;
     }
-    public Source(BuildingObj obj,Resource resource,Trans trans)
+
+	public PType GetPtype()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void InitPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
+
+	public PDDLClass GetPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
+
+	public Source(BuildingObj obj,Resource resource,Trans trans)
     {
         this.trans = trans;
         this.resource = resource;
@@ -294,11 +354,11 @@ public class BuildingObj : Obj
     /// <summary>
     /// 可选的对象
     /// </summary>
-    public Dic<TransationEnum, Rate> rates;
+    public Dic<Enum<TransationEnum>, Rate> rates;
     /// <summary>
     /// 不可选，固定值
     /// </summary>
-    public Dic<SitEnum, Sit> sits;
+    public Dic<Enum<SitEnum>, Sit> sits;
     /*******************************************************************/
     /// <summary>
     /// 用于交易的物品
@@ -314,7 +374,7 @@ public class BuildingObj : Obj
         requireBuilding = GetSaver().size;
         resource = new Resource();
         if (rates==null)
-            rates = new Dic<TransationEnum, Rate>();
+            rates = new Dic<Enum<TransationEnum>, Rate>();
         /*******************添加Rate*******************/
         foreach (TransationEnum x in Enum.GetValues(typeof(TransationEnum)))
         {
@@ -353,7 +413,7 @@ public class BuildingObj : Obj
         resource.SetRate(rates);
         goodsManager = new GoodsManager(resource, this);
         pipLineManager = new PipLineManager(this);
-        sits = new Dic<SitEnum, Sit>();
+        sits = new Dic<Enum<SitEnum>, Sit>();
         foreach (SitEnum x in Enum.GetValues(typeof(SitEnum)))
         {
             var data = x;
