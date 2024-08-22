@@ -12,7 +12,7 @@ public class ObjInfType : PType
 }
 
 [System.Serializable,Class]
-public class ObjInf
+public class ObjInf:IPDDL
 {
     [Property]
     public bool can;// «∑Òø…“‘
@@ -22,6 +22,21 @@ public class ObjInf
     {
         can = false;
         count = 0;
+    }
+
+    public PDDLClass GetPDDLClass()
+    {
+        throw new NotImplementedException();
+    }
+
+    public PType GetPtype()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void InitPDDLClass()
+    {
+        throw new NotImplementedException();
     }
 }
 
@@ -46,7 +61,7 @@ public class ObjSaver
     public Dic<Enum<TransationEnum>, ObjInf> transPairs=new Dic<Enum<TransationEnum>, ObjInf>();
     ////////////////////////////////////////////////////////
     [OdinSerialize]
-    public Dic<SitEnum,int> sits=new Dic<SitEnum, int>();
+    public Dic<Enum<SitEnum>> sits=new Dic<Enum<SitEnum>>();
     public int SitVal(SitEnum sitEnum)
     {
         if(sits.ContainsKey(sitEnum))

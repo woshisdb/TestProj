@@ -29,7 +29,7 @@ public class BuyA : Act
             selects,
             () =>
             {
-                Dic<Goods, int> resource = new Dic<Goods, int>();
+                Dic<Goods> resource = new Dic<Goods>();
                 for(int i=0;i<selects.Count;i++)
                 {
                     var sx=(Goods)selects[i].obj;

@@ -26,15 +26,6 @@ public Person_PDDL():base(){
                 });
             
 
-                money = new PDDLVal(
-                () =>
-                {
-                    return new Func("Person_money", obj.GetPtype());
-                },
-                () =>
-                {
-                   return new Num(new Func("Person_money", obj.GetPtype()),()=>{return obj.money;});
-                });
             
 
             resource = new PDDLValRef<Resource_PDDL,Resource>(

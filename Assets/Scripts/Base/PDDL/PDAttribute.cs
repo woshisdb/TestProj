@@ -462,32 +462,6 @@ where F: IPDDL
     }
 }
 
-public class Dic<T, F> : Dictionary<T, F>, IPDDL 
-where T:IPDDL
-where F:IPDDL
-{
-    public PDDLClass pddl;
-    public PType GetPtype()
-    {
-        return pddl.GetObj();
-    }
-
-    public void InitPDDLClass()
-    {
-        pddl = PDDLClassGet.Generate(this.GetType());
-        pddl.SetObj(this);
-    }
-
-    public PDDLClass GetPDDLClass()
-    {
-        return pddl;
-    }
-
-    public Dic()
-    {
-    }
-}
-
 public interface PDVal
 {
     public PDDL GetPop();

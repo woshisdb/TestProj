@@ -124,7 +124,15 @@ public class Rate: IPDDL
     public Dic<Enum<ObjEnum>,ObjContBase> ObjList()
     {
         var s=resource.resources.Keys.Where(kv => can(Map.Instance.GetSaver(kv))).ToList();
-        return resource.resources.Where(kv => s.Contains(kv.Key)).ToDictionary(kv => kv.Key, kv => kv.Value);
+        Dic<Enum<ObjEnum>, ObjContBase> ret = new Dic<Enum<ObjEnum>, ObjContBase>();
+        foreach(var kv in resource.resources)
+        {
+            if(can(Map.Instance.GetSaver(kv.Key)))
+            {
+                ret.Add(kv.Key,kv.Value);
+            }
+        }
+        return ret;
     }
 
 	public PType GetPtype()

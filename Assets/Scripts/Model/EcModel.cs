@@ -255,7 +255,7 @@ public class Resource : IPDDL
     {
         this.sites = sites;
     }
-    public void Add(KeyValuePair<ObjEnum, ObjContBase> pair)
+    public void Add(KeyValuePair<Enum<ObjEnum>, ObjContBase> pair)
     {
         if (rates != null)
         foreach (var x in rates)
@@ -270,7 +270,7 @@ public class Resource : IPDDL
         resources[pair.Key].Combine(pair.Value);
         nowSize+=pair.Value.size*GetSize(pair.Key);
     }
-    public void Remove(KeyValuePair<ObjEnum, ObjContBase> pair)
+    public void Remove(KeyValuePair<Enum<ObjEnum>, ObjContBase> pair)
     {
         //if (rates != null)
         //    foreach (var x in rates)
@@ -461,14 +461,14 @@ public class GoodsManager
     /// <summary>
     /// 一系列的商品
     /// </summary>
-    public Hash<Goods> goods;
+    public Dic<Goods> goods;
     public Resource originResource;
     public Obj obj;
     public GoodsManager(Resource originresource,Obj obj)
     {
         this.obj = obj;
         this.originResource = originresource;
-        goods = new Hash<Goods>();
+        goods = new Dic<Goods>();
     }
     public void SellEc(Goods goodsItem,int n)
     {
@@ -516,7 +516,7 @@ public class EcModel : AbstractModel
                 g2.Remove(x);
             }
     }
-    public bool TryEc(Dic<Goods, int> resource, GoodsManager g1, Resource g2)
+    public bool TryEc(Dic<Goods> resource, GoodsManager g1, Resource g2)
     {
         Resource resource1=new Resource();
         foreach (var x in resource)

@@ -50,7 +50,6 @@ public class CookSelA : Act
         Debug.Log("烹饪");
         List<CardInf> selects = new List<CardInf>();
         Obj selObj = null;
-        //building.CookRate.objList.resources = new Dictionary<Obj, int>();
         foreach (var data in building.rates[TransationEnum.cook].ObjList())//选择一系列的餐具
         {
             var obj = Map.Instance.GetObj(data.Key);

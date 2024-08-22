@@ -13,15 +13,13 @@ public class Goods:IPDDL
     /// </summary>
     public Resource sellO;
 
-    public int sum;
-
     // ¹¹Ôìº¯Êý
     public Goods()
     {
         this.buyO = new Resource();
         this.sellO = new Resource();
     }
-    public Goods(KeyValuePair<ObjEnum, ObjContBase> buy, KeyValuePair<ObjEnum, ObjContBase> sell)
+    public Goods(KeyValuePair<Enum<ObjEnum>, ObjContBase> buy, KeyValuePair<Enum<ObjEnum>, ObjContBase> sell)
     {
         buyO.Add(buy);
         sellO.Add(sell);

@@ -1151,13 +1151,6 @@ public class NowT:Func
 
     }
 }
-public class DicType<T,F>:PType
-{
-    public DicType():base("Dic_"+typeof(T).Name+"_"+typeof(F).Name)
-    {
-
-    }
-}
 
 public class HashType<T> : PType
 {
@@ -1167,10 +1160,46 @@ public class HashType<T> : PType
     }
 }
 
-public class Hash<T>: PDDLClass
-where T :IPDDL,new()
+public class Hash_PDDL<T>:PDDLClass<Hash<T>,HashType<T>>
+where T:IPDDL,new()
 {
-    
+    public Hash_PDDL()
+    {
+        ptype = new HashType<T>();
+    }
+}
+
+public class Hash<T> : HashSet<T>, IPDDL
+where T : IPDDL, new()
+{
+    public PDDLClass pddl;
+    public Hash():base()
+    {
+
+    }
+    public PDDLClass GetPDDLClass()
+    {
+        return pddl;
+    }
+
+    public PType GetPtype()
+    {
+        return pddl.GetObj();
+    }
+
+    public void InitPDDLClass()
+    {
+        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl.SetObj(pddl);
+    }
+}
+
+public class DicType<T, F> : PType
+{
+    public DicType() : base("Dic_" + typeof(T).Name + "_" + typeof(F).Name)
+    {
+
+    }
 }
 
 public class Dic_PDDL<T, F> : PDDLClass<Dic<T,F>,DicType<T,F>>
@@ -1233,5 +1262,55 @@ where F : IPDDL,new ()
     public override void SetObj(object obj)
     {
         this.obj = (Dic<T, F>)(obj);
+    }
+}
+
+public class Dic<T, F> : Dictionary<T, F>, IPDDL
+where T : IPDDL
+where F : IPDDL
+{
+    public PDDLClass pddl;
+    public PType GetPtype()
+    {
+        return pddl.GetObj();
+    }
+
+    public void InitPDDLClass()
+    {
+        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl.SetObj(this);
+    }
+
+    public PDDLClass GetPDDLClass()
+    {
+        return pddl;
+    }
+
+    public Dic() : base()
+    {
+    }
+}
+public class Dic<T> : Dictionary<T,int>, IPDDL
+where T : IPDDL
+{
+    public PDDLClass pddl;
+    public PType GetPtype()
+    {
+        return pddl.GetObj();
+    }
+
+    public void InitPDDLClass()
+    {
+        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl.SetObj(this);
+    }
+
+    public PDDLClass GetPDDLClass()
+    {
+        return pddl;
+    }
+
+    public Dic() : base()
+    {
     }
 }
