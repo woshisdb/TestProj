@@ -1151,6 +1151,15 @@ public class NowT:Func
 
     }
 }
+/// <summary>
+/// 是否是世界状态，世界状态的更新
+/// </summary>
+public class WorldState : Predicate
+{
+    public WorldState() : base("WorldState")
+    { 
+    }
+}
 
 public class HashType<T> : PType
 {

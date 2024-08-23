@@ -3,6 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class WorldPDDL: IDomainProblemCont
+{
+    public WorldPDDL()
+    {
+
+    }
+    public void SetDomain(Domain domain)
+    {
+        var PTypes = new List<PType>();
+        var funcs = new List<Func>();
+        var preds = new List<Predicate>();
+        funcs.Add(P.NowT());
+        preds.Add(P.WorldState());
+
+    }
+    public void SetProblem(Problem problem)
+    {
+        var nums = new List<Num>();
+        var bools = new List<Bool>();
+        //设置世界状态
+        bools.Add(new Bool(P.WorldState(),false));
+        //设置当前时间
+        nums.Add(new Num(P.NowT(),GameArchitect.get.GetModel<TimeModel>().Time));
+    }
+}
+
 public class ActionPddls
 {
     //public static List<Tuple<Type, PAction>> GetPDDLActions()
@@ -18,6 +44,9 @@ public class ActionPddls
         //ret.Add(new Tuple<Type, PAction>(typeof(UseToolAct),UseToolAct()));
         return ret;
     }
+
+
+
     public static PAction Go()
     {
         PAction action = new PAction();
@@ -50,6 +79,12 @@ public class ActionPddls
     {
         PAction action = new PAction();
         action.actionName = "UseToolAct";
+        return action;
+    }
+    public static PAction SetPipLineAct()
+    {
+        PAction action = new PAction();
+        action.actionName = "SetPipLineAct";
         return action;
     }
     public static PAction SetPipLineAct()

@@ -456,7 +456,7 @@ public class Resource : IPDDL
 /// <summary>
 /// 商品管理列表
 /// </summary>
-public class GoodsManager
+public class GoodsManager:IPDDL
 {
     /// <summary>
     /// 一系列的商品
@@ -488,6 +488,21 @@ public class GoodsManager
         goods[x] += sum;
         originResource.Remove(sell, sellNum * sum);
     }
+
+	public PType GetPtype()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void InitPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
+
+	public PDDLClass GetPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
 }
 
 /// <summary>

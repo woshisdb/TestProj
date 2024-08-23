@@ -146,6 +146,10 @@ public static class P
     {
         return new Exist(express,numbers);
     }
+    public static IT IT() { return new IT(); }
+    public static Duration Duration() { return new Duration(); }
+    public static NowT NowT() { return new NowT(); }
+    public static WorldState WorldState() { return new WorldState(); }
 }
 
 public class CNode
