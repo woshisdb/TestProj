@@ -375,10 +375,13 @@ public class PDDLSet<T>:PDDLSet
         use.Remove(pDDL);
     }
 }
+
+
+
 /// <summary>
 /// 用来设置PDDL类和删除PDDL类
 /// </summary>
-public class PDDLClassGet
+public class PDDLClassGet:PDDLClassGetBase
 {
     public static Dictionary<Type, PDDLSet> kv { get { return GameArchitect.get.pddlSet; } }
     public PDDLClassGet()
@@ -387,6 +390,42 @@ public class PDDLClassGet
     public void Init()
     {
     }
+    public static PType GetPType(Type genericType)
+    {
+        if (genericType.IsGenericType)
+        {
+            // 获取泛型类型的定义，例如 EX<T, F>
+            Type genericTypeDefinition = genericType.GetGenericTypeDefinition();
+
+            // 假设 EXType<T, F> 的名称为 "EXType" + 泛型类型的名称
+            string targetTypeName = genericTypeDefinition.Name + "Type";
+
+            // 获取泛型参数，例如 T, F
+            Type[] genericArguments = genericType.GetGenericArguments();
+
+            // 生成目标类型，例如 EXType<T, F>
+            Type targetType = Type.GetType($"{genericTypeDefinition.Namespace}.{targetTypeName}`{genericArguments.Length}");
+
+            if (targetType != null)
+            {
+                // 将泛型参数应用到目标类型，例如 EXType<T, F>
+                Type constructedType = targetType.MakeGenericType(genericArguments);
+
+                // 创建该类型的实例
+                return (PType)Activator.CreateInstance(constructedType);
+            }
+            else
+            {
+                throw new InvalidOperationException($"Cannot find type '{targetTypeName}' in namespace '{genericTypeDefinition.Namespace}'.");
+            }
+        }
+        else
+        {
+            var ptype = Assembly.GetExecutingAssembly().GetType(genericType.Name + "Type");
+            return (PType)Activator.CreateInstance(ptype);
+        }
+    }
+
     public static PDDLClass Generate(Type type)
     {
         if(kv.ContainsKey(type)==false)
@@ -395,6 +434,17 @@ public class PDDLClassGet
             Debug.Log(type.Name + "_PDDL");
             Type genericTypeDefinition = typeof(PDDLSet<>);
             Type specificType = genericTypeDefinition.MakeGenericType(pddlType);
+            object pddlSetInstance = Activator.CreateInstance(specificType);
+            kv.TryAdd(type, (PDDLSet)pddlSetInstance);
+        }
+        return kv[type].Add();
+    }
+    public static PDDLClass Generate(Type type,Type pddl)
+    {
+        if (kv.ContainsKey(type) == false)
+        {
+            Type genericTypeDefinition = typeof(PDDLSet<>);
+            Type specificType = genericTypeDefinition.MakeGenericType(pddl.GetType());
             object pddlSetInstance = Activator.CreateInstance(specificType);
             kv.TryAdd(type, (PDDLSet)pddlSetInstance);
         }

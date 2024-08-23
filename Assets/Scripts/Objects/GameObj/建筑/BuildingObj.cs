@@ -151,9 +151,13 @@ public class Rate: IPDDL
 	}
 }
 //资源一次性提供
+[Class(false)]
 public class Source:IPDDL
 {
+    public PDDLClass pddl;
+    [Property]
     public BuildingObj obj;
+    [Property]
     public Trans trans;
     public LinkedList<int> nums;
     public Resource resource;
@@ -163,11 +167,6 @@ public class Source:IPDDL
     /// </summary>
     public virtual void Update()
     {
-            //int maxC = 9999999;
-            //foreach (var data in trans.from.source)
-            //{
-            //    maxC = Math.Min(maxC, resource.GetRemain(data.x) / data.y);
-            //}
             int count = maxnCount;
             foreach (var t in trans.edge.tras)//转移时间
             {
@@ -211,19 +210,19 @@ public class Source:IPDDL
 
 	public PType GetPtype()
 	{
-		throw new NotImplementedException();
+        return pddl.GetObj();
 	}
 
 	public void InitPDDLClass()
 	{
-		throw new NotImplementedException();
-	}
+        pddl = PDDLClassGet.Generate(GetType());
+        pddl.SetObj(this);
+    }
 
 	public PDDLClass GetPDDLClass()
 	{
-		throw new NotImplementedException();
+        return pddl;
 	}
-
 	public Source(BuildingObj obj,Resource resource,Trans trans)
     {
         this.trans = trans;

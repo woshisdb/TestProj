@@ -1189,7 +1189,7 @@ where T : IPDDL, new()
 
     public void InitPDDLClass()
     {
-        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl = PDDLClassGet.Generate(this.GetType(),typeof(Hash_PDDL<T>));
         pddl.SetObj(pddl);
     }
 }
@@ -1203,8 +1203,8 @@ public class DicType<T, F> : PType
 }
 
 public class Dic_PDDL<T, F> : PDDLClass<Dic<T,F>,DicType<T,F>>
-where T : IPDDL,new ()
-where F : IPDDL,new ()
+where T : IPDDL
+where F : IPDDL
 {
     /// <summary>
     /// 调用判断是否在里面
@@ -1241,10 +1241,8 @@ where F : IPDDL,new ()
 
     public override List<Predicate> GetPreds()
     {
-        var temp1 = new T();
-        var temp2 = new F();
         List<Predicate> ret = new List<Predicate>() {
-            new Predicate("Dic_"+typeof(T).Name+"_"+typeof(F).Name+"_IN", GetObj(),temp1.GetPtype(),temp2.GetPtype())
+            new Predicate("Dic_"+typeof(T).Name+"_"+typeof(F).Name+"_IN", GetObj(),PDDLClassGet.GetPType(typeof(T)),PDDLClassGet.GetPType(typeof(F)))
         };
         return ret;
     }
@@ -1277,7 +1275,7 @@ where F : IPDDL
 
     public void InitPDDLClass()
     {
-        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl = PDDLClassGet.Generate(this.GetType(), typeof(Dic_PDDL<T,F>));
         pddl.SetObj(this);
     }
 
@@ -1378,7 +1376,7 @@ where T : IPDDL, new()
 }
 [Class(false)]
 public class DicInt<T> : Dictionary<T,int>, IPDDL
-where T : IPDDL
+where T : IPDDL,new()
 {
     public PDDLClass pddl;
     public PType GetPtype()
@@ -1388,7 +1386,7 @@ where T : IPDDL
 
     public void InitPDDLClass()
     {
-        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl = PDDLClassGet.Generate(this.GetType(),typeof(DicInt_PDDL<T>));
         pddl.SetObj(this);
     }
 
@@ -1486,7 +1484,7 @@ where T : IPDDL, new()
 }
 [Class(false)]
 public class DicBool<T> : Dictionary<T, bool>, IPDDL
-where T : IPDDL
+where T : IPDDL,new()
 {
     public PDDLClass pddl;
     public PType GetPtype()
@@ -1495,7 +1493,7 @@ where T : IPDDL
     }
     public void InitPDDLClass()
     {
-        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl = PDDLClassGet.Generate(this.GetType(), typeof(DicBool_PDDL<T>));
         pddl.SetObj(this);
     }
 

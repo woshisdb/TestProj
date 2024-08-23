@@ -29,7 +29,7 @@ public class BuyA : Act
             selects,
             () =>
             {
-                Dic<Goods> resource = new Dic<Goods>();
+                DicInt<Goods> resource = new DicInt<Goods>();
                 for(int i=0;i<selects.Count;i++)
                 {
                     var sx=(Goods)selects[i].obj;
@@ -114,7 +114,6 @@ public class SellAct : Activity
         activityName = "Âô";
         detail = "ÂôÎïÆ·";
     }
-
     public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
     {
         return GetActs( new SellA(person, obj), obj, person, winDatas, objs);

@@ -14,6 +14,7 @@ public class ObjInfType : PType
 [System.Serializable,Class]
 public class ObjInf:IPDDL
 {
+    public PDDLClass pddl;
     [Property]
     public bool can;// «∑Òø…“‘
     [Property]
@@ -26,17 +27,18 @@ public class ObjInf:IPDDL
 
     public PDDLClass GetPDDLClass()
     {
-        throw new NotImplementedException();
+        return pddl;
     }
 
     public PType GetPtype()
     {
-        throw new NotImplementedException();
+        return pddl.GetObj();
     }
 
     public void InitPDDLClass()
     {
-        throw new NotImplementedException();
+        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl.SetObj(this);
     }
 }
 
@@ -93,8 +95,8 @@ public class EnumType<T>:PType
 {
     
 }
-public class Enum_PDDL<T> : PDDLClass<Enum<T>,EnumType<T>>
-where T: System.Enum
+public class Enum_PDDL<T> : PDDLClass<Enum<T>, EnumType<T>>
+where T : System.Enum
 {
 
 }
@@ -102,6 +104,10 @@ public class Enum<T>:IPDDL where T : System.Enum
 {
     public PDDLClass pddl;
     public T value;
+    public Enum()
+    {
+        value = default(T);
+    }
     public Enum(T v)
     {
         value = v;
@@ -109,13 +115,12 @@ public class Enum<T>:IPDDL where T : System.Enum
 
 	public PDDLClass GetPDDLClass()
 	{
-		throw new NotImplementedException();
+        return pddl;
 	}
 
 	public PType GetPtype()
 	{
         return pddl.GetObj();
-
     }
 
 	public void InitPDDLClass()

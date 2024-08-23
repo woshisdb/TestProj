@@ -50,7 +50,12 @@ public class ActionPddls
     {
         PAction action = new PAction();
         action.actionName = "UseToolAct";
-
+        return action;
+    }
+    public static PAction SetPipLineAct()
+    {
+        PAction action = new PAction();
+        action.actionName = "SetPipLineAct";
         return action;
     }
 }
