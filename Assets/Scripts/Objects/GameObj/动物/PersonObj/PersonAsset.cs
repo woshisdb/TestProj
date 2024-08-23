@@ -218,25 +218,6 @@ public class ContractManager
         }
         return null;
     }
-    //public bool Sign(Contract contract)
-    //{
-    //    if(contract.ContractAllow(contract.ap,person))//允许协议
-    //    {
-    //        contract.bp=person;
-    //        var contractModel=GameArchitect.get.GetModel<ContractModel>();
-    //        contractModel.SignContract(contract,person);
-    //        return true;
-    //    }
-    //    return false;
-    //}
-    //public bool CanSign(Contract contract)
-    //{
-    //    if (contract.ContractAllow(contract.ap, person))//允许协议
-    //    {
-    //        return true;
-    //    }
-    //    return false;
-    //}
 }
 public class PersonType:AnimalType
 {

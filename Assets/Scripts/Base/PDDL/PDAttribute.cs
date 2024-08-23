@@ -19,7 +19,15 @@ public class PropertyAttribute : Attribute
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum)]
 public class ClassAttribute : Attribute
 {
-    
+    public bool generate;
+    /// <summary>
+    /// 有c#自动生成来生成PDDLClass
+    /// </summary>
+    /// <param name="generate"></param>
+    public ClassAttribute(bool generate=true)
+    {
+        this.generate = generate;
+    }
 }
 public static class P
 {
@@ -175,8 +183,9 @@ public class PDDLClassGenerater
 
         // 查找所有被 ClassAttribute 特性修饰的类
         var classesWithAttribute = types
-            .Where(t => t.GetCustomAttributes(typeof(ClassAttribute), false).Any())
-            .ToList();
+        .Where(t => t.GetCustomAttributes(typeof(ClassAttribute), false)
+        .Any(attr => ((ClassAttribute)attr).generate))
+        .ToList();
         List<CNode> cNodes =new List<CNode>();
         foreach (var type in classesWithAttribute)
         {
