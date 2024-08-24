@@ -10,7 +10,7 @@ public class CookA:Act
     public BuildingObj buildingObj;
     public Obj selObj;
     public Int time;
-    public CookA(Person person, BuildingObj obj,Obj selObj, Int time, int priority = -1) : base(person, obj, priority)
+    public CookA(PersonObj PersonObj, BuildingObj obj,Obj selObj, Int time, int priority = -1) : base(PersonObj, obj, priority)
     {
         this.time = time;
         wastTime = true;
@@ -25,10 +25,10 @@ public class CookA:Act
         if (time == 0)
         {
             buildingObj.rates[TransationEnum.cook].RedRate(selObj);
-            yield return Ret(new EndAct(Person, Obj), callback);//返回
+            yield return Ret(new EndAct(PersonObj, Obj), callback);//返回
         }
         else
-            yield return Ret(new CookA(Person, buildingObj, selObj,time, priority), callback);//做饭
+            yield return Ret(new CookA(PersonObj, buildingObj, selObj,time, priority), callback);//做饭
     }
 }
 /// <summary>
@@ -37,7 +37,7 @@ public class CookA:Act
 public class CookSelA : Act
 {
     public int time = 3;
-    public CookSelA(Person person, Obj obj, int priority =10,int time=3) : base(person, obj, priority)
+    public CookSelA(PersonObj PersonObj, Obj obj, int priority =10,int time=3) : base(PersonObj, obj, priority)
     {
         this.time = time;
         wastTime = true;
@@ -62,23 +62,23 @@ public class CookSelA : Act
                 )
                 );
         }
-        yield return AddDecision(Person, new DecisionTex("选择餐具", "选择个餐具开始活动",
+        yield return AddDecision(PersonObj, new DecisionTex("选择餐具", "选择个餐具开始活动",
             selects
         ));///选择一个合适的活动
 
         if (selObj != null)
         {
             building.rates[TransationEnum.cook].AddRate(selObj);
-            var seleA = new SelectTime(Person, selObj,new int[]{ 1,2,3,4,5,6,7,8});
+            var seleA = new SelectTime(PersonObj, selObj,new int[]{ 1,2,3,4,5,6,7,8});
             yield return Ret(
-                new SeqAct(Person,Obj,
+                new SeqAct(PersonObj,Obj,
                     seleA,
-                    new CookA(Person,building, selObj, seleA.selectTime, - 1)
+                    new CookA(PersonObj,building, selObj, seleA.selectTime, - 1)
                 ),callback);//做饭
         }
         else
         {
-            yield return Ret(new EndAct(Person, Obj), callback);//结束活动
+            yield return Ret(new EndAct(PersonObj, Obj), callback);//结束活动
         }
     }
 }
@@ -114,11 +114,11 @@ public class CookAct : Activity
         activityName = "烹饪";
         detail = "烹饪东西";
     }
-    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
+    public override Act Effect(Obj obj, PersonObj PersonObj, List<WinData> winDatas = null, params object[] objs)
     {
-        return GetActs(new CookSelA(person, obj), obj, person,winDatas,objs); ;
+        return GetActs(new CookSelA(PersonObj, obj), obj, PersonObj,winDatas,objs); ;
     }
-    public override bool Condition(Obj obj, Person person, params object[] objs)
+    public override bool Condition(Obj obj, PersonObj PersonObj, params object[] objs)
     {
         return true;  
     }

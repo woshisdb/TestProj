@@ -91,8 +91,8 @@ public class SaveSystem :Singleton<SaveSystem>
         //{
         //    game.tableAsset.tableSaver = new TableSaver();
         //    game.tableAsset.CreateTable("TestTable",100000);
-        //    var person = new Person(Map.Instance.GetSaver(ObjEnum.PersonE));
-        //    GameArchitect.gameLogic.CreatePerson(true,"Person",true,"TestTable");
+        //    var PersonObj = new PersonObj(Map.Instance.GetSaver(ObjEnum.PersonObjE));
+        //    GameArchitect.gameLogic.CreatePersonObj(true,"PersonObj",true,"TestTable");
 
         //}
         //GameArchitect.get.GetModel<TimeModel>().Time.val = game.tableAsset.tableSaver.time;

@@ -12,62 +12,86 @@ public enum ContractEnum
     unFinish,//未结束
 }
 
+public class ContractType
+{
+    public ContractType():base()
+    {
+    }
+}
+
 /// <summary>
 /// 人与人之间的合约模板
 /// </summary>
+[Class(true)]
 public abstract class Contract: IPDDL
 {
+    public PDDLClass pddl;
     //public CodeData codeData;
     public CardInf cardInf;
     /// <summary>
-    /// 协议甲方
+    /// 协议的甲方
     /// </summary>
-    public Person ap;
+    public IPerson ap;
     /// <summary>
-    /// 协议乙方
+    /// 协议的乙方
     /// </summary>
-    public HashSet<Person> bp;
+    public HashSet<IPerson> bp;
+    /// <summary>
+    /// 共发布了多少协议
+    /// </summary>
     public int count;
-    public int beginTime;
-    public int endTime;
-    /// <summary>
-    /// 选择要做的行为
-    /// </summary>
-    public CodeSystemData codeData;
-    public bool hasSign;
-    public ContractEff contractEff;
     public Contract()
     {
-        hasSign = false;
-        contractEff = new ContractEff();
         cardInf = new CardInf("","");
-        bp = new HashSet<Person>();
+        bp = new HashSet<IPerson>();
+    }
+    public abstract CodeSystemData GetCodeData();
+    /// <summary>
+    /// 签署时的处理
+    /// </summary>
+    /// <param name="person"></param>
+    public abstract void RegisterContract(IPerson person);
+    /// <summary>
+    /// 毁约的处理
+    /// </summary>
+    /// <param name="person"></param>
+    public abstract void UnRegisterContract(IPerson person);
+
+    public virtual void Init(IPerson ap,int num)
+    {
+        this.ap = ap;
+        count = num;
     }
     /// <summary>
     /// 签署协议
     /// </summary>
-    public virtual void Sign()
+    public virtual void Sign(IPerson person)
     {
-        beginTime = GameArchitect.get.GetModel<TimeModel>().GetTime();
-        hasSign = true;
+        bp.Add(person);
+        RegisterContract(person);
+        person.SetWorkData(GetCodeData());
     }
-    public virtual bool CanSign(Person person)
+    /// <summary>
+    /// 是否可以签署协议
+    /// </summary>
+    /// <param name="PersonObj"></param>
+    /// <returns></returns>
+    public virtual bool CanSign(IPerson PersonObj)
     {
-        return !bp.Contains(person);
+        return !bp.Contains(PersonObj);
     }
+    /// <summary>
+    /// 获取数据
+    /// </summary>
+    /// <returns></returns>
     public List<CodeSystemData> GetDats()
     {
         var t = GameArchitect.get.tableAsset.codeDatas;
         return t.FindAll(e => {return e.name.StartsWith(cardInf.title); });
     }
-    public virtual IEnumerator Editor(Person person)
-    {
-        yield break;
-    }
-
 	public PType GetPtype()
 	{
-		throw new NotImplementedException();
+        return pddl.GetObj();
 	}
 
 	public void InitPDDLClass()
@@ -80,92 +104,6 @@ public abstract class Contract: IPDDL
 		throw new NotImplementedException();
 	}
 }
-public class ContractEff
-{
-    /// <summary>
-    /// 一系列的对象
-    /// </summary>
-    public Resource obj;
-    /// <summary>
-    /// 担保物品
-    /// </summary>
-    public Resource assur;
-    public ContractEff()
-    {
-        obj = new Resource();
-        assur = new Resource();
-    }
-}
-/// <summary>
-/// 雇佣工作的协议
-/// </summary>
-public class WorkContract : Contract
-{
-    public WorkContract():base()
-    {
-        cardInf.title = "工作";
-        cardInf.description="做工作";
-    }
-    /// <summary>
-    /// 执行行为的名字，协议的时间，签约人
-    /// </summary>
-    /// <param name="codeData"></param>
-    /// <param name="contractTime"></param>
-    /// <param name="ap"></param>
-    public WorkContract(string codeData,Person ap):base()
-    {
-        cardInf = new CardInf("工作", "做工作");
-        var t=GameArchitect.get.tableAsset.codeDatas.Find(x => x.name == codeData);
-        this.codeData = t;
-        hasSign = false;
-        this.ap = ap;
-    }
-    /// <summary>
-    /// 目标时间
-    /// </summary>
-    public override void Sign()
-    {
-        base.Sign();
-    }
-    /// <summary>
-    /// 选择起止时间
-    /// </summary>
-    /// <returns></returns>
-    public override IEnumerator Editor(Person person)
-    {
-        List<CardInf> time = new List<CardInf>();
-        for(int i=0;i<10;i++)
-        {
-            int t = i;
-            CardInf cardInf = new CardInf("开始时间",t+"个星期后",
-            () =>
-            {
-                beginTime=GameArchitect.get.GetModel<TimeModel>().GetBeginWeek()+t* TimeModel.timeStep*7;
-            }
-            );
-            time.Add(cardInf);
-        }
-        yield return GameArchitect.gameLogic.AddDecision(person, new DecisionTex(
-            "开始时间", "协议的开始时间", time
-        ));
-        List<CardInf> time1 = new List<CardInf>();
-        for (int i = 0; i < 12; i++)
-        {
-            int t = i;
-            CardInf cardInf = new CardInf("维持时间", t + "个月",
-            () =>
-            {
-                endTime = beginTime+t*30 * TimeModel.timeStep;
-            }
-            );
-            time1.Add(cardInf);
-        }
-        yield return GameArchitect.gameLogic.AddDecision(person, new DecisionTex(
-            "维持时间", "协议的持续时间", time1
-        ));
-    }
-}
-
 public class ContractModel : AbstractModel
 {
     [OdinSerialize]
@@ -178,12 +116,12 @@ public class ContractModel : AbstractModel
     /// 作为甲方的合约
     /// </summary>
     [OdinSerialize]
-    public Dictionary<Person, List<Contract>> aContract;
+    public Dictionary<IPerson, List<Contract>> aContract;
     /// <summary>
     /// 作为乙方的合约
     /// </summary>
     [OdinSerialize]
-    public Dictionary<Person, List<Contract>> bContract;
+    public Dictionary<IPerson, List<Contract>> bContract;
     [OdinSerialize]
     public HashSet<Contract> contracts;
     /***********************未签署的合约******************************/
@@ -193,32 +131,32 @@ public class ContractModel : AbstractModel
     }
     public ContractModel()
     {
-        aContract = new Dictionary<Person, List<Contract>>();
-        bContract = new Dictionary<Person, List<Contract>>();
-        foreach (var person in GameArchitect.persons)
+        aContract = new Dictionary<IPerson, List<Contract>>();
+        bContract = new Dictionary<IPerson, List<Contract>>();
+        foreach (var PersonObj in GameArchitect.PersonObjs)
         {
-            if (!aContract.ContainsKey(person))
+            if (!aContract.ContainsKey(PersonObj))
             {
-                aContract.Add(person, new List<Contract>());
+                aContract.Add(PersonObj, new List<Contract>());
             }
         }
-        foreach (var person in GameArchitect.persons)
+        foreach (var PersonObj in GameArchitect.PersonObjs)
         {
-            if (!bContract.ContainsKey(person))
+            if (!bContract.ContainsKey(PersonObj))
             {
-                bContract.Add(person, new List<Contract>());
+                bContract.Add(PersonObj, new List<Contract>());
             }
         }
         contracts = new HashSet<Contract>();
         contractTemplate = new List<Contract>();
-        //996的活动
+        //普通工作
         contractTemplate.Add(new WorkContract());
     }
     /// <summary>
     /// 是否有协议
     /// </summary>
     /// <returns></returns>
-    public bool AlreadyHasContract(Contract contract,Person ap,Person bp)
+    public bool AlreadyHasContract(Contract contract,PersonObj ap,PersonObj bp)
     {
         var data=bContract.GetValueOrDefault(bp).Find(e => { return e.ap == ap && Tool.IsSameClass(e,contract); });
         return data != null;
@@ -228,11 +166,10 @@ public class ContractModel : AbstractModel
     /// 乙方签订合约
     /// </summary>
     /// <param name="contract"></param>
-    public virtual void SignContract(Contract contract,Person person)
+    public virtual void SignContract(Contract contract,PersonObj PersonObj)
     {
-        contract.hasSign = true;
-        contract.bp.Add(person);
-        bContract.GetValueOrDefault(person).Add(contract);
+        contract.bp.Add(PersonObj);
+        bContract.GetValueOrDefault(PersonObj).Add(contract);
 
     }
     /// <summary>
@@ -250,16 +187,16 @@ public class ContractModel : AbstractModel
     {
         aContract.GetValueOrDefault(contract.ap).Remove(contract);
         contracts.Remove(contract);
-        foreach(var person in contract.bp)
+        foreach(var PersonObj in contract.bp)
         {
-            bContract[person].RemoveAll(x => { return x == contract; });
+            bContract[PersonObj].RemoveAll(x => { return x == contract; });
         }
     }
-    public List<Contract> GetUnSignContract(Person person)
+    public List<Contract> GetUnSignContract(PersonObj PersonObj)
     {
-        return aContract[person].FindAll(x =>
+        return aContract[PersonObj].FindAll(x =>
         {
-            return x.ap == person&&x.bp.Count<x.count;
+            return x.ap == PersonObj&&x.bp.Count<x.count;
         });
     }
 }

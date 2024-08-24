@@ -27,7 +27,7 @@ WheatFlourType-RawType
 WheatType-RawType
 FoodType-RawType
 MoneyType-RawType
-PersonType-AnimalType
+PersonObjType-AnimalType
 WheatPlaceType-PlaceType
 FullWheatPlaceType-PlaceType
 GongchangType-BuildingType
@@ -62,16 +62,16 @@ WheatSeedType-SeedType
 
 )
 (:durative-action GoAct
-:parameters(?PersonType_131-PersonType ?TableModelType_133-TableModelType ?TableModelType_134-TableModelType )
+:parameters(?PersonObjType_131-PersonObjType ?TableModelType_133-TableModelType ?TableModelType_134-TableModelType )
 
 :duration(=?duration (MapLen  ?TableModelType_133 ?TableModelType_134))
 :condition(
-( and (Person_belong  PersonType_131  TableModelType_133 ) (HasMap  TableModelType_133  TableModelType_134 ) )
+( and (PersonObj_belong  PersonObjType_131  TableModelType_133 ) (HasMap  TableModelType_133  TableModelType_134 ) )
 )
 
 :effect(
 
-( and (Person_belong  PersonType_131  TableModelType_134 ) ( not (Person_belong  PersonType_131  TableModelType_133 ))  )
+( and (PersonObj_belong  PersonObjType_131  TableModelType_134 ) ( not (PersonObj_belong  PersonObjType_131  TableModelType_133 ))  )
 )
 
 )

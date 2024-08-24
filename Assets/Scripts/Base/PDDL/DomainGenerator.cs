@@ -13,28 +13,28 @@ using UnityEngine;
 public class ProblemGenerator
 {
     public StringBuilder stringBuilder;
-    public Person person;
-    public ProblemGenerator(Person person)
+    public PersonObj PersonObj;
+    public ProblemGenerator(PersonObj PersonObj)
     {
-        this.person = person;
+        this.PersonObj = PersonObj;
     }
     /// <summary>
     /// 生成最需要的心情
     /// </summary>
     public Pop Needs()
     {
-        Pop metric = null;//PDDL.Min(person.foodState.retSatifP(), person.sleepState.retSatifP());//目标优化
+        Pop metric = null;//PDDL.Min(PersonObj.foodState.retSatifP(), PersonObj.sleepState.retSatifP());//目标优化
         return metric;
     }
 
     public string GenerateProblem()
     {
         ////[0代表非常痛苦，1代表无事发生]
-        //var sleepval = person.sleepState.retSatif(); //睡眠
-        //var foodval= person.foodState.retSatif();//食物
+        //var sleepval = PersonObj.sleepState.retSatif(); //睡眠
+        //var foodval= PersonObj.foodState.retSatif();//食物
         //var metric = Needs();
         //stringBuilder =new StringBuilder();
-        //stringBuilder.AppendFormat("(define (problem {0})\n","Problem"+person.name);//问题名字
+        //stringBuilder.AppendFormat("(define (problem {0})\n","Problem"+PersonObj.name);//问题名字
         //stringBuilder.AppendLine("(:domain robot-domain)\n");//域名字
         ////生成对象
         //stringBuilder.AppendLine("(:objects\n");
@@ -75,14 +75,14 @@ public class ProblemGenerator
 /// </summary>
 public class DomainGenerator
 {
-    public Person person;
+    public PersonObj PersonObj;
     public static StringBuilder str;
     public static string domainText;
     public static  List<PType> pTypes;
     public static string filePath;
-    public DomainGenerator(Person person)
+    public DomainGenerator(PersonObj PersonObj)
     {
-        this.person = person;
+        this.PersonObj = PersonObj;
     }
     /// <summary>
     /// 生成域的信息
@@ -168,10 +168,10 @@ public class DomainGenerator
 
 public class PathGenerator
 {
-    Person person;
-    public PathGenerator(Person person)
+    PersonObj PersonObj;
+    public PathGenerator(PersonObj PersonObj)
     {
-        this.person = person;
+        this.PersonObj = PersonObj;
     }
     public Task GetPath(DomainGenerator domainGenerator,ProblemGenerator problemGenerator)
     {

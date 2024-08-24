@@ -8,78 +8,78 @@ HomePathType - PathType
 SceneType - PType
 ObjType - PType
 AnimalType - ObjType
-PersonType - AnimalType
+PersonObjType - AnimalType
 BedType - ObjType
 )
 (:predicates
 (IsAliveP ?objType-ObjType  )
 (In ?x-ObjType ?sceneType-SceneType  )
-(Sex ?personType-AnimalType  )
+(Sex ?PersonObjType-AnimalType  )
 (HasSelectP ?objType-ObjType  )
-(IsUseObjP ?personType-AnimalType ?objType-ObjType  )
-(HasCloth ?personType-PersonType ?objType-ObjType  )
+(IsUseObjP ?PersonObjType-AnimalType ?objType-ObjType  )
+(HasCloth ?PersonObjType-PersonObjType ?objType-ObjType  )
 )
 (:functions
 (NowT  )
 (ObjSizeF ?objType-ObjType )
 (Money ?objType-ObjType )
-(Age ?personType-AnimalType )
+(Age ?PersonObjType-AnimalType )
 (SleepValF ?objType-ObjType )
 (FoodValF ?objType-ObjType )
-(FinancialKnowledge ?personType-PersonType )
-(ArtKnowledge ?personType-PersonType )
-(LanguageKnowledge ?personType-PersonType )
-(MedicalKnowledge ?personType-PersonType )
-(ManagementKnowledge ?personType-PersonType )
-(AgriculturalKnowledge ?personType-PersonType )
-(IndustrialKnowledge ?personType-PersonType )
-(GeneralHistoryKnowledge ?personType-PersonType )
+(FinancialKnowledge ?PersonObjType-PersonObjType )
+(ArtKnowledge ?PersonObjType-PersonObjType )
+(LanguageKnowledge ?PersonObjType-PersonObjType )
+(MedicalKnowledge ?PersonObjType-PersonObjType )
+(ManagementKnowledge ?PersonObjType-PersonObjType )
+(AgriculturalKnowledge ?PersonObjType-PersonObjType )
+(IndustrialKnowledge ?PersonObjType-PersonObjType )
+(GeneralHistoryKnowledge ?PersonObjType-PersonObjType )
 (Capacity ?objType-ObjType )
 (NowCapacity ?objType-ObjType )
 )
 (:durative-action MainPanel_Home
-:parameters(?Person_18-PersonType ?MainPanel-SceneType ?Home-SceneType )
+:parameters(?PersonObj_18-PersonObjType ?MainPanel-SceneType ?Home-SceneType )
 
 :duration(=?duration 1)
 :condition(
-( at start (In  Person_18  MainPanel )) 
+( at start (In  PersonObj_18  MainPanel )) 
 )
 
 :effect(
 
-( at end ( and (In  Person_18  Home ) ( not (In  Person_18  MainPanel ))  )) 
+( at end ( and (In  PersonObj_18  Home ) ( not (In  PersonObj_18  MainPanel ))  )) 
 )
 
 )
 
 
 (:durative-action Home_MainPanel
-:parameters(?Person_19-PersonType ?Home-SceneType ?MainPanel-SceneType )
+:parameters(?PersonObj_19-PersonObjType ?Home-SceneType ?MainPanel-SceneType )
 
 :duration(=?duration 1)
 :condition(
-( at start (In  Person_19  Home )) 
+( at start (In  PersonObj_19  Home )) 
 )
 
 :effect(
 
-( at end ( and (In  Person_19  MainPanel ) ( not (In  Person_19  Home ))  )) 
+( at end ( and (In  PersonObj_19  MainPanel ) ( not (In  PersonObj_19  Home ))  )) 
 )
 
 )
 
 
 (:durative-action Sleep
-:parameters(?Person_20-PersonType ?BedObj_21-BedType )
+:parameters(?PersonObj_20-PersonObjType ?BedObj_21-BedType )
 
 :duration(=?duration ( > ?duration 0) )
 :condition(
-( at start ( and ( > (Capacity  ?BedObj_21) (NowCapacity  ?BedObj_21))  ( not (IsUseObjP  Person_20   ))  )) 
+( at start ( and ( > (Capacity  ?BedObj_21) (NowCapacity  ?BedObj_21))  ( not (IsUseObjP  PersonObj_20   ))  )) 
 )
 
 :effect(
 
-( and ( at end ( assign, (SleepValF  ?Person_20) ( min, ( max, ( + (SleepValF  ?Person_20)  #t)  0)  200) ) )  ( increase (NowT )  #t)  )
+( and ( at end ( assign, (SleepValF  ?PersonObj_20) ( min, ( max, ( + (SleepValF  ?PersonObj_20)  #t)  0)  200) ) )  ( increase (NowT )  #t)  )
 )
 
 )

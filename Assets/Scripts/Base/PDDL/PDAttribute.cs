@@ -19,7 +19,11 @@ public class PropertyAttribute : Attribute
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum)]
 public class ClassAttribute : Attribute
 {
-    
+    bool autoGen;
+    public ClassAttribute(bool autoGenerate=true)
+    {
+        autoGen=autoGenerate;
+    }
 }
 public static class P
 {

@@ -31,10 +31,10 @@ public struct ForceSelectEvent
 }
 public struct UpdateCode
 {
-    public Person person;
-    public UpdateCode(Person person)
+    public PersonObj PersonObj;
+    public UpdateCode(PersonObj PersonObj)
     {
-        this.person = person;
+        this.PersonObj = PersonObj;
     }
 }
 public class OptionUIControl : MonoBehaviour, IController, ICanRegisterEvent
@@ -44,7 +44,7 @@ public class OptionUIControl : MonoBehaviour, IController, ICanRegisterEvent
     //public OptionUIEnum optionUIEnum;
     public WindowManager windowsmanager;
     public SimpleObjectPool<GameObject> cardPool;
-    //public Person person;
+    //public PersonObj PersonObj;
     Dictionary<Obj, List<CardControlUi>> cardsUi;
     public List<UnityEvent> unityActions;
     /// <summary>
@@ -103,14 +103,14 @@ public class OptionUIControl : MonoBehaviour, IController, ICanRegisterEvent
     public void UpdateCodeView(UpdateCode updateCode)
     {
         ///是玩家
-        if(updateCode.person.isPlayer)
+        if(updateCode.PersonObj.isPlayer)
         {
-            var cMang = updateCode.person.contractManager;
+            var cMang = updateCode.PersonObj.contractManager;
             var res = new List<CardInf>();
             var time = GameArchitect.get.GetModel<TimeModel>().Time;
             for (int i = time; i < 48; i++)
             {
-                var code=updateCode.person.contractManager.GetCode(i);
+                var code=updateCode.PersonObj.contractManager.GetWorkCode(i);
                 if (code!=null)
                     res.Add(new CardInf(code.codeName, code.activity.activityName, () => { }));
                 else
@@ -139,7 +139,7 @@ public class OptionUIControl : MonoBehaviour, IController, ICanRegisterEvent
     }
     );
         var temp=GameArchitect.Interface;
-        //person = GameArchitect.persons.Find((e) => { return e.isPlayer; });
+        //PersonObj = GameArchitect.PersonObjs.Find((e) => { return e.isPlayer; });
         nowCards = new List<CardControlUi>();
         cardsUi = new Dictionary<Obj, List<CardControlUi>>();
         this.RegisterEvent<SelectObjEvent>(
@@ -185,7 +185,7 @@ public class OptionUIControl : MonoBehaviour, IController, ICanRegisterEvent
 
         this.RegisterEvent<ChangeOptionEvent>(//选择行为
          e => {
-             if(e.person.isPlayer)
+             if(e.PersonObj.isPlayer)
              {
                  foreach (KeyValuePair<Obj, List<CardControlUi>> entry in cardsUi)
                  {
@@ -204,7 +204,7 @@ public class OptionUIControl : MonoBehaviour, IController, ICanRegisterEvent
                          cardsUi[entry.Key].Add(data.GetComponent<CardControlUi>());
                      }    
                  }
-                 this.SendEvent<FinishOptionEvent>(new FinishOptionEvent(e.person));
+                 this.SendEvent<FinishOptionEvent>(new FinishOptionEvent(e.PersonObj));
                  //Debug.Log(12346743);
              }
          }

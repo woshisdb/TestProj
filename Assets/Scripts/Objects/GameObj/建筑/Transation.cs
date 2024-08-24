@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class BuyA : Act
 {
-    public BuyA(Person person, Obj obj, int priority = -1) : base(person, obj, priority)
+    public BuyA(PersonObj PersonObj, Obj obj, int priority = -1) : base(PersonObj, obj, priority)
     {
         wastTime = true;
     }
@@ -24,7 +24,7 @@ public class BuyA : Act
                 new SelectInf(t.Key.sellO.ToString()+ "->" + t.Key.buyO.ToString(), t.Value + "", t.Key, t.Value)
             );
         }
-        yield return GameArchitect.gameLogic.AddDecision(Person,
+        yield return GameArchitect.gameLogic.AddDecision(PersonObj,
             new SelectTex("购买", "选择要购买的东西",
             selects,
             () =>
@@ -36,9 +36,9 @@ public class BuyA : Act
                     var num=selects[i].num;
                     resource.Add(sx,num);
                 }
-                return GameArchitect.get.GetModel<EcModel>().TryEc(resource,buildingObj.goodsManager,Person.resource);
+                return GameArchitect.get.GetModel<EcModel>().TryEc(resource,buildingObj.goodsManager,PersonObj.resource);
             }));
-        yield return Ret(new EndAct(Person, Obj), callback);
+        yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
 }
 /// <summary>
@@ -52,11 +52,11 @@ public class BuyAct : Activity
         detail = "购买物品";
     }
 
-    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
+    public override Act Effect(Obj obj, PersonObj PersonObj, List<WinData> winDatas = null, params object[] objs)
     {
-        return GetActs( new BuyA(person, obj), obj, person,winDatas,objs); ;
+        return GetActs( new BuyA(PersonObj, obj), obj, PersonObj,winDatas,objs); ;
     }
-    public override bool Condition(Obj obj, Person person, params object[] objs)
+    public override bool Condition(Obj obj, PersonObj PersonObj, params object[] objs)
     {
         return true;// ((BuildingObj)obj).remainBuilder == 0;
     }
@@ -72,7 +72,7 @@ public class BuyAct : Activity
 /// </summary>
 public class SellA : Act
 {
-    public SellA(Person person, Obj obj, int priority = -1) : base(person, obj, priority)
+    public SellA(PersonObj PersonObj, Obj obj, int priority = -1) : base(PersonObj, obj, priority)
     {
         wastTime = true;
     }
@@ -89,7 +89,7 @@ public class SellA : Act
                 new SelectInf(t.Key.sellO.ToString()+"->"+ t.Key.buyO.ToString(),t.Value+"",t.Key,t.Value)
             );
         }
-        yield return GameArchitect.gameLogic.AddDecision(Person,
+        yield return GameArchitect.gameLogic.AddDecision(PersonObj,
             new SelectTex("卖", "选择要卖的东西",
             selects,
             () =>
@@ -101,7 +101,7 @@ public class SellA : Act
                 }
                 return true;
             }));
-        yield return Ret(new EndAct(Person, Obj), callback);
+        yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
 }
 /// <summary>
@@ -115,11 +115,11 @@ public class SellAct : Activity
         detail = "卖物品";
     }
 
-    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
+    public override Act Effect(Obj obj, PersonObj PersonObj, List<WinData> winDatas = null, params object[] objs)
     {
-        return GetActs( new SellA(person, obj), obj, person, winDatas, objs);
+        return GetActs( new SellA(PersonObj, obj), obj, PersonObj, winDatas, objs);
     }
-    public override bool Condition(Obj obj, Person person, params object[] objs)
+    public override bool Condition(Obj obj, PersonObj PersonObj, params object[] objs)
     {
         return true;// ((BuildingObj)obj).remainBuilder == 0;
     }

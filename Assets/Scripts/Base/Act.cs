@@ -8,7 +8,7 @@ using UnityEngine;
 public class EndAct:Act
 {
 
-    public EndAct(Person person, Obj obj):base(person, obj)
+    public EndAct(PersonObj PersonObj, Obj obj):base(PersonObj, obj)
     {
         
     }
@@ -23,7 +23,7 @@ public class EndAct:Act
 public class SeqAct : Act
 {
     List<Act> acts = new List<Act>();
-    public SeqAct(Person person, Obj obj,params Act[] acts) : base(person, obj)
+    public SeqAct(PersonObj PersonObj, Obj obj,params Act[] acts) : base(PersonObj, obj)
     {
         wastTime = false;
         this.acts.AddRange(acts);
@@ -50,7 +50,7 @@ public class SeqAct : Act
         }
         if (acts==null||acts.Count == 0)
         {
-            yield return Ret(new EndAct(Person, Obj), callback);
+            yield return Ret(new EndAct(PersonObj, Obj), callback);
         }
     }
     public override void SetWinData(List<WinData> winDatas)
@@ -67,7 +67,7 @@ public class SelectTime : Act
 {
     public int[] canSelectTime;
     public Int selectTime;
-    public SelectTime(Person person, Obj obj, int[] canSelectTime,int priority = -1) : base(person, obj, priority)
+    public SelectTime(PersonObj PersonObj, Obj obj, int[] canSelectTime,int priority = -1) : base(PersonObj, obj, priority)
     {
         wastTime = false;
         this.canSelectTime = canSelectTime;
@@ -88,17 +88,17 @@ public class SelectTime : Act
             });
             cardInfs.Add(cardInf);
         }
-        yield return AddDecision(Person, new DecisionTex("时间选择","打算做多久",
+        yield return AddDecision(PersonObj, new DecisionTex("时间选择","打算做多久",
             cardInfs
         ));
-        yield return Ret(new EndAct(Person, Obj), callback);
+        yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
 }
 
 
 public class SelectPiplineA : Act
 {
-    public SelectPiplineA(Person person, BuildingObj obj, int priority = -1) : base(person, obj, priority)
+    public SelectPiplineA(PersonObj PersonObj, BuildingObj obj, int priority = -1) : base(PersonObj, obj, priority)
     {
         wastTime = true;
     }
@@ -111,7 +111,7 @@ public class SelectPiplineA : Act
         {
             sels.Add(new SelectInf(s.title,"",s,1));
         }
-        yield return GameArchitect.gameLogic.AddDecision(Person,
+        yield return GameArchitect.gameLogic.AddDecision(PersonObj,
             new SelectTex("选择管线","选择制作管线",sels,
             ()=> {
                 var selPipline = new List<Trans>();
@@ -127,7 +127,7 @@ public class SelectPiplineA : Act
             }
             )
         );
-        yield return Ret(new EndAct(Person, Obj), callback);
+        yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
 }
 
@@ -140,7 +140,7 @@ public class SelPipLineAct:Activity
         activityName = "选择管线";
         detail = "选择自己的生产管线";
     }
-    public override bool Condition(Obj obj, Person person, params object[] objs)
+    public override bool Condition(Obj obj, PersonObj PersonObj, params object[] objs)
     {
         return true;// ((BuildingObj)obj).remainBuilder == 0;
     }
@@ -155,19 +155,19 @@ public class SelPipLineAct:Activity
     /// 效果
     /// </summary>
     /// <param name="obj"></param>
-    /// <param name="person"></param>
+    /// <param name="PersonObj"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
+    public override Act Effect(Obj obj, PersonObj PersonObj, List<WinData> winDatas = null, params object[] objs)
     {
         return GetActs(
-            new SelectPiplineA(person,(BuildingObj) obj), obj, person,winDatas, objs);
+            new SelectPiplineA(PersonObj,(BuildingObj) obj), obj, PersonObj,winDatas, objs);
     }
 }
 
 public class SetPiplineA : Act
 {
-    public SetPiplineA(Person person, BuildingObj obj, int priority = -1) : base(person, obj, priority)
+    public SetPiplineA(PersonObj PersonObj, BuildingObj obj, int priority = -1) : base(PersonObj, obj, priority)
     {
         wastTime = true;
     }
@@ -180,7 +180,7 @@ public class SetPiplineA : Act
         {
             sels.Add(new SelectInf(s.Key.title, "", s.Value,9999));
         }
-        yield return GameArchitect.gameLogic.AddDecision(Person,
+        yield return GameArchitect.gameLogic.AddDecision(PersonObj,
             new SelectTex("设置管线", "设置管线比例", sels,
             () => {
                 var selPipline = new List<Trans>();
@@ -192,7 +192,7 @@ public class SetPiplineA : Act
             }
             )
         );
-        yield return Ret(new EndAct(Person, Obj), callback);
+        yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
 }
 
@@ -205,7 +205,7 @@ public class SetPipLineAct : Activity
         activityName = "设定管线限度";
         detail = "选择管线的生产限度";
     }
-    public override bool Condition(Obj obj, Person person, params object[] objs)
+    public override bool Condition(Obj obj, PersonObj PersonObj, params object[] objs)
     {
         return true;// ((BuildingObj)obj).remainBuilder == 0;
     }
@@ -220,13 +220,13 @@ public class SetPipLineAct : Activity
     /// 效果
     /// </summary>
     /// <param name="obj"></param>
-    /// <param name="person"></param>
+    /// <param name="PersonObj"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
+    public override Act Effect(Obj obj, PersonObj PersonObj, List<WinData> winDatas = null, params object[] objs)
     {
         return GetActs(
-            new SetPiplineA(person, (BuildingObj)obj), obj, person,winDatas, objs);
+            new SetPiplineA(PersonObj, (BuildingObj)obj), obj, PersonObj,winDatas, objs);
     }
 }
 
@@ -238,7 +238,7 @@ public class UseToolAct : Activity
         activityName = "使用工具";
         detail = "使用工具来工作";
     }
-    public override bool Condition(Obj obj, Person person, params object[] objs)
+    public override bool Condition(Obj obj, PersonObj PersonObj, params object[] objs)
     {
         return true;
     }
@@ -253,30 +253,30 @@ public class UseToolAct : Activity
     /// 效果
     /// </summary>
     /// <param name="obj"></param>
-    /// <param name="person"></param>
+    /// <param name="PersonObj"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
+    public override Act Effect(Obj obj, PersonObj PersonObj, List<WinData> winDatas = null, params object[] objs)
     {
         int[] times = { 1,2,3,4,5,6,7,8,9,10,11,12};
-        var seleA = new SelectTime(person, obj, times);
-        var useA=new UseToolA(person, (BuildingObj)obj);
-        var relA = new ReleaseToolA(person, (BuildingObj)obj,useA.tool);
+        var seleA = new SelectTime(PersonObj, obj, times);
+        var useA=new UseToolA(PersonObj, (BuildingObj)obj);
+        var relA = new ReleaseToolA(PersonObj, (BuildingObj)obj,useA.tool);
         return GetActs(
-            new SeqAct(person,obj,
+            new SeqAct(PersonObj,obj,
             useA,
             seleA,
-            new WasteTimeA(person,obj,seleA.selectTime),
+            new WasteTimeA(PersonObj,obj,seleA.selectTime),
             relA
             ),
-        obj, person,winDatas, objs);
+        obj, PersonObj,winDatas, objs);
     }
 }
 
 public class UseToolA : Act
 {
     public Enum<ObjEnum> tool;
-    public UseToolA(Person person, BuildingObj obj, int priority = -1) : base(person, obj, priority)
+    public UseToolA(PersonObj PersonObj, BuildingObj obj, int priority = -1) : base(PersonObj, obj, priority)
     {
         wastTime = true;
         tool= new Enum<ObjEnum>(ObjEnum.ObjE);
@@ -299,18 +299,18 @@ public class UseToolA : Act
                 }
             ));
         }
-        yield return GameArchitect.gameLogic.AddDecision(Person,
+        yield return GameArchitect.gameLogic.AddDecision(PersonObj,
             new DecisionTex("使用工具", "选择工具来工作",
             sels
             )
         );
-        yield return Ret(new EndAct(Person, Obj), callback);
+        yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
 }
 public class ReleaseToolA : Act
 {
     Enum<ObjEnum> v;
-    public ReleaseToolA(Person person, BuildingObj obj,Enum<ObjEnum> v, int priority = -1) : base(person, obj, priority)
+    public ReleaseToolA(PersonObj PersonObj, BuildingObj obj,Enum<ObjEnum> v, int priority = -1) : base(PersonObj, obj, priority)
     {
         wastTime = true;
         this.v = v;
@@ -320,7 +320,7 @@ public class ReleaseToolA : Act
         BuildingObj obj = (BuildingObj)Obj;
         Debug.Log(v.value);
         obj.resource.Release(v.value,1);
-        yield return Ret(new EndAct(Person, Obj), callback);
+        yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
 }
 
@@ -329,7 +329,7 @@ public class ReleaseToolA : Act
 /// </summary>
 public class BuildA : Act
 {
-    public BuildA(Person person, BuildingObj obj, int priority = -1) : base(person, obj, priority)
+    public BuildA(PersonObj PersonObj, BuildingObj obj, int priority = -1) : base(PersonObj, obj, priority)
     {
         wastTime = true;
     }
@@ -342,7 +342,7 @@ public class BuildA : Act
         {
             sels.Add(new SelectInf(s.Key.title, "", s.Value, 9999));
         }
-        yield return GameArchitect.gameLogic.AddDecision(Person,
+        yield return GameArchitect.gameLogic.AddDecision(PersonObj,
             new SelectTex("设置管线", "设置管线比例", sels,
             () => {
                 var selPipline = new List<Trans>();
@@ -354,7 +354,7 @@ public class BuildA : Act
             }
             )
         );
-        yield return Ret(new EndAct(Person, Obj), callback);
+        yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
 }
 /// <summary>
@@ -369,7 +369,7 @@ public class BuildAct : Activity
         activityName = "设定管线限度";
         detail = "选择管线的生产限度";
     }
-    public override bool Condition(Obj obj, Person person, params object[] objs)
+    public override bool Condition(Obj obj, PersonObj PersonObj, params object[] objs)
     {
         return ((BuildingObj)obj).remainBuilder == 0;
     }
@@ -384,13 +384,13 @@ public class BuildAct : Activity
     /// 效果
     /// </summary>
     /// <param name="obj"></param>
-    /// <param name="person"></param>
+    /// <param name="PersonObj"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person,List<WinData> winDatas=null, params object[] objs)
+    public override Act Effect(Obj obj, PersonObj PersonObj,List<WinData> winDatas=null, params object[] objs)
     {
         return GetActs(
-            new BuildA(person, (BuildingObj)obj), obj, person,winDatas, objs);
+            new BuildA(PersonObj, (BuildingObj)obj), obj, PersonObj,winDatas, objs);
     }
 }
 
@@ -400,7 +400,7 @@ public class BuildAct : Activity
 public class WaKuangA : Act
 {
     Int time;
-    public WaKuangA(Person person, BuildingObj obj,Int time, int priority = -1) : base(person, obj, priority)
+    public WaKuangA(PersonObj PersonObj, BuildingObj obj,Int time, int priority = -1) : base(PersonObj, obj, priority)
     {
         this.time = time;
         wastTime = true;
@@ -413,7 +413,7 @@ public class WaKuangA : Act
         var t = kuang.GetRes(10);
         kuang.resource.Add(kuang.GetObj(),t.Value);
         if(time<=0)
-        yield return Ret(new EndAct(Person, Obj), callback);
+        yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
 }
 /// <summary>
@@ -428,7 +428,7 @@ public class WaKuangAct : Activity
         activityName = "挖矿";
         detail = "挖掘矿物";
     }
-    public override bool Condition(Obj obj, Person person, params object[] objs)
+    public override bool Condition(Obj obj, PersonObj PersonObj, params object[] objs)
     {
         return ((BuildingObj)obj).remainBuilder == 0;
     }
@@ -443,24 +443,16 @@ public class WaKuangAct : Activity
     /// 效果
     /// </summary>
     /// <param name="obj"></param>
-    /// <param name="person"></param>
+    /// <param name="PersonObj"></param>
     /// <param name="objs"></param>
     /// <returns></returns>
-    public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
+    public override Act Effect(Obj obj, PersonObj PersonObj, List<WinData> winDatas = null, params object[] objs)
     {
-        var selTime =new SelectTime(person,obj,new int[] {1,2,3,4,5,6,7,8});
-        var t = new WaKuangA(person, (BuildingObj)obj, selTime.selectTime);
-        return GetActs(new SeqAct(person,obj,selTime,t), obj, person, winDatas, objs);
+        var selTime =new SelectTime(PersonObj,obj,new int[] {1,2,3,4,5,6,7,8});
+        var t = new WaKuangA(PersonObj, (BuildingObj)obj, selTime.selectTime);
+        return GetActs(new SeqAct(PersonObj,obj,selTime,t), obj, PersonObj, winDatas, objs);
     }
 }
-
-
-
-
-
-
-
-
 
 public abstract class Act
 {
@@ -471,13 +463,13 @@ public abstract class Act
     /// 负数表示尽量靠后，数约小表示要求越晚
     /// </summary>
     public int priority;
-    public Person Person;
+    public PersonObj PersonObj;
     public Obj Obj;
     public bool wastTime;
     public List<WinData> winDatas;
-    public Act(Person person, Obj obj,int priority=-1)
+    public Act(PersonObj PersonObj, Obj obj,int priority=-1)
     {
-        Person = person;
+        this.PersonObj = PersonObj;
         Obj = obj;
         this.priority = priority;
         winDatas = new List<WinData>();//一系列的决策
@@ -496,9 +488,9 @@ public abstract class Act
     public abstract IEnumerator<object> Run(System.Action<Act> callback);
 
 
-    public IEnumerator AddDecision(Person person, WinCon decision)
+    public IEnumerator AddDecision(PersonObj PersonObj, WinCon decision)
     {
-        yield return GameArchitect.gameLogic.AddDecision(person,decision);
+        yield return GameArchitect.gameLogic.AddDecision(PersonObj,decision);
         winDatas.Add(decision.data);
     }
     public virtual void SetWinData(List<WinData> winDatas)

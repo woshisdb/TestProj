@@ -20,20 +20,21 @@ public class GameArchitect : Architecture<GameArchitect>
     //一系列获得行为
     public static Dictionary<Type, List<Activity>> activities;
     public static GameLogic gameLogic;
-    public static Person nowPerson;
+    public static PersonObj nowPersonObj;
     public TableAsset tableAsset;
     public ObjAsset objAsset;
     public Dictionary<Type, PDDLSet> pddlSet { get { return tableAsset.tableSaver.pddlSet; } }
     public List<Obj> objs { get { return GameArchitect.get.tableAsset.tableSaver.objs; } }
     public List<TableModel> tables { get { return GameArchitect.get.tableAsset.tableSaver.tables; } }
-    public static List<Person> persons { get {return GameArchitect.get.tableAsset.tableSaver.personList; } }
-    public Person player;
+    public static List<PersonObj> PersonObjs { get {return GameArchitect.get.tableAsset.tableSaver.PersonObjList; } }
+    public static List<NPCObj> npcs { get { return GameArchitect.get.tableAsset.tableSaver.npcs; } }
+    public PersonObj player;
     //public static Dictionary<string, Activity> actDic;
-    public void SetPlayer(Person person)
+    public void SetPlayer(PersonObj PersonObj)
     {
-        Debug.Log(person);
+        Debug.Log(PersonObj);
         //Debug.Log("?????????");
-        this.player = person;
+        this.player = PersonObj;
         if (GameArchitect.get.player != null)
         {
             gameLogic.camera.transform.position = GameArchitect.get.player.belong.control.CenterPos();
@@ -56,13 +57,13 @@ public class GameArchitect : Architecture<GameArchitect>
         //初始化PDDL类
         
         objAsset.map.Init();
-        //for(int i=0;i<persons.Count;i++)
+        //for(int i=0;i<PersonObjs.Count;i++)
         //{
-        //    persons[i].contractManager = new ContractManager(persons[i]);
+        //    PersonObjs[i].contractManager = new ContractManager(PersonObjs[i]);
         //}
         GameArchitect.gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
         this.RegisterModel<TableModelSet>(new TableModelSet(tableAsset));
-        this.RegisterModel<PersonsOptionModel>(new PersonsOptionModel(persons));
+        this.RegisterModel<PersonObjsOptionModel>(new PersonObjsOptionModel(PersonObjs));
         this.RegisterModel<ThinkModelSet>(new ThinkModelSet());
         this.RegisterModel<TimeModel>(new TimeModel());
         this.RegisterModel<EcModel>(new EcModel());
@@ -71,11 +72,11 @@ public class GameArchitect : Architecture<GameArchitect>
             //Debug.Log(111111211111);
             tableAsset.CreateTable("TestTable", 100000);
             //Debug.Log(11131111);
-            //var person = new Person(Map.Instance.GetSaver(ObjEnum.PersonE));
-            GameArchitect.gameLogic.CreatePerson(true, "Person", true, "TestTable");
+            //var PersonObj = new PersonObj(Map.Instance.GetSaver(ObjEnum.PersonObjE));
+            GameArchitect.gameLogic.CreatePersonObj(true, "PersonObj", true, "TestTable");
             //Debug.Log(111111111111);
         }
-        SetPlayer( persons.Find(e => { return e.isPlayer; }));
+        SetPlayer( PersonObjs.Find(e => { return e.isPlayer; }));
         var cM = tableAsset.tableSaver.contractModel;
         if (cM == null)
         {
@@ -84,18 +85,18 @@ public class GameArchitect : Architecture<GameArchitect>
         }
         else
         {
-            foreach (var person in GameArchitect.persons)
+            foreach (var PersonObj in GameArchitect.PersonObjs)
             {
-                if (!cM.aContract.ContainsKey(person))
+                if (!cM.aContract.ContainsKey(PersonObj))
                 {
-                    cM.aContract.Add(person, new List<Contract>());
+                    cM.aContract.Add(PersonObj, new List<Contract>());
                 }
             }
-            foreach (var person in GameArchitect.persons)
+            foreach (var PersonObj in GameArchitect.PersonObjs)
             {
-                if (!cM.bContract.ContainsKey(person))
+                if (!cM.bContract.ContainsKey(PersonObj))
                 {
-                    cM.bContract.Add(person, new List<Contract>());
+                    cM.bContract.Add(PersonObj, new List<Contract>());
                 }
             }
         }

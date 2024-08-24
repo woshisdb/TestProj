@@ -5,7 +5,71 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
+///// <summary>
+///// 美术知识
+///// </summary>
+//public PersonObjState artKnowledge;
+///// <summary>
+///// 语言知识
+///// </summary>
+//public PersonObjState languageKnowledge;
+///// <summary>
+///// 医疗知识
+///// </summary>
+//public PersonObjState medicalKnowledge;
+///// <summary>
+///// 管理知识
+///// </summary>
+//public PersonObjState managementKnowledge;
+///// <summary>
+///// 农业知识
+///// </summary>
+//public PersonObjState agriculturalKnowledge;
+///// <summary>
+///// 工业知识
+///// </summary>
+//public PersonObjState industrialKnowledge;
+///// <summary>
+///// 通史知识
+///// </summary>
+//public PersonObjState generalHistoryKnowledge;
+///// <summary>
+///// 力量
+///// </summary>
+//public PersonObjState strength;
+///// <summary>
+///// 敏捷
+///// </summary>
+//public PersonObjState dexterity;
+///// <summary>
+///// 体质
+///// </summary>
+//public PersonObjState constitution;
+///// <summary>
+///// 智力
+///// </summary>
+//public PersonObjState intelligence;
+///// <summary>
+///// 感知
+///// </summary>
+//public PersonObjState perception;
+///// <summary>
+///// 魅力
+///// </summary>
+//public PersonObjState charisma;
+///// <summary>
+///// 意志
+///// </summary>
+//public PersonObjState willpower;
+///// <summary>
+///// 运气
+///// </summary>
+//public PersonObjState luck;
 
+public enum IllType
+{
+    None
+}
 public class ObjInfType : PType
 {
     
@@ -14,6 +78,7 @@ public class ObjInfType : PType
 [System.Serializable,Class]
 public class ObjInf:IPDDL
 {
+    public PDDLClass pddl;
     [Property]
     public bool can;//是否可以
     [Property]
@@ -26,17 +91,17 @@ public class ObjInf:IPDDL
 
     public PDDLClass GetPDDLClass()
     {
-        throw new NotImplementedException();
+        return pddl;
     }
 
     public PType GetPtype()
     {
-        throw new NotImplementedException();
+        return pddl.GetObj();
     }
 
     public void InitPDDLClass()
     {
-        throw new NotImplementedException();
+        pddl = new ObjInf_PDDL();
     }
 }
 
@@ -138,12 +203,6 @@ public class Enum<T>:IPDDL where T : System.Enum
 public enum SaveTye
 {
     /// <summary>
-    /// 按照时间轴保存
-    /// </summary>
-    day,
-    month,
-    year,
-    /// <summary>
     /// 只需按照集合保存
     /// </summary>
     set,
@@ -175,7 +234,7 @@ public class ObjAsset : SerializedScriptableObject
     [NonSerialized, OdinSerialize]
     public AnimalSaver animalSaver;
     [NonSerialized, OdinSerialize]
-    public PersonSaver personSaver;
+    public PersonSaver PersonSaver;
     [NonSerialized, OdinSerialize]
     public BedSaver bedSaver;
     [NonSerialized, OdinSerialize]

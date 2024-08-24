@@ -48,7 +48,13 @@ public enum TransationEnum
 }
 public enum SitEnum
 {
+	/// <summary>
+	/// ´²
+	/// </summary>
 	bed,
+	/// <summary>
+	/// ×ùÎ»
+	/// </summary>
 	set
 }
 public enum TransEnum

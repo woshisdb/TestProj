@@ -32,73 +32,44 @@ public class BeginSelectEvent
 public class EndSelectEvent
 {
 }
-public enum CodeSystemEnum
-{
-    week,
-    month,
-    year,
-}
+/// <summary>
+/// 描述今天的工作
+/// </summary>
 public class CodeSystemData
 {
     public string name;
     /// <summary>
-    /// 类型
+    /// 
     /// </summary>
-    public CodeSystemEnum code;
-    public List<int> week;
     public List<CodeData> work;
-    /// <summary>
-    /// 今天的工作
-    /// </summary>
-    public List<List<string>> dayWork;
-    public CodeData GetNowWork()
-    {
-        var t = GameArchitect.get.GetModel<TimeModel>();
-        if (code== CodeSystemEnum.week)
-        {
-            return work.Find((x) => {return x.codeName== dayWork[week[t.GetWeek()]][t.GetDay()]; }); 
-        }
-        else if(code== CodeSystemEnum.month)
-        {
-            return work.Find((x) => { return x.codeName == dayWork[week[t.GetMonth()]][t.GetDay()]; });
-        }
-        else
-        {
-            return work.Find((x) => { return x.codeName == dayWork[week[t.GetYear()]][t.GetDay()]; });
-        }
-    }
+    //public CodeData GetNowWork()
+    //{
+    //    var t = GameArchitect.get.GetModel<TimeModel>();
+    //    return work[];
+    //    //}
+    //}
     public CodeData GetNowWork(int time)
     {
-        var t = GameArchitect.get.GetModel<TimeModel>();
-        if (code == CodeSystemEnum.week)
-        {
-            return work.Find((x) => { return x.codeName == dayWork[week[t.GetWeek(time)]][t.GetDay(time)]; });
-        }
-        else if (code == CodeSystemEnum.month)
-        {
-            return work.Find((x) => { return x.codeName == dayWork[week[t.GetMonth(time)]][t.GetDay(time)]; });
-        }
-        else
-        {
-            return work.Find((x) => { return x.codeName == dayWork[week[t.GetYear(time)]][t.GetDay(time)]; });
-        }
+        return work[time];
+        //var t = GameArchitect.get.GetModel<TimeModel>();
+        //if (code == CodeSystemEnum.week)
+        //{
+        //    return work.Find((x) => { return x.codeName == dayWork[week[t.GetWeek(time)]][t.GetDay(time)]; });
+        //}
+        //else if (code == CodeSystemEnum.month)
+        //{
+        //    return work.Find((x) => { return x.codeName == dayWork[week[t.GetMonth(time)]][t.GetDay(time)]; });
+        //}
+        //else
+        //{
+        //    return work.Find((x) => { return x.codeName == dayWork[week[t.GetYear(time)]][t.GetDay(time)]; });
+        //}
     }
     public CodeSystemData()
     {
         work= new List<CodeData>();
-        dayWork= new List<List<string>>();
     }
-    [Button]
-    public void AddDayWork()
-    {
-        var t = new List<string>();
-        for(int i=0;i<48;i++)
-        {
-            t.Add("empty");
-        }
-        dayWork.Add(t);
-    }
-    public virtual IEnumerator EditCodeSystem(Person person, Obj obj,CodeData codeData)
+    public virtual IEnumerator EditCodeSystem(PersonObj PersonObj, Obj obj,CodeData codeData)
     {
         List<Activity> activities = obj.InitActivities();
         List<CardInf> sels = new List<CardInf>();
@@ -114,7 +85,7 @@ public class CodeSystemData
             ));
         }
 
-        yield return GameArchitect.gameLogic.AddDecision(person, new DecisionTex(
+        yield return GameArchitect.gameLogic.AddDecision(PersonObj, new DecisionTex(
         "工作的内容", "选择工作的内容进行工作", sels));
         foreach (var x in work)
         {
@@ -126,24 +97,24 @@ public class CodeSystemData
     public IEnumerator GetActDec(CodeData codeData, Obj obj,Activity activity)
     {
         var w= codeData;
-        Person tempPerson = new Person();//自建Person
+        PersonObj tempPersonObj = new PersonObj();//自建PersonObj
         BuildingObj buildingObj = new BuildingObj();
         w.activity = activity;
         List<WinData> winDatas = new List<WinData>();
-        var eff = activity.Effect(obj, tempPerson, winDatas);
-        tempPerson.SetAct(eff);
-        tempPerson.isPlayer = true;
+        var eff = activity.Effect(obj, tempPersonObj, winDatas);
+        tempPersonObj.SetAct(eff);
+        tempPersonObj.isPlayer = true;
         Debug.Log(eff.GetType().Name);
         bool hasTime = GameLogic.hasTime;
-        while (tempPerson.hasSelect == true)
+        while (tempPersonObj.hasSelect == true)
         {
             GameLogic.hasTime = true;
-            yield return tempPerson.act.Run(
+            yield return tempPersonObj.act.Run(
                 (result) => {
                     if (result is EndAct)
-                        tempPerson.RemoveAct();
+                        tempPersonObj.RemoveAct();
                     else if (result is Act)
-                        tempPerson.SetAct((Act)result);
+                        tempPersonObj.SetAct((Act)result);
                 }
             );
         }
@@ -152,121 +123,100 @@ public class CodeSystemData
         w.wins = winDatas;
     }
 }
-public class CodeSystemDataWeek: CodeSystemData
-{
-    public CodeSystemDataWeek():base()
-    {
-        code = CodeSystemEnum.week;
-        week = new List<int>(7);
-        for(int i = 0; i < 7; i++)
-        { week.Add(0); }
-    }
-    public override IEnumerator EditCodeSystem(Person person,Obj obj, CodeData codeData)
-    {
-        List<Activity> activities = obj.InitActivities();
-        List<CardInf> sels = new List<CardInf>();
-        Activity activity = null;
-        foreach(var x in activities)
-        {
-            var data = x;
-            sels.Add(new CardInf("选择:"+data.activityName,data.detail,
-                () =>
-                {
-                    activity = data;
-                }
-            ));
-        }
+//public class CodeSystemDataWeek: CodeSystemData
+//{
+//    public CodeSystemDataWeek():base()
+//    {
+//        code = CodeSystemEnum.week;
+//        week = new List<int>(7);
+//        for(int i = 0; i < 7; i++)
+//        { week.Add(0); }
+//    }
+//    public override IEnumerator EditCodeSystem(PersonObj PersonObj,Obj obj, CodeData codeData)
+//    {
+//        List<Activity> activities = obj.InitActivities();
+//        List<CardInf> sels = new List<CardInf>();
+//        Activity activity = null;
+//        foreach(var x in activities)
+//        {
+//            var data = x;
+//            sels.Add(new CardInf("选择:"+data.activityName,data.detail,
+//                () =>
+//                {
+//                    activity = data;
+//                }
+//            ));
+//        }
 
-        yield return GameArchitect.gameLogic.AddDecision(person,new DecisionTex(
-        "工作的内容","选择工作的内容进行工作",sels));
-        foreach(var x in work)
-        {
-            x.obj = obj;
-        }
-        /////////////////////////////////////////////////////////////////
-        yield return GetActDec(codeData, obj,activity);
-    }
-}
+//        yield return GameArchitect.gameLogic.AddDecision(PersonObj,new DecisionTex(
+//        "工作的内容","选择工作的内容进行工作",sels));
+//        foreach(var x in work)
+//        {
+//            x.obj = obj;
+//        }
+//        /////////////////////////////////////////////////////////////////
+//        yield return GetActDec(codeData, obj,activity);
+//    }
+//}
 
-public class CodeSystemDataMove : CodeSystemData
-{
-    public CodeSystemDataMove() : base()
-    {
-        code = CodeSystemEnum.week;
-        week = new List<int>(7);
-        for (int i = 0; i < 7; i++)
-        { week.Add(0); }
-    }
-    public override IEnumerator EditCodeSystem(Person person, Obj obj, CodeData codeData)
-    {
-        List<Activity> activities = obj.InitActivities();
-        List<CardInf> sels = new List<CardInf>();
-        Activity activity = null;
-        foreach (var x in activities)
-        {
-            var data = x;
-            sels.Add(new CardInf("选择:" + data.activityName, data.detail,
-                () =>
-                {
-                    activity = data;
-                }
-            ));
-        }
+//public class CodeSystemDataMove : CodeSystemData
+//{
+//    public CodeSystemDataMove() : base()
+//    {
+//        code = CodeSystemEnum.week;
+//        week = new List<int>(7);
+//        for (int i = 0; i < 7; i++)
+//        { week.Add(0); }
+//    }
+//    public override IEnumerator EditCodeSystem(PersonObj PersonObj, Obj obj, CodeData codeData)
+//    {
+//        List<Activity> activities = obj.InitActivities();
+//        List<CardInf> sels = new List<CardInf>();
+//        Activity activity = null;
+//        foreach (var x in activities)
+//        {
+//            var data = x;
+//            sels.Add(new CardInf("选择:" + data.activityName, data.detail,
+//                () =>
+//                {
+//                    activity = data;
+//                }
+//            ));
+//        }
 
-        yield return GameArchitect.gameLogic.AddDecision(person, new DecisionTex(
-        "工作的内容", "选择工作的内容进行工作", sels));
-        foreach (var x in work)
-        {
-            x.obj = obj;
-        }
-        var w = work.Find((x) => { return x.codeName == "搬运"; });
-        Person tempPerson = new Person();//自建Person
-        BuildingObj buildingObj = new BuildingObj();
-        w.activity = activity;
-        List<WinData> winDatas = new List<WinData>();
-        var eff = activity.Effect(obj, tempPerson, winDatas);
-        tempPerson.SetAct(eff);
-        tempPerson.isPlayer = true;
-        Debug.Log(eff.GetType().Name);
-        bool hasTime = GameLogic.hasTime;
-        while (tempPerson.hasSelect == true)
-        {
-            GameLogic.hasTime = true;
-            yield return tempPerson.act.Run(
-                (result) => {
-                    if (result is EndAct)
-                        tempPerson.RemoveAct();
-                    else if (result is Act)
-                        tempPerson.SetAct((Act)result);
-                }
-            );
-        }
-        GameLogic.hasTime = hasTime;
-        ///选择一系列活动
-        w.wins = winDatas;
-    }
-}
-
-public class CodeSystemDataMonth : CodeSystemData
-{
-    public CodeSystemDataMonth() : base()
-    {
-        code = CodeSystemEnum.month;
-        week = new List<int>(30);
-        for (int i = 0; i < 30; i++)
-        { week.Add(0); }
-    }
-}
-public class CodeSystemDataYear : CodeSystemData
-{
-    public CodeSystemDataYear() : base()
-    {
-        code = CodeSystemEnum.year;
-        week = new List<int>(360);
-        for (int i = 0; i < 360; i++)
-        { week.Add(0); }
-    }
-}
+//        yield return GameArchitect.gameLogic.AddDecision(PersonObj, new DecisionTex(
+//        "工作的内容", "选择工作的内容进行工作", sels));
+//        foreach (var x in work)
+//        {
+//            x.obj = obj;
+//        }
+//        var w = work.Find((x) => { return x.codeName == "搬运"; });
+//        PersonObj tempPersonObj = new PersonObj();//自建PersonObj
+//        BuildingObj buildingObj = new BuildingObj();
+//        w.activity = activity;
+//        List<WinData> winDatas = new List<WinData>();
+//        var eff = activity.Effect(obj, tempPersonObj, winDatas);
+//        tempPersonObj.SetAct(eff);
+//        tempPersonObj.isPlayer = true;
+//        Debug.Log(eff.GetType().Name);
+//        bool hasTime = GameLogic.hasTime;
+//        while (tempPersonObj.hasSelect == true)
+//        {
+//            GameLogic.hasTime = true;
+//            yield return tempPersonObj.act.Run(
+//                (result) => {
+//                    if (result is EndAct)
+//                        tempPersonObj.RemoveAct();
+//                    else if (result is Act)
+//                        tempPersonObj.SetAct((Act)result);
+//                }
+//            );
+//        }
+//        GameLogic.hasTime = hasTime;
+//        ///选择一系列活动
+//        w.wins = winDatas;
+//    }
+//}
 
 
 
@@ -294,28 +244,28 @@ public class DecData : WinData
 
 public struct BeginActEvent
 {
-    public Person Person;
-    public BeginActEvent(Person person)
+    public PersonObj PersonObj;
+    public BeginActEvent(PersonObj PersonObj)
     {
-        this.Person = person;
+        this.PersonObj = PersonObj;
     }
 }
 public struct EndActEvent
 {
-    public Person Person;
-    public EndActEvent(Person person)
+    public PersonObj PersonObj;
+    public EndActEvent(PersonObj PersonObj)
     {
-        this.Person = person;
+        this.PersonObj = PersonObj;
     }
 }
 public class SelectCardEvent
 {
     public CardInf card;
-    public Person person;
-    public SelectCardEvent(CardInf card, Person person)
+    public PersonObj PersonObj;
+    public SelectCardEvent(CardInf card, PersonObj PersonObj)
     {
         this.card = card;
-        this.person = person;
+        this.PersonObj = PersonObj;
     }
 }
 public class GameLogic : MonoBehaviour,ICanRegisterEvent
@@ -446,17 +396,17 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
             }
         );
     }
-    public IEnumerator AddDecision(Person person,WinCon decision)
+    public IEnumerator AddDecision(PersonObj PersonObj,WinCon decision)
     {
-        if (person.codeData != null && person.codeData.wins != null && person.codeData.wins.Count > 0)
+        if (PersonObj.codeData != null && PersonObj.codeData.wins != null && PersonObj.codeData.wins.Count > 0)
         {
-            decision.Decision(person.codeData.wins[0]);
-            person.codeData.wins.RemoveAt(0);
+            decision.Decision(PersonObj.codeData.wins[0]);
+            PersonObj.codeData.wins.RemoveAt(0);
         }
         else
         {
-            Debug.Log(person.name + "," + decision.ToString());
-            if (person.isPlayer)
+            Debug.Log(PersonObj.name + "," + decision.ToString());
+            if (PersonObj.isPlayer)
             {
                 yield return GameArchitect.get.AddDecision(decision);
             }
@@ -466,7 +416,7 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
             }
         }
     }
-    public int CmpPerson(Person p1,Person p2)
+    public int CmpPersonObj(PersonObj p1,PersonObj p2)
     {
         if(p1.act.priority<p2.act.priority)
         {
@@ -509,7 +459,7 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
         //StartCoroutine(GetRequest(url));
         SendPostRequestAsync(url,domainStr,problemStr);
         //Debug.Log("Response Content: " + response);
-        //Expression<Func<Person, int>> func = (a) => a.resource.maxSize;
+        //Expression<Func<PersonObj, int>> func = (a) => a.resource.maxSize;
         ////TraverseExpression(func);
         //TraverseExpression(func.Body);
     }
@@ -768,57 +718,60 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     public async void BeginSelectEvent(BeginSelectEvent beginSelectEvent)
     {
         //Debug.Log(789);
-        var optionModel = GameArchitect.Interface.GetModel<PersonsOptionModel>();
+        var optionModel = GameArchitect.Interface.GetModel<PersonObjsOptionModel>();
         var modelset = GameArchitect.Interface.GetModel<TableModelSet>();
-        for (int i=0;i<GameArchitect.persons.Count;i++)//遍历每个person
+        //遍历每一个Person的决策
+        for (int i=0;i<GameArchitect.PersonObjs.Count;i++)//遍历每个PersonObj
         {
-            var person=GameArchitect.persons[i];//当前角色
-            GameArchitect.nowPerson = person;//当前角色
-            if (!person.hasSelect)//没有任务就初始化可执行的活动
+            var PersonObj=GameArchitect.PersonObjs[i];//当前角色
+            GameArchitect.nowPersonObj = PersonObj;//当前角色
+            if (!PersonObj.hasSelect)//没有任务就初始化可执行的活动
             {
-                if (person.contractManager.GetCode()!=null)
+                var nowWork = PersonObj.contractManager.GetWorkCode();
+                ///是否有
+                if (nowWork != null)
                 {
-                    var data=person.contractManager.GetCode();
-                    person.codeData = new CodeData(data);
-                    if(data.activity.Condition(data.obj,person))
+                    var data=PersonObj.contractManager.GetWorkCode();
+                    PersonObj.codeData = new CodeData(data);
+                    if(data.activity.Condition(data.obj,PersonObj))
                     {
-                        person.SetAct(data.activity.Effect(data.obj, person));
+                        PersonObj.SetAct(data.activity.Effect(data.obj, PersonObj));
                     }
                 }
-                else {//否则就自由选择
+                else {//否则就自由选择工作
                     var result = new Dictionary<Obj, CardInf[]>();
-                    for (int j = 0; j < person.belong.objs.Count; j++)
+                    for (int j = 0; j < PersonObj.belong.objs.Count; j++)
                     {
                         List<CardInf> cardInfList = new List<CardInf>();
-                        for (int l = 0; l < person.belong.objs[j].activities.Count; l++)
+                        for (int l = 0; l < PersonObj.belong.objs[j].activities.Count; l++)
                         {
-                            if (person.belong.objs[j].activities[l].Condition(person.belong.objs[j], person))
+                            if (PersonObj.belong.objs[j].activities[l].Condition(PersonObj.belong.objs[j], PersonObj))
                             {
-                                var res = person.belong.objs[j].activities[l].OutputSelect(person, person.belong.objs[j]);//一个可选项
+                                var res = PersonObj.belong.objs[j].activities[l].OutputSelect(PersonObj, PersonObj.belong.objs[j]);//一个可选项
                                 cardInfList.Add(res);
                             }
                         }
-                        result[person.belong.objs[j]] = cardInfList.ToArray();
+                        result[PersonObj.belong.objs[j]] = cardInfList.ToArray();
                     }
                     MainDispatch.Instance().Enqueue(
                     () =>
                     {
-                        optionModel.SetPersonOption(person, result);//当前的行为
+                        optionModel.SetPersonObjOption(PersonObj, result);//当前的行为
                     });
-                    await GameArchitect.Interface.GetModel<ThinkModelSet>().thinks[person].BeginThink(result);//等待思考完成
+                    await GameArchitect.Interface.GetModel<ThinkModelSet>().thinks[PersonObj].BeginThink(result);//等待思考完成
                 }
             }
         }
-        GameArchitect.persons.Sort((p1, p2) => { return CmpPerson(p1, p2); });
+        GameArchitect.PersonObjs.Sort((p1, p2) => { return CmpPersonObj(p1, p2); });
         //更新角色活动,每个角色都执行一遍
-        foreach(var person in GameArchitect.persons)
+        foreach(var PersonObj in GameArchitect.PersonObjs)
         {
             tcs = new TaskCompletionSource<bool>(false);
             MainDispatch.Instance().Enqueue(
                 () =>
                 {
                     hasTime = true;
-                    this.SendEvent<BeginActEvent>(new BeginActEvent(person));
+                    this.SendEvent<BeginActEvent>(new BeginActEvent(PersonObj));
                 }
             );
             await tcs.Task;
@@ -831,25 +784,25 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
             });
     }
     [Button]
-    public void CreatePerson(bool isplayer, string name, bool sex, string SceneName)
+    public void CreatePersonObj(bool isplayer, string name, bool sex, string SceneName)
     {
         var Sc = ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.tables.Find(e => { return e.TableName == SceneName; });
-        CreatePerson(isplayer, name, sex, Sc);
+        CreatePersonObj(isplayer, name, sex, Sc);
     }
-    public void CreatePerson(bool isplayer, string name, bool sex, TableModel Sc)
+    public void CreatePersonObj(bool isplayer, string name, bool sex, TableModel Sc)
     {
-        var s = Tool.DeepClone<PersonSaver>((PersonSaver)Map.Instance.GetSaver(typeof(Person)));
+        var s = Tool.DeepClone<PersonSaver>((PersonSaver)Map.Instance.GetSaver(typeof(PersonObj)));
         s.isPlayer = isplayer;
-        s.sex = sex;
-        s.PersonName =name;
-        var p = new Person(s);        
+        s.PersonObjName =name;
+        var p = new PersonObj(s);
+        p.sex = sex;
         if (Sc == null)
         {
             Debug.Log("无法创建");
             return;
         }
-        ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.personList.Add(p);//创建对象
-        ((GameArchitect)GameArchitect.Interface).GetModel<PersonsOptionModel>().AddPerson(p);
+        ((GameArchitect)GameArchitect.Interface).tableAsset.tableSaver.PersonObjList.Add(p);//创建对象
+        ((GameArchitect)GameArchitect.Interface).GetModel<PersonObjsOptionModel>().AddPersonObj(p);
         ((GameArchitect)GameArchitect.Interface).GetModel<ThinkModelSet>().AddThinkMode(p);
         Sc.EnterTable(p);
     }

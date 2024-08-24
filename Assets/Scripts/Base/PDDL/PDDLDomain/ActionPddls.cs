@@ -22,14 +22,14 @@ public class ActionPddls
     {
         PAction action = new PAction();
         action.actionName = "GoAct";
-        var person = new Person();
-        var personP = (Person_PDDL)person.GetPDDLClass();
+        var PersonObj = new PersonObj();
+        var PersonObjP = (PersonObj_PDDL)PersonObj.GetPDDLClass();
         var belong = new TableModel();
-        person.belong = belong;
-        var belongP = personP.belong;
+        PersonObj.belong = belong;
+        var belongP = PersonObjP.belong;
         var table = new TableModel();
         var tableP = (TableModel_PDDL)table.GetPDDLClass();
-        action.RegPDDL(personP);
+        action.RegPDDL(PersonObjP);
         action.RegRefVal(belongP);
         action.RegPDDL(tableP);
         action.RegCondition(

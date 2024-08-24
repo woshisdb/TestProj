@@ -8,8 +8,8 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Activity
 {
-    public Func<Obj, Person, object[], bool> cond;
-    public Func<Obj, Person, object[], Act> eff;
+    public Func<Obj, PersonObj, object[], bool> cond;
+    public Func<Obj, PersonObj, object[], Act> eff;
     public Activity()
     {
         this.cond = null;
@@ -19,28 +19,28 @@ public abstract class Activity
     public string activityName;
     [SerializeField]
     public string detail;
-    public virtual bool Condition(Obj obj,Person person, params object[] objs)
+    public virtual bool Condition(Obj obj,PersonObj PersonObj, params object[] objs)
     {
         return true;
     }
-    public abstract Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs);
+    public abstract Act Effect(Obj obj, PersonObj PersonObj, List<WinData> winDatas = null, params object[] objs);
 
     /// <summary>
     /// Êä³öUIµÄSelect
     /// </summary>
-    /// <param name="person"></param>
+    /// <param name="PersonObj"></param>
     /// <param name="obj"></param>
     /// <returns></returns>
-    public virtual CardInf OutputSelect(Person person, Obj obj)
+    public virtual CardInf OutputSelect(PersonObj PersonObj, Obj obj)
     {
         var ret = new CardInf(activityName, detail,
             () =>
             {
-                person.SetAct(Effect(obj, person));
+                PersonObj.SetAct(Effect(obj, PersonObj));
             });
         return ret;
     }
-    public Act GetActs(Act act, Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
+    public Act GetActs(Act act, Obj obj, PersonObj PersonObj, List<WinData> winDatas = null, params object[] objs)
     {
         if(winDatas!=null)
         {
@@ -48,7 +48,7 @@ public abstract class Activity
         }
         if (eff != null)
         {
-            return new SeqAct(person, obj, eff(obj, person, objs),
+            return new SeqAct(PersonObj, obj, eff(obj, PersonObj, objs),
                 act
                 );
         }

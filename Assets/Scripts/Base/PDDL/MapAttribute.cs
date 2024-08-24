@@ -88,7 +88,7 @@ public class ObjEnumType:PType
 public enum ObjEnum
 {
     //...........................»ùÀà
-    PersonE,
+    PersonObjE,
     BedObjE,
     DeskObjE,
     AnimalObjE,

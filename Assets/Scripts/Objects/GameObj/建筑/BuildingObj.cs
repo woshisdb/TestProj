@@ -376,7 +376,7 @@ public class BuildingObj : Obj
     /// buildingµÄ¹ÜÏß
     /// </summary>
     public PipLineManager pipLineManager;
-    public Person owner;
+    public PersonObj owner;
     public BuildingObj(BuildingSaver objSaver=null):base(objSaver)
     {
         requireBuilding = GetSaver().size;

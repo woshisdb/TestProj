@@ -166,7 +166,7 @@ public class Obj:PDDL,ICanRegisterEvent,IPDDL
 public class WasteTimeA : Act
 {
     Int n;
-    public WasteTimeA(Person person, Obj obj,Int n) : base(person, obj)
+    public WasteTimeA(PersonObj PersonObj, Obj obj,Int n) : base(PersonObj, obj)
     {
         this.n = n;
         wastTime = true;
@@ -178,7 +178,7 @@ public class WasteTimeA : Act
         Debug.Log("WasteTime"+n);
         n--;
         if (n == 0)
-            yield return Ret(new EndAct(Person, Obj), callback);
+            yield return Ret(new EndAct(PersonObj, Obj), callback);
         else
         {
             yield return Ret(this,callback);

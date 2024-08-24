@@ -13,7 +13,6 @@ public class ObjContBaseType:PType
 public class ObjContBase:IPDDL
 {
     public PDDLClass pddl;
-    public PType pType { get { return pddl.GetPType(); } }
     public int size;//容量
     public int remain;//剩余
     public virtual void Add(int num,Obj obj=null,int time=0)
@@ -44,7 +43,7 @@ public class ObjContBase:IPDDL
 
     public PType GetPtype()
     {
-        return pType;
+        return pddl.GetPType();
     }
 
     public void InitPDDLClass()
@@ -94,76 +93,6 @@ public class ObjSingle:ObjContBase, ICanRegisterEvent
         objs = objs.Except(content.objs).ToList();
     }
 }
-//public class ObjTime<T> : ObjContBase, ICanRegisterEvent where T : PassTime, new()
-//{
-//    public T Time;
-//    public Dic<int,int> objs;
-//    public Action<T> act;
-//    public override void Add(int num, Obj obj = null, int time = 0)
-//    {
-//        base.Add(num, obj);
-//        objs.TryAdd(time, num);
-//        objs[time]+=num;
-//    }
-//    public override void Remove(int num, Obj obj = null,int time=0)
-//    {
-//        base.Remove(num, obj);
-//        if (time == 0)
-//            time = Time.NowTime();
-//        objs[time]-=num;
-//        if (objs[time]==0)
-//            objs.Remove(time);
-//    }
-//    public IArchitecture GetArchitecture()
-//    {
-//        return GameArchitect.get;
-//    }
-//    public ObjTime(int x,int y) : base(x,y)
-//    {
-//        Time = new T();
-//        objs = new Dictionary<int, int>();
-//        act = (e) =>
-//         {
-//             objs.Add(e.NowTime(),0);
-//         };
-//        this.RegisterEvent<T>(
-//            act
-//        );
-//    }
-
-//	public override void Combine(ObjContBase objCont)
-//	{
-//		base.Combine(objCont);
-//        var objv = (ObjTime<T>)objCont;
-//        foreach(var x in objv.objs)
-//        {
-//            if (objs.ContainsKey(x.Key))
-//            {
-//                objs.Add(x.Key, x.Value);
-//            }
-//            else
-//			{
-//                objs[x.Key] += x.Value;
-//			}
-//        }
-//	}
-//	public override void Delete(ObjContBase objContBase)
-//	{
-//		base.Delete(objContBase);
-//        var objv = (ObjTime<T>)objContBase;
-//        foreach (var x in objv.objs)
-//        {
-//            if (objs.ContainsKey(x.Key))
-//            {
-//                objs[x.Key] = Math.Max(0, objs[x.Key] - x.Value);
-//            }
-//        }
-//	}
-//	~ObjTime()
-//    {
-//        this.UnRegisterEvent<T>(act);
-//    }
-//}
 /// <summary>
 /// 资源数目
 /// </summary>
@@ -183,41 +112,6 @@ public class ResourceType:PType
 
 }
 
-//public class Resource_PDDL : PDDLClass<Resource,ResourceType>
-//{
-
-//    public override List<Func> GetFuncs()
-//    {
-//        throw new NotImplementedException();
-//    }
-
-//    public override List<Pop> GetFuncsVal()
-//    {
-//        throw new NotImplementedException();
-//    }
-
-//    public override PType GetObj()
-//    {
-//        throw new NotImplementedException();
-//    }
-
-//    public override List<PAction> GetPActions()
-//    {
-//        throw new NotImplementedException();
-//    }
-
-//    public override List<Predicate> GetPreds()
-//    {
-//        throw new NotImplementedException();
-//    }
-
-//    public override List<Pop> GetPredsVal()
-//    {
-//        throw new NotImplementedException();
-//    }
-
-//}
-
 /// <summary>
 /// 一系列的资源
 /// </summary>
@@ -226,11 +120,13 @@ public class Resource : IPDDL
 {
     public PDDLClass pddl;
     /// <summary>
-    /// 资源类
+    /// 容纳的物品
     /// </summary>
-    public PType obj{get{return pddl.GetPType();}}
     [Property]
     public int maxSize;
+    /// <summary>
+    /// 当前使用的大小
+    /// </summary>
     [Property]
     public int nowSize;
     [Property]
@@ -300,7 +196,7 @@ public class Resource : IPDDL
         }
     }
     [Button]
-    public void Add(ObjEnum objtype, int num,int time=0,Obj obj=null)
+    public void Add(ObjEnum objtype, int num,Obj obj=null)
     {
         nowSize += num * GetSize(objtype);
         if (rates != null)
@@ -324,29 +220,12 @@ public class Resource : IPDDL
             {
                 resources.Add(objtype, new ObjCont(Map.Instance.GetObj(objtype), 0, 0));
             }
-            //else if (type==SaveTye.day)
-            //{
-            //    resources.Add(objtype, new ObjTime<PassDay>(0, 0));
-            //}
-            //else if (type == SaveTye.month)
-            //{
-            //    resources.Add(objtype, new ObjTime<PassMonth>(0, 0));
-            //}
-            //else if (type == SaveTye.year)
-            //{
-            //    resources.Add(objtype, new ObjTime<PassYear>(0, 0));
-            //}
         }
         resources[objtype].Add(num, obj);
     }
-    public void Remove(ObjEnum objType, int num,Obj obj=null,int time=0)
+    public void Remove(ObjEnum objType, int num,Obj obj=null)
     {
         nowSize -= num * GetSize(objType);
-        //if (rates != null)
-        //    foreach (var x in rates)
-        //    {
-        //        x.Value.RedRate(objType,num);
-        //    }
         if (sites != null)
             foreach (var x in sites)
             {
@@ -354,7 +233,7 @@ public class Resource : IPDDL
             }
         if (resources.ContainsKey(objType))
         {
-            resources[objType].Remove(num,obj,time);
+            resources[objType].Remove(num,obj);
         }
         if (resources[objType].size==0)
         {
@@ -434,7 +313,7 @@ public class Resource : IPDDL
 
     public PType GetPtype()
     {
-        return obj;
+        return pddl.GetObj();
     }
 
     public void InitPDDLClass()
@@ -473,10 +352,6 @@ public class GoodsManager
     public void SellEc(Goods goodsItem,int n)
     {
         goods[goodsItem] -= n;
-        //goods[goodsItem] -= n;
-        //if (goods[goodsItem]==0)
-        //    goods.Remove(goodsItem);
-        //originResource.Add(goodsItem.buyO, goodsItem.buyNum*n,time);
     }
     public void Add(ObjEnum sell,int sellNum,ObjEnum buy,int buyNum,int sum)
     {

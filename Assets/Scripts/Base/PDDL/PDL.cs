@@ -1170,7 +1170,7 @@ where T:IPDDL,new()
 }
 
 public class Hash<T> : HashSet<T>, IPDDL
-where T : IPDDL, new()
+where T : IPDDL
 {
     public PDDLClass pddl;
     public Hash():base()

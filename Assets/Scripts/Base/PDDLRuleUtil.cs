@@ -116,7 +116,7 @@ public static class PDDLRuleUtil
 //    /// 需要的人工数目，
 //    /// 
 //    /// <returns></returns>
-//    public static PAction GenerateRaw(IndustrialEquipmentObj InduObj,int wasterTime,int personNum,Nj[] input, Nj[] output,Pop otherRequire=null)
+//    public static PAction GenerateRaw(IndustrialEquipmentObj InduObj,int wasterTime,int PersonObjNum,Nj[] input, Nj[] output,Pop otherRequire=null)
 //    {
 //        PAction ret = new PAction();
 //        List<PType> inputs=new List<PType>();
@@ -147,7 +147,7 @@ public static class PDDLRuleUtil
 //            requires.Add(PDDL.G((I)data.maxCapacity, PDDL.Add(data.nowCapacity,(I) output[i].num)));
 //            effects.Add(PDDL.Increase(data.nowCapacity.func,(I)output[i].num));
 //        }
-//        requires.Add(PDDL.G(InduObj.nowPerson,(I)personNum));
+//        requires.Add(PDDL.G(InduObj.nowPersonObj,(I)PersonObjNum));
 //        var action= new PAction();
 //        action.Init(
 //            "Generate_Raw" + Nm.num,

@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class FinishOptionEvent
 {
-    Person person;
-    public FinishOptionEvent(Person person)
+    PersonObj PersonObj;
+    public FinishOptionEvent(PersonObj PersonObj)
     {
-        this.person = person;
+        this.PersonObj = PersonObj;
     }
 }
 
 public class OptionControl : MonoBehaviour, IController,ICanRegisterEvent
 {
-    public Person person;
+    public PersonObj PersonObj;
     // Start is called before the first frame update
     public IArchitecture GetArchitecture()
     {
@@ -24,7 +24,7 @@ public class OptionControl : MonoBehaviour, IController,ICanRegisterEvent
     {
         this.RegisterEvent<ChangeOptionEvent>(//Ñ¡ÔñÐÐÎª
          e => {
-             this.SendEvent<FinishOptionEvent>(new FinishOptionEvent(person));
+             this.SendEvent<FinishOptionEvent>(new FinishOptionEvent(PersonObj));
          }
          );
     }

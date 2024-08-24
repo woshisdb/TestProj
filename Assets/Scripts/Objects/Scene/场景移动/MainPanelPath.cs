@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnterA:Act
 {
     string x;
-    public EnterA(Person person, Obj obj, string x) : base(person, obj)
+    public EnterA(PersonObj PersonObj, Obj obj, string x) : base(PersonObj, obj)
     {
         this.x = x;
         wastTime = false;
@@ -15,14 +15,14 @@ public class EnterA:Act
     {
         TC();
         Debug.Log("Enter");
-        GameArchitect.get.GetModel<TableModelSet>().Get(x).EnterTable(Person);
-        yield return Ret(new EndAct(Person,Obj), callback);
+        GameArchitect.get.GetModel<TableModelSet>().Get(x).EnterTable(PersonObj);
+        yield return Ret(new EndAct(PersonObj,Obj), callback);
     }
 }
 public class LeaveA : Act
 {
     string x;
-    public LeaveA(Person person, Obj obj, string x) : base(person, obj)
+    public LeaveA(PersonObj PersonObj, Obj obj, string x) : base(PersonObj, obj)
     {
         wastTime = false;
         this.x = x;
@@ -31,8 +31,8 @@ public class LeaveA : Act
     {
         TC();
         Debug.Log("LeaveA2B");
-        GameArchitect.get.GetModel<TableModelSet>().Get(x).LeaveTable(Person);
-        yield return Ret(new EndAct(Person, Obj), callback);
+        GameArchitect.get.GetModel<TableModelSet>().Get(x).LeaveTable(PersonObj);
+        yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
 }
 
@@ -41,16 +41,16 @@ public class Go : Activity
     public string xname;
     public string yname;
     public int wasteTime;
-    public override bool Condition(Obj obj, Person person,params object[] objs)
+    public override bool Condition(Obj obj, PersonObj PersonObj,params object[] objs)
     {
-        return person.belong == GameArchitect.get.GetModel<TableModelSet>().Get(xname);
+        return PersonObj.belong == GameArchitect.get.GetModel<TableModelSet>().Get(xname);
     }
-	public override Act Effect(Obj obj, Person person, List<WinData> winDatas = null, params object[] objs)
+	public override Act Effect(Obj obj, PersonObj PersonObj, List<WinData> winDatas = null, params object[] objs)
     {
-        return new SeqAct(person, obj,
-            new LeaveA(person, obj, xname),
-            new WasteTimeA(person, obj, wasteTime),
-            new EnterA(person, obj, yname)
+        return new SeqAct(PersonObj, obj,
+            new LeaveA(PersonObj, obj, xname),
+            new WasteTimeA(PersonObj, obj, wasteTime),
+            new EnterA(PersonObj, obj, yname)
         );
     }
 

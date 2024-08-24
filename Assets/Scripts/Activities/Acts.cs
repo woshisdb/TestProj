@@ -6,7 +6,7 @@
 
 //public class UseObjA : Act
 //{
-//    public UseObjA(Person person, Obj obj) : base(person, obj)
+//    public UseObjA(PersonObj PersonObj, Obj obj) : base(PersonObj, obj)
 //    {
 //        wastTime = false;
 //    }
@@ -17,12 +17,12 @@
 //        Debug.Log("Use");
 //        BedObj data = (BedObj)Obj;
 //        data.capacity.val++;
-//        yield return Ret(new EndAct(Person, Obj), callback);
+//        yield return Ret(new EndAct(PersonObj, Obj), callback);
 //    }
 //}
 //public class ReleaseObjA : Act
 //{
-//    public ReleaseObjA(Person person, Obj obj) : base(person, obj)
+//    public ReleaseObjA(PersonObj PersonObj, Obj obj) : base(PersonObj, obj)
 //    {
 //        wastTime = false;
 //    }
@@ -33,6 +33,6 @@
 //        Debug.Log("Release");
 //        BedObj data = (BedObj)Obj;
 //        data.capacity.val--;
-//        yield return Ret(new EndAct(Person, Obj), callback);
+//        yield return Ret(new EndAct(PersonObj, Obj), callback);
 //    }
 //}

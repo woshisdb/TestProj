@@ -7,7 +7,7 @@ using UnityEngine;
 //{
 //    public SceneType p1 = new SceneType("p1");//当前场景
 //    public SceneType p2 = new SceneType("p2");//前往场景
-//    public PersonType ps = new PersonType("person");
+//    public PersonObjType ps = new PersonObjType("PersonObj");
 //    public GoTo(Pop cond=null,Pop eff=null, params PType[] condType)
 //    {
 //        objects.Add(p1);

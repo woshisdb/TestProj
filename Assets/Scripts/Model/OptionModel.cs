@@ -5,39 +5,39 @@ using UnityEngine;
 
 public struct ChangeOptionEvent
 {
-    public Person person;
+    public PersonObj PersonObj;
     public Dictionary<Obj, CardInf[]> cardInfs;
 
-    public ChangeOptionEvent(Person person, Dictionary<Obj, CardInf[]> options) : this()
+    public ChangeOptionEvent(PersonObj PersonObj, Dictionary<Obj, CardInf[]> options) : this()
     {
-        this.person = person;
+        this.PersonObj = PersonObj;
         this.cardInfs = options;
     }
 }
 
-public class PersonsOptionModel : AbstractModel
+public class PersonObjsOptionModel : AbstractModel
 {
-    public Dictionary<Person,Option> cardInfs;
+    public Dictionary<PersonObj,Option> cardInfs;
     protected override void OnInit()
     {
         
     }
-    public PersonsOptionModel(List<Person> people)
+    public PersonObjsOptionModel(List<PersonObj> people)
     {
-        cardInfs = new Dictionary<Person, Option>();
+        cardInfs = new Dictionary<PersonObj, Option>();
         for (int i = 0; i < people.Count; i++)
         {
             cardInfs.Add(people[i], new Option());
         }
     }
-    public void AddPerson(Person person)
+    public void AddPersonObj(PersonObj PersonObj)
     {
-        cardInfs.Add(person, new Option());
+        cardInfs.Add(PersonObj, new Option());
     }
-    public void SetPersonOption(Person person, Dictionary<Obj, CardInf[]> x)
+    public void SetPersonObjOption(PersonObj PersonObj, Dictionary<Obj, CardInf[]> x)
     {
-        cardInfs[person].options = x;
-        this.SendEvent<ChangeOptionEvent>(new ChangeOptionEvent(person, cardInfs[person].options));
+        cardInfs[PersonObj].options = x;
+        this.SendEvent<ChangeOptionEvent>(new ChangeOptionEvent(PersonObj, cardInfs[PersonObj].options));
     }
 }
 public class Option

@@ -40,7 +40,6 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
     public GameObject dayList;
     public GameObject timeLineObj;
     public static CodeSystemData systemData;
-    public CodeSystemEnum systemEnum;
     /// <summary>
     /// мов╖
     /// </summary>
@@ -127,25 +126,12 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
 
     public void AddData()
     {
-        if (systemEnum == CodeSystemEnum.week)
-        {
-            systemData = new CodeSystemDataWeek();
-        }
-        else if (systemEnum == CodeSystemEnum.month)
-        {
-            systemData = new CodeSystemDataMonth();
-        }
-        else
-        {
-            systemData = new CodeSystemDataYear();
-        }
         if (GameArchitect.get.tableAsset.codeDatas == null)
         {
             GameArchitect.get.tableAsset.codeDatas = new List<CodeSystemData>();
         }
         GameArchitect.get.tableAsset.codeDatas.Add(systemData);
         systemData.name = meshField.text;
-        Debug.Log(systemData.week.Count);
         SetData(systemData);
         hasSave = true;
         addScene.gameObject.SetActive(false);
@@ -180,16 +166,6 @@ public class CodeControler : MonoBehaviour, IController, ICanRegisterEvent
             });
         }
         List<CardInf> cardInfs=new List<CardInf>();
-        Debug.Log("????" + systemData.week.Count);
-        for(int x=0;x<systemData.week.Count;x++)
-        {
-            var setTime=false;
-            cardInfs.Add(new CardInf(x+"",systemData.code.ToString(),
-                () => {
-                    setTime = !setTime;
-                }
-            ));
-        }
         dayDataViewList.UpdataListView(cardInfs);
         nowData.text = codeSystemData.name;
     }

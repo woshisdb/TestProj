@@ -18,8 +18,16 @@ public class TableSaver
     /// </summary>
     [OdinSerialize]
     public List<Obj> objs;
+    /// <summary>
+    /// 需要精确计算的角色
+    /// </summary>
     [OdinSerialize]
-    public List<Person> personList;
+    public List<PersonObj> PersonObjList;
+    /// <summary>
+    /// 一系列预处理计算的物体
+    /// </summary>
+    [OdinSerialize]
+    public List<NPCObj> npcs;
     [OdinSerialize]
     public List<TableModel> tables;
     [OdinSerialize]
@@ -30,7 +38,8 @@ public class TableSaver
     {
         tables = new List<TableModel>();
         objs=new List<Obj>();
-        personList = new List<Person>();
+        PersonObjList = new List<PersonObj>();
+        npcs = new List<NPCObj>();
         pddlSet=new Dictionary<Type, PDDLSet>();
     }
 }

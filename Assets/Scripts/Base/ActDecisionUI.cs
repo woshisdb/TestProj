@@ -37,14 +37,14 @@ public class DecisionTex:WinCon
 /// </summary>
 public struct DecisionNode
 {
-    public Person person;
+    public PersonObj PersonObj;
     public string title;
     public string description;
     public List<CardInf> cardInfs;
-    public DecisionNode(Person person,string title,string description,List<CardInf> cardInfs)
+    public DecisionNode(PersonObj PersonObj,string title,string description,List<CardInf> cardInfs)
     {
         this.description=description;
-        this.person = person;
+        this.PersonObj = PersonObj;
         this.title=title;
         this.cardInfs = cardInfs;
     }

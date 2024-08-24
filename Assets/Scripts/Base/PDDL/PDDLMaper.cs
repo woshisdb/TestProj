@@ -9,9 +9,9 @@ public class PDDLMaper : MonoBehaviour
 {
     //public static PDDLClass GetPDDLC(object obj)
     //{
-    //    if (obj.GetType() == typeof(Person))
+    //    if (obj.GetType() == typeof(PersonObj))
     //    {
-    //        var p = new Person_PDDL((PersonType)((IPDDL)obj).GetPtype());
+    //        var p = new PersonObj_PDDL((PersonObjType)((IPDDL)obj).GetPtype());
     //    }
     //    else if (obj.GetType() == typeof(ObjEnum))
     //    {

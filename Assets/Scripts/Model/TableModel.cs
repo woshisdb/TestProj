@@ -23,13 +23,13 @@ public class TableModel: IPDDL, ICanRegisterEvent
     /// 场景大小
     /// </summary>
     public int size;
-    public List<Person> persons;
+    public List<PersonObj> PersonObjs;
     public List<Obj> objs;
     public TableControl control;//Table控制器
     public Rule rule;
     public TableModel()
     {
-        persons = new List<Person>();
+        PersonObjs = new List<PersonObj>();
         objs = new List<Obj>();
         InitPDDLClass();
     }
@@ -46,25 +46,25 @@ public class TableModel: IPDDL, ICanRegisterEvent
     /// <summary>
     /// 进入场景
     /// </summary>
-    /// <param name="person"></param>
-    public void EnterTable(Person person)
+    /// <param name="PersonObj"></param>
+    public void EnterTable(PersonObj PersonObj)
     {
-        persons.Add(person);
-        objs.Add(person);
-        person.belong = this;
-        if (person.isPlayer)
-            GameArchitect.gameLogic.camera.transform.position = person.belong.control.CenterPos();
+        PersonObjs.Add(PersonObj);
+        objs.Add(PersonObj);
+        PersonObj.belong = this;
+        if (PersonObj.isPlayer)
+            GameArchitect.gameLogic.camera.transform.position = PersonObj.belong.control.CenterPos();
         UpdateTable();
     }
     /// <summary>
     /// 离开场景
     /// </summary>
-    /// <param name="person"></param>
-    public void LeaveTable(Person person)
+    /// <param name="PersonObj"></param>
+    public void LeaveTable(PersonObj PersonObj)
     {
-        persons.Remove(person);
-        objs.Remove(person);
-        person.belong = null;
+        PersonObjs.Remove(PersonObj);
+        objs.Remove(PersonObj);
+        PersonObj.belong = null;
         UpdateTable();
     }
     public void AddToTable(Obj obj)

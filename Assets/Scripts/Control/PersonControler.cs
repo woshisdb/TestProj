@@ -4,9 +4,9 @@ using QFramework;
 //using Unity.VisualScripting;
 using UnityEngine;
 
-public class PersonControler : MonoBehaviour,IController
+public class PersonObjControler : MonoBehaviour,IController
 {
-    public Person person;
+    public PersonObj PersonObj;
 
     public IArchitecture GetArchitecture()
     {

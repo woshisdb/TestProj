@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class TableControl : MonoBehaviour, IController,ICanRegisterEvent
 {
-    public Transform personCardSlot;
+    public Transform PersonObjCardSlot;
     public Transform cardSlot;
     List<CardControl> cardControls;
-    List<CardControl> personControls;
+    List<CardControl> PersonObjControls;
     public TableModel tableModel;
     public Transform center;
     SimpleObjectPool<GameObject> cardPool;
@@ -23,7 +23,7 @@ public class TableControl : MonoBehaviour, IController,ICanRegisterEvent
     {
         tableNameUI.text = tableModel.TableName;
         cardControls = new List<CardControl>();
-        personControls = new List<CardControl>();
+        PersonObjControls = new List<CardControl>();
         cardPool = new SimpleObjectPool<GameObject>(
         () =>
         {
@@ -41,26 +41,26 @@ public class TableControl : MonoBehaviour, IController,ICanRegisterEvent
             if (tableModel  == e.Model)
             {
                 ClearCardSlot();
-                ClearPerson();
+                ClearPersonObj();
                 for(int i=0;i<tableModel.objs.Count;i++)
                 {
-                    if (tableModel.objs[i] is Person)
-                        InsertPerson((Person)tableModel.objs[i]);
+                    if (tableModel.objs[i] is PersonObj)
+                        InsertPersonObj((PersonObj)tableModel.objs[i]);
                     else
                         InsertCardSlot(tableModel.objs[i]);
                 }
             }
         });
     }
-    public void InsertPerson(Person person)
+    public void InsertPersonObj(PersonObj PersonObj)
     {
         var card=cardPool.Allocate();
-        card.transform.parent= personCardSlot;
-        int n = personControls.Count;
+        card.transform.parent= PersonObjCardSlot;
+        int n = PersonObjControls.Count;
         card.transform.localPosition = new Vector3((n%6)*1.5f,-(n/6)*2);
-        personControls.Add(card.GetComponent<CardControl>());
-        person.cardInf.cardControl = card.GetComponent<CardControl>();
-        card.GetComponent<CardControl>().UpdateInf(person.cardInf);
+        PersonObjControls.Add(card.GetComponent<CardControl>());
+        PersonObj.cardInf.cardControl = card.GetComponent<CardControl>();
+        card.GetComponent<CardControl>().UpdateInf(PersonObj.cardInf);
     }
     public void InsertCardSlot(Obj obj)
     {
@@ -72,15 +72,15 @@ public class TableControl : MonoBehaviour, IController,ICanRegisterEvent
         obj.cardInf.cardControl = card.GetComponent<CardControl>();
         card.GetComponent<CardControl>().UpdateInf(obj.cardInf);
     }
-    public void ClearPerson()
+    public void ClearPersonObj()
     {
-        for(int i=0;i<personControls.Count;i++)
+        for(int i=0;i<PersonObjControls.Count;i++)
         {
-            personControls[i].cardInf.cardControl = null;
-            cardPool.Recycle(personControls[i].gameObject);
+            PersonObjControls[i].cardInf.cardControl = null;
+            cardPool.Recycle(PersonObjControls[i].gameObject);
         }
         cardPool.Clear();
-        personControls.Clear();
+        PersonObjControls.Clear();
     }
     public void ClearCardSlot()
     {

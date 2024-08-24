@@ -5,139 +5,14 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
-public interface Need
-{
-    //public Pop retSatifP();
-    //public float retSatif();
-}
-public class PersonState:Need
-{
-    public AnimalObj person;
-    //public int l;
-    public int r;
-    public float val;
-    public PersonState(AnimalObj person,int r)
-    {
-        this.person = person;
-        //this.l = l;
-        this.r = r;
-    }
-    public PersonState(AnimalObj person, PersonSVal sv)
-    {
-        this.person = person;
-        //this.l = sv.l;
-        this.r = sv.r;
-    }
-    //public Pop Add(Pop pop)
-    //{
-    //    return PDDL.Min(PDDL.Max(PDDL.Add(val,pop),(I)0),(I)r);
-    //}
-    //public float retSatif()//返回满意度
-    //{
-    //    return ((float)r - (float)val.val) / (float)r;
-    //}
-    //public Pop retSatifP()
-    //{
-    //    return PDDL.Div(PDDL.Dec((I)r,val), (I)r);
-    //}
-}
-[System.Serializable]
-public class PersonSVal
-{
-    [SerializeField]
-    public int r;
-    [SerializeField]
-    public int val;
-}
 
-
-[System.Serializable]
-public class SafetyVals
-{
-    public int baseLive;
-    public int enoughLive;
-    public int richLive;
-    public List<int> foodMoney;
-}
-
-/// <summary>
-/// 对未来安全的满足情况,当前的金钱能够购买多少食物
-/// </summary>
-//public class SafetyState:Need
-//{
-//    public Person person;
-//    public int baseLive;//满足明天的生存
-//    public int enoughLive;//满足一个星期的生存
-//    public int richLive;//满足一月以上的生存
-//    public CircularQueue<int> foodMoney;//一点能量所花费的价格
-//    public Num foodSum;//所购买的食物总能量
-
-//    public SafetyState(Person person,SafetyVals safetyVals)
-//    {
-//        this.person = person;
-//        baseLive = safetyVals.baseLive;
-//        enoughLive = safetyVals.enoughLive;
-//        richLive = safetyVals.richLive;
-//        foodMoney = new CircularQueue<int>(7);
-//        foodSum = new Num(new FoodSumF((PersonType)person.obj));
-//    }
-
-//    public Pop retSatifP()
-//    {
-//        var data=(int)CircularQueue<int>.CalculateAverage(foodMoney);
-//        var foodAll = person.foodState.r;//总能量
-//        var mySum = PDDL.Add(foodSum,person.foodState);
-//        //mySum=PDDL.Add(mySum,PDDL.Mul((I)data,person.money));
-//        return PDDL.Div(mySum, (I)foodAll);//能够满足多久
-//    }
-//    public float retSatif()
-//    {
-//        float data= (float)CircularQueue<int>.CalculateAverage(foodMoney);
-//        float foodAll = person.foodState.r;//总能量
-//        float mySum = foodSum.val + person.foodState.val.val;// PDDL.Add(foodSum, person.foodState.val.func);
-//        //mySum = mySum + (data*(float)person.money.val);//PDDL.Add(mySum, PDDL.Mul((I)data, person.money));
-//        return mySum / foodAll;//PDDL.Div(mySum, (I)foodAll);//能够满足多久
-//    }
-//}
-//[System.Serializable]
-////饥饿的需求
-//public class HungryVals
-//{
-//    [SerializeField]
-//    public int r;//表示低于某个值会产生饥饿感
-//}
-////饥饿的需求
-//public class HungryState : Need
-//{
-//    Person person;
-//    public int r;//表示低于某个值会产生饥饿感
-//    public HungryState(Person person,HungryVals hungryVals)
-//    {
-//        this.person = person;
-//        this.r = hungryVals.r;
-//    }
-
-//    public float retSatif()
-//    {
-//        return person.foodState.val.val / (float)r;
-//    }
-
-//    public Pop retSatifP()
-//    {
-//        return PDDL.Div(person.foodState.val , (I)r);
-//    }
-//}
 [System.Serializable]
 public class PersonSaver : AnimalSaver
 {
     [SerializeField]
-    public string PersonName;
+    public string PersonObjName;
     [SerializeField]
     public bool isPlayer;
-    [SerializeField]
-    public SafetyVals SafetyVals;
-    //[SerializeField]
-    //public HungryVals HungryVals;
 }
 /// <summary>
 /// 活动结构，时间和活动
@@ -145,14 +20,10 @@ public class PersonSaver : AnimalSaver
 [System.Serializable]
 public class CodeData
 {
+    public string codeName { get { return activity.activityName; } }
     /// <summary>
-    /// 代码的名字
+    /// 对象
     /// </summary>
-    public string codeName;
-    /// <summary>
-    /// 当前的对象
-    /// </summary>
-    [ValueDropdown("Objs")]
     public Obj obj;
     /// <summary>
     /// 需要执行的活动
@@ -169,7 +40,6 @@ public class CodeData
     }
     public CodeData(CodeData codeData)
     {
-        this.codeName = codeData.codeName;
         obj = codeData.obj;
         activity = codeData.activity;
         wins = new List<WinData>();
@@ -185,172 +55,120 @@ public class CodeData
         return ret;
     }
 }
+/// <summary>
+/// 一个角色的协议管理
+/// </summary>
 public class ContractManager
 {
-    public Person person;
-    public ContractManager(Person person)
+    public IPerson PersonObj;
+    public ContractManager(IPerson PersonObj)
     {
-        this.person = person;
+        this.PersonObj = PersonObj;
     }
-    public CodeData GetCode()
+    /// <summary>
+    /// 获取当前的工作所做的事
+    /// </summary>
+    /// <returns></returns>
+    public CodeData GetWorkCode()
     {
-        var contracts = GameArchitect.get.GetModel<ContractModel>().bContract[person];
-        if (contracts == null)
-        {
-            contracts = new List<Contract>();
-        }
-        for(var x=0;x<contracts.Count;x++)
-        {
-            var code = contracts[x].codeData.GetNowWork();
-            if(code!=null)
-            return code;
-        }
-        return null;
+        var t = GameArchitect.get.GetModel<TimeModel>();
+        ///当前的时间
+        return PersonObj.GetWorkData().GetNowWork(t.GetTime());
+        //var contracts = GameArchitect.get.GetModel<ContractModel>().bContract[PersonObj];
+        //if (contracts == null)
+        //{
+        //    contracts = new List<Contract>();
+        //}
+        //for(var x=0;x<contracts.Count;x++)
+        //{
+        //    var code = contracts[x].GetNowWork();
+        //    if(code!=null)
+        //    return code;
+        //}
+        //return null;
     }
-    public CodeData GetCode(int time)
+    public CodeData GetWorkCode(int time)
     {
-        var contracts = GameArchitect.get.GetModel<ContractModel>().bContract[person];
-        for (var x = 0; x < contracts.Count; x++)
-        {
-            var code = contracts[x].codeData.GetNowWork(time);
-            if (code != null)
-                return code;
-        }
-        return null;
+        return PersonObj.GetWorkData().GetNowWork(time);
     }
-    //public bool Sign(Contract contract)
-    //{
-    //    if(contract.ContractAllow(contract.ap,person))//允许协议
-    //    {
-    //        contract.bp=person;
-    //        var contractModel=GameArchitect.get.GetModel<ContractModel>();
-    //        contractModel.SignContract(contract,person);
-    //        return true;
-    //    }
-    //    return false;
-    //}
-    //public bool CanSign(Contract contract)
-    //{
-    //    if (contract.ContractAllow(contract.ap, person))//允许协议
-    //    {
-    //        return true;
-    //    }
-    //    return false;
-    //}
 }
 public class PersonType:AnimalType
 {
-
 }
 
-[Map(null, "personSaver"),Class]
-public class Person : AnimalObj
+[Map,Class]
+public class PersonObj : AnimalObj,IPerson
 {
-    //***************************生成器********************************
+    //***************生成器****************
     public DomainGenerator domainGenerator;
     public ProblemGenerator problemGenerator;
     public PathGenerator pathGenerator;
-    //**************************************************************
-    /******************************************************/
+    /// <summary>
+    /// 是角色
+    /// </summary>
     [Property]
     public bool isPlayer;
+    /// <summary>
+    /// 角色的名字
+    /// </summary>
     [Property]
-    public string PersonName;
+    public string PersonObjName;
+    /// <summary>
+    /// 自己所拥有的所有资源
+    /// </summary>
     [Property]
     public Resource resource;
     [Property]
+    public int money { get { return resource.Get(ObjEnum.MoneyObjE); } set { resource.Add(ObjEnum.MoneyObjE,value); } }
+    /// <summary>
+    /// 时间规划
+    /// </summary>
+    [Property]
     public CodeData codeData;
-    ///// <summary>
-    ///// 金融知识
-    ///// </summary>
-    //public PersonState financialKnowledge;
-    ///// <summary>
-    ///// 美术知识
-    ///// </summary>
-    //public PersonState artKnowledge;
-    ///// <summary>
-    ///// 语言知识
-    ///// </summary>
-    //public PersonState languageKnowledge;
-    ///// <summary>
-    ///// 医疗知识
-    ///// </summary>
-    //public PersonState medicalKnowledge;
-    ///// <summary>
-    ///// 管理知识
-    ///// </summary>
-    //public PersonState managementKnowledge;
-    ///// <summary>
-    ///// 农业知识
-    ///// </summary>
-    //public PersonState agriculturalKnowledge;
-    ///// <summary>
-    ///// 工业知识
-    ///// </summary>
-    //public PersonState industrialKnowledge;
-    ///// <summary>
-    ///// 通史知识
-    ///// </summary>
-    //public PersonState generalHistoryKnowledge;
-    ///// <summary>
-    ///// 力量
-    ///// </summary>
-    //public PersonState strength;
-    ///// <summary>
-    ///// 敏捷
-    ///// </summary>
-    //public PersonState dexterity;
-    ///// <summary>
-    ///// 体质
-    ///// </summary>
-    //public PersonState constitution;
-    ///// <summary>
-    ///// 智力
-    ///// </summary>
-    //public PersonState intelligence;
-    ///// <summary>
-    ///// 感知
-    ///// </summary>
-    //public PersonState perception;
-    ///// <summary>
-    ///// 魅力
-    ///// </summary>
-    //public PersonState charisma;
-    ///// <summary>
-    ///// 意志
-    ///// </summary>
-    //public PersonState willpower;
-    ///// <summary>
-    ///// 运气
-    ///// </summary>
-    //public PersonState luck;
+    /// <summary>
+    /// 生活方式
+    /// </summary>
+    [Property]
+    public LifeStyle lifeStyle;
+    /// <summary>
+    /// 当前的活动
+    /// </summary>
     public Act act;
+    /// <summary>
+    /// 是否有选择活动
+    /// </summary>
+    public bool hasSelect { get { return act != null; } }
     /// <summary>
     /// 协议管理器
     /// </summary>
     public ContractManager contractManager;
+    /// <summary>
+    /// 一系列标记角色性质的标签
+    /// </summary>
+    public List<Tag> tags = new List<Tag>();
+
     public void Init()
     {
         domainGenerator = new DomainGenerator(this);
         problemGenerator=new ProblemGenerator(this);
         pathGenerator = new PathGenerator(this);
-        PersonName = ((PersonSaver)objSaver).PersonName;
+        PersonObjName = ((PersonSaver)objSaver).PersonObjName;
         isPlayer = ((PersonSaver)objSaver).isPlayer;
         if(cardInf==null)
         {
             cardInf = new CardInf();
         }
-        cardInf.title = PersonName;
+        cardInf.title = PersonObjName;
         cardInf.description = "";
     }
-    public Person(ObjSaver personAsset=null) : base(personAsset)
+    public PersonObj(ObjSaver PersonObjAsset=null) : base(PersonObjAsset)
     {
         Init();
         resource = new Resource();
-        var t = Resources.Load<GameObject>("Controler/Person");
+        var t = Resources.Load<GameObject>("Controler/PersonObj");
         var g = GameObject.Instantiate<GameObject>(t);
-        g.transform.parent = GameObject.Find("Persons").transform;
-        g.GetComponent<PersonControler>().person = this;
+        g.transform.parent = GameObject.Find("PersonObjs").transform;
+        g.GetComponent<PersonObjControler>().PersonObj = this;
         if (isPlayer)
         {
 
@@ -359,9 +177,9 @@ public class Person : AnimalObj
         {
             pathGenerator=new PathGenerator(this);
         }
-        if (personAsset != null)
+        if (PersonObjAsset != null)
         {
-            PersonSaver ps = (PersonSaver)personAsset;
+            PersonSaver ps = (PersonSaver)PersonObjAsset;
         }
         contractManager=new ContractManager(this);
     }
@@ -372,15 +190,13 @@ public class Person : AnimalObj
     public void SetAct(Act act)
     {
         this.act = act;
-        hasSelect = true;
-        this.SendEvent<EndTurnEvent>(new EndTurnEvent(GameArchitect.nowPerson));
+        this.SendEvent<EndTurnEvent>(new EndTurnEvent(GameArchitect.nowPersonObj));
     }
     /// <summary>
     /// 减少活动
     /// </summary>
     public void RemoveAct()
     {
-        this.hasSelect = false;
         this.act = null;
     }
     /// <summary>
@@ -405,27 +221,130 @@ public class Person : AnimalObj
         if(str==null)
         str=new System.Text.StringBuilder();
         str.Clear();
-        cardInf.title = PersonName;
+        cardInf.title = PersonObjName;
         if (cardInf.cardControl)
             cardInf.cardControl.UpdateInf();
         cardInf.description = str.ToString();
     }
-    ///// <summary>
-    ///// 获得活动
-    ///// </summary>
-    ///// <param name="obj"></param>
-    ///// <param name="person"></param>
-    ///// <returns></returns>
-    //public virtual List<Activity> GetActivity(Obj obj)
-    //{
-    //    List<Activity> list = new List<Activity>();
-    //    for (int i = 0; i < activities.Count; i++)
-    //    {
-    //        if (activities[i].Condition(obj, this))
-    //        {
-    //            list.Add(activities[i]);
-    //        }
-    //    }
-    //    return list;
-    //}
+
+    public WorkContract GetWork()
+    {
+        return lifeStyle.work;
+    }
+
+    public bool HasWork()
+    {
+        return lifeStyle.work!=null;
+    }
+
+    public List<Tag> GetTags()
+    {
+        return tags;
+    }
+
+    public int GetMoney()
+    {
+        return money;
+    }
+
+    public CodeSystemData GetWorkData()
+    {
+        return lifeStyle.code;
+    }
+
+    public void SetWorkData(CodeSystemData code)
+    {
+        lifeStyle.code = code;
+    }
+}
+
+///// <summary>
+///// 人群
+///// </summary>
+//[Class]
+//public class People:Obj
+//{
+//    /// <summary>
+//    /// 一系列不需要计算的物体
+//    /// </summary>
+//    public List<NPCObj> npcs = new List<NPCObj>();
+//    public Hash<PersonObj> people = new Hash<PersonObj>();
+//}
+
+public interface IPerson
+{
+    public WorkContract GetWork();
+    public bool HasWork();
+    public int GetMoney();
+    public List<Tag> GetTags();
+    /// <summary>
+    /// 获取工作的Data
+    /// </summary>
+    /// <returns></returns>
+    public CodeSystemData GetWorkData();
+    public void SetWorkData(CodeSystemData code);
+}
+
+/// <summary>
+/// 一系列不需要规划的NPC
+/// </summary>
+public class NPCObj : IPerson
+{
+    /// <summary>
+    /// 生活方式
+    /// </summary>
+    public LifeStyle lifeStyle;
+    /// <summary>
+    /// 当前所拥有的官方货币的数目
+    /// </summary>
+    public int money;
+    /// <summary>
+    /// 当前所拥有的食物所能维持的天数
+    /// </summary>
+    public int foods;
+    /// <summary>
+    /// 一系列标记角色性质的标签
+    /// </summary>
+    public List<Tag> tags = new List<Tag>();
+    /// <summary>
+    /// 当前的工作
+    /// </summary>
+    /// <returns></returns>
+    public WorkContract GetWork()
+    {
+        return lifeStyle.work;
+    }
+    public CodeSystemData GetWorkData()
+    {
+        return lifeStyle.code;
+    }
+    public bool HasWork()
+    {
+        return lifeStyle.work!=null;
+    }
+    public List<Tag> GetTags()
+    {
+        return tags;
+    }
+
+    public int GetMoney()
+    {
+        return money;
+    }
+
+    public void SetWorkData(CodeSystemData code)
+    {
+        throw new System.NotImplementedException();
+    }
+}
+
+public enum TagLable
+{
+    
+}
+
+public class Tag
+{
+    public Enum<TagLable> tag;
+    public int inf;
 }

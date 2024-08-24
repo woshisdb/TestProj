@@ -20,7 +20,7 @@ using QFramework;
 //    protected override void Definition() //The method to set what our node will be doing.
 //    {
 //        inputTrigger = ControlInput("inputTrigger", (flow) => {
-//            this.SendEvent<EndTurnEvent>(new EndTurnEvent(GameArchitect.nowPerson));
+//            this.SendEvent<EndTurnEvent>(new EndTurnEvent(GameArchitect.nowPersonObj));
 //            return outputTrigger;
 //        });
 //        //Making the ControlOutput port visible and setting its key.
@@ -42,7 +42,7 @@ using QFramework;
 //    protected override void Definition() //The method to set what our node will be doing.
 //    {
 //        inputTrigger = ControlInput("inputTrigger", (flow) => {
-//            this.SendEvent<EndWorkEvent>(new EndWorkEvent(GameArchitect.nowPerson));
+//            this.SendEvent<EndWorkEvent>(new EndWorkEvent(GameArchitect.nowPersonObj));
 //            return outputTrigger;
 //        });
 //        //Making the ControlOutput port visible and setting its key.
@@ -54,10 +54,10 @@ using QFramework;
 /// </summary>
 public class EndWorkEvent
 {
-    public Person person;
-    public EndWorkEvent(Person person)
+    public PersonObj PersonObj;
+    public EndWorkEvent(PersonObj PersonObj)
     {
-        this.person = person;
+        this.PersonObj = PersonObj;
     }
 }
 /// <summary>
@@ -65,10 +65,10 @@ public class EndWorkEvent
 /// </summary>
 public class EndTurnEvent
 {
-    public Person person;
-    public EndTurnEvent(Person person)
+    public PersonObj PersonObj;
+    public EndTurnEvent(PersonObj PersonObj)
     {
-        this.person = person;
+        this.PersonObj = PersonObj;
     }
 }
 /// <summary>
@@ -76,25 +76,25 @@ public class EndTurnEvent
 /// </summary>
 public class BeginTurnEvent
 {
-    public Person person;
-    public BeginTurnEvent(Person person)
+    public PersonObj PersonObj;
+    public BeginTurnEvent(PersonObj PersonObj)
     {
-        this.person = person;
+        this.PersonObj = PersonObj;
     }
 }
 public class ThinkModel : ICanRegisterEvent
 {
     protected TaskCompletionSource<bool> tcs;
-    public Person person;
+    public PersonObj PersonObj;
 
-    public ThinkModel(Person person)
+    public ThinkModel(PersonObj PersonObj)
     {
         tcs = new TaskCompletionSource<bool>();
-        this.person=person;
+        this.PersonObj=PersonObj;
         this.RegisterEvent<BeginActEvent>(
         (e) =>
         {
-            if (e.Person == person)
+            if (e.PersonObj == PersonObj)
             {
                 Exe();
             }
@@ -109,15 +109,15 @@ public class ThinkModel : ICanRegisterEvent
     {
         return null;
     }
-    public IEnumerator<object> RunPerson(Person person, System.Action<object> callback)
+    public IEnumerator<object> RunPersonObj(PersonObj PersonObj, System.Action<object> callback)
     {
-        while (GameLogic.hasTime&& person.hasSelect)//循环搜索
+        while (GameLogic.hasTime&& PersonObj.hasSelect)//循环搜索
         {
             yield return GameArchitect.gameLogic.StartCoroutine(
-                person.act.Run(callback)
+                PersonObj.act.Run(callback)
             );
         }
-        this.SendEvent<EndActEvent>(new EndActEvent(person));
+        this.SendEvent<EndActEvent>(new EndActEvent(PersonObj));
     }
     protected void Exe()
     {
@@ -125,11 +125,11 @@ public class ThinkModel : ICanRegisterEvent
         () =>
         {
             //Debug.Log("Turn");
-            GameArchitect.gameLogic.StartCoroutine(RunPerson(person, (result) => {
+            GameArchitect.gameLogic.StartCoroutine(RunPersonObj(PersonObj, (result) => {
                 if (result is EndAct)
-                    person.RemoveAct();
+                    PersonObj.RemoveAct();
                 else if (result is Act)
-                    person.SetAct((Act)result);
+                    PersonObj.SetAct((Act)result);
             }));
         });
     }
@@ -139,11 +139,11 @@ public class ThinkModel : ICanRegisterEvent
 /// </summary>
 public class PlayerThinkModel: ThinkModel
 {
-    public PlayerThinkModel(Person person):base(person)
+    public PlayerThinkModel(PersonObj PersonObj):base(PersonObj)
     {
         this.RegisterEvent<EndTurnEvent>(
         (e) => {
-            if (e.person == this.person)
+            if (e.PersonObj == this.PersonObj)
             {
                 //Debug.Log(tcs);
                 tcs.TrySetResult(true);
@@ -157,21 +157,21 @@ public class PlayerThinkModel: ThinkModel
     /// <returns></returns>
     public override Task BeginThink(Dictionary<Obj, CardInf[]> opts)
     {
-        if (!person.hasSelect)//无活动
+        if (!PersonObj.hasSelect)//无活动
         {
-            var c = person.contractManager.GetCode();
+            var c = PersonObj.contractManager.GetWorkCode();
             if (c != null)//有可执行的活动
             {
-                if (c.obj.belong == person.belong && c.activity.Condition(c.obj, person))
+                if (c.obj.belong == PersonObj.belong && c.activity.Condition(c.obj, PersonObj))
                 {
-                    person.SetAct(c.activity.Effect(c.obj, person));
+                    PersonObj.SetAct(c.activity.Effect(c.obj, PersonObj));
                     return Task.CompletedTask;
                 }
             }
             MainDispatch.Instance().Enqueue(
             () =>
             {
-                this.SendEvent<BeginTurnEvent>(new BeginTurnEvent(person));//触发思考活动
+                this.SendEvent<BeginTurnEvent>(new BeginTurnEvent(PersonObj));//触发思考活动
             });
             tcs = new TaskCompletionSource<bool>();
             return tcs.Task;
@@ -187,7 +187,7 @@ public class PlayerThinkModel: ThinkModel
 /// </summary>
 public class NPCThinkModel: ThinkModel
 {
-    public NPCThinkModel(Person person) : base(person)
+    public NPCThinkModel(PersonObj PersonObj) : base(PersonObj)
     {
 
     }
@@ -198,20 +198,20 @@ public class NPCThinkModel: ThinkModel
     public override Task BeginThink(Dictionary<Obj, CardInf[]> opts)
     {
         //return Task.CompletedTask;
-        if (!person.hasSelect)//无活动
+        if (!PersonObj.hasSelect)//无活动
         {
-            var c = person.contractManager.GetCode();
+            var c = PersonObj.contractManager.GetWorkCode();
             if (c != null)//有可执行的活动
             {
-                if(c.obj.belong==person.belong&&c.activity.Condition(c.obj,person))
+                if(c.obj.belong==PersonObj.belong&&c.activity.Condition(c.obj,PersonObj))
                 {
-                    person.SetAct(c.activity.Effect(c.obj,person));
+                    PersonObj.SetAct(c.activity.Effect(c.obj,PersonObj));
                     return Task.CompletedTask;
                 }
             }
-            var action = opts.GetValueOrDefault(person)[0];
+            var action = opts.GetValueOrDefault(PersonObj)[0];
             action.effect.Invoke();
-            return person.pathGenerator.GetPath(person.domainGenerator, person.problemGenerator);//路径生成
+            return PersonObj.pathGenerator.GetPath(PersonObj.domainGenerator, PersonObj.problemGenerator);//路径生成
         }
         else
         {
@@ -221,31 +221,31 @@ public class NPCThinkModel: ThinkModel
 }
 public class ThinkModelSet: AbstractModel
 {
-    public Dictionary<Person, ThinkModel> thinks;
+    public Dictionary<PersonObj, ThinkModel> thinks;
     public ThinkModelSet()
     {
-        thinks = new Dictionary<Person, ThinkModel>();
-        for(int i=0;i<GameArchitect.persons.Count;i++)
+        thinks = new Dictionary<PersonObj, ThinkModel>();
+        for(int i=0;i<GameArchitect.PersonObjs.Count;i++)
         {
-            if ((GameArchitect.persons[i]).isPlayer)
+            if ((GameArchitect.PersonObjs[i]).isPlayer)
             {
-                thinks.Add(GameArchitect.persons[i], new PlayerThinkModel(GameArchitect.persons[i]));
+                thinks.Add(GameArchitect.PersonObjs[i], new PlayerThinkModel(GameArchitect.PersonObjs[i]));
             }
             else
             {
-                thinks.Add(GameArchitect.persons[i],new NPCThinkModel(GameArchitect.persons[i]));
+                thinks.Add(GameArchitect.PersonObjs[i],new NPCThinkModel(GameArchitect.PersonObjs[i]));
             }
         }
     }
-    public void AddThinkMode(Person person)
+    public void AddThinkMode(PersonObj PersonObj)
     {
-        if (person.isPlayer)
+        if (PersonObj.isPlayer)
         {
-            thinks.Add(person, new PlayerThinkModel(person));
+            thinks.Add(PersonObj, new PlayerThinkModel(PersonObj));
         }
         else
         {
-            thinks.Add(person, new NPCThinkModel(person));
+            thinks.Add(PersonObj, new NPCThinkModel(PersonObj));
         }
     }
     protected override void OnInit()
