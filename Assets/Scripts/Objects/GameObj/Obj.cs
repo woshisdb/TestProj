@@ -147,7 +147,6 @@ public class Obj:PDDL,ICanRegisterEvent,IPDDL
 
     public void InitPDDLClass()
     {
-        //Debug.Log("hhhhhhhhhhhhhhh");
         pddl = PDDLClassGet.Generate(this.GetType());
         pddl.SetObj(this);
     }
@@ -156,6 +155,7 @@ public class Obj:PDDL,ICanRegisterEvent,IPDDL
     {
         return pddl;
     }
+
     ~Obj()
     {
         PDDLClassGet.Remove(pddl);

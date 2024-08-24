@@ -101,7 +101,8 @@ public class ObjInf:IPDDL
 
     public void InitPDDLClass()
     {
-        pddl = new ObjInf_PDDL();
+        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl.SetObj(this);
     }
 }
 
@@ -126,7 +127,7 @@ public class ObjSaver
     public Dic<Enum<TransationEnum>, ObjInf> transPairs=new Dic<Enum<TransationEnum>, ObjInf>();
     ////////////////////////////////////////////////////////
     [OdinSerialize]
-    public Dic<Enum<SitEnum>> sits=new Dic<Enum<SitEnum>>();
+    public DicInt<Enum<SitEnum>> sits=new DicInt<Enum<SitEnum>>();
     public int SitVal(SitEnum sitEnum)
     {
         if(sits.ContainsKey(sitEnum))
@@ -158,8 +159,8 @@ public class EnumType<T>:PType
 {
     
 }
-public class Enum_PDDL<T> : PDDLClass<Enum<T>,EnumType<T>>
-where T: System.Enum
+public class Enum_PDDL<T> : PDDLClass<Enum<T>, EnumType<T>>
+where T : System.Enum
 {
 
 }
@@ -167,6 +168,10 @@ public class Enum<T>:IPDDL where T : System.Enum
 {
     public PDDLClass pddl;
     public T value;
+    public Enum()
+    {
+        value = default(T);
+    }
     public Enum(T v)
     {
         value = v;
@@ -174,13 +179,12 @@ public class Enum<T>:IPDDL where T : System.Enum
 
 	public PDDLClass GetPDDLClass()
 	{
-		throw new NotImplementedException();
+        return pddl;
 	}
 
 	public PType GetPtype()
 	{
         return pddl.GetObj();
-
     }
 
 	public void InitPDDLClass()

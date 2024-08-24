@@ -144,13 +144,6 @@ public class SelPipLineAct:Activity
     {
         return true;// ((BuildingObj)obj).remainBuilder == 0;
     }
-
-    //public override PAction GetAction()
-    //{
-    //    PAction action = new PAction();
-    //    return action;
-    //}
-
     /// <summary>
     /// Ð§¹û
     /// </summary>

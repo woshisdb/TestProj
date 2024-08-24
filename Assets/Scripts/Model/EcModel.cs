@@ -335,19 +335,19 @@ public class Resource : IPDDL
 /// <summary>
 /// 商品管理列表
 /// </summary>
-public class GoodsManager
+public class GoodsManager:IPDDL
 {
     /// <summary>
     /// 一系列的商品
     /// </summary>
-    public Dic<Goods> goods;
+    public DicInt<Goods> goods;
     public Resource originResource;
     public Obj obj;
     public GoodsManager(Resource originresource,Obj obj)
     {
         this.obj = obj;
         this.originResource = originresource;
-        goods = new Dic<Goods>();
+        goods = new DicInt<Goods>();
     }
     public void SellEc(Goods goodsItem,int n)
     {
@@ -363,6 +363,21 @@ public class GoodsManager
         goods[x] += sum;
         originResource.Remove(sell, sellNum * sum);
     }
+
+	public PType GetPtype()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void InitPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
+
+	public PDDLClass GetPDDLClass()
+	{
+		throw new NotImplementedException();
+	}
 }
 
 /// <summary>
@@ -391,7 +406,7 @@ public class EcModel : AbstractModel
                 g2.Remove(x);
             }
     }
-    public bool TryEc(Dic<Goods> resource, GoodsManager g1, Resource g2)
+    public bool TryEc(DicInt<Goods> resource, GoodsManager g1, Resource g2)
     {
         Resource resource1=new Resource();
         foreach (var x in resource)

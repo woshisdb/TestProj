@@ -119,11 +119,9 @@ public class Map : Singleton<Map>
         {
             if (!graph.ContainsKey(type))
                 graph[type] = new HashSet<Type>();
-
             if (!inDegree.ContainsKey(type))
                 inDegree[type] = 0;
         }
-
         // 构建图和计算入度
         foreach (var type in types)
         {

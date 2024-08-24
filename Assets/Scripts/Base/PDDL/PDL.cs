@@ -1151,6 +1151,15 @@ public class NowT:Func
 
     }
 }
+/// <summary>
+/// 是否是世界状态，世界状态的更新
+/// </summary>
+public class WorldState : Predicate
+{
+    public WorldState() : base("WorldState")
+    { 
+    }
+}
 
 public class HashType<T> : PType
 {
@@ -1168,7 +1177,7 @@ where T:IPDDL,new()
         ptype = new HashType<T>();
     }
 }
-
+[Class(false)]
 public class Hash<T> : HashSet<T>, IPDDL
 where T : IPDDL
 {
@@ -1189,7 +1198,7 @@ where T : IPDDL
 
     public void InitPDDLClass()
     {
-        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl = PDDLClassGet.Generate(this.GetType(),typeof(Hash_PDDL<T>));
         pddl.SetObj(pddl);
     }
 }
@@ -1203,8 +1212,8 @@ public class DicType<T, F> : PType
 }
 
 public class Dic_PDDL<T, F> : PDDLClass<Dic<T,F>,DicType<T,F>>
-where T : IPDDL,new ()
-where F : IPDDL,new ()
+where T : IPDDL
+where F : IPDDL
 {
     /// <summary>
     /// 调用判断是否在里面
@@ -1241,10 +1250,8 @@ where F : IPDDL,new ()
 
     public override List<Predicate> GetPreds()
     {
-        var temp1 = new T();
-        var temp2 = new F();
         List<Predicate> ret = new List<Predicate>() {
-            new Predicate("Dic_"+typeof(T).Name+"_"+typeof(F).Name+"_IN", GetObj(),temp1.GetPtype(),temp2.GetPtype())
+            new Predicate("Dic_"+typeof(T).Name+"_"+typeof(F).Name+"_IN", GetObj(),PDDLClassGet.GetPType(typeof(T)),PDDLClassGet.GetPType(typeof(F)))
         };
         return ret;
     }
@@ -1264,7 +1271,7 @@ where F : IPDDL,new ()
         this.obj = (Dic<T, F>)(obj);
     }
 }
-
+[Class(false)]
 public class Dic<T, F> : Dictionary<T, F>, IPDDL
 where T : IPDDL
 where F : IPDDL
@@ -1277,7 +1284,7 @@ where F : IPDDL
 
     public void InitPDDLClass()
     {
-        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl = PDDLClassGet.Generate(this.GetType(), typeof(Dic_PDDL<T,F>));
         pddl.SetObj(this);
     }
 
@@ -1290,16 +1297,16 @@ where F : IPDDL
     {
     }
 }
-
-public class DicType<T> : PType
+//带有Int的Dic
+public class DicIntType<T> : PType
 {
-    public DicType() : base("Dic_" + typeof(T).Name)
+    public DicIntType() : base("Dic_" + typeof(T).Name)
     {
 
     }
 }
 
-public class Dic_PDDL<T> : PDDLClass<Dic<T>, DicType<T>>
+public class DicInt_PDDL<T> : PDDLClass<DicInt<T>, DicIntType<T>>
 where T : IPDDL, new()
 {
     /// <summary>
@@ -1318,9 +1325,9 @@ where T : IPDDL, new()
     {
         return new Func("Dic_" + typeof(T).Name + "_IN_NUM", GetObj(), pType1);
     }
-    public Dic_PDDL()
+    public DicInt_PDDL()
     {
-        ptype = new DicType<T>();
+        ptype = new DicIntType<T>();
     }
 
     public override List<Func> GetFuncs()
@@ -1373,12 +1380,12 @@ where T : IPDDL, new()
 
     public override void SetObj(object obj)
     {
-        this.obj = (Dic<T>)(obj);
+        this.obj = (DicInt<T>)(obj);
     }
 }
-
-public class Dic<T> : Dictionary<T,int>, IPDDL
-where T : IPDDL
+[Class(false)]
+public class DicInt<T> : Dictionary<T,int>, IPDDL
+where T : IPDDL,new()
 {
     public PDDLClass pddl;
     public PType GetPtype()
@@ -1388,7 +1395,7 @@ where T : IPDDL
 
     public void InitPDDLClass()
     {
-        pddl = PDDLClassGet.Generate(this.GetType());
+        pddl = PDDLClassGet.Generate(this.GetType(),typeof(DicInt_PDDL<T>));
         pddl.SetObj(this);
     }
 
@@ -1397,7 +1404,114 @@ where T : IPDDL
         return pddl;
     }
 
-    public Dic() : base()
+    public DicInt() : base()
+    {
+    }
+}
+
+public class DicBoolType<T> : PType
+{
+    public DicBoolType() : base("Dic_" + typeof(T).Name)
+    {
+
+    }
+}
+
+public class DicBool_PDDL<T> : PDDLClass<DicInt<T>, DicIntType<T>>
+where T : IPDDL, new()
+{
+    /// <summary>
+    /// 调用判断是否在里面
+    /// </summary>
+    /// <returns></returns>
+    public Predicate In(PType pType1)
+    {
+        return new Predicate("Dic_" + typeof(T).Name + "_IN", GetObj(), pType1);
+    }
+    /// <summary>
+    /// 调用判断是否在里面
+    /// </summary>
+    /// <returns></returns>
+    public Predicate Num(PType pType1)
+    {
+        return new Predicate("Dic_" + typeof(T).Name + "_IN_BOOL", GetObj(), pType1);
+    }
+    public DicBool_PDDL()
+    {
+        ptype = new DicIntType<T>();
+    }
+
+    public override List<Func> GetFuncs()
+    {
+        return null;
+    }
+
+    public override List<Num> GetFuncsVal()
+    {
+        //var ret = new List<Num>();
+        //foreach (var x in obj)
+        //{
+        //    ret.Add(new Num(Num(x.Key.GetPtype()), x.Value));
+        //}
+        return null;
+    }
+
+    public override PType GetObj()
+    {
+        return ptype;
+    }
+
+    public override List<PAction> GetPActions()
+    {
+        return new List<PAction>();
+    }
+
+    public override List<Predicate> GetPreds()
+    {
+        var temp1 = new T();
+        List<Predicate> ret = new List<Predicate>() {
+            new Predicate("Dic_"+typeof(T).Name+"_IN", GetObj(),temp1.GetPtype())
+        };
+        return ret;
+    }
+
+    public override List<Bool> GetPredsVal()
+    {
+        var ret = new List<Bool>();
+        foreach (var x in obj)
+        {
+            ret.Add(new Bool(In(x.Key.GetPtype()), true));
+            ret.Add(new Bool(Num(x.Key.GetPtype()),true));
+        }
+        return ret;
+    }
+
+    public override void SetObj(object obj)
+    {
+        this.obj = (DicInt<T>)(obj);
+    }
+}
+[Class(false)]
+public class DicBool<T> : Dictionary<T, bool>, IPDDL
+where T : IPDDL,new()
+{
+    public PDDLClass pddl;
+    public PType GetPtype()
+    {
+        return pddl.GetObj();
+    }
+    public void InitPDDLClass()
+    {
+        pddl = PDDLClassGet.Generate(this.GetType(), typeof(DicBool_PDDL<T>));
+        pddl.SetObj(this);
+    }
+
+    public PDDLClass GetPDDLClass()
+    {
+        return pddl;
+    }
+
+    public DicBool() : base()
     {
     }
 }

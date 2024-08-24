@@ -19,10 +19,14 @@ public class PropertyAttribute : Attribute
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum)]
 public class ClassAttribute : Attribute
 {
-    bool autoGen;
-    public ClassAttribute(bool autoGenerate=true)
+    public bool generate;
+    /// <summary>
+    /// 有c#自动生成来生成PDDLClass
+    /// </summary>
+    /// <param name="generate"></param>
+    public ClassAttribute(bool generate=true)
     {
-        autoGen=autoGenerate;
+        this.generate = generate;
     }
 }
 public static class P
@@ -142,6 +146,10 @@ public static class P
     {
         return new Exist(express,numbers);
     }
+    public static IT IT() { return new IT(); }
+    public static Duration Duration() { return new Duration(); }
+    public static NowT NowT() { return new NowT(); }
+    public static WorldState WorldState() { return new WorldState(); }
 }
 
 public class CNode
@@ -179,8 +187,9 @@ public class PDDLClassGenerater
 
         // 查找所有被 ClassAttribute 特性修饰的类
         var classesWithAttribute = types
-            .Where(t => t.GetCustomAttributes(typeof(ClassAttribute), false).Any())
-            .ToList();
+        .Where(t => t.GetCustomAttributes(typeof(ClassAttribute), false)
+        .Any(attr => ((ClassAttribute)attr).generate))
+        .ToList();
         List<CNode> cNodes =new List<CNode>();
         foreach (var type in classesWithAttribute)
         {
