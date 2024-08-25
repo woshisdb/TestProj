@@ -93,17 +93,74 @@ public class ObjSingle:ObjContBase, ICanRegisterEvent
         objs = objs.Except(content.objs).ToList();
     }
 }
-/// <summary>
-/// 资源数目
-/// </summary>
-public class ObjCont:ObjContBase
+
+public class Inf
 {
-    public Obj obj;
-    public ObjCont(Obj obj,int x,int y):base(x,y)
+    /// <summary>
+    /// 所有的数目
+    /// </summary>
+    public int all;
+    /// <summary>
+    /// 剩余的数目
+    /// </summary>
+    public int remain;
+    public int price;
+}
+
+public class ObjSet : ObjContBase
+{
+    public Dictionary<Obj, Inf> objDic;
+    public ObjSet(int size, int remain) : base(size, remain)
     {
-        this.obj = obj;
-        size = x;
-        remain = y;
+        objDic = new Dictionary<Obj, Inf>();
+    }
+    public override void Add(int num, Obj obj = null, int time = 0)
+    {
+        size += num;
+        remain += num;
+        //如果能保存
+        if (objDic.ContainsKey(obj))
+        {
+            objDic[obj].remain+=num;
+            objDic[obj].all += num;
+        }
+        else
+        {
+            objDic[obj] = new Inf();
+            objDic[obj].remain += num;
+            objDic[obj].all += num;
+        }
+    }
+    public override void Remove(int num, Obj obj = null, int time = 0)
+    {
+        size -= num;
+        remain -= num;
+        objDic[obj].remain -= num;
+        objDic[obj].all -= num;
+        if (objDic[obj].all == 0)
+        {
+            objDic.Remove(obj);
+        }
+    }
+    public override void Combine(ObjContBase objCont)
+    {
+        size+=objCont.size;
+        remain+=objCont.remain;
+        var t = (ObjSet)objCont;
+        foreach (var x in t.objDic)
+        {
+            Add(x.Value.all,x.Key);
+        }
+    }
+    public override void Delete(ObjContBase objCont)
+    {
+        size -= objCont.size;
+        remain -= objCont.remain;
+        var t = (ObjSet)objCont;
+        foreach (var x in t.objDic)
+        {
+            Remove(x.Value.all, x.Key);
+        }
     }
 }
 
@@ -218,7 +275,7 @@ public class Resource : IPDDL
             }
             else if (type == SaveTye.set)
             {
-                resources.Add(objtype, new ObjCont(Map.Instance.GetObj(objtype), 0, 0));
+                resources.Add(objtype, new ObjSet(0, 0));
             }
         }
         resources[objtype].Add(num, obj);
@@ -338,32 +395,33 @@ public class Resource : IPDDL
 public class GoodsManager:IPDDL
 {
     /// <summary>
-    /// 一系列的商品
+    /// 一系列的(商品,价格)
     /// </summary>
-    public DicInt<Goods> goods;
+    public Dictionary<ObjEnum, ObjSet> goods;
+    /// <summary>
+    /// 原先的资源
+    /// </summary>
     public Resource originResource;
     public Obj obj;
     public GoodsManager(Resource originresource,Obj obj)
     {
         this.obj = obj;
         this.originResource = originresource;
-        goods = new DicInt<Goods>();
+        goods = new Dictionary<ObjEnum, ObjSet>();
     }
-    public void SellEc(Goods goodsItem,int n)
+    public void Add(Obj sell,int sellNum,int price)
     {
-        goods[goodsItem] -= n;
-    }
-    public void Add(ObjEnum sell,int sellNum,ObjEnum buy,int buyNum,int sum)
-    {
-        var x = new Goods();
-        if (goods.ContainsKey(x))
+        if(!goods.ContainsKey(sell.GetEnum()))
         {
-            goods[x] = sum;
+            goods.Add(sell.GetEnum(),new ObjSet(0,0));
         }
-        goods[x] += sum;
-        originResource.Remove(sell, sellNum * sum);
+        goods[sell.GetEnum()].Add(sellNum, sell);
+        goods[sell.GetEnum()].objDic[sell].price = price;
     }
-
+    public void Remove(Obj obj,int num)
+    {
+        goods[obj.GetEnum()].Remove(num, obj);
+    }
 	public PType GetPtype()
 	{
 		throw new NotImplementedException();
@@ -392,42 +450,9 @@ public class EcModel : AbstractModel
     /// <summary>
     /// g1->g2
     /// </summary>
-    public void Ec(Goods goods,int sum,GoodsManager g1,Resource g2)
+    public void Ec(Obj obj,int num,GoodsManager g1,Resource g2)
     {
-        g1.SellEc(goods,sum);
-        for(int i=0;i<sum;i++)
-        foreach (var x in goods.buyO.resources)
-        {
-            g2.Add(x);
-        }
-        for (int i = 0; i < sum; i++)
-            foreach (var x in goods.sellO.resources)
-            {
-                g2.Remove(x);
-            }
-    }
-    public bool TryEc(DicInt<Goods> resource, GoodsManager g1, Resource g2)
-    {
-        Resource resource1=new Resource();
-        foreach (var x in resource)
-        {
-            for(int i=0;i<x.Value;i++)
-            foreach (var y in x.Key.sellO.resources)
-            {
-                resource1.Add(y);
-            }
-        }
-        foreach (var x in resource1.resources)
-        {
-            if ( !g2.resources.ContainsKey(x.Key)||g2.resources[x.Key].remain<x.Value.remain )
-            {
-                return false;
-            }
-        }
-        foreach (var x in resource)
-        {
-            Ec(x.Key,x.Value,g1,g2);
-        }
-        return true;
+        g2.Add(obj.GetEnum(),num,obj);
+        g1.Remove(obj, num);
     }
 }

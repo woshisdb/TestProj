@@ -16,7 +16,7 @@ public class FoodSaver : RawSaver
     public Resource rawObj;
     /// <summary>
     /// 食物所提供的能量
-    /// </summary>  
+    /// </summary>
     public int energy;
     /// <summary>
     /// 生产所花费的工时
@@ -26,16 +26,78 @@ public class FoodSaver : RawSaver
 /// <summary>
 /// 1点能量代表坚持一个回合
 /// </summary>
-[Map(),Class]
-public class FoodObj : RawObj
-{
+/// 
 
-    public FoodObj(FoodSaver objAsset = null) : base(objAsset)
+public interface IHashInf
+{
+    public HashInf GetInf();
+}
+
+
+public class HashInf:IEqualityComparer<HashInf>
+{
+    int id;
+
+    public bool Equals(HashInf x, HashInf y)
     {
+        return x.id == y.id;
     }
+
+    public int GetHashCode(HashInf obj)
+    {
+        return obj.id.GetHashCode();
+    }
+}
+
+/// <summary>
+/// 集合对象
+/// </summary>
+public abstract class HashSetObj<T>: RawObj, IEqualityComparer<T>, IHashInf
+where T:IHashInf
+{
+    public bool Equals(T x, T y)
+    {
+        return x.GetInf().Equals(y.GetInf());
+    }
+
+    public int GetHashCode(FoodObj obj)
+    {
+        return obj.GetInf().GetHashCode();
+    }
+
+    public int GetHashCode(T obj)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public abstract HashInf GetInf();
+
     public FoodSaver GetSaver()
     {
         return (FoodSaver)objSaver;
+    }
+}
+/// <summary>
+/// 食物Saver
+/// </summary>
+public class FoodHashInf:HashInf
+{
+    /// <summary>
+    /// 口味[0.1]
+    /// </summary>
+    public float foodPoint;
+    /// <summary>
+    /// 高端吗[0.1]
+    /// </summary>
+    public float level;
+}
+
+[Map(), Class]
+public class FoodObj : HashSetObj<FoodObj>
+{
+    public override HashInf GetInf()
+    {
+        return new FoodHashInf();
     }
 }
 

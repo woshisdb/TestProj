@@ -156,6 +156,7 @@ public class Obj:PDDL,ICanRegisterEvent,IPDDL
         return pddl;
     }
 
+
     ~Obj()
     {
         PDDLClassGet.Remove(pddl);

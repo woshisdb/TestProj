@@ -28,14 +28,14 @@ public class CodeData
     /// <summary>
     /// 需要执行的活动
     /// </summary>
-    public Activity activity;
+    public NPCActivity activity;
     [SerializeField]
     /// <summary>
     /// 需要连续执行的活动
     /// </summary>
     public List<WinData> wins;
     public CodeData()
-    {
+    { 
         wins = new List<WinData>();
     }
     public CodeData(CodeData codeData)
@@ -64,32 +64,6 @@ public class ContractManager
     public ContractManager(IPerson PersonObj)
     {
         this.PersonObj = PersonObj;
-    }
-    /// <summary>
-    /// 获取当前的工作所做的事
-    /// </summary>
-    /// <returns></returns>
-    public CodeData GetWorkCode()
-    {
-        var t = GameArchitect.get.GetModel<TimeModel>();
-        ///当前的时间
-        return PersonObj.GetWorkData().GetNowWork(t.GetTime());
-        //var contracts = GameArchitect.get.GetModel<ContractModel>().bContract[PersonObj];
-        //if (contracts == null)
-        //{
-        //    contracts = new List<Contract>();
-        //}
-        //for(var x=0;x<contracts.Count;x++)
-        //{
-        //    var code = contracts[x].GetNowWork();
-        //    if(code!=null)
-        //    return code;
-        //}
-        //return null;
-    }
-    public CodeData GetWorkCode(int time)
-    {
-        return PersonObj.GetWorkData().GetNowWork(time);
     }
 }
 public class PersonType:AnimalType
@@ -125,11 +99,6 @@ public class PersonObj : AnimalObj,IPerson
     /// </summary>
     [Property]
     public CodeData codeData;
-    /// <summary>
-    /// 生活方式
-    /// </summary>
-    [Property]
-    public LifeStyle lifeStyle;
     /// <summary>
     /// 当前的活动
     /// </summary>
@@ -229,12 +198,12 @@ public class PersonObj : AnimalObj,IPerson
 
     public WorkContract GetWork()
     {
-        return lifeStyle.work;
+        return null;
     }
 
     public bool HasWork()
     {
-        return lifeStyle.work!=null;
+        return false;
     }
 
     public List<Tag> GetTags()
@@ -249,12 +218,11 @@ public class PersonObj : AnimalObj,IPerson
 
     public CodeSystemData GetWorkData()
     {
-        return lifeStyle.code;
+        return null;
     }
 
     public void SetWorkData(CodeSystemData code)
     {
-        lifeStyle.code = code;
     }
 }
 
@@ -301,11 +269,20 @@ public class NPCObj : IPerson
     /// <summary>
     /// 当前所拥有的食物所能维持的天数
     /// </summary>
-    public int foods;
+    public AverageList foods;
+    /// <summary>
+    /// 当前所补充的能量,睡了几个小时
+    /// </summary>
+    public AverageList sleep;
     /// <summary>
     /// 一系列标记角色性质的标签
     /// </summary>
     public List<Tag> tags = new List<Tag>();
+    /// <summary>
+    /// 所属于的对象
+    /// </summary>
+    [Property]
+    public TableModel belong;
     /// <summary>
     /// 当前的工作
     /// </summary>

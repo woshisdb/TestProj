@@ -10,7 +10,7 @@ public class CookA:Act
     public BuildingObj buildingObj;
     public Obj selObj;
     public Int time;
-    public CookA(PersonObj PersonObj, BuildingObj obj,Obj selObj, Int time, int priority = -1) : base(PersonObj, obj, priority)
+    public CookA(PersonObj PersonObj, BuildingObj obj,Obj selObj, Int time) : base(PersonObj, obj)
     {
         this.time = time;
         wastTime = true;
@@ -28,7 +28,7 @@ public class CookA:Act
             yield return Ret(new EndAct(PersonObj, Obj), callback);//返回
         }
         else
-            yield return Ret(new CookA(PersonObj, buildingObj, selObj,time, priority), callback);//做饭
+            yield return Ret(new CookA(PersonObj, buildingObj, selObj,time), callback);//做饭
     }
 }
 /// <summary>
@@ -37,7 +37,7 @@ public class CookA:Act
 public class CookSelA : Act
 {
     public int time = 3;
-    public CookSelA(PersonObj PersonObj, Obj obj, int priority =10,int time=3) : base(PersonObj, obj, priority)
+    public CookSelA(PersonObj PersonObj, Obj obj, int priority =10) : base(PersonObj, obj)
     {
         this.time = time;
         wastTime = true;
@@ -73,7 +73,7 @@ public class CookSelA : Act
             yield return Ret(
                 new SeqAct(PersonObj,Obj,
                     seleA,
-                    new CookA(PersonObj,building, selObj, seleA.selectTime, - 1)
+                    new CookA(PersonObj,building, selObj, seleA.selectTime)
                 ),callback);//做饭
         }
         else

@@ -340,6 +340,8 @@ public class BuildingSaver : ObjSaver
 	/// </summary>
 	public int container;
 }
+
+
 public class BuildingType : ObjType
 {
 

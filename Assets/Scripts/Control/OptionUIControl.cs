@@ -110,11 +110,7 @@ public class OptionUIControl : MonoBehaviour, IController, ICanRegisterEvent
             var time = GameArchitect.get.GetModel<TimeModel>().Time;
             for (int i = time; i < 48; i++)
             {
-                var code=updateCode.PersonObj.contractManager.GetWorkCode(i);
-                if (code!=null)
-                    res.Add(new CardInf(code.codeName, code.activity.activityName, () => { }));
-                else
-                    res.Add(new CardInf("无", "自由活动", () => { }));
+                res.Add(new CardInf("无", "自由活动", () => { }));
             }
             codeView.UpdataListView(res);
         }

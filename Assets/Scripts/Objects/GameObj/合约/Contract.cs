@@ -12,7 +12,7 @@ public enum ContractEnum
     unFinish,//Î´½áÊø
 }
 
-public class ContractType
+public class ContractType:PType
 {
     public ContractType():base()
     {

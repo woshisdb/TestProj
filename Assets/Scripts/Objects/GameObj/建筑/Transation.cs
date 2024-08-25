@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class BuyA : Act
 {
-    public BuyA(PersonObj PersonObj, Obj obj, int priority = -1) : base(PersonObj, obj, priority)
+    public BuyA(PersonObj PersonObj, Obj obj) : base(PersonObj, obj)
     {
         wastTime = true;
     }
@@ -36,7 +36,7 @@ public class BuyA : Act
                     var num=selects[i].num;
                     resource.Add(sx,num);
                 }
-                return GameArchitect.get.GetModel<EcModel>().TryEc(resource,buildingObj.goodsManager,PersonObj.resource);
+                return GameArchitect.get.GetModel<EcModel>().Ec(resource,buildingObj.goodsManager,PersonObj.resource);
             }));
         yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
@@ -72,7 +72,7 @@ public class BuyAct : Activity
 /// </summary>
 public class SellA : Act
 {
-    public SellA(PersonObj PersonObj, Obj obj, int priority = -1) : base(PersonObj, obj, priority)
+    public SellA(PersonObj PersonObj, Obj obj) : base(PersonObj, obj)
     {
         wastTime = true;
     }

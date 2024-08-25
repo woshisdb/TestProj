@@ -13,6 +13,19 @@ public struct TableChangeEvent
 {
     public TableModel Model;
 }
+
+public class GoodsMapper
+{
+    public 
+}
+public class TableGoodsManager
+{
+    /// <summary>
+    /// 每种商品的类型
+    /// </summary>
+    public Dictionary<ObjEnum, GoodsMapper> goods;
+}
+
 [SerializeField,Class]
 public class TableModel: IPDDL, ICanRegisterEvent
 {

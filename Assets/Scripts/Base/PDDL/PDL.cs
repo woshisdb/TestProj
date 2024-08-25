@@ -1170,7 +1170,7 @@ public class HashType<T> : PType
 }
 
 public class Hash_PDDL<T>:PDDLClass<Hash<T>,HashType<T>>
-where T:IPDDL,new()
+where T:IPDDL
 {
     public Hash_PDDL()
     {

@@ -67,7 +67,7 @@ public class SelectTime : Act
 {
     public int[] canSelectTime;
     public Int selectTime;
-    public SelectTime(PersonObj PersonObj, Obj obj, int[] canSelectTime,int priority = -1) : base(PersonObj, obj, priority)
+    public SelectTime(PersonObj PersonObj, Obj obj, int[] canSelectTim) : base(PersonObj, obj)
     {
         wastTime = false;
         this.canSelectTime = canSelectTime;
@@ -98,7 +98,7 @@ public class SelectTime : Act
 
 public class SelectPiplineA : Act
 {
-    public SelectPiplineA(PersonObj PersonObj, BuildingObj obj, int priority = -1) : base(PersonObj, obj, priority)
+    public SelectPiplineA(PersonObj PersonObj, BuildingObj obj) : base(PersonObj, obj)
     {
         wastTime = true;
     }
@@ -160,7 +160,7 @@ public class SelPipLineAct:Activity
 
 public class SetPiplineA : Act
 {
-    public SetPiplineA(PersonObj PersonObj, BuildingObj obj, int priority = -1) : base(PersonObj, obj, priority)
+    public SetPiplineA(PersonObj PersonObj, BuildingObj obj) : base(PersonObj, obj)
     {
         wastTime = true;
     }
@@ -269,7 +269,7 @@ public class UseToolAct : Activity
 public class UseToolA : Act
 {
     public Enum<ObjEnum> tool;
-    public UseToolA(PersonObj PersonObj, BuildingObj obj, int priority = -1) : base(PersonObj, obj, priority)
+    public UseToolA(PersonObj PersonObj, BuildingObj obj) : base(PersonObj, obj)
     {
         wastTime = true;
         tool= new Enum<ObjEnum>(ObjEnum.ObjE);
@@ -303,7 +303,7 @@ public class UseToolA : Act
 public class ReleaseToolA : Act
 {
     Enum<ObjEnum> v;
-    public ReleaseToolA(PersonObj PersonObj, BuildingObj obj,Enum<ObjEnum> v, int priority = -1) : base(PersonObj, obj, priority)
+    public ReleaseToolA(PersonObj PersonObj, BuildingObj obj,Enum<ObjEnum> v) : base(PersonObj, obj)
     {
         wastTime = true;
         this.v = v;
@@ -322,7 +322,7 @@ public class ReleaseToolA : Act
 /// </summary>
 public class BuildA : Act
 {
-    public BuildA(PersonObj PersonObj, BuildingObj obj, int priority = -1) : base(PersonObj, obj, priority)
+    public BuildA(PersonObj PersonObj, BuildingObj obj) : base(PersonObj, obj)
     {
         wastTime = true;
     }
@@ -393,7 +393,7 @@ public class BuildAct : Activity
 public class WaKuangA : Act
 {
     Int time;
-    public WaKuangA(PersonObj PersonObj, BuildingObj obj,Int time, int priority = -1) : base(PersonObj, obj, priority)
+    public WaKuangA(PersonObj PersonObj, BuildingObj obj,Int time) : base(PersonObj, obj)
     {
         this.time = time;
         wastTime = true;
@@ -447,24 +447,17 @@ public class WaKuangAct : Activity
     }
 }
 
+
 public abstract class Act
 {
-    /// <summary>
-    /// 优先级:
-    /// 0表示随机优先级（非最后和最前面）
-    /// 数越高则表示越靠前
-    /// 负数表示尽量靠后，数约小表示要求越晚
-    /// </summary>
-    public int priority;
     public PersonObj PersonObj;
     public Obj Obj;
     public bool wastTime;
     public List<WinData> winDatas;
-    public Act(PersonObj PersonObj, Obj obj,int priority=-1)
+    public Act(PersonObj PersonObj, Obj obj)
     {
         this.PersonObj = PersonObj;
         Obj = obj;
-        this.priority = priority;
         winDatas = new List<WinData>();//一系列的决策
     }
     public IEnumerator Ret(Act act, System.Action<Act> callback)
@@ -489,5 +482,56 @@ public abstract class Act
     public virtual void SetWinData(List<WinData> winDatas)
     {
         this.winDatas = winDatas;
+    }
+}
+
+
+/// <summary>
+/// NPC的活动
+/// </summary>
+public abstract class NPCAct
+{
+    /// <summary>
+    /// 浪费的时间
+    /// </summary>
+    public abstract int WasterTime();
+    public abstract IEnumerator Run();
+}
+/// <summary>
+/// NPC的行为
+/// </summary>
+public abstract class NPCActivity
+{
+    public string activityName { get { return GetType().Name; } }
+    /// <summary>
+    /// 获取角色的行为 
+    /// </summary>
+    /// <returns></returns>
+    public abstract NPCAct GetNPCAct();
+    /// <summary>
+    /// 获取活动的执行时间
+    /// </summary>
+    /// <returns></returns>
+    public abstract int GetTime();
+}
+
+public class SeqNpcAct : NPCAct
+{
+    public List<NPCAct> npcActs;
+    public override int WasterTime()
+    {
+        int sum = 0;
+        foreach(var npcAct in npcActs)
+        {
+            sum += npcAct.WasterTime();
+        }
+        return sum;
+    }
+    public override IEnumerator Run()
+    {
+        for(int i=0;i<npcActs.Count;i++)
+        {
+            yield return npcActs[i].Run();
+        }
     }
 }

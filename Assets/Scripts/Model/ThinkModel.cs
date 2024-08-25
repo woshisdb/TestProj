@@ -124,7 +124,6 @@ public class ThinkModel : ICanRegisterEvent
         MainDispatch.Instance().Enqueue(
         () =>
         {
-            //Debug.Log("Turn");
             GameArchitect.gameLogic.StartCoroutine(RunPersonObj(PersonObj, (result) => {
                 if (result is EndAct)
                     PersonObj.RemoveAct();
@@ -159,15 +158,6 @@ public class PlayerThinkModel: ThinkModel
     {
         if (!PersonObj.hasSelect)//无活动
         {
-            var c = PersonObj.contractManager.GetWorkCode();
-            if (c != null)//有可执行的活动
-            {
-                if (c.obj.belong == PersonObj.belong && c.activity.Condition(c.obj, PersonObj))
-                {
-                    PersonObj.SetAct(c.activity.Effect(c.obj, PersonObj));
-                    return Task.CompletedTask;
-                }
-            }
             MainDispatch.Instance().Enqueue(
             () =>
             {
@@ -197,26 +187,7 @@ public class NPCThinkModel: ThinkModel
     /// <returns></returns>
     public override Task BeginThink(Dictionary<Obj, CardInf[]> opts)
     {
-        //return Task.CompletedTask;
-        if (!PersonObj.hasSelect)//无活动
-        {
-            var c = PersonObj.contractManager.GetWorkCode();
-            if (c != null)//有可执行的活动
-            {
-                if(c.obj.belong==PersonObj.belong&&c.activity.Condition(c.obj,PersonObj))
-                {
-                    PersonObj.SetAct(c.activity.Effect(c.obj,PersonObj));
-                    return Task.CompletedTask;
-                }
-            }
-            var action = opts.GetValueOrDefault(PersonObj)[0];
-            action.effect.Invoke();
-            return PersonObj.pathGenerator.GetPath(PersonObj.domainGenerator, PersonObj.problemGenerator);//路径生成
-        }
-        else
-        {
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
     }
 }
 public class ThinkModelSet: AbstractModel

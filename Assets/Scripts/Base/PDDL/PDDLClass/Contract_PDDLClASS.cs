@@ -7,7 +7,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
-public class Contract_PDDL:PDDLClass<Contract,ContractType>{
+public class Contract_PDDL : PDDLClass<Contract, ContractType> { 
+
 public Contract_PDDL():base(){
             
 }

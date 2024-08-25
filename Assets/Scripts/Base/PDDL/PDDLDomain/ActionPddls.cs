@@ -87,10 +87,4 @@ public class ActionPddls
         action.actionName = "SetPipLineAct";
         return action;
     }
-    public static PAction SetPipLineAct()
-    {
-        PAction action = new PAction();
-        action.actionName = "SetPipLineAct";
-        return action;
-    }
 }

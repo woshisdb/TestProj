@@ -48,9 +48,58 @@ public class WorkContract : Contract
         throw new NotImplementedException();
     }
 }
+/// <summary>
+/// 自己的体验类型
+/// </summary>
+public enum SelectEnum
+{
+    /// <summary>
+    /// 价格敏感
+    /// </summary>
+    PriceSensitive,
+    /// <summary>
+    /// 质量导向型
+    /// </summary>
+    Quality_Oriented,
+    /// <summary>
+    /// 奢侈型
+    /// </summary>
+    Luxury_Seeking
+}
+/// <summary>
+/// 食物开销
+/// </summary>
+public class FoodStyle
+{
+    public SelectEnum selectEnum;
+    /// <summary>
+    /// 食物的口味
+    /// </summary>
+    public float foodPoint;
 
+    /// <summary>
+    /// npc,返回选择的食物
+    /// </summary>
+    /// <param name="npc"></param>
+    public FoodObj Decision(NPCObj npc)
+    {
+        var table = npc.belong;
+        ///一系列的物体
+        foreach(var t in table.objs)
+        {
+            if(t is BuildingObj)
+            {
+                var building = (BuildingObj)t;//
+                ///如果商品里有食物则计算
+                if (building.goodsManager.goods.ContainsKey(ObjEnum.FoodObjE))
+                {
 
-
+                }
+            }
+        }
+        return null;
+    }
+}
 
 /// <summary>
 /// 生活方式,例如空闲时间
@@ -65,4 +114,5 @@ public class LifeStyle
     /// 当前的工作流程
     /// </summary>
     public CodeSystemData code;
+    public FoodStyle foodStyle;
 }

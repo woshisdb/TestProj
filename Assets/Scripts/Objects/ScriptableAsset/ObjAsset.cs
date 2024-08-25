@@ -213,7 +213,7 @@ public enum SaveTye
     /// <summary>
     /// 保存唯一一个
     /// </summary>
-    single,
+    single
 }
 
 /// <summary>
