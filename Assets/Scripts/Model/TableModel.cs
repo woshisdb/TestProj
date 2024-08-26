@@ -16,7 +16,7 @@ public struct TableChangeEvent
 
 public class GoodsMapper
 {
-    public 
+
 }
 public class TableGoodsManager
 {

@@ -14,30 +14,30 @@ public class BuyA : Act
 
     public override IEnumerator<object> Run(Action<Act> callback)
     {
-        TC();
-        Debug.Log("交易");
-        List<SelectInf> selects = new List<SelectInf>();
-        BuildingObj buildingObj = (BuildingObj)Obj;//建筑对象
-        foreach (var t in buildingObj.goodsManager.goods)
-        {
-            selects.Add(//可以卖的东西
-                new SelectInf(t.Key.sellO.ToString()+ "->" + t.Key.buyO.ToString(), t.Value + "", t.Key, t.Value)
-            );
-        }
-        yield return GameArchitect.gameLogic.AddDecision(PersonObj,
-            new SelectTex("购买", "选择要购买的东西",
-            selects,
-            () =>
-            {
-                DicInt<Goods> resource = new DicInt<Goods>();
-                for(int i=0;i<selects.Count;i++)
-                {
-                    var sx=(Goods)selects[i].obj;
-                    var num=selects[i].num;
-                    resource.Add(sx,num);
-                }
-                return GameArchitect.get.GetModel<EcModel>().Ec(resource,buildingObj.goodsManager,PersonObj.resource);
-            }));
+        //TC();
+        //Debug.Log("交易");
+        //List<SelectInf> selects = new List<SelectInf>();
+        //BuildingObj buildingObj = (BuildingObj)Obj;//建筑对象
+        //foreach (var t in buildingObj.goodsManager.goods)
+        //{
+        //    selects.Add(//可以卖的东西
+        //        new SelectInf(t.Key.sellO.ToString()+ "->" + t.Key.buyO.ToString(), t.Value + "", t.Key, t.Value)
+        //    );
+        //}
+        //yield return GameArchitect.gameLogic.AddDecision(PersonObj,
+        //    new SelectTex("购买", "选择要购买的东西",
+        //    selects,
+        //    () =>
+        //    {
+        //        DicInt<Goods> resource = new DicInt<Goods>();
+        //        for(int i=0;i<selects.Count;i++)
+        //        {
+        //            var sx=(Goods)selects[i].obj;
+        //            var num=selects[i].num;
+        //            resource.Add(sx,num);
+        //        }
+        //        return GameArchitect.get.GetModel<EcModel>().Ec(resource,buildingObj.goodsManager,PersonObj.resource);
+        //    }));
         yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
 }
@@ -79,28 +79,28 @@ public class SellA : Act
 
     public override IEnumerator<object> Run(Action<Act> callback)
     {
-        TC();
-        BuildingObj buildingObj = (BuildingObj)Obj;//建筑对象
-        Debug.Log("交易");
-        List<SelectInf> selects = new List<SelectInf>();
-        foreach(var t in buildingObj.goodsManager.goods)
-        {
-            selects.Add(//将物品添加到卖场
-                new SelectInf(t.Key.sellO.ToString()+"->"+ t.Key.buyO.ToString(),t.Value+"",t.Key,t.Value)
-            );
-        }
-        yield return GameArchitect.gameLogic.AddDecision(PersonObj,
-            new SelectTex("卖", "选择要卖的东西",
-            selects,
-            () =>
-            {
-                foreach (var t in selects)
-                {
-                    var x=(Obj)t.obj;
-                    buildingObj.goodsManager.Add(x.GetEnum(),1,ObjEnum.MoneyObjE,10, t.num);
-                }
-                return true;
-            }));
+        //TC();
+        //BuildingObj buildingObj = (BuildingObj)Obj;//建筑对象
+        //Debug.Log("交易");
+        //List<SelectInf> selects = new List<SelectInf>();
+        //foreach(var t in buildingObj.goodsManager.goods)
+        //{
+        //    selects.Add(//将物品添加到卖场
+        //        new SelectInf(t.Key.sellO.ToString()+"->"+ t.Key.buyO.ToString(),t.Value+"",t.Key,t.Value)
+        //    );
+        //}
+        //yield return GameArchitect.gameLogic.AddDecision(PersonObj,
+        //    new SelectTex("卖", "选择要卖的东西",
+        //    selects,
+        //    () =>
+        //    {
+        //        foreach (var t in selects)
+        //        {
+        //            var x=(Obj)t.obj;
+        //            buildingObj.goodsManager.Add(x.GetEnum(),1,ObjEnum.MoneyObjE,10, t.num);
+        //        }
+        //        return true;
+        //    }));
         yield return Ret(new EndAct(PersonObj, Obj), callback);
     }
 }
