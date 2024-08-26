@@ -100,6 +100,41 @@ public class FoodStyle
         return null;
     }
 }
+public class Need
+{
+    /// <summary>
+    /// 此项所占的比例
+    /// </summary>
+    public float rate;
+}
+/// <summary>
+/// 对活着的需要
+/// </summary>
+public class Alive:Need
+{
+
+}
+/// <summary>
+/// 对安全的需要
+/// </summary>
+public class Safety:Need
+{
+
+}
+/// <summary>
+/// 对归属的需要
+/// </summary>
+public class Belong:Need
+{
+
+}
+/// <summary>
+/// 对尊重的需求
+/// </summary>
+public class Esteem:Need
+{
+
+}
 
 /// <summary>
 /// 生活方式,例如空闲时间
