@@ -8,9 +8,10 @@ from dataclasses import dataclass
 @dataclass
 class Product:
     goodsNo: int
-    quality: float
-    trait: float
-    price: int
+    quality: float #质量
+    trait: float #个人爱好
+    price: int #价格
+    brand:float#品牌
     stock: int
 # 连接到 SQLite 数据库
 conn = sqlite3.connect(r'..\..\Assets\StreamingAssets\SQLiteData.db')
@@ -72,6 +73,7 @@ weights = {
     'quality': 0.3,
     'trait': 0.2,
     'price': 0.4,
+    'brand':1,
 }
 weighted_scores = calculate_weighted_score(products, weights)
 for product, score in zip(products, weighted_scores):
@@ -90,6 +92,14 @@ class Need:
         :param rate: 需求所占的比例
         """
         self.rate = rate
+    def getFoodRate(self):
+        return {
+            'quality': 0,
+            'trait': 0,
+            'price': 0,
+            'brand':1,
+        }
+    def 
 
 class Alive(Need):
     """
@@ -98,6 +108,13 @@ class Alive(Need):
 
     def __init__(self, rate):
         super().__init__(rate)
+    def getFoodRate(self):
+        return {
+            'brand':0,
+            'quality': 0,
+            'trait': 0,
+            'price': -1,#越小越好
+        }
 
 class Safety(Need):
     """
@@ -105,13 +122,39 @@ class Safety(Need):
     """
     def __init__(self, rate):
         super().__init__(rate)
-
+    def getFoodRate(self):
+        return {
+            'brand':0,
+            'quality': 0,
+            'trait': 0,
+            'price': -1,#约小越好
+        }
+class Pleasure(Need):
+    """
+    对享乐的需求
+    """
+    def __init__(self, rate):
+        super().__init__(rate)
+    def getFoodRate(self):
+        return {
+            'brand':0,
+            'quality': 0,
+            'trait': 1,
+            'price': 0,
+        }
 class Belong(Need):
     """
     对归属的需求
     """
     def __init__(self, rate):
         super().__init__(rate)
+    def getFoodRate(self):
+        return {
+            'brand':1,
+            'quality': 0,
+            'trait': 0,
+            'price': 0,
+        }
 
 class Esteem(Need):
     """
@@ -119,6 +162,13 @@ class Esteem(Need):
     """
     def __init__(self, rate):
         super().__init__(rate)
+    def getFoodRate(self):
+        return {
+            'brand':0,
+            'quality': 0,
+            'trait': 0,
+            'price': 0,
+        }
 
 class NPC:
     def __init__(self):
@@ -126,7 +176,5 @@ class NPC:
         self.safety=Safety(rate=0.9)
         self.belong=Belong(rate=0.7)
         self.esteem=Esteem(rate=0.6)
-    #
-    def exec
-    #重新计算合适的比例
-    def replan(self):
+
+
