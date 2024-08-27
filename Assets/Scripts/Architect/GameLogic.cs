@@ -15,6 +15,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using MathNet.Numerics.Statistics;
 /// <summary>
 /// 更新环境
 /// </summary>
@@ -715,7 +716,31 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
         }
         yield break;
     }
+    [Button]
+    public void TestZScoreCalculation()
+    {
+        double[] values = { 100, 200, 300, 400, 500 };
 
+        // 使用 MathNet.Numerics 直接计算 Z-Scores
+        double[] zScores = ZScores(values);
+
+        // 手动计算的Z-Score预期结果
+        double mean = Statistics.Mean(values);
+        double stdDev = Statistics.StandardDeviation(values);
+        double[] expectedZScores =
+        {
+            (100 - mean) / stdDev,
+            (200 - mean) / stdDev,
+            (300 - mean) / stdDev,
+            (400 - mean) / stdDev,
+            (500 - mean) / stdDev
+        };
+        // 断言测试
+        for (int i = 0; i < zScores.Length; i++)
+        {
+            Debug.Log(zScores[i]);
+        }
+    }
     public void NPCUpdateCircle()
     {
         StartCoroutine(UpdataNPC());

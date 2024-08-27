@@ -526,6 +526,18 @@
       <HintPath>Assets\Plugins\Sqlite\x64\Mono.Data.Sqlite.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="NugetForUnity">
+      <HintPath>Assets\NuGet\Editor\NugetForUnity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuGetForUnity.PluginAPI">
+      <HintPath>Assets\NuGet\Editor\NuGetForUnity.PluginAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>Assets\Packages\MathNet.Numerics.5.0.0\lib\netstandard2.0\MathNet.Numerics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Users\sdb\Desktop\software\unityEditor\2021.3.5f1c1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
       <Private>False</Private>

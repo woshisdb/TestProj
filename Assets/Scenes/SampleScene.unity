@@ -4352,7 +4352,6 @@ MonoBehaviour:
   - {fileID: 331626547}
   dayList: {fileID: 471704712}
   timeLineObj: {fileID: 1648292001}
-  systemEnum: 0
   openScene: {fileID: 172308433}
   addScene: {fileID: 880942446}
   nowCards: []
@@ -10260,7 +10259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 871.2719, y: 0}
+  m_AnchoredPosition: {x: 871.8472, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &387222815
@@ -20576,7 +20575,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 695709487}
   m_HandleRect: {fileID: 695709486}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -33641,7 +33640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1304.622, y: 0}
+  m_AnchoredPosition: {x: 1305.1973, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1355338160
@@ -42804,7 +42803,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 38545005}
   m_HandleRect: {fileID: 38545004}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -45376,7 +45375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1085.8519, y: 0}
+  m_AnchoredPosition: {x: 1086.4272, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1785309043

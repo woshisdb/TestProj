@@ -4,6 +4,7 @@ from typing import List, Dict
 import sqlite3
 import random
 from dataclasses import dataclass
+
 # 定义数据类
 @dataclass
 class Product:
@@ -12,7 +13,7 @@ class Product:
     trait: float #个人爱好
     price: int #价格
     brand:float#品牌
-    stock: int
+    stock: int#库存
 # 连接到 SQLite 数据库
 conn = sqlite3.connect(r'..\..\Assets\StreamingAssets\SQLiteData.db')
 cursor = conn.cursor()
@@ -54,7 +55,6 @@ def calculate_weighted_score(products: List[Product], weights: Dict[str, float])
     traits = np.array([p.trait for p in products])
     prices = np.array([p.price for p in products])
     stocks = np.array([p.stock for p in products])
-
     # 进行 Z-score 归一化
     z_qualities = zscore(qualities)
     z_traits = zscore(traits)
@@ -81,100 +81,4 @@ for product, score in zip(products, weighted_scores):
 
 # 关闭数据库连接
 conn.close()
-
-class Need:
-    """
-    表示需求的基类
-    """
-    def __init__(self, rate):
-        """
-        初始化需求对象
-        :param rate: 需求所占的比例
-        """
-        self.rate = rate
-    def getFoodRate(self):
-        return {
-            'quality': 0,
-            'trait': 0,
-            'price': 0,
-            'brand':1,
-        }
-    def 
-
-class Alive(Need):
-    """
-    对活着的需求
-    """
-
-    def __init__(self, rate):
-        super().__init__(rate)
-    def getFoodRate(self):
-        return {
-            'brand':0,
-            'quality': 0,
-            'trait': 0,
-            'price': -1,#越小越好
-        }
-
-class Safety(Need):
-    """
-    对安全的需求
-    """
-    def __init__(self, rate):
-        super().__init__(rate)
-    def getFoodRate(self):
-        return {
-            'brand':0,
-            'quality': 0,
-            'trait': 0,
-            'price': -1,#约小越好
-        }
-class Pleasure(Need):
-    """
-    对享乐的需求
-    """
-    def __init__(self, rate):
-        super().__init__(rate)
-    def getFoodRate(self):
-        return {
-            'brand':0,
-            'quality': 0,
-            'trait': 1,
-            'price': 0,
-        }
-class Belong(Need):
-    """
-    对归属的需求
-    """
-    def __init__(self, rate):
-        super().__init__(rate)
-    def getFoodRate(self):
-        return {
-            'brand':1,
-            'quality': 0,
-            'trait': 0,
-            'price': 0,
-        }
-
-class Esteem(Need):
-    """
-    对尊重的需求
-    """
-    def __init__(self, rate):
-        super().__init__(rate)
-    def getFoodRate(self):
-        return {
-            'brand':0,
-            'quality': 0,
-            'trait': 0,
-            'price': 0,
-        }
-
-class NPC:
-    def __init__(self):
-        self.alive=Alive(rate=0.8)
-        self.safety=Safety(rate=0.9)
-        self.belong=Belong(rate=0.7)
-        self.esteem=Esteem(rate=0.6)
-
 
